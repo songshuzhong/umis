@@ -3,7 +3,7 @@
     <el-col v-for="(item, index) in iBody" :span="span" :key="index">
       <el-card :shadow="shadow" :body-style="bodyStyle" :class="classname">
         <template slot="header">
-          <div v-html="header || item.header" />
+          <div v-html="item.header || getHeader(item)" />
         </template>
         <component
           v-bind="item"
@@ -17,13 +17,12 @@
     </el-col>
   </el-row>
 </template>
-
 <script>
-import ElRow from 'element-ui/lib/row'
-import ElCol from 'element-ui/lib/col'
-import ElCard from 'element-ui/lib/card'
+import ElRow from 'element-ui/lib/row';
+import ElCol from 'element-ui/lib/col';
+import ElCard from 'element-ui/lib/card';
 
-import switches from '~components/umis/switches'
+import switches from '~components/umis/switches';
 
 export default {
   name: 'MisCards',
@@ -74,20 +73,15 @@ export default {
   data() {
     return {
       iBody: [],
-    }
+    };
   },
   watch: {
     body: {
       handler(val) {
-        this.iBody = val
+        this.iBody = val;
       },
       immediate: true,
       deep: true,
-    },
-  },
-  computed: {
-    isCards() {
-      return Object.prototype.toString.call(this.body) === '[object Array]'
     },
   },
   mounted() {
@@ -95,13 +89,13 @@ export default {
       .slientApi()
       .get(this.initApi)
       .then(res => {
-        this.iBody = res.result.list
-      })
+        this.iBody = res.result.list;
+      });
   },
   methods: {
     getHeader(data) {
-      return this.header
+      return this.$getRenderedTpl(this.header, data);
     },
   },
-}
+};
 </script>

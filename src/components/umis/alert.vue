@@ -11,7 +11,7 @@
   </el-alert>
 </template>
 <script>
-import ElAlert from 'element-ui/lib/alert'
+import ElAlert from 'element-ui/lib/alert';
 
 export default {
   name: 'MisAlert',
@@ -52,5 +52,5 @@ export default {
       required: false,
     },
   },
-}
+};
 </script>

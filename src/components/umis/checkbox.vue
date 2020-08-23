@@ -11,8 +11,8 @@
   </el-checkbox-group>
 </template>
 <script>
-import ElCheckboxGroup from 'element-ui/lib/checkbox-group'
-import ElCheckbox from 'element-ui/lib/checkbox'
+import ElCheckboxGroup from 'element-ui/lib/checkbox-group';
+import ElCheckbox from 'element-ui/lib/checkbox';
 
 export default {
   name: 'MisCheckbox',
@@ -35,8 +35,8 @@ export default {
   }),
   methods: {
     onSelect() {
-      this.$emit('input', this.iValue)
+      this.$emit('input', this.iValue);
     },
   },
-}
+};
 </script>

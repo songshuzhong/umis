@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import ElFormItem from 'element-ui/lib/form-item'
-import switches from '~components/umis/switches'
+import ElFormItem from 'element-ui/lib/form-item';
+import switches from '~components/umis/switches';
 
 export default {
   name: 'MisField',
@@ -43,14 +43,14 @@ export default {
   },
   mixins: [switches],
   mounted() {
-    this.iValue = this.field.value
-    this.$eventHub.$emit('mis-field:change', this.field.name, this.iValue)
+    this.iValue = this.field.value;
+    this.$eventHub.$emit('mis-field:change', this.field.name, this.iValue);
   },
   methods: {
     onInput(value) {
-      this.iValue = value
-      this.$eventHub.$emit('mis-field:change', this.field.name, value)
+      this.iValue = value;
+      this.$eventHub.$emit('mis-field:change', this.field.name, value);
     },
   },
-}
+};
 </script>

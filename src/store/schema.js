@@ -253,12 +253,12 @@ const json = [
             shadow: 'hover',
             classname: 'mis-card-margin',
             visibleOn: 'menu == "group1option2"',
-            header: '<h2>${name}</h2>',
+            header: '<h2><%=name%></h2>',
           },
         ],
       },
     ],
   },
-]
+];
 
-export default json
+export default json;

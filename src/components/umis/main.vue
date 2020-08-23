@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ElMain from 'element-ui/lib/main'
+import ElMain from 'element-ui/lib/main';
 
 export default {
   name: 'MisMain',
@@ -20,5 +20,5 @@ export default {
       required: true,
     },
   },
-}
+};
 </script>

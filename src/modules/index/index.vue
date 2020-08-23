@@ -13,9 +13,9 @@
   </div>
 </template>
 <script>
-import schema from '../../store/schema'
+import schema from '../../store/schema';
 
-import 'element-theme-chalk/lib/index.css'
+import 'element-theme-chalk/lib/index.css';
 
 export default {
   name: 'UMIS',
@@ -23,23 +23,23 @@ export default {
     return {
       schema,
       store: {},
-    }
+    };
   },
   mounted() {
-    this.$eventHub.$on('mis-store:update', this.onStoreUpdate)
+    this.$eventHub.$on('mis-store:update', this.onStoreUpdate);
   },
   methods: {
     onInput(value) {
-      console.log(value)
+      console.log(value);
     },
     onStoreUpdate(value) {
       for (let key in value) {
         if (value.hasOwnProperty(key)) {
-          this.store[key] = value[key]
+          this.store[key] = value[key];
         }
       }
-      this.$eventHub.$emit('mis-store:change', this.store)
+      this.$eventHub.$emit('mis-store:change', this.store);
     },
   },
-}
+};
 </script>

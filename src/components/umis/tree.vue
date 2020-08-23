@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ElTree from 'element-ui/lib/tree'
+import ElTree from 'element-ui/lib/tree';
 
 export default {
   name: 'MisTree',
@@ -16,5 +16,5 @@ export default {
       required: true,
     },
   },
-}
+};
 </script>

@@ -1,12 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Loading from 'element-ui/lib/loading'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Loading from 'element-ui/lib/loading';
 
-import Umis from '~modules/index/index.vue'
+import Umis from '~modules/index/index.vue';
 
-Vue.use(Router)
+Vue.use(Router);
 
-let routerMask
+let routerMask;
 const router = new Router({
   mode: 'history',
   routes: [
@@ -18,24 +18,24 @@ const router = new Router({
       },
     },
   ],
-})
+});
 
 router.beforeEach((to, from, next) => {
   routerMask = Loading.service({
     fullscreen: true,
     customClass: 'hk-router-loading',
-  })
-  next()
-})
+  });
+  next();
+});
 
 router.afterEach((router, from) => {
   if (routerMask && typeof routerMask.close === 'function') {
-    routerMask.close()
+    routerMask.close();
   }
   if (router.meta && router.meta.title) {
-    document.title = router.meta.title
+    document.title = router.meta.title;
   } else {
-    document.title = 'Demo'
+    document.title = 'Demo';
   }
-})
-export default router
+});
+export default router;

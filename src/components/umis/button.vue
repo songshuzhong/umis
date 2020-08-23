@@ -14,7 +14,7 @@
   </el-button>
 </template>
 <script>
-import ElButton from 'element-ui/lib/button'
+import ElButton from 'element-ui/lib/button';
 
 export default {
   name: 'MisButton',
@@ -65,8 +65,8 @@ export default {
   },
   methods: {
     onClick() {
-      this.action()
+      this.action();
     },
   },
-}
+};
 </script>

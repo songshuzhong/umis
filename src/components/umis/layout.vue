@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import ElContainer from 'element-ui/lib/container'
-import ElHeader from 'element-ui/lib/header'
-import ElAside from 'element-ui/lib/aside'
-import ElMain from 'element-ui/lib/main'
-import ElFooter from 'element-ui/lib/footer'
+import ElContainer from 'element-ui/lib/container';
+import ElHeader from 'element-ui/lib/header';
+import ElAside from 'element-ui/lib/aside';
+import ElMain from 'element-ui/lib/main';
+import ElFooter from 'element-ui/lib/footer';
 
 export default {
   name: 'MisLayout',
@@ -28,5 +28,5 @@ export default {
       required: true,
     },
   },
-}
+};
 </script>

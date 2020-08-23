@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import ElMenuItemGroup from 'element-ui/lib/menu-item-group'
+import ElMenuItemGroup from 'element-ui/lib/menu-item-group';
 
 export default {
   name: 'MisMenuItemGroup',
@@ -38,5 +38,5 @@ export default {
       required: true,
     },
   },
-}
+};
 </script>

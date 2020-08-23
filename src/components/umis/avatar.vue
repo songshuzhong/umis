@@ -10,7 +10,7 @@
   />
 </template>
 <script>
-import ElAvatar from 'element-ui/lib/avatar'
+import ElAvatar from 'element-ui/lib/avatar';
 
 export default {
   name: 'MisAvatar',
@@ -53,5 +53,5 @@ export default {
       options: ['fill', 'contain', 'cover', 'none', 'scale-down'],
     },
   },
-}
+};
 </script>

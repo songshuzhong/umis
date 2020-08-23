@@ -12,7 +12,7 @@
   </el-dialog>
 </template>
 <script>
-import ElDialog from 'element-ui/lib/dialog'
+import ElDialog from 'element-ui/lib/dialog';
 
 export default {
   name: 'MisDialog',
@@ -63,5 +63,5 @@ export default {
       default: true,
     },
   },
-}
+};
 </script>

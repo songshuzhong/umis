@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ElMenuItem from 'element-ui/lib/menu-item'
+import ElMenuItem from 'element-ui/lib/menu-item';
 
 export default {
   name: 'MisMenuItem',
@@ -26,5 +26,5 @@ export default {
       required: false,
     },
   },
-}
+};
 </script>

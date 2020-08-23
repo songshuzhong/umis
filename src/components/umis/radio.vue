@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import ElRadioGroup from 'element-ui/lib/radio-group'
-import ElRadio from 'element-ui/lib/radio'
+import ElRadioGroup from 'element-ui/lib/radio-group';
+import ElRadio from 'element-ui/lib/radio';
 
 export default {
   name: 'MisRadio',
@@ -36,8 +36,8 @@ export default {
   }),
   methods: {
     onChange() {
-      this.$emit('input', this.iValue)
+      this.$emit('input', this.iValue);
     },
   },
-}
+};
 </script>

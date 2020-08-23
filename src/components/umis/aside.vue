@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ElAside from 'element-ui/lib/aside'
+import ElAside from 'element-ui/lib/aside';
 
 export default {
   name: 'MisAside',
@@ -20,5 +20,5 @@ export default {
       required: true,
     },
   },
-}
+};
 </script>

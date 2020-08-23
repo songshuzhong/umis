@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import ElMenu from 'element-ui/lib/menu'
+import ElMenu from 'element-ui/lib/menu';
 
 export default {
   name: 'MisMenu',
@@ -62,15 +62,15 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.onMenuSelect(this.defaultActive)
-    })
+      this.onMenuSelect(this.defaultActive);
+    });
   },
   methods: {
     onMenuSelect(index) {
-      const store = this.store
-      store[this.name] = index
-      this.$eventHub.$emit('mis-store:change', store)
+      const store = this.store;
+      store[this.name] = index;
+      this.$eventHub.$emit('mis-store:change', store);
     },
   },
-}
+};
 </script>

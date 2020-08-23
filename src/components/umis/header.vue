@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ElHeader from 'element-ui/lib/header'
+import ElHeader from 'element-ui/lib/header';
 
 export default {
   name: 'MisHeader',
@@ -20,5 +20,5 @@ export default {
       required: true,
     },
   },
-}
+};
 </script>

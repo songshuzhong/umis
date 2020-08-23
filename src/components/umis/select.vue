@@ -18,8 +18,9 @@
   </el-select>
 </template>
 <script>
-import ElSelect from 'element-ui/lib/select'
-import ElOption from 'element-ui/lib/option'
+import ElSelect from 'element-ui/lib/select';
+import ElOption from 'element-ui/lib/option';
+
 export default {
   name: 'MisSelect',
   components: {
@@ -49,8 +50,8 @@ export default {
   }),
   methods: {
     onChange() {
-      this.$emit('input', this.iValue)
+      this.$emit('input', this.iValue);
     },
   },
-}
+};
 </script>
