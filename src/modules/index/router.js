@@ -2,23 +2,19 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Loading from 'element-ui/lib/loading'
 
-import About from '~modules/umis/about.vue'
-import Umis from '~modules/umis/index.vue'
+import Umis from '~modules/index/index.vue'
 
 Vue.use(Router)
 
 let routerMask
 const router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      component: About,
-    },
-    {
-      path: '/umis',
       component: Umis,
       mete: {
-        title: 'umis',
+        title: 'index',
       },
     },
   ],

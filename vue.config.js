@@ -105,8 +105,8 @@ module.exports = {
       rewrites: rewrites,
     },
     proxy: {
-      '/members': {
-        target: 'http://mock.biz.weibo.com/api/app/mock/23/',
+      '/api': {
+        target: 'http://localhost:3000',
         changeOrigin: true,
       },
     },

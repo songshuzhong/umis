@@ -7,8 +7,14 @@
     :align="align"
     :tag="tag"
   >
-    <el-col v-for="(item, index) in body" :span="item.span">
+    <el-col
+      v-for="(item, index) in body"
+      :span="item.span"
+      :key="index"
+      :class="classname"
+    >
       <component
+        v-bind="item"
         :is="item.renderer"
         :key="index"
         :label="item.label"
@@ -33,6 +39,10 @@ export default {
   props: {
     body: {
       type: [Array, Object],
+      required: false,
+    },
+    classname: {
+      type: String,
       required: false,
     },
     gutter: {

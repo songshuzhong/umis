@@ -1,20 +1,14 @@
-async function mockList(pid, drowsiness) {
+async function mockList(pid, pageSize, drowsiness) {
   await sleep(drowsiness)
 
   const children = []
-  for (let i = 1; i < 10; i++) {
-    if (pid.length < 6) {
-      children.push({
-        id: pid + i,
-        name: '计划系列名称之' + pid + i,
-        children: [],
-      })
-    } else {
-      children.push({
-        id: pid + i,
-        name: '计划系列名称之' + pid + i,
-      })
-    }
+  for (let i = 1; i < pageSize; i++) {
+    children.push({
+      id: pid + i,
+      name: '计划系列名称之' + pid + i,
+      renderer: 'mis-avatar',
+      src: 'https://songshuzhong.github.io/visualizer/static/img/html5.png',
+    })
   }
 
   return children
@@ -38,7 +32,7 @@ module.exports = {
     const pageIndex = ctx.params.pageIndex
     const pageSize = ctx.params.pageSize
 
-    let list = await mockList(pageIndex, 1500)
+    let list = await mockList(pageIndex, pageSize, 1500)
     ctx.restify({
       code: 1000,
       result: {

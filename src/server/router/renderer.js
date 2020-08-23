@@ -6,9 +6,9 @@ module.exports = {
     await ctx.render('index')
   },
   'GET /about': async ctx => {
-    await ctx.render('about/umis')
+    await ctx.render('about/index')
   },
   'GET /contact': async ctx => {
-    await ctx.render('contact/umis')
+    await ctx.render('contact/index')
   },
 }

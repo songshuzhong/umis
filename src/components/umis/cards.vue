@@ -1,7 +1,7 @@
 <template>
   <el-row v-if="iVisible" :gutter="gutter">
-    <el-col v-for="(item, index) in body" :span="span">
-      <el-card :shadow="shadow">
+    <el-col v-for="(item, index) in iBody" :span="span" :key="index">
+      <el-card :shadow="shadow" :body-style="bodyStyle" :class="classname">
         <template slot="header">
           <div v-html="item.header" />
         </template>
@@ -37,8 +37,16 @@ export default {
       type: [Array],
       required: true,
     },
-    className: {
+    initApi: {
+      type: [String, Object],
+      required: false
+    },
+    classname: {
       type: String,
+      required: false
+    },
+    bodyStyle: {
+      type: Object,
       required: false,
     },
     shadow: {
@@ -59,10 +67,29 @@ export default {
     },
   },
   mixins: [switches],
+  data() {
+    return {
+      iBody: []
+    }
+  },
+  watch: {
+    body: {
+      handler(val) {
+        this.iBody = val
+      },
+      immediate: true,
+      deep: true
+    }
+  },
   computed: {
     isCards() {
       return Object.prototype.toString.call(this.body) === '[object Array]'
     },
+  },
+  mounted() {
+    this.$api.slientApi().get(this.initApi).then(res => {
+      this.iBody = res.result.list
+    })
   },
 }
 </script>
