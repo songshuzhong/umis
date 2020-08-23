@@ -3,7 +3,7 @@
     <el-col v-for="(item, index) in iBody" :span="span" :key="index">
       <el-card :shadow="shadow" :body-style="bodyStyle" :class="classname">
         <template slot="header">
-          <div v-html="item.header" />
+          <div v-html="header || item.header" />
         </template>
         <component
           v-bind="item"
@@ -35,15 +35,19 @@ export default {
   props: {
     body: {
       type: [Array],
-      required: true,
+      required: false,
+    },
+    header: {
+      type: String,
+      required: false,
     },
     initApi: {
       type: [String, Object],
-      required: false
+      required: false,
     },
     classname: {
       type: String,
-      required: false
+      required: false,
     },
     bodyStyle: {
       type: Object,
@@ -69,7 +73,7 @@ export default {
   mixins: [switches],
   data() {
     return {
-      iBody: []
+      iBody: [],
     }
   },
   watch: {
@@ -78,8 +82,8 @@ export default {
         this.iBody = val
       },
       immediate: true,
-      deep: true
-    }
+      deep: true,
+    },
   },
   computed: {
     isCards() {
@@ -87,9 +91,17 @@ export default {
     },
   },
   mounted() {
-    this.$api.slientApi().get(this.initApi).then(res => {
-      this.iBody = res.result.list
-    })
+    this.$api
+      .slientApi()
+      .get(this.initApi)
+      .then(res => {
+        this.iBody = res.result.list
+      })
+  },
+  methods: {
+    getHeader(data) {
+      return this.header
+    },
   },
 }
 </script>

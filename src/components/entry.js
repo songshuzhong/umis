@@ -23,6 +23,7 @@ import MisCards from '~components/umis/cards'
 import MisAvatar from '~components/umis/avatar'
 import MisHtml from '~components/umis/html'
 import MisAlert from '~components/umis/alert'
+import MisDialog from '~components/umis/dialog'
 
 import MisInput from 'element-ui/lib/input'
 import MisContainer from 'element-ui/lib/container'
@@ -35,6 +36,7 @@ const components = {
   MisGrid,
   MisCards,
   MisAvatar,
+  MisDialog,
   MisAlert,
   MisHtml,
   MisContainer,
