@@ -1,7 +1,12 @@
 <template>
-  <el-container>
+  <el-container :direction="direction">
     <template v-for="(item, index) in body">
-      <component :is="item.renderer" :key="index" v-bind="item" />
+      <component
+        :is="item.renderer"
+        :key="index"
+        v-bind="item"
+        :store="store"
+      />
     </template>
   </el-container>
 </template>
@@ -25,6 +30,14 @@ export default {
   props: {
     body: {
       type: Array,
+      required: true,
+    },
+    direction: {
+      type: String,
+      required: false,
+    },
+    store: {
+      type: Object,
       required: true,
     },
   },

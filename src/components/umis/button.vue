@@ -24,7 +24,7 @@ export default {
   props: {
     action: {
       type: Function,
-      required: true,
+      required: false,
     },
     text: {
       type: String,

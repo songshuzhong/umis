@@ -1,5 +1,10 @@
 <template>
-  <el-menu :mode="mode" @select="onMenuSelect" :default-active="defaultActive">
+  <el-menu
+    :mode="mode"
+    @select="onMenuSelect"
+    :default-active="defaultActive"
+    :collapse="collapse"
+  >
     <template v-if="label" slot="title">
       <i :class="icon" />
       {{ label }}
@@ -51,9 +56,14 @@ export default {
       type: String,
       required: false,
     },
+    collapse: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     store: {
       type: Object,
-      required: true,
+      required: false,
     },
     body: {
       type: Array,

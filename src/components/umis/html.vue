@@ -1,5 +1,5 @@
 <template>
-  <div v-html="html" />
+  <div v-html="getHtml()" />
 </template>
 <script>
 export default {
@@ -7,7 +7,16 @@ export default {
   props: {
     html: {
       type: String,
-      required: true,
+      required: false,
+    },
+    data: {
+      type: Object,
+      required: false,
+    },
+  },
+  methods: {
+    getHtml() {
+      return this.$getRenderedTpl(this.html, this.data);
     },
   },
 };

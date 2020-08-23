@@ -1,18 +1,35 @@
 <template>
   <el-row v-if="iVisible" :gutter="gutter">
     <el-col v-for="(item, index) in iBody" :span="span" :key="index">
-      <el-card :shadow="shadow" :body-style="bodyStyle" :class="classname">
+      <el-card
+        :shadow="shadow"
+        :body-style="{ padding: 0 }"
+        :class="classname"
+        :data="item"
+      >
         <template slot="header">
           <div v-html="item.header || getHeader(item)" />
         </template>
-        <component
-          v-bind="item"
-          :is="item.renderer"
-          :key="index"
-          :label="item.label"
-          :name="item.name"
-          :children="item.body"
-        />
+        <div style="padding: 10px">
+          <component
+            v-bind="item"
+            :is="item.renderer"
+            :label="item.label"
+            :name="item.name"
+            :body="body"
+            :data="item"
+          />
+        </div>
+        <div class="el-card__footer" v-if="footer">
+          <template v-for="(foot, index) in footer">
+            <component
+              v-bind="Object.assign({}, item, foot)"
+              :key="index"
+              :is="foot.renderer"
+              :data="Object.assign({}, item, foot)"
+            />
+          </template>
+        </div>
       </el-card>
     </el-col>
   </el-row>
@@ -38,6 +55,10 @@ export default {
     },
     header: {
       type: String,
+      required: false,
+    },
+    footer: {
+      type: [Array, Object],
       required: false,
     },
     initApi: {

@@ -12,6 +12,7 @@ import MisButton from '~components/umis/button';
 import MisForm from '~components/umis/form';
 import MisLayout from '~components/umis/layout';
 import MisMain from '~components/umis/main';
+import MisFooter from '~components/umis/footer';
 import MisAside from '~components/umis/aside';
 import MisTree from '~components/umis/tree';
 import MisMenu from '~components/umis/menu';
@@ -27,7 +28,6 @@ import MisDialog from '~components/umis/dialog';
 
 import MisInput from 'element-ui/lib/input';
 import MisContainer from 'element-ui/lib/container';
-import MisFooter from 'element-ui/lib/footer';
 import MisSwitch from 'element-ui/lib/switch';
 import MisDatepicker from 'element-ui/lib/date-picker';
 

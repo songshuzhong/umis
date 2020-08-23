@@ -1,29 +1,29 @@
-const path = require('path')
-const glob = require('glob')
-const fs = require('fs')
-const manifestPlugin = require('webpack-manifest-plugin')
-const SupportWebPWebpackPlugin = require('support-webp-webpack-plugin')
+const path = require('path');
+const glob = require('glob');
+const fs = require('fs');
+const manifestPlugin = require('webpack-manifest-plugin');
+const SupportWebPWebpackPlugin = require('support-webp-webpack-plugin');
 
-const dev = process.env.NODE_ENV !== 'production'
-const publicPath = ''
-const pages = {}
-const rewrites = []
+const dev = process.env.NODE_ENV !== 'production';
+const publicPath = '';
+const pages = {};
+const rewrites = [];
 
 glob.sync('./src/pages/*.js').forEach(entry => {
-  const filename = entry.replace(/(.*\/)*([^.]+).*/gi, '$2')
+  const filename = entry.replace(/(.*\/)*([^.]+).*/gi, '$2');
   rewrites.push({
     from: new RegExp('^/' + filename),
     to: `/pages/${filename}.html`,
-  })
-  let pageConfig
+  });
+  let pageConfig;
   try {
     let fileContent = fs.readFileSync(
       `./src/modules/${filename}/index.json`,
       'utf-8'
-    )
-    pageConfig = JSON.parse(fileContent)
+    );
+    pageConfig = JSON.parse(fileContent);
   } catch (e) {
-    pageConfig = {}
+    pageConfig = {};
   }
   pages[filename] = {
     entry,
@@ -51,8 +51,8 @@ glob.sync('./src/pages/*.js').forEach(entry => {
           collapseWhitespace: true,
           removeAttributeQuotes: true,
         },
-  }
-})
+  };
+});
 
 module.exports = {
   pages,
@@ -74,7 +74,7 @@ module.exports = {
   },
   transpileDependencies: ['vue-echarts', 'resize-detector'],
   chainWebpack: config => {
-    const oneOfsMap = config.module.rule('scss').oneOfs.store
+    const oneOfsMap = config.module.rule('scss').oneOfs.store;
     oneOfsMap.forEach(item => {
       item
         .use('sass-resources-loader')
@@ -82,20 +82,20 @@ module.exports = {
         .options({
           resources: './src/assets/styles/index.scss',
         })
-        .end()
-    })
+        .end();
+    });
 
     config.plugin('manifest').use(manifestPlugin, [
       {
-        fileName: 'mf.json',
-        publicPath: config.baseUrl,
+        fileName: 'manifest.json',
+        publicPath: '/',
       },
-    ])
+    ]);
     config.resolve.alias
       .set('~utils', path.join(__dirname, 'src/utils'))
       .set('~assets', path.join(__dirname, 'src/assets'))
       .set('~modules', path.join(__dirname, 'src/modules'))
-      .set('~components', path.join(__dirname, 'src/components'))
+      .set('~components', path.join(__dirname, 'src/components'));
   },
   devServer: {
     hot: true,
@@ -111,4 +111,4 @@ module.exports = {
       },
     },
   },
-}
+};

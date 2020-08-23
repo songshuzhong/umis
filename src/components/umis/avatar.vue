@@ -1,5 +1,6 @@
 <template>
   <el-avatar
+    :classname="classname"
     :icon="icon"
     :shape="shape"
     :size="size"
@@ -18,6 +19,10 @@ export default {
     ElAvatar,
   },
   props: {
+    classname: {
+      type: String,
+      required: false,
+    },
     icon: {
       type: String,
       required: false,
