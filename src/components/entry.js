@@ -25,11 +25,12 @@ import MisAvatar from '~components/umis/avatar';
 import MisHtml from '~components/umis/html';
 import MisAlert from '~components/umis/alert';
 import MisDialog from '~components/umis/dialog';
+import MisDrawer from '~components/umis/drawer';
+import MisSwitch from 'element-ui/lib/switch';
 
 import MisLink from '~components/umis/link';
 import MisInput from 'element-ui/lib/input';
 import MisContainer from 'element-ui/lib/container';
-import MisSwitch from 'element-ui/lib/switch';
 import MisDatepicker from 'element-ui/lib/date-picker';
 
 const components = {
@@ -38,6 +39,7 @@ const components = {
   MisCards,
   MisAvatar,
   MisDialog,
+  MisDrawer,
   MisLink,
   MisAlert,
   MisHtml,
