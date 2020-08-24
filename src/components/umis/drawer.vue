@@ -17,6 +17,13 @@
       <template v-if="title" slot="title">
         <component :is="title.renderer" v-bind="title" />
       </template>
+      <template v-for="(item, index) in body">
+        <component
+          v-bind="item"
+          :key="index"
+          :is="item.renderer"
+        />
+      </template>
     </el-drawer>
   </fragment>
 </template>
@@ -96,6 +103,10 @@ export default {
       type: String,
       required: true,
     },
+    body: {
+        type: [Array, Object],
+        required: true
+    }
   },
   data() {
     return {

@@ -78,6 +78,12 @@ const json = [
                   html: '<h1 style="text-align: left;">编辑Schema</h1>',
                 },
                 label: '编辑',
+                body: [
+                    {
+                      renderer: 'mis-editor',
+                      name: 'editor'
+                    }
+                ]
               },
             ],
           },
