@@ -16,6 +16,7 @@ import MisFooter from '~components/umis/footer';
 import MisAside from '~components/umis/aside';
 import MisTree from '~components/umis/tree';
 import MisMenu from '~components/umis/menu';
+import MisSubmenu from '~components/umis/menu-submenu';
 import MisMenuItem from '~components/umis/menu-item';
 import MisMenuItemGroup from '~components/umis/menu-item-group';
 import MisHeader from '~components/umis/header';
@@ -59,6 +60,7 @@ const components = {
   MisDatepicker,
   MisTree,
   MisMenu,
+  MisSubmenu,
   MisMenuItem,
   MisMenuItemGroup,
   MisInput,

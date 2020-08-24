@@ -11,38 +11,50 @@ const json = [
           {
             renderer: 'mis-menu',
             name: 'menu',
-            label: '菜单',
-            icon: 'el-icon-location',
+            title: {
+              renderer: 'mis-html',
+              html:
+                '<div style="height: 56px; color: white; text-align: center; line-height: 56px; font-size: 20px"><i class="el-icon-s-data" />UMIS</div>',
+            },
             mode: 'vertical',
             defaultActive: 'option1',
             backgroundColor: '#545c64',
             textColor: '#fff',
             activeTextColor: '#ffd04b',
+            classname: 'umis-layout__container__aside__menu',
             body: [
               {
-                renderer: 'mis-menu-item',
-                name: 'option1',
-                label: '显隐性联动',
-              },
-              {
-                renderer: 'mis-menu-item',
-                name: 'option2',
-                label: '可用性联动',
-              },
-              {
-                renderer: 'mis-menu-item',
-                name: 'option3',
-                label: '表单验证',
-              },
-              {
-                renderer: 'mis-menu-item',
-                name: 'group1option1',
-                label: '栅栏',
-              },
-              {
-                renderer: 'mis-menu-item',
-                name: 'group1option2',
-                label: '卡片列表',
+                renderer: 'mis-submenu',
+                name: 'submenu',
+                icon: 'el-icon-menu',
+                title: '菜单',
+                body: [
+                  {
+                    renderer: 'mis-menu-item',
+                    name: 'option1',
+                    label: '显隐性联动',
+                  },
+                  {
+                    renderer: 'mis-menu-item',
+                    name: 'option2',
+                    label: '可用性联动',
+                  },
+                  {
+                    renderer: 'mis-menu-item',
+                    name: 'option3',
+                    label: '表单验证',
+                  },
+                  {
+                    renderer: 'mis-menu-item',
+                    name: 'group1option1',
+                    label: '栅栏',
+                  },
+                  {
+                    renderer: 'mis-menu-item',
+                    name: 'group1option2',
+                    label: '卡片列表',
+                  },
+                ],
               },
             ],
           },
@@ -63,7 +75,7 @@ const json = [
                 size: '60%',
                 title: {
                   renderer: 'mis-html',
-                  html: '<h1 style="color: red">编辑Schema</h1>',
+                  html: '<h1 style="text-align: left;">编辑Schema</h1>',
                 },
                 label: '编辑',
               },
@@ -286,14 +298,14 @@ const json = [
                 bodyStyle: { padding: '0' },
                 classname: 'mis-card-margin',
                 visibleOn: 'menu == "group1option2"',
-                header: '<h2><%=name%></h2>',
+                header: '<h4><%=name%></h4>',
                 footer: [
                   {
                     renderer: 'mis-dialog',
                     body: [
                       {
                         renderer: 'mis-html',
-                        html: '<h2><%=name%></h2>',
+                        html: '<h4><%=name%></h4>',
                       },
                     ],
                   },
