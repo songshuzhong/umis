@@ -1,10 +1,12 @@
 const json = [
   {
     renderer: 'mis-layout',
+    classname: 'umis-layout__container',
     body: [
       {
         renderer: 'mis-aside',
         collapse: true,
+        classname: 'umis-layout__container__aside',
         body: [
           {
             renderer: 'mis-menu',
@@ -13,6 +15,9 @@ const json = [
             icon: 'el-icon-location',
             mode: 'vertical',
             defaultActive: 'option1',
+            backgroundColor: '#545c64',
+            textColor: '#fff',
+            activeTextColor: '#ffd04b',
             body: [
               {
                 renderer: 'mis-menu-item',
@@ -49,9 +54,10 @@ const json = [
         body: [
           {
             renderer: 'mis-header',
+            classname: 'umis-layout__container__header',
             body: [
               {
-                renderer: 'mis-button',
+                renderer: 'mis-link',
                 icon: 'el-icon-edit',
                 text: '编辑',
               },
@@ -267,8 +273,8 @@ const json = [
               {
                 renderer: 'mis-cards',
                 name: 'cards1',
-                initApi: '/api/pagelist/1/19',
-                span: 4,
+                initApi: '/api/pagelist/1/17',
+                span: 6,
                 gutter: 20,
                 shadow: 'hover',
                 bodyStyle: { padding: '0' },

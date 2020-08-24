@@ -1,5 +1,5 @@
 <template>
-  <el-footer>
+  <el-footer :class="classname">
     <template v-for="(item, index) in body">
       <component :is="item.renderer" :key="index" v-bind="item" />
     </template>
@@ -18,6 +18,10 @@ export default {
     body: {
       type: Array,
       required: true,
+    },
+    classname: {
+      type: String,
+      required: false,
     },
   },
 };

@@ -1,3 +1,6 @@
+body {
+  background-color: #f0f3f4;
+}
 .mis-card-margin {
   margin: 10px 0;
 }
@@ -7,6 +10,25 @@
   box-sizing: border-box;
   border-top: 1px solid #ebeef5;
 }
+
 .mis-avatar-margin {
   margin: 20px;
+}
+
+.umis-layout__container {
+  height: 100vh;
+  border: 1px solid #eee;
+
+  .umis-layout__container__aside {
+    width: 200px;
+    background-color: #545c64;
+  }
+
+  .umis-layout__container__header {
+    border: 1px solid #eee;
+    background-color: #fff;
+    line-height: 60px;
+    text-align: right;
+    font-size: 12px;
+  }
 }

@@ -51,6 +51,10 @@ export default {
       type: String,
       required: false,
     },
+    classname: {
+      type: String,
+      required: false,
+    },
   },
 };
 </script>

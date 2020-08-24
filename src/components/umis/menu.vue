@@ -4,6 +4,10 @@
     @select="onMenuSelect"
     :default-active="defaultActive"
     :collapse="collapse"
+    :class="classname"
+    :background-color="backgroundColor"
+    :text-color="textColor"
+    :active-text-color="activeTextColor"
   >
     <template v-if="label" slot="title">
       <i :class="icon" />
@@ -68,6 +72,22 @@ export default {
     body: {
       type: Array,
       required: true,
+    },
+    classname: {
+      type: String,
+      required: false,
+    },
+    backgroundColor: {
+      type: String,
+      required: false,
+    },
+    textColor: {
+      type: String,
+      required: false,
+    },
+    activeTextColor: {
+      type: String,
+      required: false,
     },
   },
   mounted() {

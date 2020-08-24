@@ -90,6 +90,10 @@ export default {
       type: [Array, Object],
       required: false,
     },
+    classname: {
+      type: String,
+      required: false,
+    },
   },
   data() {
     return {

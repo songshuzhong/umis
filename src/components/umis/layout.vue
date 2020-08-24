@@ -1,5 +1,5 @@
 <template>
-  <el-container :direction="direction">
+  <el-container :direction="direction" :class="classname">
     <template v-for="(item, index) in body">
       <component
         :is="item.renderer"
@@ -39,6 +39,10 @@ export default {
     store: {
       type: Object,
       required: true,
+    },
+    classname: {
+      type: String,
+      required: false,
     },
   },
 };

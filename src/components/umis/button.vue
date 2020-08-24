@@ -62,6 +62,10 @@ export default {
       type: String,
       required: false,
     },
+    classname: {
+      type: String,
+      required: false,
+    },
   },
   methods: {
     onClick() {
