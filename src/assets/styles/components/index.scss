@@ -28,7 +28,15 @@ body {
   }
 
   .umis-layout__container__drawer {
-    background-color: #282a36 !important;
+    background-color: #3a3f51; // #282a36 !important;
+
+    .el-drawer__header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+      padding: 0 20px 0 20px;
+      color: #72767b;
+    }
   }
   .umis-layout__container__header {
     border: 1px solid #eee;

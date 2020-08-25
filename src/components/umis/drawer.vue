@@ -15,10 +15,15 @@
       :withHeader="withHeader"
     >
       <template v-if="title" slot="title">
-        <component :is="title.renderer" v-bind="title" />
+        <component :is="title.renderer" v-bind="title" :action="onClose" />
       </template>
       <template v-for="(item, index) in body">
-        <component v-bind="item" :key="index" :is="item.renderer" />
+        <component
+          v-bind="item"
+          :key="index"
+          :is="item.renderer"
+          :action="onClose"
+        />
       </template>
     </el-drawer>
   </fragment>
@@ -108,6 +113,11 @@ export default {
     return {
       iVisible: false,
     };
+  },
+  methods: {
+    onClose() {
+      this.iVisible = false;
+    },
   },
 };
 </script>

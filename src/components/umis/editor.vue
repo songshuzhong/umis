@@ -1,9 +1,15 @@
 <template>
   <div class="umis-editor-container">
-    <textarea ref="editor"></textarea>
+    <textarea ref="editor" />
+    <div class="umis-editor-tools">
+      <el-button @click="onSave" type="primary" plain size="small">
+        保存
+      </el-button>
+    </div>
   </div>
 </template>
 <script>
+import ElButton from 'element-ui/lib/button';
 import CodeMirror from 'codemirror';
 import 'codemirror/addon/fold/brace-fold';
 import 'codemirror/addon/fold/comment-fold';
@@ -12,41 +18,38 @@ import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/fold/indent-fold';
 import 'codemirror/addon/fold/foldgutter.css';
 import 'codemirror/addon/fold/foldcode';
-import 'codemirror-formatting/formatting';
-
 import 'codemirror/addon/edit/matchbrackets';
-
 import 'codemirror/addon/hint/anyword-hint';
 import 'codemirror/addon/hint/show-hint';
 import 'codemirror/addon/hint/css-hint';
 import 'codemirror/addon/hint/show-hint.css';
-
 import 'codemirror/addon/comment/comment';
-
 import 'codemirror/addon/lint/json-lint';
 import 'codemirror/addon/lint/javascript-lint';
 import 'codemirror/addon/lint/lint';
 import 'codemirror/addon/lint/lint.css';
-
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/mode/css/css';
-
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/dracula.css';
 import 'codemirror/theme/eclipse.css';
 import 'codemirror/theme/ambiance.css';
-
-import schema from '../../store/schema';
+import 'codemirror-formatting/formatting';
 
 export default {
   name: 'MisEditor',
+  components: {
+    ElButton,
+  },
   data() {
     return {
-      schema,
+      schema: [],
     };
   },
   mounted() {
+    this.schema = window.UMIS.schema;
+
     this.editor = CodeMirror.fromTextArea(this.$refs.editor, {
       mode: 'application/json',
       theme: 'dracula',
@@ -65,7 +68,7 @@ export default {
         'Ctrl-Space': 'autocomplete',
       },
     });
-    this.editor.setSize('800px', '600px');
+    this.editor.setSize('100%', '640px');
     this.editor.setValue(JSON.stringify(this.schema));
 
     CodeMirror.commands['selectAll'](this.editor);
@@ -107,25 +110,40 @@ export default {
         return inner.tagName;
       });
     },
-    onSchemaChanged() {},
+    onSave() {
+      try {
+        const json = this.editor.getValue();
+        this.$eventHub.$emit('mis-schema:change', JSON.parse(json));
+      } catch (e) {
+        this.$notice({
+          type: 'error',
+          title: '警告',
+          message: e.toString(),
+        });
+        console.log(e);
+      }
+    },
   },
 };
 </script>
 <style lang="scss">
-/* csslint ignore:start */
 .CodeMirror {
   text-align: left !important;
   line-height: 20px;
   font-size: 13px;
 }
 
-/* csslint ignore:end */
-
 .umis-editor-container {
-  width: 800px;
-  height: 500px;
+  width: 100%;
+  height: 640px;
   margin: 0 auto;
   padding: 5px;
   background-color: #282a36 !important;
+}
+.umis-editor-tools {
+  height: 80px;
+  padding: 2px 10px;
+  border-top: 1px solid white;
+  line-height: 80px;
 }
 </style>

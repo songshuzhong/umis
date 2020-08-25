@@ -26,6 +26,8 @@ export default {
     };
   },
   mounted() {
+    window.UMIS = { schema };
+    this.$eventHub.$on('mis-schema:change', this.upSchema);
     this.$eventHub.$on('mis-store:update', this.onStoreUpdate);
   },
   methods: {
@@ -39,6 +41,9 @@ export default {
         }
       }
       this.$eventHub.$emit('mis-store:change', this.store);
+    },
+    upSchema(data) {
+      this.schema = data;
     },
   },
 };
