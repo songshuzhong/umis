@@ -13,8 +13,8 @@ const router = new Router({
     {
       path: '/',
       component: Umis,
-      mete: {
-        title: 'index',
+      meta: {
+        title: 'UMIS',
       },
     },
   ],

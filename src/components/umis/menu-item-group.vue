@@ -4,13 +4,13 @@
       <i class="el-icon-menu" />
       {{ label }}
     </template>
-    <template v-for="(child, index) in children">
+    <template v-for="(item, index) in body">
       <component
-        :is="child.renderer"
+        :is="item.renderer"
         :key="index"
-        :label="child.label"
-        :name="child.name"
-        :children="child"
+        :label="item.label"
+        :name="item.name"
+        :body="item"
       />
     </template>
   </el-menu-item-group>
@@ -33,7 +33,7 @@ export default {
       type: String,
       required: false,
     },
-    children: {
+    body: {
       type: [Array, Object],
       required: true,
     },

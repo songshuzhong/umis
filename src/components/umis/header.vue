@@ -1,7 +1,12 @@
 <template>
   <el-header :class="classname">
     <template v-for="(item, index) in body">
-      <component :is="item.renderer" :key="index" v-bind="item" />
+      <component
+        :is="item.renderer"
+        :key="index"
+        v-bind="item"
+        :store="store"
+      />
     </template>
   </el-header>
 </template>
@@ -22,6 +27,10 @@ export default {
     classname: {
       type: String,
       required: false,
+    },
+    store: {
+      type: Object,
+      required: true,
     },
   },
 };

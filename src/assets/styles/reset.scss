@@ -121,21 +121,6 @@ a:hover {
 }
 
 /*
-1.清除h标签默认字号
-2.清除h标签默认字粗
-*/
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-strong {
-  font-size: 100%;
-  line-height: 1;
-}
-
-/*
 1.将hr由默认的inset风格变更为solid风格
 */
 hr {

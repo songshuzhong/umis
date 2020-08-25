@@ -9,18 +9,18 @@
     :text-color="textColor"
     :active-text-color="activeTextColor"
   >
-    <template v-if="label" slot="title">
-      <i :class="icon" />
-      {{ label }}
+    <template v-if="title">
+      <component v-bind="title" :is="title.renderer" />
     </template>
     <template v-for="(item, index) in body">
       <component
+        v-bind="item"
         :is="item.renderer"
         :key="index"
+        :index="index.toString()"
         :label="item.label"
         :name="item.name"
-        :path="path + item + index"
-        :children="item.body"
+        :body="item.body"
       />
     </template>
   </el-menu>
@@ -39,8 +39,8 @@ export default {
       type: String,
       required: true,
     },
-    label: {
-      type: String,
+    title: {
+      type: [Object, String],
       required: false,
     },
     icon: {

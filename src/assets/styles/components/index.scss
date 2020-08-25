@@ -20,8 +20,11 @@ body {
   border: 1px solid #eee;
 
   .umis-layout__container__aside {
-    width: 200px;
     background-color: #545c64;
+
+    .umis-layout__container__aside__menu {
+      border-right: 1px;
+    }
   }
 
   .umis-layout__container__header {

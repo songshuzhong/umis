@@ -16,6 +16,7 @@ import MisFooter from '~components/umis/footer';
 import MisAside from '~components/umis/aside';
 import MisTree from '~components/umis/tree';
 import MisMenu from '~components/umis/menu';
+import MisSubmenu from '~components/umis/menu-submenu';
 import MisMenuItem from '~components/umis/menu-item';
 import MisMenuItemGroup from '~components/umis/menu-item-group';
 import MisHeader from '~components/umis/header';
@@ -25,11 +26,13 @@ import MisAvatar from '~components/umis/avatar';
 import MisHtml from '~components/umis/html';
 import MisAlert from '~components/umis/alert';
 import MisDialog from '~components/umis/dialog';
+import MisDrawer from '~components/umis/drawer';
+import MisEditor from '~components/umis/editor';
 
+import MisSwitch from 'element-ui/lib/switch';
 import MisLink from '~components/umis/link';
 import MisInput from 'element-ui/lib/input';
 import MisContainer from 'element-ui/lib/container';
-import MisSwitch from 'element-ui/lib/switch';
 import MisDatepicker from 'element-ui/lib/date-picker';
 
 const components = {
@@ -38,6 +41,8 @@ const components = {
   MisCards,
   MisAvatar,
   MisDialog,
+  MisEditor,
+  MisDrawer,
   MisLink,
   MisAlert,
   MisHtml,
@@ -57,6 +62,7 @@ const components = {
   MisDatepicker,
   MisTree,
   MisMenu,
+  MisSubmenu,
   MisMenuItem,
   MisMenuItemGroup,
   MisInput,
