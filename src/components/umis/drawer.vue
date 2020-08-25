@@ -4,7 +4,7 @@
     <el-drawer
       :appendToBody="appendToBody"
       :closeOnPressEscape="closeOnPressEscape"
-      :classname="classname"
+      :custom-class="classname"
       :modal="modal"
       :modalAppendToBody="modalAppendToBody"
       :direction="direction"
@@ -18,11 +18,7 @@
         <component :is="title.renderer" v-bind="title" />
       </template>
       <template v-for="(item, index) in body">
-        <component
-          v-bind="item"
-          :key="index"
-          :is="item.renderer"
-        />
+        <component v-bind="item" :key="index" :is="item.renderer" />
       </template>
     </el-drawer>
   </fragment>
@@ -104,9 +100,9 @@ export default {
       required: true,
     },
     body: {
-        type: [Array, Object],
-        required: true
-    }
+      type: [Array, Object],
+      required: true,
+    },
   },
   data() {
     return {

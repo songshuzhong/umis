@@ -14,7 +14,7 @@ const json = [
             title: {
               renderer: 'mis-html',
               html:
-                '<div style="height: 56px; color: white; text-align: center; line-height: 56px; font-size: 20px"><i class="el-icon-s-data" />UMIS</div>',
+                '<div style="height: 56px; color: white; text-align: center; line-height: 56px; font-size: 20px"><i class="el-icon-s-promotion" /><span style="margin-left: 3px">UMIS</span></div>',
             },
             mode: 'vertical',
             defaultActive: 'option1',
@@ -73,17 +73,19 @@ const json = [
                 name: 'isEditor',
                 showClose: true,
                 size: '60%',
+                classname: 'umis-layout__container__drawer',
                 title: {
                   renderer: 'mis-html',
-                  html: '<h1 style="text-align: left;">编辑Schema</h1>',
+                  html:
+                    '<h1 style="text-align: left; color: white;">编辑Schema</h1>',
                 },
                 label: '编辑',
                 body: [
-                    {
-                      renderer: 'mis-editor',
-                      name: 'editor'
-                    }
-                ]
+                  {
+                    renderer: 'mis-editor',
+                    name: 'editor',
+                  },
+                ],
               },
             ],
           },
