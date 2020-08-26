@@ -13,12 +13,14 @@
       :show-close="showClose"
       :destroy-on-close="destroyOnClose"
     >
-      <template v-for="(item, index) in iData.body">
+      <template v-for="(item, index) in body">
         <component
-          :key="index"
           :is="item.renderer"
-          v-bind="item"
-          :data="iData"
+          :key="index"
+          :header="getHeader(item)"
+          :body="getBody(item)"
+          :footer="getFooter(item)"
+          v-bind="getProps(item, data)"
         />
       </template>
       <slot name="footer" />
@@ -28,6 +30,8 @@
 <script>
 import ElButton from 'element-ui/lib/button';
 import ElDialog from 'element-ui/lib/dialog';
+
+import derivedProp from '~components/mixin/derivedProp';
 
 export default {
   name: 'MisDialog',
@@ -82,7 +86,15 @@ export default {
       required: false,
       default: true,
     },
+    header: {
+      type: [Array, Object],
+      required: false,
+    },
     body: {
+      type: [Array, Object],
+      required: false,
+    },
+    footer: {
       type: [Array, Object],
       required: false,
     },
@@ -95,24 +107,18 @@ export default {
       required: false,
     },
   },
+  mixins: [derivedProp],
   data() {
     return {
-      iData: {},
       iVisible: false,
     };
   },
-  watch: {
-    data: {
-      handler(val) {
-        this.iData = val;
-      },
-      immediate: true,
-      deep: true,
-    },
-  },
   methods: {
-    getHeader(data) {
-      return this.$getRenderedTpl(this.header, data);
+    onOpen() {
+      this.iVisible = true;
+    },
+    onClose() {
+      this.iVisible = false;
     },
   },
 };

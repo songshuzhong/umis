@@ -17,29 +17,29 @@
       <template v-if="title" slot="title">
         <component
           :is="title.renderer"
-          v-bind="title"
           :action="onClose"
           :after-action="onClose"
+          v-bind="title"
         />
       </template>
       <template v-for="(item, index) in body">
         <component
-          v-bind="item"
-          :key="index"
           :is="item.renderer"
+          :key="index"
           :footer="item.footer"
           :action="onClose"
           :after-action="onClose"
+          v-bind="item"
         />
       </template>
       <template v-for="(item, index) in footer">
         <component
-          v-bind="item"
-          :key="index"
           :is="item.renderer"
+          :key="index"
           :footer="item.footer"
           :action="onClose"
           :after-action="onClose"
+          v-bind="item"
         />
       </template>
     </el-drawer>

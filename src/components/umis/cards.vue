@@ -1,32 +1,28 @@
 <template>
   <el-row v-if="iVisible" :gutter="gutter">
     <el-col v-for="(item, index) in iBody" :span="span" :key="index">
-      <el-card
-        :shadow="shadow"
-        :body-style="{ padding: 0 }"
-        :class="classname"
-        :data="item"
-      >
+      <el-card :shadow="shadow" :body-style="{ padding: 0 }" :class="classname">
         <template slot="header">
-          <div v-html="item.header || getHeader(item)" />
+          <div v-html="item.header || renderHeader(item)" />
         </template>
         <div style="padding: 10px">
           <component
-            v-bind="item"
             :is="item.renderer"
-            :label="item.label"
-            :name="item.name"
-            :body="body"
-            :data="item"
+            :body="getBody(item)"
+            :header="getHeader(item)"
+            :footer="getFooter(item)"
+            v-bind="getProps(item)"
           />
         </div>
         <div class="el-card__footer" v-if="footer">
           <template v-for="(foot, index) in footer">
             <component
-              v-bind="Object.assign({}, item, foot)"
-              :key="index"
               :is="foot.renderer"
-              :data="Object.assign({}, item, foot)"
+              :key="index"
+              :header="getHeader(foot)"
+              :body="getBody(foot)"
+              :footer="getFooter(foot)"
+              v-bind="getProps(foot, item)"
             />
           </template>
         </div>
@@ -39,7 +35,8 @@ import ElRow from 'element-ui/lib/row';
 import ElCol from 'element-ui/lib/col';
 import ElCard from 'element-ui/lib/card';
 
-import switches from '~components/umis/switches';
+import derivedProp from '../mixin/derivedProp';
+import switches from '~components/mixin/switches';
 
 export default {
   name: 'MisCards',
@@ -90,12 +87,7 @@ export default {
       default: 12,
     },
   },
-  mixins: [switches],
-  data() {
-    return {
-      iBody: [],
-    };
-  },
+  mixins: [derivedProp, switches],
   watch: {
     body: {
       handler(val) {
@@ -114,7 +106,7 @@ export default {
       });
   },
   methods: {
-    getHeader(data) {
+    renderHeader(data) {
       return this.$getRenderedTpl(this.header, data);
     },
   },

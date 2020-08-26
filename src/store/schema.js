@@ -56,6 +56,13 @@ const json = [
                   },
                 ],
               },
+              {
+                renderer: 'mis-submenu',
+                name: 'components',
+                icon: 'el-icon-notebook-1',
+                title: '属性',
+                body: [],
+              },
             ],
           },
         ],

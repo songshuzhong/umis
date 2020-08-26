@@ -16,11 +16,10 @@
     <template v-if="body">
       <component
         :is="body.renderer"
-        v-bind="iProps"
-        :data="iData"
-        :header="iHeader"
-        :body="iBody"
-        :footer="iFooter"
+        :header="getHeader(body)"
+        :body="getBody(body)"
+        :footer="getFooter(body)"
+        v-bind="getProps(body)"
       />
     </template>
   </fragment>
@@ -28,7 +27,7 @@
 <script>
 import ElButton from 'element-ui/lib/button';
 
-import derivedProp from './derivedProp';
+import derivedProp from '../mixin/derivedProp';
 
 export default {
   name: 'MisButton',
@@ -92,7 +91,7 @@ export default {
   mixins: [derivedProp],
   methods: {
     onClick() {
-      this.action();
+      this.action && this.action();
       this.afterAction && this.afterAction();
     },
   },

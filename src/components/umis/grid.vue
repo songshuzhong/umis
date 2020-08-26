@@ -28,7 +28,7 @@
 import ElRow from 'element-ui/lib/row';
 import ElCol from 'element-ui/lib/col';
 
-import switches from '~components/umis/switches';
+import switches from '~components/mixin/switches';
 
 export default {
   name: 'MisGrid',

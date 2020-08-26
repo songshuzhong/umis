@@ -14,13 +14,13 @@
     </template>
     <template v-for="(item, index) in body">
       <component
-        v-bind="item"
         :is="item.renderer"
         :key="index"
         :index="index.toString()"
         :label="item.label"
         :name="item.name"
         :body="item.body"
+        v-bind="item"
       />
     </template>
   </el-menu>

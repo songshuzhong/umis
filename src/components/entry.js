@@ -2,8 +2,6 @@ import MetaInfo from 'vue-meta-info';
 import { Fragment } from 'vue-fragment';
 import Loading from 'element-ui/lib/loading';
 
-import Webp from '~components/umis/webp';
-
 import MisAction from '~components/umis/action';
 import MisField from '~components/umis/field';
 import MisSelect from '~components/umis/select';
@@ -78,6 +76,5 @@ export default {
 
     Vue.use(Loading);
     Vue.use(MetaInfo);
-    Vue.use(Webp);
   },
 };

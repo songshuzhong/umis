@@ -3,10 +3,10 @@
     <textarea ref="editor" />
     <div class="umis-editor-tools">
       <component
-        v-bind="footer"
         :is="footer.renderer"
         :after-action="afterAction"
         :action="onSave"
+        v-bind="footer"
       />
     </div>
   </div>

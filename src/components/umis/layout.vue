@@ -4,8 +4,8 @@
       <component
         :is="item.renderer"
         :key="index"
-        v-bind="item"
         :store="store"
+        v-bind="item"
       />
     </template>
   </el-container>
