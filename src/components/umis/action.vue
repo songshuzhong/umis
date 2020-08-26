@@ -1,27 +1,12 @@
 <template>
   <fragment>
-    <el-button
-      :type="type"
-      :plain="plain"
-      :round="round"
-      :circle="circle"
-      :loading="loading"
-      :disabled="disabled"
-      :icon="icon"
-      :nativeType="nativeType"
-      @click="onClick"
-    >
-      {{ text }}
-    </el-button>
-    <template v-if="body">
-      <component
-        :is="body.renderer"
-        :header="getHeader(body)"
-        :body="getBody(body)"
-        :footer="getFooter(body)"
-        v-bind="getProps(body, data)"
-      />
-    </template>
+    <component
+      :is="actionType"
+      :body="getProps($props, data)"
+      v-if="actionType"
+      v-bind="getBody($props)"
+    />
+    <el-button v-else>{{text}}</el-button>
   </fragment>
 </template>
 <script>
@@ -35,49 +20,17 @@ export default {
     ElButton,
   },
   props: {
-    action: {
-      type: Function,
-      required: false,
-    },
-    afterAction: {
-      type: Function,
-      required: false,
-    },
     text: {
       type: String,
       required: true,
     },
-    type: {
+    actionType: {
       type: String,
-      required: false,
+      required: true,
     },
-    plain: {
-      type: Boolean,
-      required: false,
-    },
-    round: {
-      type: Boolean,
-      required: false,
-    },
-    circle: {
-      type: Boolean,
-      required: false,
-    },
-    loading: {
-      type: Boolean,
-      required: false,
-    },
-    disabled: {
-      type: Boolean,
-      required: false,
-    },
-    icon: {
+    renderer: {
       type: String,
-      required: false,
-    },
-    nativeType: {
-      type: String,
-      required: false,
+      required: true,
     },
     classname: {
       type: String,
@@ -93,6 +46,9 @@ export default {
     },
   },
   mixins: [derivedProp],
+  mounted() {
+    console.log(this.text, this.actionType)
+  },
   methods: {
     onClick() {
       this.action && this.action();

@@ -320,17 +320,9 @@ const json = [
                 header: '<h4><%=name%></h4>',
                 footer: [
                   {
-                    renderer: 'mis-dialog',
-                    body: [
-                      {
-                        renderer: 'mis-html',
-                        html: '<h4><%=name%></h4>',
-                      },
-                    ],
-                  },
-                  {
-                    renderer: 'mis-action',
+                    renderer: 'mis-button',
                     text: 'action',
+                    actionType: 'mis-dialog',
                     body: {
                       renderer: 'mis-dialog',
                       title: 'this is mis-action',

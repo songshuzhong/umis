@@ -1,6 +1,11 @@
 <template>
   <fragment>
-    <el-button type="text" @click="iVisible = true">详细信息</el-button>
+    <component
+      :is="body.renderer"
+      v-bind="body"
+      v-if="body.actionType"
+      @action="onOpen"
+    />
     <el-dialog
       v-bind="$props"
       :visible.sync="iVisible"
@@ -13,15 +18,23 @@
       :show-close="showClose"
       :destroy-on-close="destroyOnClose"
     >
-      <template v-for="(item, index) in body">
+      <template v-if="Object.prototype.toString.call(body) === '[object Object]'">
         <component
-          :is="item.renderer"
-          :key="index"
-          :header="getHeader(item)"
-          :body="getBody(item)"
-          :footer="getFooter(item)"
-          v-bind="getProps(item, data)"
+          :is="body.renderer"
+          v-bind="body"
         />
+      </template>
+      <template v-else>
+        <template v-for="(item, index) in body">
+          <component
+            :is="item.renderer"
+            :key="index"
+            :header="getHeader(item)"
+            :body="getBody(item)"
+            :footer="getFooter(item)"
+            v-bind="getProps(item, data)"
+          />
+        </template>
       </template>
       <slot name="footer" />
     </el-dialog>

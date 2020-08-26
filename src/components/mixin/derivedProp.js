@@ -1,6 +1,6 @@
 export default {
   methods: {
-    getProps(props, iData, extend) {
+    getProps(props, iData = {}, extend = {}) {
       const { data, header, body, footer, ...other } = props;
       return { ...other, data: { ...data, ...iData, ...extend } };
     },
