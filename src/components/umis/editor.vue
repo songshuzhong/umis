@@ -2,9 +2,12 @@
   <div class="umis-editor-container">
     <textarea ref="editor" />
     <div class="umis-editor-tools">
-      <el-button @click="onSave" type="primary" plain size="small">
-        保存
-      </el-button>
+      <component
+        v-bind="footer"
+        :is="footer.renderer"
+        :after-action="afterAction"
+        :action="onSave"
+      />
     </div>
   </div>
 </template>
@@ -41,6 +44,16 @@ export default {
   name: 'MisEditor',
   components: {
     ElButton,
+  },
+  props: {
+    afterAction: {
+      type: Function,
+      required: false,
+    },
+    footer: {
+      type: [Array, Object],
+      required: false,
+    },
   },
   data() {
     return {
@@ -120,7 +133,6 @@ export default {
           title: '警告',
           message: e.toString(),
         });
-        console.log(e);
       }
     },
   },

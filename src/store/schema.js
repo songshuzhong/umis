@@ -84,6 +84,10 @@ const json = [
                   {
                     renderer: 'mis-editor',
                     name: 'editor',
+                    footer: {
+                      renderer: 'mis-action',
+                      text: '保存',
+                    },
                   },
                 ],
               },

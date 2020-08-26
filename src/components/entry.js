@@ -4,6 +4,7 @@ import Loading from 'element-ui/lib/loading';
 
 import Webp from '~components/umis/webp';
 
+import MisAction from '~components/umis/action';
 import MisField from '~components/umis/field';
 import MisSelect from '~components/umis/select';
 import MisCheckbox from '~components/umis/checkbox';
@@ -37,6 +38,7 @@ import MisDatepicker from 'element-ui/lib/date-picker';
 
 const components = {
   Fragment,
+  MisAction,
   MisGrid,
   MisCards,
   MisAvatar,

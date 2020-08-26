@@ -15,14 +15,31 @@
       :withHeader="withHeader"
     >
       <template v-if="title" slot="title">
-        <component :is="title.renderer" v-bind="title" :action="onClose" />
+        <component
+          :is="title.renderer"
+          v-bind="title"
+          :action="onClose"
+          :after-action="onClose"
+        />
       </template>
       <template v-for="(item, index) in body">
         <component
           v-bind="item"
           :key="index"
           :is="item.renderer"
+          :footer="item.footer"
           :action="onClose"
+          :after-action="onClose"
+        />
+      </template>
+      <template v-for="(item, index) in footer">
+        <component
+          v-bind="item"
+          :key="index"
+          :is="item.renderer"
+          :footer="item.footer"
+          :action="onClose"
+          :after-action="onClose"
         />
       </template>
     </el-drawer>
@@ -107,6 +124,10 @@ export default {
     body: {
       type: [Array, Object],
       required: true,
+    },
+    footer: {
+      type: [Array, Object],
+      required: false,
     },
   },
   data() {
