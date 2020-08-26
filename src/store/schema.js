@@ -328,6 +328,14 @@ const json = [
                       },
                     ],
                   },
+                  {
+                    renderer: 'mis-action',
+                    text: 'action',
+                    body: {
+                      renderer: 'mis-dialog',
+                      title: 'this is mis-action',
+                    },
+                  },
                 ],
               },
             ],

@@ -19,7 +19,7 @@
         :header="getHeader(body)"
         :body="getBody(body)"
         :footer="getFooter(body)"
-        v-bind="getProps(body)"
+        v-bind="getProps(body, data)"
       />
     </template>
   </fragment>
@@ -27,10 +27,10 @@
 <script>
 import ElButton from 'element-ui/lib/button';
 
-import derivedProp from '../mixin/derivedProp';
+import derivedProp from '~components/mixin/derivedProp';
 
 export default {
-  name: 'MisButton',
+  name: 'MisAction',
   components: {
     ElButton,
   },
@@ -81,6 +81,10 @@ export default {
     },
     classname: {
       type: String,
+      required: false,
+    },
+    data: {
+      type: Object,
       required: false,
     },
     body: {

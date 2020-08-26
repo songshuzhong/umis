@@ -35,7 +35,7 @@ import ElRow from 'element-ui/lib/row';
 import ElCol from 'element-ui/lib/col';
 import ElCard from 'element-ui/lib/card';
 
-import derivedProp from '../mixin/derivedProp';
+import derivedProp from '~components/mixin/derivedProp';
 import switches from '~components/mixin/switches';
 
 export default {
