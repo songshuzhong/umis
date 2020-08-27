@@ -26,6 +26,10 @@ export default {
       type: Function,
       required: false,
     },
+    afterAction: {
+      type: Function,
+      required: false,
+    },
     text: {
       type: String,
       required: true,
@@ -66,10 +70,15 @@ export default {
       type: String,
       required: false,
     },
+    hasAfter: {
+      type: Boolean,
+      required: false,
+    },
   },
   methods: {
     onClick() {
       this.action();
+      this.hasAfter && this.afterAction && this.afterAction();
     },
   },
 };

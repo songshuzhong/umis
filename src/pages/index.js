@@ -6,7 +6,7 @@ import components from '~components/entry';
 
 import api from '~utils/api';
 import { request } from '~utils/http';
-import { getRenderedTpl, onExpressionEval } from '~utils/tools';
+import { getRenderedTpl, onExpressionEval, isArray } from '~utils/tools';
 
 import 'element-theme-chalk/lib/index.css';
 import '~assets/styles/index.scss';
@@ -18,6 +18,7 @@ Vue.prototype.$http = request;
 Vue.prototype.$api = api;
 Vue.prototype.$onExpressionEval = onExpressionEval;
 Vue.prototype.$getRenderedTpl = getRenderedTpl;
+Vue.prototype.$isArray = isArray;
 
 Vue.use(components);
 

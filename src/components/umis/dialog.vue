@@ -1,11 +1,5 @@
 <template>
   <fragment>
-    <component
-      :is="body.renderer"
-      v-bind="body"
-      v-if="body.actionType"
-      @action="onOpen"
-    />
     <el-dialog
       v-bind="$props"
       :visible.sync="iVisible"
@@ -17,12 +11,12 @@
       :close-on-click-modal="closeOnModal"
       :show-close="showClose"
       :destroy-on-close="destroyOnClose"
+      @close="onClose"
     >
-      <template v-if="Object.prototype.toString.call(body) === '[object Object]'">
-        <component
-          :is="body.renderer"
-          v-bind="body"
-        />
+      <template
+        v-if="Object.prototype.toString.call(body) === '[object Object]'"
+      >
+        <component :is="body.renderer" v-bind="body" :data="data" />
       </template>
       <template v-else>
         <template v-for="(item, index) in body">
@@ -119,8 +113,21 @@ export default {
       type: String,
       required: false,
     },
+    onActionDisvisiable: {
+      type: Function,
+      required: false,
+    },
   },
   mixins: [derivedProp],
+  watch: {
+    visible: {
+      handler(val) {
+        this.iVisible = val;
+      },
+      immediate: true,
+      deep: true,
+    },
+  },
   data() {
     return {
       iVisible: false,
@@ -132,6 +139,7 @@ export default {
     },
     onClose() {
       this.iVisible = false;
+      this.onActionDisvisiable && this.onActionDisvisiable();
     },
   },
 };

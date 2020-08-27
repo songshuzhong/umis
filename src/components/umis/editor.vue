@@ -2,12 +2,25 @@
   <div class="umis-editor-container">
     <textarea ref="editor" />
     <div class="umis-editor-tools">
-      <component
-        :is="footer.renderer"
-        :after-action="afterAction"
-        :action="onSave"
-        v-bind="footer"
-      />
+      <template v-if="Array.isArray(footer)">
+        <template v-for="(item, index) in footer">
+          <component
+            :is="item.renderer"
+            :key="index"
+            :after-action="afterAction"
+            :action="onSave"
+            v-bind="item"
+          />
+        </template>
+      </template>
+      <template v-else>
+        <component
+          :is="footer.renderer"
+          :after-action="afterAction"
+          :action="onSave"
+          v-bind="footer"
+        />
+      </template>
     </div>
   </div>
 </template>

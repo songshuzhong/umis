@@ -2,11 +2,12 @@
   <fragment>
     <component
       :is="actionType"
-      :body="getProps($props, data)"
-      v-if="actionType"
+      :visible="visible"
+      :data="data"
+      :on-action-disvisiable="onDisVisiable"
       v-bind="getBody($props)"
     />
-    <el-button v-else>{{text}}</el-button>
+    <el-button @click="onClick">{{ text }}</el-button>
   </fragment>
 </template>
 <script>
@@ -44,13 +45,25 @@ export default {
       type: [Array, Object],
       required: false,
     },
+    action: {
+      type: Function,
+      required: false,
+    },
   },
   mixins: [derivedProp],
-  mounted() {
-    console.log(this.text, this.actionType)
+  data() {
+    return {
+      visible: false,
+    };
   },
   methods: {
+    onDisVisiable() {
+      this.visible = false;
+    },
     onClick() {
+      if (this.actionType === 'mis-dialog') {
+        this.visible = true;
+      }
       this.action && this.action();
       this.afterAction && this.afterAction();
     },

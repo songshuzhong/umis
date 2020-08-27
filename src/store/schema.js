@@ -91,10 +91,18 @@ const json = [
                   {
                     renderer: 'mis-editor',
                     name: 'editor',
-                    footer: {
-                      renderer: 'mis-action',
-                      text: '保存',
-                    },
+                    footer: [
+                      {
+                        renderer: 'mis-button',
+                        hasAfter: false,
+                        text: '保存',
+                      },
+                      {
+                        renderer: 'mis-button',
+                        hasAfter: true,
+                        text: '保存并关闭',
+                      },
+                    ],
                   },
                 ],
               },
@@ -320,12 +328,17 @@ const json = [
                 header: '<h4><%=name%></h4>',
                 footer: [
                   {
-                    renderer: 'mis-button',
-                    text: 'action',
+                    renderer: 'mis-action',
+                    text: '弹一个窗',
                     actionType: 'mis-dialog',
                     body: {
                       renderer: 'mis-dialog',
                       title: 'this is mis-action',
+                      body: {
+                        renderer: 'mis-html',
+                        html:
+                          '<h1>id：<%=id%></h1><h1>名称：<%=name%></h1><h1>地址：<%=src%></h1><h1>形状：<%=shape%></h1>',
+                      },
                     },
                   },
                 ],
