@@ -13,12 +13,14 @@
   </div>
 </template>
 <script>
+import initApi from '~components/mixin/initApi';
 import schema from '../../store/schema';
 
 import 'element-theme-chalk/lib/index.css';
 
 export default {
   name: 'UMIS',
+  mixins: [initApi],
   data() {
     return {
       schema,

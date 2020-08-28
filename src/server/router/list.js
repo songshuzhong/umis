@@ -23,7 +23,7 @@ module.exports = {
     await sleep(1000);
     ctx.restify({ code: 1000, msg: 'success' });
   },
-  'GET /api/list/:id/:drowsiness': async ctx => {
+  'POST /api/list/:id/:drowsiness': async ctx => {
     const pid = ctx.params.id || '1';
     const drowsiness = ctx.params.drowsiness || 0;
 

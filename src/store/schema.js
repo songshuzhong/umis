@@ -2,6 +2,10 @@ const json = [
   {
     renderer: 'mis-layout',
     classname: 'umis-layout__container',
+    initApi: {
+      url: 'http://dev.bendi.ad.weibo.com:3000/api/list/123/500',
+      method: 'post',
+    },
     body: [
       {
         renderer: 'mis-aside',

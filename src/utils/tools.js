@@ -16,8 +16,4 @@ const onExpressionEval = (expression, data) => {
   }
 };
 
-const isArray = array => {
-  return Object.prototype.toString.call(array) === '[object Array]';
-};
-
-export { getRenderedTpl, onExpressionEval, isArray };
+export { getRenderedTpl, onExpressionEval };
