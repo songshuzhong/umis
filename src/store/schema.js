@@ -334,10 +334,21 @@ const json = [
                     body: {
                       renderer: 'mis-dialog',
                       title: 'this is mis-action',
+                      appendToBody: true,
                       body: {
-                        renderer: 'mis-html',
-                        html:
-                          '<h1>id：<%=id%></h1><h1>名称：<%=name%></h1><h1>地址：<%=src%></h1><h1>形状：<%=shape%></h1>',
+                        renderer: 'mis-action',
+                        text: '再弹一个窗',
+                        actionType: 'mis-dialog',
+                        body: {
+                          renderer: 'mis-dialog',
+                          title: 'this is mis-action',
+                          appendToBody: true,
+                          body: {
+                            renderer: 'mis-html',
+                            html:
+                              '<h1>id：<%=id%></h1><h1>名称：<%=name%></h1><h1>地址：<%=src%></h1><h1>形状：<%=shape%></h1>',
+                          },
+                        },
                       },
                     },
                   },

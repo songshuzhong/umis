@@ -10,6 +10,7 @@
       :lock-scroll="lockScroll"
       :close-on-click-modal="closeOnModal"
       :show-close="showClose"
+      :appendToBody="appendToBody"
       :destroy-on-close="destroyOnClose"
       @close="onClose"
     >
@@ -116,6 +117,11 @@ export default {
     onActionDisvisiable: {
       type: Function,
       required: false,
+    },
+    appendToBody: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
   mixins: [derivedProp],
