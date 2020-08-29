@@ -5,6 +5,7 @@
     :default-active="defaultActive"
     :collapse="collapse"
     :class="classname"
+    :router="router"
     :background-color="backgroundColor"
     :text-color="textColor"
     :active-text-color="activeTextColor"
@@ -59,6 +60,11 @@ export default {
     defaultActive: {
       type: String,
       required: false,
+    },
+    router: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
     collapse: {
       type: Boolean,

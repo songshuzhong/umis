@@ -19,7 +19,7 @@ import schema from '../../store/schema';
 import 'element-theme-chalk/lib/index.css';
 
 export default {
-  name: 'UMIS',
+  name: 'UmisFactory',
   mixins: [initApi],
   data() {
     return {
@@ -45,7 +45,7 @@ export default {
       this.$eventHub.$emit('mis-store:change', this.store);
     },
     upSchema(data) {
-      this.schema = data;
+      this.schema[0].body[1].body[1].body = data;
     },
   },
 };

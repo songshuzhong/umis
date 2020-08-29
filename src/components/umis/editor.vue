@@ -70,11 +70,13 @@ export default {
   },
   data() {
     return {
-      schema: [],
+      schema: {
+        $schema: 'https://github.com/songshuzhong/umis/v1/schemas/page.json',
+      },
     };
   },
   mounted() {
-    this.schema = window.UMIS.schema;
+    // this.schema = window.UMIS.schema;
 
     this.editor = CodeMirror.fromTextArea(this.$refs.editor, {
       mode: 'application/json',
@@ -96,16 +98,18 @@ export default {
     });
     this.editor.setSize('100%', '640px');
     this.editor.setValue(JSON.stringify(this.schema));
-
-    CodeMirror.commands['selectAll'](this.editor);
-
-    this.editor.autoFormatRange(
-      this.editor.getCursor(true),
-      this.editor.getCursor(false)
-    );
-    this.editor.setCursor(0, 0);
+    this.onCodeFormat();
   },
   methods: {
+    onCodeFormat() {
+      CodeMirror.commands['selectAll'](this.editor);
+
+      this.editor.autoFormatRange(
+        this.editor.getCursor(true),
+        this.editor.getCursor(false)
+      );
+      this.editor.setCursor(0, 0);
+    },
     completeAfter(cm, pred) {
       const cur = cm.getCursor();
       if (!pred || pred())
@@ -138,6 +142,7 @@ export default {
     },
     onSave() {
       try {
+        this.onCodeFormat();
         const json = this.editor.getValue();
         this.$eventHub.$emit('mis-schema:change', JSON.parse(json));
       } catch (e) {

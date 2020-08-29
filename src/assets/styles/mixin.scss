@@ -13,43 +13,23 @@
   word-break: break-all;
 }
 
-@mixin panel-scrollbar() {
-  &::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-    border-radius: 2px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #b4b8bc;
-    border: solid 1px #fff;
-    border-radius: 2px;
-  }
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
 }
 
-.coupon {
-  width: 300px;
-  height: 100px;
-  position: relative;
-  background: radial-gradient(
-        circle at right bottom,
-        transparent 10px,
-        #ffffff 0
-      )
-      top right / 50% 51px no-repeat,
-    radial-gradient(circle at left bottom, transparent 10px, #ffffff 0) top left /
-      50% 51px no-repeat,
-    radial-gradient(circle at right top, transparent 10px, #ffffff 0) bottom
-      right / 50% 51px no-repeat,
-    radial-gradient(circle at left top, transparent 10px, #ffffff 0) bottom left /
-      50% 51px no-repeat;
-  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 2px;
 }
-.hk-router-loading {
+
+::-webkit-scrollbar-thumb {
+  background-color: #b4b8bc;
+  border: solid 1px #fff;
+  border-radius: 2px;
+}
+
+.umis-router-loading {
   height: 5px;
   top: 0;
   &::before {
@@ -58,7 +38,7 @@
     display: block;
     background-color: #409eff;
     transform-origin: 0% 50%;
-    animation: growth 3s ease-in-out;
+    animation: growth 400ms ease-in-out;
     content: '';
   }
   .el-loading-spinner {

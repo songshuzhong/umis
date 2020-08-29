@@ -8,7 +8,7 @@ Vue.use(Router);
 
 let routerMask;
 const router = new Router({
-  mode: 'history',
+  mode: 'hash',
   routes: [
     {
       path: '/',
@@ -23,19 +23,19 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   routerMask = Loading.service({
     fullscreen: true,
-    customClass: 'hk-router-loading',
+    customClass: 'umis-router-loading',
   });
   next();
 });
 
 router.afterEach((router, from) => {
-  if (routerMask && typeof routerMask.close === 'function') {
-    routerMask.close();
-  }
   if (router.meta && router.meta.title) {
     document.title = router.meta.title;
   } else {
     document.title = 'Demo';
+  }
+  if (routerMask && typeof routerMask.close === 'function') {
+    routerMask.close();
   }
 });
 export default router;

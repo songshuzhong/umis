@@ -42,7 +42,7 @@ export default {
     },
     index: {
       type: String,
-      required: false,
+      required: true,
     },
     classname: {
       type: String,
