@@ -120,6 +120,11 @@ module.exports = {
         bodyStyle: { padding: '0' },
         classname: 'mis-card-margin',
         header: '<h4><%=name%></h4>',
+        body: {
+          renderer: 'mis-html',
+          html:
+            '<h5>id：<%=id%></h5><h5>名称：<%=name%></h5><h5>地址：<%=src%></h5><h5>形状：<%=shape%></h5>',
+        },
         footer: [
           {
             renderer: 'mis-action',
@@ -127,15 +132,15 @@ module.exports = {
             actionType: 'mis-dialog',
             body: {
               renderer: 'mis-dialog',
-              title: 'this is mis-action',
+              title: '我是可以无限弹窗的哦',
               appendToBody: true,
               body: {
                 renderer: 'mis-action',
-                text: '再弹一个窗',
+                text: '点击查看详情',
                 actionType: 'mis-dialog',
                 body: {
                   renderer: 'mis-dialog',
-                  title: 'this is mis-action',
+                  title: '卡片详情',
                   appendToBody: true,
                   body: {
                     renderer: 'mis-html',

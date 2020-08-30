@@ -3,7 +3,7 @@
     <el-col v-for="(item, index) in data" :span="span" :key="index">
       <el-card :shadow="shadow" :body-style="{ padding: 0 }" :class="classname">
         <template slot="header">
-          <div v-html="renderHeader(header, item)" />
+          <div v-html="renderHeader(item)" />
         </template>
         <div style="padding: 10px">
           <component
@@ -12,7 +12,7 @@
             :body="getBody(body)"
             :header="getHeader(body)"
             :footer="getFooter(body)"
-            v-bind="getProps(body)"
+            v-bind="getProps(body, item)"
           />
         </div>
         <div class="el-card__footer" v-if="footer">
@@ -49,7 +49,7 @@ export default {
   },
   props: {
     body: {
-      type: [Array],
+      type: [Array, Object],
       required: false,
     },
     header: {

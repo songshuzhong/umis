@@ -88,7 +88,7 @@ export default {
     destroyOnClose: {
       type: Boolean,
       required: false,
-      default: true,
+      default: false,
     },
     header: {
       type: [Array, Object],

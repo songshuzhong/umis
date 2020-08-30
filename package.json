@@ -36,7 +36,8 @@
     "lint-staged": "^8.1.7",
     "memory-cache": "^0.2.0",
     "multiparty": "^4.2.1",
-    "prettier": "^1.17.1"
+    "prettier": "^1.17.1",
+    "vue-markdown-loader": "^2.4.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.2",
