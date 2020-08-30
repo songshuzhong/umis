@@ -18,6 +18,8 @@ import ElAside from 'element-ui/lib/aside';
 import ElMain from 'element-ui/lib/main';
 import ElFooter from 'element-ui/lib/footer';
 
+import initApi from '~components/mixin/initApi';
+
 export default {
   name: 'MisLayout',
   components: {
@@ -45,5 +47,6 @@ export default {
       required: false,
     },
   },
+  mixins: [initApi],
 };
 </script>

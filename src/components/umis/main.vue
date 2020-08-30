@@ -1,7 +1,15 @@
 <template>
   <el-main :class="classname">
-    <template v-for="(item, index) in body">
-      <component :is="item.renderer" :key="index" v-bind="item" />
+    <template v-if="body.length">
+      <component
+        :is="item.renderer"
+        :key="index"
+        v-bind="item"
+        v-for="(item, index) in body"
+      />
+    </template>
+    <template v-if="routerView">
+      <router-view />
     </template>
   </el-main>
 </template>
@@ -17,7 +25,11 @@ export default {
   props: {
     body: {
       type: Array,
-      required: true,
+      required: false,
+    },
+    routerView: {
+      type: Boolean,
+      required: false,
     },
     classname: {
       type: String,

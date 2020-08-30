@@ -1,39 +1,35 @@
 <template>
-  <fragment>
-    <el-dialog
-      v-bind="$props"
-      :visible.sync="iVisible"
-      :title="title"
-      :width="width"
-      :fullscreen="fullscreen"
-      :modal="modal"
-      :lock-scroll="lockScroll"
-      :close-on-click-modal="closeOnModal"
-      :show-close="showClose"
-      :appendToBody="appendToBody"
-      :destroy-on-close="destroyOnClose"
-      @close="onClose"
-    >
-      <template
-        v-if="Object.prototype.toString.call(body) === '[object Object]'"
-      >
-        <component :is="body.renderer" v-bind="body" :data="data" />
+  <el-dialog
+    v-bind="$props"
+    :visible.sync="iVisible"
+    :title="title"
+    :width="width"
+    :fullscreen="fullscreen"
+    :modal="modal"
+    :lock-scroll="lockScroll"
+    :close-on-click-modal="closeOnModal"
+    :show-close="showClose"
+    :appendToBody="appendToBody"
+    :destroy-on-close="destroyOnClose"
+    @close="onClose"
+  >
+    <template v-if="Object.prototype.toString.call(body) === '[object Object]'">
+      <component :is="body.renderer" v-bind="body" :data="data" />
+    </template>
+    <template v-else>
+      <template v-for="(item, index) in body">
+        <component
+          :is="item.renderer"
+          :key="index"
+          :header="getHeader(item)"
+          :body="getBody(item)"
+          :footer="getFooter(item)"
+          v-bind="getProps(item, data)"
+        />
       </template>
-      <template v-else>
-        <template v-for="(item, index) in body">
-          <component
-            :is="item.renderer"
-            :key="index"
-            :header="getHeader(item)"
-            :body="getBody(item)"
-            :footer="getFooter(item)"
-            v-bind="getProps(item, data)"
-          />
-        </template>
-      </template>
-      <slot name="footer" />
-    </el-dialog>
-  </fragment>
+    </template>
+    <slot name="footer" />
+  </el-dialog>
 </template>
 <script>
 import ElButton from 'element-ui/lib/button';

@@ -8,7 +8,6 @@ async function mockList(pid, pageSize, drowsiness) {
       name: '计划系列名称之' + i,
       size: 'large',
       shape: 'square',
-      renderer: 'mis-avatar',
       src: 'https://songshuzhong.github.io/visualizer/static/img/html5.png',
     });
   }
@@ -19,27 +18,17 @@ async function mockList(pid, pageSize, drowsiness) {
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 module.exports = {
-  'POST /api/mis': async ctx => {
-    await sleep(1000);
-    ctx.restify({ code: 1000, msg: 'success' });
-  },
-  'POST /api/list/:id/:drowsiness': async ctx => {
-    const pid = ctx.params.id || '1';
-    const drowsiness = ctx.params.drowsiness || 0;
-
-    let list = await mockList(pid, drowsiness);
-    ctx.restify(list);
-  },
   'GET /api/pagelist/:pageIndex/:pageSize': async ctx => {
     const pageIndex = ctx.params.pageIndex;
     const pageSize = ctx.params.pageSize;
 
-    let list = await mockList(pageIndex, pageSize, 1500);
+    let list = await mockList(pageIndex, pageSize, 1000);
     ctx.restify({
       code: 1000,
-      result: {
+      msg: 'success',
+      data: {
         page: pageIndex,
-        page_size: pageSize,
+        pageSize: pageSize,
         total: 20,
         list,
       },

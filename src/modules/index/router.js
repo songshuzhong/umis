@@ -8,7 +8,7 @@ Vue.use(Router);
 
 let routerMask;
 const router = new Router({
-  mode: 'hash',
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -16,6 +16,73 @@ const router = new Router({
       meta: {
         title: 'UMIS',
       },
+      children: [
+        {
+          path: '/visible',
+          component: () => import('~components/umis/page'),
+          props: {
+            initSchema: {
+              url: '/api/schema/visible',
+              method: 'get',
+            },
+          },
+          meta: {
+            title: '显隐',
+          },
+        },
+        {
+          path: '/reactive',
+          component: () => import('~components/umis/page'),
+          props: {
+            initSchema: {
+              url: '/api/schema/reactive',
+              method: 'get',
+            },
+          },
+          meta: {
+            title: '联动',
+          },
+        },
+        {
+          path: '/grid',
+          component: () => import('~components/umis/page'),
+          props: {
+            initSchema: {
+              url: '/api/schema/grid',
+              method: 'get',
+            },
+          },
+          meta: {
+            title: '栅栏',
+          },
+        },
+        {
+          path: '/validator',
+          component: () => import('~components/umis/page'),
+          props: {
+            initSchema: {
+              url: '/api/schema/validator',
+              method: 'get',
+            },
+          },
+          meta: {
+            title: '验证',
+          },
+        },
+        {
+          path: '/cards',
+          component: () => import('~components/umis/page'),
+          props: {
+            initSchema: {
+              url: '/api/schema/cards',
+              method: 'get',
+            },
+          },
+          meta: {
+            title: '卡片',
+          },
+        },
+      ],
     },
   ],
 });

@@ -1,26 +1,13 @@
 <template>
-  <div class="mis">
-    <component
-      v-for="(item, index) in schema"
-      v-bind="item"
-      :key="index"
-      :is="item.renderer"
-      :store="store"
-      :visibleOn="item.visibleOn"
-      :disabledOn="item.disabledOn"
-      @input="onInput"
-    />
-  </div>
+  <mis-page :schema="schema" :store="store" />
 </template>
 <script>
-import initApi from '~components/mixin/initApi';
-import schema from '../../store/schema';
+import schema from '../../store/frame';
 
 import 'element-theme-chalk/lib/index.css';
 
 export default {
   name: 'UmisFactory',
-  mixins: [initApi],
   data() {
     return {
       schema,
@@ -28,8 +15,6 @@ export default {
     };
   },
   mounted() {
-    window.UMIS = { schema };
-    this.$eventHub.$on('mis-schema:change', this.upSchema);
     this.$eventHub.$on('mis-store:update', this.onStoreUpdate);
   },
   methods: {
@@ -43,9 +28,6 @@ export default {
         }
       }
       this.$eventHub.$emit('mis-store:change', this.store);
-    },
-    upSchema(data) {
-      this.schema[0].body[1].body[1].body = data;
     },
   },
 };

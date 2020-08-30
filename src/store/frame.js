@@ -2,10 +2,6 @@ const json = [
   {
     renderer: 'mis-layout',
     classname: 'umis-layout__container',
-    initApi: {
-      url: 'http://dev.bendi.ad.weibo.com:3000/api/list/123/500',
-      method: 'post',
-    },
     body: [
       {
         renderer: 'mis-aside',
@@ -37,32 +33,32 @@ const json = [
                 body: [
                   {
                     renderer: 'mis-menu-item',
-                    index: 'option1',
-                    name: 'option1',
+                    index: 'visible',
+                    name: 'visible',
                     label: '显隐性联动',
                   },
                   {
                     renderer: 'mis-menu-item',
-                    index: 'option2',
-                    name: 'option2',
+                    index: 'reactive',
+                    name: 'reactive',
                     label: '可用性联动',
                   },
                   {
                     renderer: 'mis-menu-item',
-                    index: 'option3',
-                    name: 'option3',
+                    index: 'validator',
+                    name: 'validator',
                     label: '表单验证',
                   },
                   {
                     renderer: 'mis-menu-item',
-                    index: 'group1option1',
-                    name: 'group1option1',
+                    index: 'grid',
+                    name: 'grid',
                     label: '栅栏',
                   },
                   {
                     renderer: 'mis-menu-item',
-                    name: 'group1option2',
-                    index: 'group1option2',
+                    name: 'cards',
+                    index: 'cards',
                     label: '卡片列表',
                   },
                 ],
@@ -122,6 +118,7 @@ const json = [
           },
           {
             renderer: 'mis-main',
+            routerView: true,
             body: [],
           },
         ],

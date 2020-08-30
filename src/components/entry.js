@@ -2,6 +2,7 @@ import MetaInfo from 'vue-meta-info';
 import { Fragment } from 'vue-fragment';
 import Loading from 'element-ui/lib/loading';
 
+import MisPage from '~components/umis/page';
 import MisAction from '~components/umis/action';
 import MisField from '~components/umis/field';
 import MisSelect from '~components/umis/select';
@@ -36,6 +37,7 @@ import MisDatepicker from 'element-ui/lib/date-picker';
 
 const components = {
   Fragment,
+  MisPage,
   MisAction,
   MisGrid,
   MisCards,

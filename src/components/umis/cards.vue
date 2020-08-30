@@ -1,17 +1,18 @@
 <template>
-  <el-row v-if="iVisible" :gutter="gutter">
-    <el-col v-for="(item, index) in iBody" :span="span" :key="index">
+  <el-row v-if="iVisible" v-loading="iApiLoading" :gutter="gutter">
+    <el-col v-for="(item, index) in data" :span="span" :key="index">
       <el-card :shadow="shadow" :body-style="{ padding: 0 }" :class="classname">
         <template slot="header">
-          <div v-html="item.header || renderHeader(item)" />
+          <div v-html="renderHeader(header, item)" />
         </template>
         <div style="padding: 10px">
           <component
-            :is="item.renderer"
-            :body="getBody(item)"
-            :header="getHeader(item)"
-            :footer="getFooter(item)"
-            v-bind="getProps(item)"
+            v-if="body"
+            :is="body.renderer"
+            :body="getBody(body)"
+            :header="getHeader(body)"
+            :footer="getFooter(body)"
+            v-bind="getProps(body)"
           />
         </div>
         <div class="el-card__footer" v-if="footer">
@@ -35,6 +36,7 @@ import ElRow from 'element-ui/lib/row';
 import ElCol from 'element-ui/lib/col';
 import ElCard from 'element-ui/lib/card';
 
+import initApi from '~components/mixin/initApi';
 import derivedProp from '~components/mixin/derivedProp';
 import switches from '~components/mixin/switches';
 
@@ -87,7 +89,7 @@ export default {
       default: 12,
     },
   },
-  mixins: [derivedProp, switches],
+  mixins: [initApi, derivedProp, switches],
   watch: {
     body: {
       handler(val) {
@@ -96,14 +98,6 @@ export default {
       immediate: true,
       deep: true,
     },
-  },
-  mounted() {
-    this.$api
-      .slientApi()
-      .get(this.initApi)
-      .then(res => {
-        this.iBody = res.result.list;
-      });
   },
   methods: {
     renderHeader(data) {
