@@ -1,7 +1,10 @@
-import schema from '../../store/frame';
-
 export default {
   props: {
+    iSchemaUpdate: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
     initSchema: {
       type: Object,
       required: false,
@@ -59,14 +62,24 @@ export default {
     getSchemaRequest() {
       const self = this;
       self.iSchemaLoading = true;
+      typeof this.schemaSource === 'function' &&
+        this.schemaSource('CANCELED_DUE_TO_NEW_REQUEST');
       this.$api
         .slientApi()
-        .get(this.initSchema.url, { params: this.initSchema.params })
+        .get(this.initSchema.url, {
+          params: this.initSchema.params,
+          cancelToken: new this.$api.cancelToken(c => (this.schemaSource = c)),
+        })
         .then(res => {
           self.iSchema = res.data;
           self.iSchemaLoading = false;
           window.UMIS = { schema: res.data };
           this.$eventHub.$emit('mis-schema:init', res.data);
+        })
+        .catch(thrown => {
+          if (this.$api.isCancel(thrown)) {
+            // console.log('Request canceled');
+          }
         });
     },
     fetchGetRequest() {
@@ -109,8 +122,10 @@ export default {
         });
     },
     upSchema(data) {
-      this.iSchema = data;
-      window.UMIS = { schema: data };
+      if (this.iSchemaUpdate) {
+        this.iSchema = data;
+        window.UMIS = { schema: data };
+      }
     },
   },
 };

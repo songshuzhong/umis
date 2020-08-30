@@ -143,7 +143,7 @@ export default {
     },
     upSchema(data) {
       this.schema = {
-        $schema: 'https://github.com/songshuzhong/umis/v1/schemas/page.json',
+        // $schema: 'https://github.com/songshuzhong/umis/v1/schemas/page.json',
         ...data,
       };
       this.editor.setValue(JSON.stringify(this.schema));

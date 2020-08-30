@@ -2,6 +2,7 @@ const json = [
   {
     renderer: 'mis-layout',
     classname: 'umis-layout__container',
+    iSchemaUpdate: false,
     body: [
       {
         renderer: 'mis-aside',

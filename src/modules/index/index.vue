@@ -1,5 +1,5 @@
 <template>
-  <mis-page :schema="schema" :store="store" />
+  <mis-page :schema="schema" :store="store" :i-schema-update="false" />
 </template>
 <script>
 import schema from '../../store/frame';
