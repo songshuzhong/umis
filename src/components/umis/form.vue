@@ -98,7 +98,11 @@ export default {
         this.iLoading = true;
         this.$http(this.api, 'post', formData)
           .then(({ data }) => {
-            console.log(data);
+            this.$notice({
+              type: 'success',
+              title: '通知',
+              message: data.msg,
+            });
           })
           .catch(e => {
             this.$notice({

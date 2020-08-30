@@ -133,7 +133,6 @@ module.exports = {
             body: {
               renderer: 'mis-dialog',
               title: '我是可以无限弹窗的哦',
-              appendToBody: true,
               body: {
                 renderer: 'mis-action',
                 text: '点击查看详情',
@@ -253,6 +252,13 @@ module.exports = {
         controls: [
           {
             renderer: 'mis-input',
+            name: 'sponser',
+            label: '联系人',
+            value: '',
+            rules: [{ required: true, message: '主办方名称不能为空' }],
+          },
+          {
+            renderer: 'mis-input',
             name: 'email3',
             label: '邮箱',
             value: '',
@@ -271,10 +277,57 @@ module.exports = {
           },
           {
             renderer: 'mis-input',
-            name: 'age3',
-            label: '年龄',
+            name: 'activename',
+            label: '活动名称',
             value: '',
-            rules: [{ required: true, message: '年龄不能为空' }],
+            rules: [
+              {
+                required: true,
+                message: '活动名称是必填项',
+                trigger: 'change',
+              },
+            ],
+          },
+          {
+            renderer: 'mis-select',
+            name: 'activearea',
+            label: '活动区域',
+            value: '',
+            options: [
+              {
+                label: '区域一',
+                value: 'one',
+              },
+              {
+                label: '区域二',
+                value: 'two',
+              },
+            ],
+            rules: [
+              {
+                required: true,
+                message: '活动名称是必填项',
+                trigger: 'change',
+              },
+            ],
+          },
+          {
+            renderer: 'mis-datepicker',
+            label: '活动时间',
+            value: '',
+            rules: [
+              {
+                required: true,
+                message: '活动名称是必填项',
+                trigger: 'change',
+              },
+            ],
+          },
+          {
+            renderer: 'mis-switch',
+            label: '即时配送',
+            value: false,
+            name: 'delivery',
           },
           {
             renderer: 'mis-button',

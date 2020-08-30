@@ -18,6 +18,10 @@ async function mockList(pid, pageSize, drowsiness) {
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 module.exports = {
+  'POST /api/mis': async ctx => {
+    await sleep(1000);
+    ctx.restify({ code: 1000, msg: 'success' });
+  },
   'GET /api/pagelist/:pageIndex/:pageSize': async ctx => {
     const pageIndex = ctx.params.pageIndex;
     const pageSize = ctx.params.pageSize;

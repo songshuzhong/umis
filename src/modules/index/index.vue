@@ -18,9 +18,6 @@ export default {
     this.$eventHub.$on('mis-store:update', this.onStoreUpdate);
   },
   methods: {
-    onInput(value) {
-      console.log(value);
-    },
     onStoreUpdate(value) {
       for (let key in value) {
         if (value.hasOwnProperty(key)) {

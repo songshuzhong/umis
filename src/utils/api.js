@@ -2,6 +2,7 @@ import qs from 'qs';
 import axios from 'axios';
 import notification from 'element-ui/lib/notification';
 
+const isCancel = axios.isCancel;
 let apiFailSilent = false;
 let apiMessageDuration = 5000;
 let apiMessageOffset = 0;
@@ -174,6 +175,7 @@ let umisApi = null;
 export default {
   factory: factory,
   cancelToken: axios.CancelToken,
+  isCancel,
   slientApi() {
     if (!umisApi) {
       umisApi = factory(
