@@ -1,5 +1,6 @@
 <template>
   <el-avatar
+    v-bind="data"
     :classname="classname"
     :icon="icon"
     :shape="shape"
@@ -56,6 +57,10 @@ export default {
       required: false,
       default: 'cover',
       options: ['fill', 'contain', 'cover', 'none', 'scale-down'],
+    },
+    data: {
+      type: Object,
+      required: false,
     },
   },
 };

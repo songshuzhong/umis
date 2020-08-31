@@ -179,7 +179,7 @@ export default {
   slientApi() {
     if (!umisApi) {
       umisApi = factory(
-        '/',
+        process.env.VUE_APP_API_BASE,
         {
           withCredentials: true,
         },

@@ -1,5 +1,5 @@
-const fs = require('fs')
-const path = require('path')
+const fs = require('fs');
+const path = require('path');
 
 /**
  *
@@ -9,32 +9,32 @@ const path = require('path')
  */
 const generatorMapping = (apiPrefix, router, mappers) => {
   for (let mapper in mappers) {
-    let key
+    let key;
 
     try {
-      key = mapper.split(' ')
+      key = mapper.split(' ');
     } catch (e) {
-      console.error('the url should be like this: "get /api/"!')
+      console.error('the url should be like this: "get /api/"!');
     }
 
     switch (key[0].toLowerCase()) {
       case 'get':
-        router.get(apiPrefix + key[1], mappers[mapper])
-        break
+        router.get(apiPrefix + key[1], mappers[mapper]);
+        break;
       case 'put':
-        router.put(apiPrefix + key[1], mappers[mapper])
-        break
+        router.put(apiPrefix + key[1], mappers[mapper]);
+        break;
       case 'post':
-        router.post(apiPrefix + key[1], mappers[mapper])
-        break
+        router.post(apiPrefix + key[1], mappers[mapper]);
+        break;
       case 'delete':
-        router.del(apiPrefix + key[1], mappers[mapper])
-        break
+        router.del(apiPrefix + key[1], mappers[mapper]);
+        break;
       default:
-        console.log('invalid url: ' + mapper)
+        console.log('invalid url: ' + mapper);
     }
   }
-}
+};
 
 /**
  *
@@ -45,11 +45,11 @@ const generatorMapping = (apiPrefix, router, mappers) => {
 const generatorApi = (apiPrefix, router, dir) => {
   fs.readdirSync(dir)
     .filter(f => f.endsWith('.js'))
-    .forEach(f => generatorMapping(apiPrefix, router, require(dir + '/' + f)))
-}
+    .forEach(f => generatorMapping(apiPrefix, router, require(dir + '/' + f)));
+};
 
 module.exports = withApiObserver = (server, router, dir = '../router') => {
-  generatorApi('', router, path.resolve(path.join(__dirname, dir)))
+  generatorApi('', router, path.resolve(path.join(__dirname, dir)));
 
-  server.use(router.routes())
-}
+  server.use(router.routes());
+};

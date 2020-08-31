@@ -8,7 +8,7 @@ Vue.use(Router);
 
 let routerMask;
 const router = new Router({
-  mode: 'history',
+  mode: 'hash',
   routes: [
     {
       path: '/',

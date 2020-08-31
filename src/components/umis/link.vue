@@ -5,6 +5,7 @@
     :disabled="disabled"
     :href="href"
     :icon="icon"
+    @click="onClick"
   >
     <template v-if="text">
       {{ text }}
@@ -52,6 +53,11 @@ export default {
     suffixClass: {
       type: String,
       required: false,
+    },
+  },
+  methods: {
+    onClick() {
+      console.log(this);
     },
   },
 };

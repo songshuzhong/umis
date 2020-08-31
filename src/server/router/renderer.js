@@ -1,6 +1,9 @@
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 module.exports = {
+  'GET /': async ctx => {
+    await ctx.render('index');
+  },
   'GET /api/schema/visible': async ctx => {
     ctx.restify({
       code: 1000,
@@ -165,7 +168,6 @@ module.exports = {
         renderer: 'mis-grid',
         gutter: 20,
         classname: 'mis-card-margin',
-        visibleOn: 'menu == "group1option1"',
         body: [
           {
             renderer: 'mis-alert',
@@ -249,6 +251,7 @@ module.exports = {
       data: {
         renderer: 'mis-form',
         name: 'form3',
+        api: 'http://dev.bendi.ad.weibo.com:3000/api/mis',
         controls: [
           {
             renderer: 'mis-input',
@@ -293,6 +296,7 @@ module.exports = {
             name: 'activearea',
             label: '活动区域',
             value: '',
+            visibleOn: 'delivery === true',
             options: [
               {
                 label: '区域一',

@@ -7,9 +7,11 @@
     "dev": "vue-cli-service serve --mode=development",
     "dev:e2e": "vue-cli-service test:e2e --mode=development",
     "build": "vue-cli-service build",
+    "build:qa": "vue-cli-service build --mode=qa",
+    "build:mock": "vue-cli-service build --mode=mock",
     "build:ci": "vue-cli-service build --report",
     "lint": "tslint --ext .js,.vue --fix . && stylelint --fix \"src/**/*.vue\" \"src/**/*.scss\" && markdownlint docs/*.md *.md && prettier --list-different --write \"**/*.{js,json,css,scss,vue,md}\"",
-    "deploy-dev": "npm run build && rsync -vzrtopg --progress ./dist/*  rsync://10.41.41.197:11873/mjs_weiboad_apps_fentiao_coupon"
+    "deploy-dev": "npm run build && rsync -vzrtopg --progress ./dist/*  rsync://10.41.41.197:11873/umis"
   },
   "gitHooks": {
     "pre-commit": "cross-env PRE_COMMIT=true lint-staged"

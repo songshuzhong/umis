@@ -77,7 +77,7 @@ export default {
     this.$eventHub.$on('mis-schema:change', this.upSchema);
     this.$eventHub.$on('mis-schema:init', this.upSchema);
     this.schema = {
-      // $schema: 'https://github.com/songshuzhong/umis/v1/schemas/page.json',
+      schema: 'https://github.com/songshuzhong/umis/v1/schemas/page.json',
       ...window.UMIS.schema,
     };
 
@@ -143,7 +143,7 @@ export default {
     },
     upSchema(data) {
       this.schema = {
-        // $schema: 'https://github.com/songshuzhong/umis/v1/schemas/page.json',
+        schema: 'https://github.com/songshuzhong/umis/v1/schemas/page.json',
         ...data,
       };
       this.editor.setValue(JSON.stringify(this.schema));
