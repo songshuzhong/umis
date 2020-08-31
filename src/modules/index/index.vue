@@ -16,6 +16,11 @@ export default {
   },
   mounted() {
     this.$eventHub.$on('mis-store:update', this.onStoreUpdate);
+    fetch(
+      'https://www.fastmock.site/mock/a93e0b29161761b8153cbc02db04c643/api/schema/cards'
+    )
+      .then(res => res.json())
+      .then(data => console.log(data));
   },
   methods: {
     onStoreUpdate(value) {
