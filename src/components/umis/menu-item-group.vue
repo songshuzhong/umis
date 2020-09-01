@@ -1,8 +1,8 @@
 <template>
   <el-menu-item-group>
-    <template slot="title">
-      <i class="el-icon-menu" />
-      {{ label }}
+    <template v-if="title" slot="title">
+      <i v-if="icon" class="el-icon-menu" />
+      <span>{{ label }}</span>
     </template>
     <template v-for="(item, index) in body">
       <component

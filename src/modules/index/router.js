@@ -18,10 +18,6 @@ const router = new Router({
       },
       children: [
         {
-          path: '/doc',
-          component: () => import('./doc'),
-        },
-        {
           path: '/visible',
           component: () => import('~components/umis/page'),
           props: {
