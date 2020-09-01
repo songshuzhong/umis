@@ -11,8 +11,6 @@ import { getRenderedTpl, onExpressionEval } from '~utils/tools';
 import 'element-theme-chalk/lib/index.css';
 import '~assets/styles/index.scss';
 
-Vue.config.productionTip = false;
-
 Vue.prototype.$eventHub = new Vue();
 Vue.prototype.$notice = notification;
 Vue.prototype.$http = request;

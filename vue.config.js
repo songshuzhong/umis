@@ -63,24 +63,6 @@ module.exports = {
       filename: 'js/[name].[hash:6].js',
       chunkFilename: 'js/chunks/[name].[hash:6].js',
     },
-    module: {
-      rules: [
-        {
-          test: /\.md$/,
-          use: [
-            {
-              loader: 'vue-loader',
-            },
-            {
-              loader: 'vue-markdown-loader/lib/markdown-compiler',
-              options: {
-                raw: true,
-              },
-            },
-          ],
-        },
-      ],
-    },
     resolve: {
       extensions: ['.ts', '.js', '.vue', '.json'],
     },

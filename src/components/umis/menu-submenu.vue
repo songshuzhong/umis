@@ -10,7 +10,7 @@
   >
     <template v-if="title" slot="title">
       <i :class="icon" />
-      {{ title }}
+      <span slot="title">{{ title }}</span>
     </template>
     <template v-for="(item, index) in body">
       <component
