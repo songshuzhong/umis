@@ -5,32 +5,26 @@ const json = [
     iSchemaUpdate: false,
     body: [
       {
-        renderer: 'mis-aside',
+        renderer: 'mis-menu',
+        name: 'menu',
+        router: true,
         collapse: true,
-        classname: 'umis-layout__container__aside',
+        mode: 'vertical',
+        defaultActive: 'option1',
+        backgroundColor: '#545c64',
+        textColor: '#fff',
+        activeTextColor: '#ffd04b',
+        classname: 'umis-layout__container__aside__menu',
         body: [
           {
-            renderer: 'mis-menu',
-            name: 'menu',
-            router: true,
-            title: {
-              renderer: 'mis-html',
-              html:
-                '<div style="height: 56px; color: white; text-align: center; line-height: 56px; font-size: 20px"><i class="el-icon-s-promotion" /><span style="margin-left: 3px">UMIS</span></div>',
-            },
-            mode: 'vertical',
-            defaultActive: 'option1',
-            backgroundColor: '#545c64',
-            textColor: '#fff',
-            activeTextColor: '#ffd04b',
-            classname: 'umis-layout__container__aside__menu',
+            renderer: 'mis-submenu',
+            name: 'submenu',
+            icon: 'el-icon-menu',
+            title: '菜单',
+            index: 'submenu',
             body: [
               {
-                renderer: 'mis-submenu',
-                name: 'submenu',
-                icon: 'el-icon-menu',
-                title: '菜单',
-                index: 'submenu',
+                renderer: 'mis-menu-item-group',
                 body: [
                   {
                     renderer: 'mis-menu-item',
@@ -64,15 +58,15 @@ const json = [
                   },
                 ],
               },
-              {
-                renderer: 'mis-submenu',
-                name: 'components',
-                index: 'components',
-                icon: 'el-icon-notebook-1',
-                title: '属性',
-                body: [],
-              },
             ],
+          },
+          {
+            renderer: 'mis-submenu',
+            name: 'components',
+            index: 'components',
+            icon: 'el-icon-notebook-1',
+            title: '属性',
+            body: [],
           },
         ],
       },
