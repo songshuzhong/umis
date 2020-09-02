@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.7ab3bacecaf79ec1be7d9df1e228b0b2.js"
+  "precache-manifest.e40c758b35af6b0f6fed2b05ee33e6bd.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "fe-fans-coupon"});
