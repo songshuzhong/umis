@@ -1,6 +1,14 @@
 <template>
   <el-row v-if="iVisible" v-loading="iApiLoading" :gutter="gutter">
-    <el-col v-for="(item, index) in data" :span="span" :key="index">
+    <el-col
+      v-for="(item, index) in data"
+      :span="span"
+      :key="index"
+      :xs="size[0]"
+      :sm="size[1]"
+      :md="size[2]"
+      :lg="size[3]"
+    >
       <el-card :shadow="shadow" :body-style="{ padding: 0 }" :class="classname">
         <template slot="header">
           <div v-html="renderHeader(item)" />
@@ -87,6 +95,11 @@ export default {
       type: Number,
       required: false,
       default: 12,
+    },
+    size: {
+      type: Array,
+      required: false,
+      default: [24, 12, 8, 4],
     },
   },
   mixins: [initApi, derivedProp, switches],

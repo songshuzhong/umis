@@ -28,6 +28,7 @@ import MisAlert from '~components/umis/alert';
 import MisDialog from '~components/umis/dialog';
 import MisDrawer from '~components/umis/drawer';
 import MisEditor from '~components/umis/editor';
+import MisImage from '~components/umis/image';
 
 import MisSwitch from 'element-ui/lib/switch';
 import MisLink from '~components/umis/link';
@@ -68,6 +69,7 @@ const components = {
   MisMenuItem,
   MisMenuItemGroup,
   MisInput,
+  MisImage,
 };
 
 const componentsName = Object.keys(components);

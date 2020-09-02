@@ -136,7 +136,14 @@ module.exports = {
             body: {
               renderer: 'mis-dialog',
               title: '我是可以无限弹窗的哦',
-              body: {
+              body: [
+                {
+                  renderer: 'mis-image',
+                  src:
+                    'https://songshuzhong.github.io/visualizer/static/img/html5.png',
+                },
+              ],
+              footer: {
                 renderer: 'mis-action',
                 text: '点击查看详情',
                 actionType: 'mis-dialog',

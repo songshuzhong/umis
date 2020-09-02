@@ -28,7 +28,32 @@
         />
       </template>
     </template>
-    <slot name="footer" />
+    <div slot="footer">
+      <template
+        v-if="Object.prototype.toString.call(footer) === '[object Array]'"
+      >
+        <component
+          :is="item.renderer"
+          :key="index"
+          :header="getHeader(item)"
+          :body="getBody(item)"
+          :footer="getFooter(item)"
+          v-bind="getProps(item, data)"
+          v-for="(item, index) in footer"
+        />
+      </template>
+      <template
+        v-if="Object.prototype.toString.call(footer) === '[object Object]'"
+      >
+        <component
+          :is="footer.renderer"
+          :header="getHeader(footer)"
+          :body="getBody(footer)"
+          :footer="getFooter(footer)"
+          v-bind="getProps(footer, data)"
+        />
+      </template>
+    </div>
   </el-dialog>
 </template>
 <script>

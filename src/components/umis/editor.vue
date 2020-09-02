@@ -99,7 +99,7 @@ export default {
         'Ctrl-Space': 'autocomplete',
       },
     });
-    this.editor.setSize('100%', 'calc(100vh - 130px)');
+    this.editor.setSize('100%', 'calc(100vh - 120px)');
     this.editor.setValue(JSON.stringify(this.schema));
     this.onCodeFormat();
   },
@@ -180,9 +180,5 @@ export default {
   background-color: #282a36 !important;
 }
 .umis-editor-tools {
-  height: 70px;
-  padding: 2px 10px;
-  border-top: 1px solid white;
-  line-height: 70px;
 }
 </style>
