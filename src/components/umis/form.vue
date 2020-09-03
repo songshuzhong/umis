@@ -4,7 +4,7 @@
     v-if="iVisible"
     class="mis-form"
     ref="mis-form"
-    label-width="80px"
+    :label-width="labelWidth + 'px'"
     :model="formData"
   >
     <mis-field
@@ -40,6 +40,11 @@ export default {
     controls: {
       type: Array,
       required: false,
+    },
+    labelWidth: {
+      type: Number,
+      required: false,
+      default: 130,
     },
   },
   data() {
