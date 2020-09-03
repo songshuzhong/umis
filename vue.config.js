@@ -4,10 +4,18 @@ const fs = require('fs');
 const manifestPlugin = require('webpack-manifest-plugin');
 const SupportWebPWebpackPlugin = require('support-webp-webpack-plugin');
 
+const elementExternals = require('./elementUIDependencies');
 const dev = process.env.NODE_ENV !== 'production';
 const publicPath = '';
 const pages = {};
 const rewrites = [];
+const externals = {
+  'element-ui': 'ELEMENT',
+};
+
+elementExternals.components.forEach(function(key) {
+  externals[`element-ui/lib/${key}`] = `element-ui/lib/${key}`;
+});
 
 glob.sync('./src/pages/*.js').forEach(entry => {
   const filename = entry.replace(/(.*\/)*([^.]+).*/gi, '$2');
@@ -66,6 +74,7 @@ module.exports = {
     resolve: {
       extensions: ['.ts', '.js', '.vue', '.json'],
     },
+    // externals: externals,
     plugins: [
       new SupportWebPWebpackPlugin({
         useCheckScript: false,

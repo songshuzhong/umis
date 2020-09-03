@@ -18,12 +18,14 @@ module.exports = {
             name: 'input',
             label: '地址',
             value: 'mis',
+            tip: '请填写地址',
             visibleOn: 'switchs == true',
           },
           {
             renderer: 'mis-checkbox',
             name: 'checkbox',
             label: '主食',
+            tip: '请填写地址',
             visibleOn: 'switchs == false',
             options: [
               {
@@ -40,6 +42,7 @@ module.exports = {
             renderer: 'mis-radio',
             name: 'radio',
             label: '餐具',
+            tip: '请填写地址',
             options: [
               {
                 value: '1',
@@ -264,13 +267,15 @@ module.exports = {
             renderer: 'mis-input',
             name: 'sponser',
             label: '联系人',
+            tip: '联系姓名',
             value: '',
-            rules: [{ required: true, message: '主办方名称不能为空' }],
+            rules: [{ required: true, message: '联系人不能为空' }],
           },
           {
             renderer: 'mis-input',
             name: 'email3',
             label: '邮箱',
+            tip: '邮箱地址，字母数字下划线',
             value: '',
             rules: [
               {
@@ -289,6 +294,7 @@ module.exports = {
             renderer: 'mis-input',
             name: 'activename',
             label: '活动名称',
+            tip: '举办一场空前的活动',
             value: '',
             rules: [
               {
@@ -302,15 +308,16 @@ module.exports = {
             renderer: 'mis-select',
             name: 'activearea',
             label: '活动区域',
+            tip: '活动范围在全宇宙',
             value: '',
             visibleOn: 'delivery === true',
             options: [
               {
-                label: '区域一',
+                text: '区域一',
                 value: 'one',
               },
               {
-                label: '区域二',
+                text: '区域二',
                 value: 'two',
               },
             ],
@@ -325,6 +332,7 @@ module.exports = {
           {
             renderer: 'mis-datepicker',
             label: '活动时间',
+            tip: '活动时间在32世纪初',
             value: '',
             rules: [
               {
@@ -337,6 +345,7 @@ module.exports = {
           {
             renderer: 'mis-switch',
             label: '即时配送',
+            tip: '快递邮寄',
             value: false,
             name: 'delivery',
           },

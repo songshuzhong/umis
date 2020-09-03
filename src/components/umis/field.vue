@@ -6,6 +6,15 @@
     :class="field.className"
     :rules="field.rules"
   >
+    <span v-if="field.label" slot="label" class="umis-form-field">
+      <span class="umis-form-field__label">{{ field.label }}</span>
+      <el-tooltip v-if="field.tip">
+        <el-button>
+          <i class="el-icon-info" />
+        </el-button>
+        <div slot="content" v-html="field.tip" />
+      </el-tooltip>
+    </span>
     <component
       v-bind="field"
       :is="field.renderer"
@@ -19,12 +28,14 @@
 </template>
 
 <script>
+import ElTooltip from 'element-ui/lib/tooltip';
 import ElFormItem from 'element-ui/lib/form-item';
 import switches from '~components/mixin/switches';
 
 export default {
   name: 'MisField',
   components: {
+    ElTooltip,
     ElFormItem,
   },
   props: {
@@ -54,3 +65,15 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.umis-form-field {
+  display: inline-block;
+}
+.umis-form-field__label {
+  padding-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+</style>
