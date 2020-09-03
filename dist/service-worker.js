@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.e40c758b35af6b0f6fed2b05ee33e6bd.js"
+  "precache-manifest.71c8ac1bcdeda7497d1289339a1f9ecc.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "fe-fans-coupon"});
+workbox.core.setCacheNameDetails({prefix: "umis"});
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
