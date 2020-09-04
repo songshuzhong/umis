@@ -26,6 +26,7 @@
         <component
           :is="item.renderer"
           :key="index"
+          :visible="iVisible"
           :footer="item.footer"
           :action="onClose"
           :after-action="onClose"
@@ -36,6 +37,7 @@
         <component
           :is="item.renderer"
           :key="index"
+          :visible="iVisible"
           :footer="item.footer"
           :action="onClose"
           :after-action="onClose"

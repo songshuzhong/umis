@@ -82,6 +82,19 @@ const router = new Router({
             title: '卡片',
           },
         },
+        {
+          path: '/tabs',
+          component: () => import('~components/umis/page'),
+          props: {
+            initSchema: {
+              url: '/api/schema/tabs',
+              method: 'get',
+            },
+          },
+          meta: {
+            title: '选项卡',
+          },
+        },
       ],
     },
   ],

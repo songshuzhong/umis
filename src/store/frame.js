@@ -61,6 +61,12 @@ const json = [
                     index: 'cards',
                     label: '卡片列表',
                   },
+                  {
+                    renderer: 'mis-menu-item',
+                    name: 'tabs',
+                    index: 'tabs',
+                    label: '选项卡',
+                  },
                 ],
               },
             ],
@@ -97,7 +103,7 @@ const json = [
                 label: '编辑',
                 body: [
                   {
-                    renderer: 'mis-editor',
+                    renderer: 'mis-monaco',
                     name: 'editor',
                     footer: [
                       {

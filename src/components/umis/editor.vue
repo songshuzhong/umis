@@ -90,7 +90,11 @@ export default {
       indentWithTabs: true,
       smartIndent: true,
       matchBrackets: true,
-      gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+      gutters: [
+        'CodeMirror-linenumbers',
+        'CodeMirror-foldgutter',
+        'CodeMirror-lint-markers',
+      ],
       extraKeys: {
         "'<'": this.completeAfter,
         "'/'": this.completeIfAfterLt,
@@ -155,6 +159,7 @@ export default {
         const json = this.editor.getValue();
         this.$eventHub.$emit('mis-schema:change', JSON.parse(json));
       } catch (e) {
+        console.error(e);
         this.$notice({
           type: 'error',
           title: '警告',

@@ -28,10 +28,12 @@ import MisAlert from '~components/umis/alert';
 import MisDialog from '~components/umis/dialog';
 import MisDrawer from '~components/umis/drawer';
 import MisEditor from '~components/umis/editor';
+import MisMonaco from '~components/umis/monaco';
 import MisImage from '~components/umis/image';
+import MisTabs from '~components/umis/tabs';
+import MisLink from '~components/umis/link';
 
 import MisSwitch from 'element-ui/lib/switch';
-import MisLink from '~components/umis/link';
 import MisInput from 'element-ui/lib/input';
 import MisContainer from 'element-ui/lib/container';
 import MisDatepicker from 'element-ui/lib/date-picker';
@@ -45,6 +47,7 @@ const components = {
   MisAvatar,
   MisDialog,
   MisEditor,
+  MisMonaco,
   MisDrawer,
   MisLink,
   MisAlert,
@@ -70,6 +73,7 @@ const components = {
   MisMenuItemGroup,
   MisInput,
   MisImage,
+  MisTabs,
 };
 
 const componentsName = Object.keys(components);

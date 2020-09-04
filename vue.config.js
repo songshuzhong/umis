@@ -3,7 +3,7 @@ const glob = require('glob');
 const fs = require('fs');
 const manifestPlugin = require('webpack-manifest-plugin');
 const SupportWebPWebpackPlugin = require('support-webp-webpack-plugin');
-
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const elementExternals = require('./elementUIDependencies');
 const dev = process.env.NODE_ENV !== 'production';
 const publicPath = '';
@@ -76,6 +76,7 @@ module.exports = {
     },
     // externals: externals,
     plugins: [
+      new MonacoWebpackPlugin(),
       new SupportWebPWebpackPlugin({
         useCheckScript: false,
       }),
