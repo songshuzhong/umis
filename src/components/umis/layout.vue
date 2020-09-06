@@ -1,11 +1,15 @@
 <template>
   <el-container :direction="direction" :class="classname">
     <template v-for="(item, index) in body">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
         :store="store"
-        v-bind="item"
+        :header="getHeader(item)"
+        :body="getBody(item)"
+        :footer="getFooter(item)"
+        :props="getProps(item, data)"
+        v-bind="getProps(item, data)"
       />
     </template>
   </el-container>
@@ -18,6 +22,7 @@ import ElAside from 'element-ui/lib/aside';
 import ElMain from 'element-ui/lib/main';
 import ElFooter from 'element-ui/lib/footer';
 
+import derivedProp from '~components/mixin/derivedProp';
 import initApi from '~components/mixin/initApi';
 
 export default {
@@ -38,6 +43,10 @@ export default {
       type: String,
       required: false,
     },
+    data: {
+      type: Object,
+      required: true,
+    },
     store: {
       type: Object,
       required: true,
@@ -47,6 +56,6 @@ export default {
       required: false,
     },
   },
-  mixins: [initApi],
+  mixins: [initApi, derivedProp],
 };
 </script>

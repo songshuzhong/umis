@@ -32,6 +32,8 @@ import MisMonaco from '~components/umis/monaco';
 import MisImage from '~components/umis/image';
 import MisTabs from '~components/umis/tabs';
 import MisLink from '~components/umis/link';
+import MisDomain from '~components/umis/api';
+import MisComponent from '~components/umis/component';
 
 import MisSwitch from 'element-ui/lib/switch';
 import MisInput from 'element-ui/lib/input';
@@ -40,6 +42,7 @@ import MisDatepicker from 'element-ui/lib/date-picker';
 
 const components = {
   Fragment,
+  MisComponent,
   MisPage,
   MisAction,
   MisGrid,
@@ -74,6 +77,7 @@ const components = {
   MisInput,
   MisImage,
   MisTabs,
+  MisDomain,
 };
 
 const componentsName = Object.keys(components);

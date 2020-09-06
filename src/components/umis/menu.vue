@@ -11,17 +11,17 @@
     :active-text-color="activeTextColor"
   >
     <template v-if="title">
-      <component v-bind="title" :is="title.renderer" />
+      <mis-component :props="title" :mis-name="title.renderer" />
     </template>
     <template v-for="(item, index) in body">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
         :index="index.toString()"
         :label="item.label"
         :name="item.name"
         :body="item.body"
-        v-bind="item"
+        :props="item"
       />
     </template>
   </el-menu>

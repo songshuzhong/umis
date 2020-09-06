@@ -17,7 +17,7 @@
         <i v-if="item.icon" :class="item.icon" />
         {{ item.label }}
       </span>
-      <component :is="item.renderer" v-bind="item" />
+      <mis-component :mis-name="item.renderer" :props="item" />
     </e-l-tab-panel>
   </el-tabs>
 </template>

@@ -4,21 +4,21 @@
     <div class="umis-editor-tools">
       <template v-if="Array.isArray(footer)">
         <template v-for="(item, index) in footer">
-          <component
-            :is="item.renderer"
+          <mis-component
+            :mis-name="item.renderer"
             :key="index"
             :after-action="afterAction"
             :action="onSave"
-            v-bind="item"
+            :props="item"
           />
         </template>
       </template>
       <template v-else>
-        <component
-          :is="footer.renderer"
+        <mis-component
+          :mis-name="footer.renderer"
           :after-action="afterAction"
           :action="onSave"
-          v-bind="footer"
+          :props="footer"
         />
       </template>
     </div>

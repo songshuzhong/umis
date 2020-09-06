@@ -13,9 +13,9 @@
       :key="index"
       :class="classname"
     >
-      <component
-        v-bind="item"
-        :is="item.renderer"
+      <mis-component
+        :props="item"
+        :mis-name="item.renderer"
         :key="index"
         :label="item.label"
         :name="item.name"

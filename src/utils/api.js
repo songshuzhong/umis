@@ -2,6 +2,11 @@ import qs from 'qs';
 import axios from 'axios';
 import notification from 'element-ui/lib/notification';
 
+const GLOBAL_DOMAINS = {
+  isApiChanged: false,
+  activeDomain: '',
+  VUE_APP_API_BASE: process.env.VUE_APP_API_BASE,
+};
 const isCancel = axios.isCancel;
 let apiFailSilent = false;
 let apiMessageDuration = 5000;
@@ -172,14 +177,16 @@ function factory(baseUrl, configs, silent, noInterceptor) {
 }
 
 let umisApi = null;
+
 export default {
   factory: factory,
   cancelToken: axios.CancelToken,
+  GLOBAL_DOMAINS,
   isCancel,
   slientApi() {
-    if (!umisApi) {
+    if (GLOBAL_DOMAINS.isApiChanged || !umisApi) {
       umisApi = factory(
-        process.env.VUE_APP_API_BASE,
+        GLOBAL_DOMAINS.activeDomain,
         {
           withCredentials: true,
         },

@@ -13,8 +13,8 @@
       <span slot="title">{{ title }}</span>
     </template>
     <template v-for="(item, index) in body">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
         :label="item.label"
         :name="item.name"

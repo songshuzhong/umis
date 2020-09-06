@@ -18,13 +18,13 @@
     </template>
     <template v-else>
       <template v-for="(item, index) in body">
-        <component
-          :is="item.renderer"
+        <mis-component
+          :mis-name="item.renderer"
           :key="index"
           :header="getHeader(item)"
           :body="getBody(item)"
           :footer="getFooter(item)"
-          v-bind="getProps(item, data)"
+          :props="getProps(item, data)"
         />
       </template>
     </template>
@@ -32,13 +32,13 @@
       <template
         v-if="Object.prototype.toString.call(footer) === '[object Array]'"
       >
-        <component
-          :is="item.renderer"
+        <mis-component
+          :mis-name="item.renderer"
           :key="index"
           :header="getHeader(item)"
           :body="getBody(item)"
           :footer="getFooter(item)"
-          v-bind="getProps(item, data)"
+          :props="getProps(item, data)"
           v-for="(item, index) in footer"
         />
       </template>
@@ -46,11 +46,11 @@
         v-if="Object.prototype.toString.call(footer) === '[object Object]'"
       >
         <component
-          :is="footer.renderer"
+          :mis-name="footer.renderer"
           :header="getHeader(footer)"
           :body="getBody(footer)"
           :footer="getFooter(footer)"
-          v-bind="getProps(footer, data)"
+          :props="getProps(footer, data)"
         />
       </template>
     </div>

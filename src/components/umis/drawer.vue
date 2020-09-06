@@ -14,34 +14,34 @@
       :wrapperClosable="wrapperClosable"
       :withHeader="withHeader"
     >
-      <template v-if="title" slot="title">
-        <component
-          :is="title.renderer"
+      <template v-if="header" slot="title">
+        <mis-component
+          :mis-name="header.renderer"
           :action="onClose"
           :after-action="onClose"
-          v-bind="title"
+          :props="header"
         />
       </template>
       <template v-for="(item, index) in body">
-        <component
-          :is="item.renderer"
+        <mis-component
+          :mis-name="item.renderer"
           :key="index"
           :visible="iVisible"
           :footer="item.footer"
           :action="onClose"
           :after-action="onClose"
-          v-bind="item"
+          :props="item"
         />
       </template>
       <template v-for="(item, index) in footer">
-        <component
-          :is="item.renderer"
+        <mis-component
+          :mis-name="item.renderer"
           :key="index"
           :visible="iVisible"
           :footer="item.footer"
           :action="onClose"
           :after-action="onClose"
-          v-bind="item"
+          :props="item"
         />
       </template>
     </el-drawer>
@@ -102,7 +102,7 @@ export default {
       required: false,
       default: '30%',
     },
-    title: {
+    header: {
       type: [String, Object],
       required: false,
     },
@@ -136,6 +136,11 @@ export default {
     return {
       iVisible: false,
     };
+  },
+  watch: {
+    visible(val) {
+      this.iVisible = val;
+    },
   },
   methods: {
     onClose() {

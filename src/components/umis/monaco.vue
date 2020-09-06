@@ -122,7 +122,7 @@ export default {
 <style lang="scss">
 .monaco-editor {
   width: 100%;
-  height: calc(100vh - 130px);
+  height: calc(100vh - 110px);
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -131,11 +131,13 @@ export default {
 
 .umis-editor-container {
   width: 100%;
-  height: calc(100vh - 130px);
   margin: 0 auto;
-  padding: 5px;
   background-color: #282a36 !important;
 }
 .umis-editor-tools {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 </style>

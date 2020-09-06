@@ -95,6 +95,10 @@ const router = new Router({
             title: '选项卡',
           },
         },
+        {
+          path: '/setting',
+          component: () => import('~components/umis/setting'),
+        },
       ],
     },
   ],

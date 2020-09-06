@@ -1,10 +1,10 @@
 <template>
   <el-main :class="classname">
     <template v-if="body.length">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
-        v-bind="item"
+        :props="item"
         v-for="(item, index) in body"
       />
     </template>

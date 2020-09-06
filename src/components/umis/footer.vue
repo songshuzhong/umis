@@ -1,7 +1,7 @@
 <template>
   <el-footer :class="classname">
     <template v-for="(item, index) in body">
-      <component :is="item.renderer" :key="index" v-bind="item" />
+      <mis-component :mis-name="item.renderer" :key="index" :props="item" />
     </template>
   </el-footer>
 </template>

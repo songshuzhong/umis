@@ -14,24 +14,24 @@
           <div v-html="renderHeader(item)" />
         </template>
         <div style="padding: 10px">
-          <component
+          <mis-component
             v-if="body"
-            :is="body.renderer"
+            :mis-name="body.renderer"
             :body="getBody(body)"
             :header="getHeader(body)"
             :footer="getFooter(body)"
-            v-bind="getProps(body, item)"
+            :props="getProps(body, item)"
           />
         </div>
         <div class="el-card__footer" v-if="footer">
           <template v-for="(foot, index) in footer">
-            <component
-              :is="foot.renderer"
+            <mis-component
+              :mis-name="foot.renderer"
               :key="index"
               :header="getHeader(foot)"
               :body="getBody(foot)"
               :footer="getFooter(foot)"
-              v-bind="getProps(foot, item)"
+              :props="getProps(foot, item)"
             />
           </template>
         </div>

@@ -25,7 +25,7 @@ const json = [
             renderer: 'mis-submenu',
             name: 'submenu',
             icon: 'el-icon-menu',
-            title: '菜单',
+            title: '组件',
             index: 'submenu',
             body: [
               {
@@ -76,8 +76,32 @@ const json = [
             name: 'components',
             index: 'components',
             icon: 'el-icon-notebook-1',
-            title: '属性',
+            title: '文档',
             body: [],
+          },
+          {
+            renderer: 'mis-submenu',
+            icon: 'el-icon-setting',
+            title: '系统',
+            body: [
+              {
+                renderer: 'mis-menu-item-group',
+                body: [
+                  {
+                    renderer: 'mis-menu-item',
+                    index: 'setting',
+                    name: 'setting',
+                    label: '全局配置',
+                  },
+                  {
+                    renderer: 'mis-menu-item',
+                    index: 'authority',
+                    name: 'authority',
+                    label: '权限配置',
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
@@ -94,13 +118,13 @@ const json = [
                 name: 'isEditor',
                 showClose: true,
                 size: '60%',
+                label: '编辑',
                 classname: 'umis-layout__container__drawer',
-                title: {
+                header: {
                   renderer: 'mis-html',
                   html:
                     '<h1 style="text-align: left; color: white;">编辑Schema</h1>',
                 },
-                label: '编辑',
                 body: [
                   {
                     renderer: 'mis-monaco',

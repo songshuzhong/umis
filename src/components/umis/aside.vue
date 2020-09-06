@@ -1,11 +1,11 @@
 <template>
   <el-aside :class="classname">
     <template v-for="(item, index) in body">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
         :store="store"
-        v-bind="item"
+        :props="item"
       />
     </template>
   </el-aside>

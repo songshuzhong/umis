@@ -371,18 +371,10 @@ module.exports = {
         activeName: 'tabform',
         body: [
           {
-            renderer: 'mis-form',
+            renderer: 'mis-error',
             name: 'tabform',
             label: '选项卡表单',
             icon: 'el-icon-s-order',
-            controls: [
-              {
-                renderer: 'mis-input',
-                name: 'tabinput1',
-                label: '选项卡表单输入框',
-                value: '',
-              },
-            ],
           },
           {
             renderer: 'mis-html',

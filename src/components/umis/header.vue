@@ -1,11 +1,15 @@
 <template>
   <el-header :class="classname">
     <template v-for="(item, index) in body">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
         :store="store"
-        v-bind="item"
+        :title="item.title"
+        :header="getHeader(item)"
+        :body="getBody(item)"
+        :footer="getFooter(item)"
+        :props="item"
       />
     </template>
   </el-header>
@@ -13,7 +17,7 @@
 
 <script>
 import ElHeader from 'element-ui/lib/header';
-
+import derivedProp from '~components/mixin/derivedProp';
 export default {
   name: 'MisHeader',
   components: {
@@ -33,5 +37,6 @@ export default {
       required: true,
     },
   },
+  mixins: [derivedProp],
 };
 </script>
