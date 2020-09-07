@@ -1,7 +1,7 @@
 import qs from 'qs';
 import axios from 'axios';
-import notification from 'element-ui/lib/notification';
-
+// import notification from 'element-ui/lib/notification';
+const notification = () => {};
 const GLOBAL_DOMAINS = {
   isApiChanged: false,
   activeDomain: '',

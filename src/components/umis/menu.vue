@@ -28,12 +28,12 @@
 </template>
 
 <script>
-import ElMenu from 'element-ui/lib/menu';
+import { Menu } from 'element-ui';
 
 export default {
   name: 'MisMenu',
   components: {
-    ElMenu,
+    ElMenu: Menu,
   },
   props: {
     name: {

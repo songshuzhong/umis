@@ -57,16 +57,15 @@
   </el-dialog>
 </template>
 <script>
-import ElButton from 'element-ui/lib/button';
-import ElDialog from 'element-ui/lib/dialog';
+import { Button, Dialog } from 'element-ui';
 
 import derivedProp from '~components/mixin/derivedProp';
 
 export default {
   name: 'MisDialog',
   components: {
-    ElDialog,
-    ElButton,
+    ElDialog: Dialog,
+    ElButton: Button,
   },
   props: {
     text: {

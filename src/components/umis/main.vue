@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import ElMain from 'element-ui/lib/main';
+import { Main } from 'element-ui';
 
 export default {
   name: 'MisMain',
   components: {
-    ElMain,
+    ElMain: Main,
   },
   props: {
     body: {

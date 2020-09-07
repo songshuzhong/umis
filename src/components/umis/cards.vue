@@ -40,9 +40,7 @@
   </el-row>
 </template>
 <script>
-import ElRow from 'element-ui/lib/row';
-import ElCol from 'element-ui/lib/col';
-import ElCard from 'element-ui/lib/card';
+import { Row, Col, Card } from 'element-ui';
 
 import initApi from '~components/mixin/initApi';
 import derivedProp from '~components/mixin/derivedProp';
@@ -51,9 +49,9 @@ import switches from '~components/mixin/switches';
 export default {
   name: 'MisCards',
   components: {
-    ElRow,
-    ElCol,
-    ElCard,
+    ElRow: Row,
+    ElCol: Col,
+    ElCard: Card,
   },
   props: {
     body: {

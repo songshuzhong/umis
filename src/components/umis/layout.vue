@@ -16,11 +16,7 @@
 </template>
 
 <script>
-import ElContainer from 'element-ui/lib/container';
-import ElHeader from 'element-ui/lib/header';
-import ElAside from 'element-ui/lib/aside';
-import ElMain from 'element-ui/lib/main';
-import ElFooter from 'element-ui/lib/footer';
+import { Container, Header, Aside, Main, Footer } from 'element-ui';
 
 import derivedProp from '~components/mixin/derivedProp';
 import initApi from '~components/mixin/initApi';
@@ -28,11 +24,11 @@ import initApi from '~components/mixin/initApi';
 export default {
   name: 'MisLayout',
   components: {
-    ElContainer,
-    ElHeader,
-    ElMain,
-    ElAside,
-    ElFooter,
+    ElContainer: Container,
+    ElHeader: Header,
+    ElMain: Main,
+    ElAside: Aside,
+    ElFooter: Footer,
   },
   props: {
     body: {

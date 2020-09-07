@@ -20,14 +20,14 @@
 </template>
 
 <script>
-import ElMenuItemGroup from 'element-ui/lib/menu-item-group';
+import { MenuItemGroup } from 'element-ui';
 
 import derivedProp from '~components/mixin/derivedProp';
 
 export default {
   name: 'MisMenuItemGroup',
   components: {
-    ElMenuItemGroup,
+    ElMenuItemGroup: MenuItemGroup,
   },
   props: {
     label: {

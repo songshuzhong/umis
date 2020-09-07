@@ -14,12 +14,12 @@
   </el-button>
 </template>
 <script>
-import ElButton from 'element-ui/lib/button';
+import { Button } from 'element-ui';
 
 export default {
   name: 'MisButton',
   components: {
-    ElButton,
+    ElButton: Button,
   },
   props: {
     action: {

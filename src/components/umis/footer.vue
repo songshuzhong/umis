@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import ElFooter from 'element-ui/lib/footer';
+import { Footer } from 'element-ui';
 
 export default {
   name: 'MisMain',
   components: {
-    ElFooter,
+    ElFooter: Footer,
   },
   props: {
     body: {

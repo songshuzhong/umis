@@ -26,12 +26,12 @@
 </template>
 <script>
 import * as monaco from 'monaco-editor';
-import ElButton from 'element-ui/lib/button';
+import { Button } from 'element-ui';
 
 export default {
   name: 'MisMonaco',
   components: {
-    ElButton,
+    ElButton: Button,
   },
   props: {
     afterAction: {

@@ -23,16 +23,14 @@
   </el-checkbox-group>
 </template>
 <script>
-import ElCheckboxGroup from 'element-ui/lib/checkbox-group';
-import ElCheckboxButton from 'element-ui/lib/checkbox-button';
-import ElCheckbox from 'element-ui/lib/checkbox';
+import { CheckboxGroup, CheckboxButton, Checkbox } from 'element-ui';
 
 export default {
   name: 'MisCheckbox',
   components: {
-    ElCheckboxGroup,
-    ElCheckboxButton,
-    ElCheckbox,
+    ElCheckboxGroup: CheckboxGroup,
+    ElCheckboxButton: CheckboxButton,
+    ElCheckbox: Checkbox,
   },
   props: {
     options: {

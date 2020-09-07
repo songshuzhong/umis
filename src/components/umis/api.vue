@@ -27,11 +27,7 @@
   </div>
 </template>
 <script>
-import ElRadioGroup from 'element-ui/lib/radio-group';
-import ElRadio from 'element-ui/lib/radio';
-import ElButton from 'element-ui/lib/button';
-import ElLink from 'element-ui/lib/link';
-import ElInput from 'element-ui/lib/input';
+import { RadioGroup, Radio, Button, Link, Input } from 'element-ui';
 import api from '~utils/api';
 
 const apisMap = Object.keys(api.GLOBAL_DOMAINS).reduce((total, item) => {
@@ -44,11 +40,11 @@ const apisMap = Object.keys(api.GLOBAL_DOMAINS).reduce((total, item) => {
 export default {
   name: 'MisDomain',
   components: {
-    ElRadioGroup,
-    ElRadio,
-    ElButton,
-    ElLink,
-    ElInput,
+    ElRadioGroup: RadioGroup,
+    ElRadio: Radio,
+    ElButton: Button,
+    ElLink: Link,
+    ElInput: Input,
   },
   data() {
     return {

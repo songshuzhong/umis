@@ -48,14 +48,13 @@
   </fragment>
 </template>
 <script>
-import ElButton from 'element-ui/lib/button';
-import ElDrawer from 'element-ui/lib/drawer';
+import { Button, Drawer } from 'element-ui';
 
 export default {
   name: 'MisDrawer',
   components: {
-    ElButton,
-    ElDrawer,
+    ElButton: Button,
+    ElDrawer: Drawer,
   },
   props: {
     appendToBody: {

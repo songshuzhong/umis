@@ -1,13 +1,13 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Loading from 'element-ui/lib/loading';
+// import Vue from 'vue';
+import VueRouter from 'vue-router';
+import { Loading } from 'element-ui';
 
 import Umis from '~modules/index/index.vue';
 
-Vue.use(Router);
+// Vue.use(VueRouter);
 
 let routerMask;
-const router = new Router({
+const router = new VueRouter({
   mode: 'hash',
   routes: [
     {

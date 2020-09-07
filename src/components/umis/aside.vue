@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import ElAside from 'element-ui/lib/aside';
+import { Aside } from 'element-ui';
 
 export default {
   name: 'MisAside',
   components: {
-    ElAside,
+    ElAside: Aside,
   },
   props: {
     body: {

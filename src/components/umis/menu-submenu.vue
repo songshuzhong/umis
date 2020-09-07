@@ -24,12 +24,12 @@
   </el-submenu>
 </template>
 <script>
-import ElSubmenu from 'element-ui/lib/submenu';
+import { Submenu } from 'element-ui';
 
 export default {
   name: 'MisSubmenu',
   components: {
-    ElSubmenu,
+    ElSubmenu: Submenu,
   },
   props: {
     title: {

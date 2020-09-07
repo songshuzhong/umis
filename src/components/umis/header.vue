@@ -16,12 +16,14 @@
 </template>
 
 <script>
-import ElHeader from 'element-ui/lib/header';
+import { Header } from 'element-ui';
+
 import derivedProp from '~components/mixin/derivedProp';
+
 export default {
   name: 'MisHeader',
   components: {
-    ElHeader,
+    ElHeader: Header,
   },
   props: {
     body: {

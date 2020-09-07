@@ -29,7 +29,7 @@
   </fragment>
 </template>
 <script>
-import ElAlert from 'element-ui/lib/alert';
+import { Alert } from 'element-ui';
 import derivedProp from '~components/mixin/derivedProp';
 
 const components = [
@@ -71,7 +71,7 @@ const components = [
 export default {
   name: 'mis-Component',
   components: {
-    ElAlert,
+    ElAlert: Alert,
   },
   props: {
     misName: {

@@ -19,14 +19,14 @@
   </el-form>
 </template>
 <script>
-import ElForm from 'element-ui/lib/form';
+import { Form } from 'element-ui';
 
 import switches from '~components/mixin/switches';
 
 export default {
   name: 'MisForm',
   components: {
-    ElForm,
+    ElForm: Form,
   },
   props: {
     api: {

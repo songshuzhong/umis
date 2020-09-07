@@ -22,14 +22,13 @@
   </el-tabs>
 </template>
 <script>
-import ElTabs from 'element-ui/lib/tabs';
-import ELTabPanel from 'element-ui/lib/tab-pane';
+import { Tabs, TabPane } from 'element-ui';
 
 export default {
   name: 'MisTabs',
   components: {
-    ElTabs,
-    ELTabPanel,
+    ElTabs: Tabs,
+    ELTabPanel: TabPane,
   },
   props: {
     type: {
