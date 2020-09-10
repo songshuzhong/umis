@@ -1,10 +1,10 @@
-// import Vue from 'vue';
+import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { Loading } from 'element-ui';
 
 import Umis from '~modules/index/index.vue';
 
-// Vue.use(VueRouter);
+Vue.use(VueRouter);
 
 let routerMask;
 const router = new VueRouter({

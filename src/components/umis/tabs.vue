@@ -17,7 +17,11 @@
         <i v-if="item.icon" :class="item.icon" />
         {{ item.label }}
       </span>
-      <mis-component :mis-name="item.renderer" :props="item" />
+      <mis-component
+        :mis-name="item.renderer"
+        :props="item"
+        :path="path + '/' + index + '/' + item.renderer"
+      />
     </e-l-tab-panel>
   </el-tabs>
 </template>
@@ -31,6 +35,10 @@ export default {
     ELTabPanel: TabPane,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     type: {
       type: String,
       required: false,

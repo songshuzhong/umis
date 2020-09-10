@@ -6,6 +6,7 @@
           <code>
 {{`{
     "mis-name": "${misName}"
+    "path": "${path}"
 }`}}
           </code>
         </pre>
@@ -16,6 +17,7 @@
         :is="misName"
         :name="name"
         :index="index"
+        :path="path"
         :header="header"
         :body="body"
         :footer="footer"
@@ -74,6 +76,10 @@ export default {
     ElAlert: Alert,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     misName: {
       type: String,
       required: true,
