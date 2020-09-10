@@ -4,6 +4,7 @@
       <component
         :is="item.renderer"
         :key="index"
+        :path="path + '/' + index + '/' + item.renderer"
         v-bind="item"
         v-for="(item, index) in body"
       />
@@ -23,6 +24,10 @@ export default {
     ElMain,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     body: {
       type: Array,
       required: false,

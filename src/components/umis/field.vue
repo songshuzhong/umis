@@ -18,6 +18,7 @@
     <component
       v-bind="field"
       :is="field.renderer"
+      :path="path + '/' + field.renderer"
       :name="field.name"
       :value="iValue"
       :disabled="iDisabled"
@@ -39,6 +40,10 @@ export default {
     ElFormItem,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     name: {
       type: String,
       required: false,

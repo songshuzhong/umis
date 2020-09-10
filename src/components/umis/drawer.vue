@@ -17,6 +17,7 @@
       <template v-if="title" slot="title">
         <component
           :is="title.renderer"
+          :path="path.title.renderer + '/'"
           :action="onClose"
           :after-action="onClose"
           v-bind="title"
@@ -26,6 +27,7 @@
         <component
           :is="item.renderer"
           :key="index"
+          :path="path + '/' + index + '/' + item.renderer"
           :footer="item.footer"
           :action="onClose"
           :after-action="onClose"
@@ -36,6 +38,7 @@
         <component
           :is="item.renderer"
           :key="index"
+          :path="path + '/' + index + '/' + item.renderer"
           :footer="item.footer"
           :action="onClose"
           :after-action="onClose"
@@ -56,6 +59,10 @@ export default {
     ElDrawer,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     appendToBody: {
       type: Boolean,
       required: false,

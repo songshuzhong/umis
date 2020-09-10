@@ -12,6 +12,7 @@
       :key="field.renderer + index"
       :name="field.name"
       :field="field"
+      :path="path + '/' + index + '/' + field.renderer"
       :visibleOn="field.visibleOn"
       :disabledOn="field.disabledOn"
       :action="onBeforeSubmit"
@@ -29,6 +30,10 @@ export default {
     ElForm,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     api: {
       type: String,
       required: false,

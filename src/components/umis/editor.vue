@@ -7,6 +7,7 @@
           <component
             :is="item.renderer"
             :key="index"
+            :path="path + index + item.renderer"
             :after-action="afterAction"
             :action="onSave"
             v-bind="item"
@@ -16,6 +17,7 @@
       <template v-else>
         <component
           :is="footer.renderer"
+          :path="path.footer.renderer"
           :after-action="afterAction"
           :action="onSave"
           v-bind="footer"
@@ -59,6 +61,10 @@ export default {
     ElButton,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     afterAction: {
       type: Function,
       required: false,

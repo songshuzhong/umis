@@ -8,6 +8,7 @@
         v-bind="item"
         :key="index"
         :is="item.renderer"
+        :path="path + '/' + index + '/' + item.renderer"
         :store="store"
         :visibleOn="item.visibleOn"
         :disabledOn="item.disabledOn"
@@ -20,6 +21,7 @@
         v-bind="iSchema"
         :is="iSchema.renderer"
         :key="iSchema.name"
+        :path="path + '/' + iSchema.renderer"
         :store="store"
         :visibleOn="iSchema.visibleOn"
         :disabledOn="iSchema.disabledOn"
@@ -33,6 +35,11 @@ import initApi from '~components/mixin/initApi';
 export default {
   name: 'MisPage',
   props: {
+    path: {
+      type: String,
+      required: true,
+      default: 'page',
+    },
     schema: {
       type: [Array, Object],
       required: false,

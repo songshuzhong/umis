@@ -10,6 +10,7 @@
         :key="index"
         :label="item.label"
         :name="item.name"
+        :path="path + index + item.renderer"
         :body="item"
       />
     </template>
@@ -25,6 +26,10 @@ export default {
     ElMenuItemGroup,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     label: {
       type: String,
       required: false,

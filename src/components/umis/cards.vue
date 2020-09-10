@@ -17,6 +17,7 @@
           <component
             v-if="body"
             :is="body.renderer"
+            :path="path + '/' + index + '/' + body.renderer"
             :body="getBody(body)"
             :header="getHeader(body)"
             :footer="getFooter(body)"
@@ -24,10 +25,11 @@
           />
         </div>
         <div class="el-card__footer" v-if="footer">
-          <template v-for="(foot, index) in footer">
+          <template v-for="foot in footer">
             <component
               :is="foot.renderer"
               :key="index"
+              :path="path + '/' + index + '/' + foot.renderer"
               :header="getHeader(foot)"
               :body="getBody(foot)"
               :footer="getFooter(foot)"
@@ -56,6 +58,10 @@ export default {
     ElCard,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     body: {
       type: [Array, Object],
       required: false,

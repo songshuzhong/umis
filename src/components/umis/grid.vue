@@ -17,6 +17,7 @@
         v-bind="item"
         :is="item.renderer"
         :key="index"
+        :path="path + '/' + index + '/' + item.renderer"
         :label="item.label"
         :name="item.name"
         :body="item.body"
@@ -37,6 +38,10 @@ export default {
     ElCol,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     body: {
       type: [Array, Object],
       required: false,

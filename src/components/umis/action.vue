@@ -4,6 +4,7 @@
       :is="actionType"
       :visible="visible"
       :data="data"
+      :path="path + '/' + actionType"
       :on-action-disvisiable="onDisVisiable"
       v-bind="getBody($props)"
     />
@@ -21,6 +22,10 @@ export default {
     ElButton,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     text: {
       type: String,
       required: true,

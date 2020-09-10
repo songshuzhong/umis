@@ -21,6 +21,7 @@
         <component
           :is="item.renderer"
           :key="index"
+          :path="path + '/' + index + '/' + item.renderer"
           :header="getHeader(item)"
           :body="getBody(item)"
           :footer="getFooter(item)"
@@ -35,6 +36,7 @@
         <component
           :is="item.renderer"
           :key="index"
+          :path="path + '/' + index + '/' + item.renderer"
           :header="getHeader(item)"
           :body="getBody(item)"
           :footer="getFooter(item)"
@@ -47,6 +49,7 @@
       >
         <component
           :is="footer.renderer"
+          :path="path + '/' + footer.renderer"
           :header="getHeader(footer)"
           :body="getBody(footer)"
           :footer="getFooter(footer)"
@@ -69,6 +72,10 @@ export default {
     ElButton,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     text: {
       type: String,
       required: false,

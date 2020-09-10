@@ -4,6 +4,7 @@
       <component
         :is="item.renderer"
         :key="index"
+        :path="path + '/' + index + '/' + item.renderer"
         :store="store"
         v-bind="item"
       />
@@ -20,6 +21,10 @@ export default {
     ElHeader,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     body: {
       type: Array,
       required: true,

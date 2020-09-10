@@ -11,13 +11,18 @@
     :active-text-color="activeTextColor"
   >
     <template v-if="title">
-      <component v-bind="title" :is="title.renderer" />
+      <component
+        v-bind="title"
+        :is="title.renderer"
+        :path="path + title.renderer"
+      />
     </template>
     <template v-for="(item, index) in body">
       <component
         :is="item.renderer"
         :key="index"
         :index="index.toString()"
+        :path="path + '/' + index + '/' + item.renderer"
         :label="item.label"
         :name="item.name"
         :body="item.body"

@@ -16,6 +16,7 @@
       <component
         :is="item.renderer"
         :key="index"
+        :path="path + index + item.renderer"
         :label="item.label"
         :name="item.name"
         :body="item.body"
@@ -32,6 +33,10 @@ export default {
     ElSubmenu,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: false,

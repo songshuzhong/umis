@@ -1,7 +1,12 @@
 <template>
   <el-footer :class="classname">
     <template v-for="(item, index) in body">
-      <component :is="item.renderer" :key="index" v-bind="item" />
+      <component
+        :is="item.renderer"
+        :key="index"
+        v-bind="item"
+        :path="path + '/' + index + item.renderer"
+      />
     </template>
   </el-footer>
 </template>
@@ -15,6 +20,10 @@ export default {
     ElFooter,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     body: {
       type: Array,
       required: true,
