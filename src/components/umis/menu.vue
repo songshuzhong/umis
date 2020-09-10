@@ -11,34 +11,34 @@
     :active-text-color="activeTextColor"
   >
     <template v-if="title">
-      <component
-        v-bind="title"
-        :is="title.renderer"
+      <mis-component
+        :props="title"
+        :mis-name="title.renderer"
         :path="path + title.renderer"
       />
     </template>
     <template v-for="(item, index) in body">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
         :index="index.toString()"
         :path="path + '/' + index + '/' + item.renderer"
         :label="item.label"
         :name="item.name"
         :body="item.body"
-        v-bind="item"
+        :props="item"
       />
     </template>
   </el-menu>
 </template>
 
 <script>
-import ElMenu from 'element-ui/lib/menu';
+import { Menu } from 'element-ui';
 
 export default {
   name: 'MisMenu',
   components: {
-    ElMenu,
+    ElMenu: Menu,
   },
   props: {
     name: {

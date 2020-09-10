@@ -13,8 +13,8 @@
       <span slot="title">{{ title }}</span>
     </template>
     <template v-for="(item, index) in body">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
         :path="path + index + item.renderer"
         :label="item.label"
@@ -25,12 +25,12 @@
   </el-submenu>
 </template>
 <script>
-import ElSubmenu from 'element-ui/lib/submenu';
+import { Submenu } from 'element-ui';
 
 export default {
   name: 'MisSubmenu',
   components: {
-    ElSubmenu,
+    ElSubmenu: Submenu,
   },
   props: {
     path: {

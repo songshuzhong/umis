@@ -18,14 +18,14 @@
     </template>
     <template v-else>
       <template v-for="(item, index) in body">
-        <component
-          :is="item.renderer"
+        <mis-component
+          :mis-name="item.renderer"
           :key="index"
           :path="path + '/' + index + '/' + item.renderer"
           :header="getHeader(item)"
           :body="getBody(item)"
           :footer="getFooter(item)"
-          v-bind="getProps(item, data)"
+          :props="getProps(item, data)"
         />
       </template>
     </template>
@@ -33,14 +33,14 @@
       <template
         v-if="Object.prototype.toString.call(footer) === '[object Array]'"
       >
-        <component
-          :is="item.renderer"
+        <mis-component
+          :mis-name="item.renderer"
           :key="index"
           :path="path + '/' + index + '/' + item.renderer"
           :header="getHeader(item)"
           :body="getBody(item)"
           :footer="getFooter(item)"
-          v-bind="getProps(item, data)"
+          :props="getProps(item, data)"
           v-for="(item, index) in footer"
         />
       </template>
@@ -48,28 +48,27 @@
         v-if="Object.prototype.toString.call(footer) === '[object Object]'"
       >
         <component
-          :is="footer.renderer"
+          :mis-name="footer.renderer"
           :path="path + '/' + footer.renderer"
           :header="getHeader(footer)"
           :body="getBody(footer)"
           :footer="getFooter(footer)"
-          v-bind="getProps(footer, data)"
+          :props="getProps(footer, data)"
         />
       </template>
     </div>
   </el-dialog>
 </template>
 <script>
-import ElButton from 'element-ui/lib/button';
-import ElDialog from 'element-ui/lib/dialog';
+import { Button, Dialog } from 'element-ui';
 
 import derivedProp from '~components/mixin/derivedProp';
 
 export default {
   name: 'MisDialog',
   components: {
-    ElDialog,
-    ElButton,
+    ElDialog: Dialog,
+    ElButton: Button,
   },
   props: {
     path: {

@@ -1,11 +1,11 @@
 <template>
   <el-main :class="classname">
     <template v-if="body.length">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
         :path="path + '/' + index + '/' + item.renderer"
-        v-bind="item"
+        :props="item"
         v-for="(item, index) in body"
       />
     </template>
@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import ElMain from 'element-ui/lib/main';
+import { Main } from 'element-ui';
 
 export default {
   name: 'MisMain',
   components: {
-    ElMain,
+    ElMain: Main,
   },
   props: {
     path: {

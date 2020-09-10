@@ -1,6 +1,6 @@
 import MetaInfo from 'vue-meta-info';
 import { Fragment } from 'vue-fragment';
-import Loading from 'element-ui/lib/loading';
+import { Loading } from 'element-ui';
 
 import MisPage from '~components/umis/page';
 import MisAction from '~components/umis/action';
@@ -27,29 +27,33 @@ import MisHtml from '~components/umis/html';
 import MisAlert from '~components/umis/alert';
 import MisDialog from '~components/umis/dialog';
 import MisDrawer from '~components/umis/drawer';
-import MisEditor from '~components/umis/editor';
+// import MisMonaco from '~components/umis/monaco';
 import MisImage from '~components/umis/image';
-
-import MisSwitch from 'element-ui/lib/switch';
+import MisTabs from '~components/umis/tabs';
 import MisLink from '~components/umis/link';
-import MisInput from 'element-ui/lib/input';
-import MisContainer from 'element-ui/lib/container';
-import MisDatepicker from 'element-ui/lib/date-picker';
+import MisDomain from '~components/umis/api';
+import MisComponent from '~components/umis/component';
+
+// import MisSwitch from 'element-ui/lib/switch';
+// import MisInput from 'element-ui/lib/input';
+// import MisContainer from 'element-ui/lib/container';
+// import MisDatepicker from 'element-ui/lib/date-picker';
 
 const components = {
   Fragment,
+  MisComponent,
   MisPage,
   MisAction,
   MisGrid,
   MisCards,
   MisAvatar,
   MisDialog,
-  MisEditor,
+  // MisMonaco,
   MisDrawer,
   MisLink,
   MisAlert,
   MisHtml,
-  MisContainer,
+  // MisContainer,
   MisHeader,
   MisAside,
   MisMain,
@@ -59,17 +63,19 @@ const components = {
   MisSelect,
   MisCheckbox,
   MisRadio,
-  MisSwitch,
+  // MisSwitch,
   MisForm,
   MisButton,
-  MisDatepicker,
+  // MisDatepicker,
   MisTree,
   MisMenu,
   MisSubmenu,
   MisMenuItem,
   MisMenuItemGroup,
-  MisInput,
+  // MisInput,
   MisImage,
+  MisTabs,
+  MisDomain,
 };
 
 const componentsName = Object.keys(components);

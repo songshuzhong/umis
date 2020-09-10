@@ -29,15 +29,14 @@
 </template>
 
 <script>
-import ElTooltip from 'element-ui/lib/tooltip';
-import ElFormItem from 'element-ui/lib/form-item';
+import { Tooltip, FormItem } from 'element-ui';
 import switches from '~components/mixin/switches';
 
 export default {
   name: 'MisField',
   components: {
-    ElTooltip,
-    ElFormItem,
+    ElTooltip: Tooltip,
+    ElFormItem: FormItem,
   },
   props: {
     path: {

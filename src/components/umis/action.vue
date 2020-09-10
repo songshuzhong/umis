@@ -12,14 +12,14 @@
   </fragment>
 </template>
 <script>
-import ElButton from 'element-ui/lib/button';
+import { Button } from 'element-ui';
 
 import derivedProp from '~components/mixin/derivedProp';
 
 export default {
   name: 'MisAction',
   components: {
-    ElButton,
+    ElButton: Button,
   },
   props: {
     path: {

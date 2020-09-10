@@ -14,49 +14,50 @@
       :wrapperClosable="wrapperClosable"
       :withHeader="withHeader"
     >
-      <template v-if="title" slot="title">
-        <component
-          :is="title.renderer"
+      <template v-if="header" slot="title">
+        <mis-component
+          :mis-name="header.renderer"
           :path="path.title.renderer + '/'"
           :action="onClose"
           :after-action="onClose"
-          v-bind="title"
+          :props="header"
         />
       </template>
       <template v-for="(item, index) in body">
-        <component
-          :is="item.renderer"
+        <mis-component
+          :mis-name="item.renderer"
           :key="index"
           :path="path + '/' + index + '/' + item.renderer"
+          :visible="iVisible"
           :footer="item.footer"
           :action="onClose"
           :after-action="onClose"
-          v-bind="item"
+          :props="item"
         />
       </template>
       <template v-for="(item, index) in footer">
-        <component
-          :is="item.renderer"
+        <mis-component
+          :mis-name="item.renderer"
           :key="index"
           :path="path + '/' + index + '/' + item.renderer"
+          :visible="iVisible"
           :footer="item.footer"
           :action="onClose"
           :after-action="onClose"
-          v-bind="item"
+          :props="item"
         />
       </template>
     </el-drawer>
   </fragment>
 </template>
 <script>
-import ElButton from 'element-ui/lib/button';
-import ElDrawer from 'element-ui/lib/drawer';
+import { Button, Drawer } from 'element-ui';
 
 export default {
   name: 'MisDrawer',
   components: {
-    ElButton,
-    ElDrawer,
+    ElButton: Button,
+    ElDrawer: Drawer,
   },
   props: {
     path: {
@@ -107,7 +108,7 @@ export default {
       required: false,
       default: '30%',
     },
-    title: {
+    header: {
       type: [String, Object],
       required: false,
     },
@@ -141,6 +142,11 @@ export default {
     return {
       iVisible: false,
     };
+  },
+  watch: {
+    visible(val) {
+      this.iVisible = val;
+    },
   },
   methods: {
     onClose() {

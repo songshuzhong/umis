@@ -1,34 +1,35 @@
 <template>
   <el-container :direction="direction" :class="classname">
     <template v-for="(item, index) in body">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
         :path="path + '/' + index + '/' + item.renderer"
         :store="store"
-        v-bind="item"
+        :header="getHeader(item)"
+        :body="getBody(item)"
+        :footer="getFooter(item)"
+        :props="getProps(item, data)"
+        v-bind="getProps(item, data)"
       />
     </template>
   </el-container>
 </template>
 
 <script>
-import ElContainer from 'element-ui/lib/container';
-import ElHeader from 'element-ui/lib/header';
-import ElAside from 'element-ui/lib/aside';
-import ElMain from 'element-ui/lib/main';
-import ElFooter from 'element-ui/lib/footer';
+import { Container, Header, Aside, Main, Footer } from 'element-ui';
 
+import derivedProp from '~components/mixin/derivedProp';
 import initApi from '~components/mixin/initApi';
 
 export default {
   name: 'MisLayout',
   components: {
-    ElContainer,
-    ElHeader,
-    ElMain,
-    ElAside,
-    ElFooter,
+    ElContainer: Container,
+    ElHeader: Header,
+    ElMain: Main,
+    ElAside: Aside,
+    ElFooter: Footer,
   },
   props: {
     path: {
@@ -43,6 +44,10 @@ export default {
       type: String,
       required: false,
     },
+    data: {
+      type: Object,
+      required: true,
+    },
     store: {
       type: Object,
       required: true,
@@ -52,6 +57,6 @@ export default {
       required: false,
     },
   },
-  mixins: [initApi],
+  mixins: [initApi, derivedProp],
 };
 </script>

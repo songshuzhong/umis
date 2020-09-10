@@ -1,24 +1,24 @@
 <template>
   <el-aside :class="classname">
     <template v-for="(item, index) in body">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
         :path="path + '/' + index + '/' + item.renderer"
         :store="store"
-        v-bind="item"
+        :props="item"
       />
     </template>
   </el-aside>
 </template>
 
 <script>
-import ElAside from 'element-ui/lib/aside';
+import { Aside } from 'element-ui';
 
 export default {
   name: 'MisAside',
   components: {
-    ElAside,
+    ElAside: Aside,
   },
   props: {
     path: {

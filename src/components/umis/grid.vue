@@ -13,9 +13,9 @@
       :key="index"
       :class="classname"
     >
-      <component
-        v-bind="item"
-        :is="item.renderer"
+      <mis-component
+        :props="item"
+        :mis-name="item.renderer"
         :key="index"
         :path="path + '/' + index + '/' + item.renderer"
         :label="item.label"
@@ -26,16 +26,15 @@
   </el-row>
 </template>
 <script>
-import ElRow from 'element-ui/lib/row';
-import ElCol from 'element-ui/lib/col';
+import { Row, Col } from 'element-ui';
 
 import switches from '~components/mixin/switches';
 
 export default {
   name: 'MisGrid',
   components: {
-    ElRow,
-    ElCol,
+    ElRow: Row,
+    ElCol: Col,
   },
   props: {
     path: {

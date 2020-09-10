@@ -5,25 +5,30 @@
       <span>{{ label }}</span>
     </template>
     <template v-for="(item, index) in body">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
         :label="item.label"
         :name="item.name"
         :path="path + index + item.renderer"
-        :body="item"
+        :props="item"
+        :header="getHeader(item)"
+        :body="getBody(item)"
+        :footer="getFooter(item)"
       />
     </template>
   </el-menu-item-group>
 </template>
 
 <script>
-import ElMenuItemGroup from 'element-ui/lib/menu-item-group';
+import { MenuItemGroup } from 'element-ui';
+
+import derivedProp from '~components/mixin/derivedProp';
 
 export default {
   name: 'MisMenuItemGroup',
   components: {
-    ElMenuItemGroup,
+    ElMenuItemGroup: MenuItemGroup,
   },
   props: {
     path: {
@@ -43,5 +48,6 @@ export default {
       required: true,
     },
   },
+  mixins: [derivedProp],
 };
 </script>

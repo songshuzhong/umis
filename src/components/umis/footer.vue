@@ -1,8 +1,8 @@
 <template>
   <el-footer :class="classname">
     <template v-for="(item, index) in body">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
         v-bind="item"
         :path="path + '/' + index + item.renderer"
@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import ElFooter from 'element-ui/lib/footer';
+import { Footer } from 'element-ui';
 
 export default {
   name: 'MisMain',
   components: {
-    ElFooter,
+    ElFooter: Footer,
   },
   props: {
     path: {

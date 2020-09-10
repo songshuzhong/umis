@@ -24,6 +24,7 @@ module.exports = {
           {
             renderer: 'mis-checkbox',
             name: 'checkbox',
+            type: 'button',
             label: '主食',
             tip: '请填写地址',
             visibleOn: 'switchs == false',
@@ -352,6 +353,35 @@ module.exports = {
           {
             renderer: 'mis-button',
             text: '按钮',
+          },
+        ],
+      },
+    });
+  },
+  'GET /api/schema/tabs': async ctx => {
+    await sleep(500);
+
+    ctx.restify({
+      msg: 'success',
+      code: 1000,
+      data: {
+        renderer: 'mis-tabs',
+        type: 'border-card',
+        stretch: true,
+        activeName: 'tabform',
+        body: [
+          {
+            renderer: 'mis-error',
+            name: 'tabform',
+            label: '选项卡表单',
+            icon: 'el-icon-s-order',
+          },
+          {
+            renderer: 'mis-html',
+            name: 'html',
+            label: '选项卡html',
+            icon: 'el-icon-document',
+            html: '<h1>Hello Tabs</h1>',
           },
         ],
       },
