@@ -27,7 +27,7 @@ import MisHtml from '~components/umis/html';
 import MisAlert from '~components/umis/alert';
 import MisDialog from '~components/umis/dialog';
 import MisDrawer from '~components/umis/drawer';
-// import MisMonaco from '~components/umis/monaco';
+import MisMonaco from '~components/umis/monaco';
 import MisImage from '~components/umis/image';
 import MisTabs from '~components/umis/tabs';
 import MisLink from '~components/umis/link';
@@ -48,7 +48,7 @@ const components = {
   MisCards,
   MisAvatar,
   MisDialog,
-  // MisMonaco,
+  MisMonaco,
   MisDrawer,
   MisLink,
   MisAlert,

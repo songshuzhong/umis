@@ -17,7 +17,7 @@
       <template v-if="header" slot="title">
         <mis-component
           :mis-name="header.renderer"
-          :path="path.title.renderer + '/'"
+          :path="path + '/' + header.renderer"
           :action="onClose"
           :after-action="onClose"
           :props="header"
@@ -35,8 +35,9 @@
           :props="item"
         />
       </template>
-      <template v-for="(item, index) in footer">
+      <template v-if="footer">
         <mis-component
+          v-for="(item, index) in footer"
           :mis-name="item.renderer"
           :key="index"
           :path="path + '/' + index + '/' + item.renderer"
