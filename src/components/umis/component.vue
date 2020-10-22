@@ -1,12 +1,13 @@
 <template>
   <fragment>
-    <template v-if="!components.includes(misName)">
-      <el-alert title="Error: 找不到对应的渲染器" type="error">
+    <template v-if="showErrorBoundary">
+      <el-alert title="错误: 渲染失败了" type="error">
         <pre class="umis-component__not-find">
           <code>
 {{`{
     "mis-name": "${misName}"
     "path": "${path}"
+    "error": "${error}"
 }`}}
           </code>
         </pre>
@@ -132,8 +133,25 @@ export default {
   mixins: [derivedProp],
   data() {
     return {
+      error: '',
       components,
     };
+  },
+  errorCaptured(err, vm, info) {
+    this.error = `'${err.message}' is found in ${info} of component`;
+
+    return false;
+  },
+  computed: {
+    showErrorBoundary() {
+      if (!this.components.includes(this.misName)) {
+        this.error = '找不到对应的渲染器';
+        return true;
+      } else if (this.error) {
+        return true;
+      }
+      return false;
+    },
   },
 };
 </script>

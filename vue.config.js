@@ -20,9 +20,9 @@ const externals = {
   'element-ui': 'ELEMENT',
 };
 
-elementExternals.components.forEach(function(key) {
+/*elementExternals.components.forEach(function(key) {
   externals[`element-ui/lib/${key}`] = `element-ui/lib/${key}`;
-});
+});*/
 
 glob.sync('./src/pages/*.js').forEach(entry => {
   const filename = entry.replace(/(.*\/)*([^.]+).*/gi, '$2');
@@ -81,7 +81,7 @@ module.exports = {
     resolve: {
       extensions: ['.ts', '.js', '.vue', '.json'],
     },
-    externals: dev ? {} : externals,
+    // externals: dev ? {} : externals,
     plugins: [new MonacoWebpackPlugin()],
   },
   transpileDependencies: ['vue-echarts', 'resize-detector'],

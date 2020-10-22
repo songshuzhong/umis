@@ -34,10 +34,10 @@ import MisLink from '~components/umis/link';
 import MisDomain from '~components/umis/api';
 import MisComponent from '~components/umis/component';
 
-// import MisSwitch from 'element-ui/lib/switch';
-// import MisInput from 'element-ui/lib/input';
-// import MisContainer from 'element-ui/lib/container';
-// import MisDatepicker from 'element-ui/lib/date-picker';
+import MisSwitch from 'element-ui/lib/switch';
+import MisInput from 'element-ui/lib/input';
+import MisContainer from 'element-ui/lib/container';
+import MisDatepicker from 'element-ui/lib/date-picker';
 
 const components = {
   Fragment,
@@ -53,7 +53,7 @@ const components = {
   MisLink,
   MisAlert,
   MisHtml,
-  // MisContainer,
+  MisContainer,
   MisHeader,
   MisAside,
   MisMain,
@@ -63,16 +63,16 @@ const components = {
   MisSelect,
   MisCheckbox,
   MisRadio,
-  // MisSwitch,
+  MisSwitch,
   MisForm,
   MisButton,
-  // MisDatepicker,
+  MisDatepicker,
   MisTree,
   MisMenu,
   MisSubmenu,
   MisMenuItem,
   MisMenuItemGroup,
-  // MisInput,
+  MisInput,
   MisImage,
   MisTabs,
   MisDomain,
