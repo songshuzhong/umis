@@ -5,7 +5,7 @@
         <pre class="umis-component__not-find">
           <code>
 {{`{
-    "mis-name": "${misName}"
+    "name": "${misName}"
     "path": "${path}"
     "error": "${error}"
 }`}}
@@ -22,8 +22,6 @@
         :header="header"
         :body="body"
         :footer="footer"
-        :store="store"
-        :visible="iVisible"
         :action="action"
         :after-action="afterAction"
         v-bind="props"
@@ -33,7 +31,7 @@
 </template>
 <script>
 import { Alert } from 'element-ui';
-import derivedProp from '~components/mixin/derivedProp';
+import derivedProp from '../mixin/derivedProp';
 
 const components = [
   'mis-page',
@@ -103,10 +101,6 @@ export default {
     },
     footer: {
       type: [Array, Object],
-      required: false,
-    },
-    store: {
-      type: Object,
       required: false,
     },
     props: {

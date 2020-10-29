@@ -20,7 +20,7 @@
       <mis-component
         :mis-name="item.renderer"
         :props="item"
-        :path="path + '/' + index + '/' + item.renderer"
+        :path="`${path}/${index}/${item.renderer}`"
       />
     </e-l-tab-panel>
   </el-tabs>

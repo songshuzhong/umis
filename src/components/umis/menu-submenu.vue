@@ -16,7 +16,7 @@
       <mis-component
         :mis-name="item.renderer"
         :key="index"
-        :path="path + index + item.renderer"
+        :path="`${path}/${index}/${item.renderer}`"
         :label="item.label"
         :name="item.name"
         :body="item.body"

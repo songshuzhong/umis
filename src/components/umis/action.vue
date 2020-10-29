@@ -4,7 +4,7 @@
       :is="actionType"
       :visible="visible"
       :data="data"
-      :path="path + '/' + actionType"
+      :path="`${path}/${actionType}`"
       :on-action-disvisiable="onDisVisiable"
       v-bind="getBody($props)"
     />
@@ -14,7 +14,7 @@
 <script>
 import { Button } from 'element-ui';
 
-import derivedProp from '~components/mixin/derivedProp';
+import derivedProp from '../mixin/derivedProp';
 
 export default {
   name: 'MisAction',

@@ -4,8 +4,7 @@
       <mis-component
         :mis-name="item.renderer"
         :key="index"
-        :path="path + '/' + index + '/' + item.renderer"
-        :store="store"
+        :path="`${path}/${index}/${item.renderer}`"
         :props="item"
       />
     </template>
@@ -27,10 +26,6 @@ export default {
     },
     body: {
       type: Array,
-      required: true,
-    },
-    store: {
-      type: Object,
       required: true,
     },
     classname: {

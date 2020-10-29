@@ -4,7 +4,7 @@
       <mis-component
         :mis-name="item.renderer"
         :key="index"
-        :path="path + '/' + index + '/' + item.renderer"
+        :path="`${path}/${index}/${item.renderer}`"
         :props="item"
         v-for="(item, index) in body"
       />

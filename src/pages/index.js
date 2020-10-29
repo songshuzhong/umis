@@ -8,10 +8,10 @@ import api from '~utils/api';
 import { request } from '~utils/http';
 import { getRenderedTpl, onExpressionEval } from '~utils/tools';
 
-import 'element-theme-chalk/lib/index.css';
 import '~assets/styles/index.scss';
 
 Vue.config.productionTip = false;
+
 Vue.config.devtools = true;
 Vue.prototype.$eventHub = new Vue();
 Vue.prototype.$notice = Notification;

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.e0246ca7e13f89f0e65c7fe01cb155a0.js"
+  "precache-manifest.0d6792e879ecddbdee379e95e5bc4f0a.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "umis"});

@@ -1,6 +1,7 @@
 <template>
   <el-form-item
-    v-if="iVisible"
+    v-if="iHidden"
+    v-show="iVisible"
     :label="field.label"
     :prop="field.name"
     :class="field.className"
@@ -18,8 +19,9 @@
     <component
       v-bind="field"
       :is="field.renderer"
-      :path="path + '/' + field.renderer"
+      :path="`${path}/${field.renderer}`"
       :name="field.name"
+      :data="data"
       :value="iValue"
       :disabled="iDisabled"
       :action="action"
@@ -30,7 +32,6 @@
 
 <script>
 import { Tooltip, FormItem } from 'element-ui';
-import switches from '~components/mixin/switches';
 
 export default {
   name: 'MisField',
@@ -51,20 +52,58 @@ export default {
       type: Object,
       required: true,
     },
+    data: {
+      type: Object,
+      required: true,
+    },
+    value: {
+      type: Object,
+      required: true,
+    },
     action: {
       type: Function,
       required: true,
     },
   },
-  mixins: [switches],
-  mounted() {
-    this.iValue = this.field.value;
-    this.$eventHub.$emit('mis-field:change', this.field.name, this.iValue);
+  data() {
+    return {
+      iValue: '',
+    };
+  },
+  watch: {
+    value: {
+      handler(val) {
+        this.iValue = val;
+      },
+      immediate: true,
+    },
+    iValue(val) {
+      this.$emit('input', val);
+    },
+  },
+  computed: {
+    iHidden() {
+      if (this.field.hiddenOn) {
+        return !this.$onExpressionEval(this.field.hiddenOn, this.data);
+      }
+      return true;
+    },
+    iVisible() {
+      if (this.field.visibleOn) {
+        return this.$onExpressionEval(this.field.visibleOn, this.data);
+      }
+      return true;
+    },
+    iDisabled() {
+      if (this.field.disabledOn) {
+        return this.$onExpressionEval(this.field.disabledOn, this.data);
+      }
+      return false;
+    },
   },
   methods: {
     onInput(value) {
       this.iValue = value;
-      this.$eventHub.$emit('mis-field:change', this.field.name, value);
     },
   },
 };

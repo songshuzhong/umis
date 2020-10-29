@@ -4,8 +4,7 @@
       <mis-component
         :mis-name="item.renderer"
         :key="index"
-        :path="path + '/' + index + '/' + item.renderer"
-        :store="store"
+        :path="`${path}/${index}/${item.renderer}`"
         :title="item.title"
         :header="getHeader(item)"
         :body="getBody(item)"
@@ -19,7 +18,7 @@
 <script>
 import { Header } from 'element-ui';
 
-import derivedProp from '~components/mixin/derivedProp';
+import derivedProp from '../mixin/derivedProp';
 
 export default {
   name: 'MisHeader',
@@ -38,10 +37,6 @@ export default {
     classname: {
       type: String,
       required: false,
-    },
-    store: {
-      type: Object,
-      required: true,
     },
   },
   mixins: [derivedProp],

@@ -4,8 +4,7 @@
       <mis-component
         :mis-name="item.renderer"
         :key="index"
-        :path="path + '/' + index + '/' + item.renderer"
-        :store="store"
+        :path="`${path}/${index}/${item.renderer}`"
         :header="getHeader(item)"
         :body="getBody(item)"
         :footer="getFooter(item)"
@@ -19,8 +18,8 @@
 <script>
 import { Container, Header, Aside, Main, Footer } from 'element-ui';
 
-import derivedProp from '~components/mixin/derivedProp';
-import initApi from '~components/mixin/initApi';
+import derivedProp from '../mixin/derivedProp';
+import initApi from '../mixin/initApi';
 
 export default {
   name: 'MisLayout',
@@ -45,10 +44,6 @@ export default {
       required: false,
     },
     data: {
-      type: Object,
-      required: true,
-    },
-    store: {
       type: Object,
       required: true,
     },

@@ -81,12 +81,12 @@ module.exports = {
             renderer: 'mis-datepicker',
             name: 'date',
             label: '日期',
+            hiddenOn: 'select2.length > 1',
           },
           {
             renderer: 'mis-select',
             name: 'select2',
             label: '选择框',
-            disabledOn: 'switchs2 == false',
             options: [
               {
                 value: '选项1',
@@ -138,8 +138,8 @@ module.exports = {
             text: '弹一个窗',
             actionType: 'mis-dialog',
             body: {
-              renderer: 'mis-dialog',
               title: '我是可以无限弹窗的哦',
+              modal: false,
               body: [
                 {
                   renderer: 'mis-image',
@@ -152,14 +152,30 @@ module.exports = {
                 text: '点击查看详情',
                 actionType: 'mis-dialog',
                 body: {
-                  renderer: 'mis-dialog',
                   title: '卡片详情',
+                  modal: false,
                   appendToBody: true,
-                  body: {
-                    renderer: 'mis-html',
-                    html:
-                      '<h1>id：<%=id%></h1><h1>名称：<%=name%></h1><h1>地址：<%=src%></h1><h1>形状：<%=shape%></h1>',
-                  },
+                  body: [
+                    {
+                      renderer: 'mis-html',
+                      html:
+                        '<h1>id：<%=id%></h1><h1>名称：<%=name%></h1><h1>地址：<%=src%></h1><h1>形状：<%=shape%></h1>',
+                    },
+                    {
+                      renderer: 'mis-action',
+                      text: '点击查看详情',
+                      actionType: 'mis-dialog',
+                      body: {
+                        title: '又一个 dialog',
+                        appendBody: true,
+                        modal: false,
+                        body: {
+                          renderer: 'mis-html',
+                          html: '<h1>又一个 dialog</h1>',
+                        },
+                      },
+                    },
+                  ],
                 },
               },
             },
@@ -265,6 +281,11 @@ module.exports = {
         api: 'http://dev.bendi.ad.weibo.com:3000/api/mis',
         controls: [
           {
+            renderer: 'mis-html',
+            html:
+              '<h5>联系人：<%=sponser%></h5><h5>邮箱：<%=email3%></h5><h5>活动名称：<%=activename%></h5><h5>活动区域：<%=JSON.stringify(activearea)%></h5><h5>活动时间：<%=activetime%></h5>',
+          },
+          {
             renderer: 'mis-input',
             name: 'sponser',
             label: '联系人',
@@ -333,6 +354,7 @@ module.exports = {
           {
             renderer: 'mis-datepicker',
             label: '活动时间',
+            name: 'activetime',
             tip: '活动时间在32世纪初',
             value: '',
             rules: [

@@ -16,8 +16,6 @@
 <script>
 import { Switch } from 'element-ui';
 
-import switches from '~components/umis/switches';
-
 export default {
   name: 'MisSwitch',
   components: {
@@ -69,6 +67,5 @@ export default {
       required: false,
     },
   },
-  mixins: [switches],
 };
 </script>

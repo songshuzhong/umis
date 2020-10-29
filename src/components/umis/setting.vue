@@ -21,7 +21,7 @@
 <script>
 import { Card } from 'element-ui';
 
-import Api from '~components/umis/api';
+import Api from './api';
 
 export default {
   name: 'MisSetting',

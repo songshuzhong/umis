@@ -8,8 +8,7 @@
         v-bind="item"
         :key="index"
         :is="item.renderer"
-        :path="path + '/' + index + '/' + item.renderer"
-        :store="store"
+        :path="`${path}/${index}/${item.renderer}`"
         :visibleOn="item.visibleOn"
         :disabledOn="item.disabledOn"
       />
@@ -21,8 +20,7 @@
         v-bind="iSchema"
         :is="iSchema.renderer"
         :key="iSchema.name"
-        :path="path + '/' + iSchema.renderer"
-        :store="store"
+        :path="`${path}/${iSchema.renderer}`"
         :visibleOn="iSchema.visibleOn"
         :disabledOn="iSchema.disabledOn"
       />
@@ -30,7 +28,7 @@
   </div>
 </template>
 <script>
-import initApi from '~components/mixin/initApi';
+import initApi from '../mixin/initApi';
 
 export default {
   name: 'MisPage',
@@ -42,10 +40,6 @@ export default {
     },
     schema: {
       type: [Array, Object],
-      required: false,
-    },
-    store: {
-      type: Object,
       required: false,
     },
   },

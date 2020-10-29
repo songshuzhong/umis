@@ -5,7 +5,7 @@
         :mis-name="item.renderer"
         :key="index"
         v-bind="item"
-        :path="path + '/' + index + item.renderer"
+        :path="`${path}/${index}/${item.renderer}`"
       />
     </template>
   </el-footer>

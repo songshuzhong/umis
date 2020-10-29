@@ -10,7 +10,7 @@
         :key="index"
         :label="item.label"
         :name="item.name"
-        :path="path + index + item.renderer"
+        :path="`${path}/${index}/${item.renderer}`"
         :props="item"
         :header="getHeader(item)"
         :body="getBody(item)"
@@ -23,7 +23,7 @@
 <script>
 import { MenuItemGroup } from 'element-ui';
 
-import derivedProp from '~components/mixin/derivedProp';
+import derivedProp from '../mixin/derivedProp';
 
 export default {
   name: 'MisMenuItemGroup',

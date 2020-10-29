@@ -1,28 +1,47 @@
 <template>
   <el-form
     v-loading="iLoading"
-    v-if="iVisible"
     class="mis-form"
     ref="mis-form"
-    :label-width="labelWidth + 'px'"
-    :model="formData"
+    :label-width="labelWidth"
+    :label-position="labelPosition"
+    :model="data"
   >
-    <mis-field
-      v-for="(field, index) in controls"
-      :key="field.renderer + index"
-      :name="field.name"
-      :field="field"
-      :path="path + '/' + index + '/' + field.renderer"
-      :visibleOn="field.visibleOn"
-      :disabledOn="field.disabledOn"
-      :action="onBeforeSubmit"
-    />
+    <template v-for="(item, index) in controls" :key="index">
+      <mis-field
+        v-if="formItems.includes(item.renderer)"
+        v-model="data[item.name]"
+        :name="item.name"
+        :field="item"
+        :data="data"
+        :path="`${path}/${index}/${item.renderer}`"
+        :action="onBeforeSubmit"
+      />
+      <mis-component
+        v-else
+        :mis-name="item.renderer"
+        :props="getProps(item, data)"
+        :path="`${path}/${index}/${item.renderer}`"
+      />
+    </template>
   </el-form>
 </template>
 <script>
 import { Form } from 'element-ui';
 
-import switches from '~components/mixin/switches';
+import derivedProp from '../mixin/derivedProp';
+
+const formItems = [
+  'mis-action',
+  'mis-field',
+  'mis-select',
+  'mis-checkbox',
+  'mis-radio',
+  'mis-switch',
+  'mis-button',
+  'mis-datepicker',
+  'mis-input',
+];
 
 export default {
   name: 'MisForm',
@@ -49,39 +68,29 @@ export default {
     labelWidth: {
       type: Number,
       required: false,
-      default: 130,
+      default: '130px',
+    },
+    labelPosition: {
+      type: String,
+      required: false,
+      default: 'right',
     },
   },
   data() {
     return {
+      formItems,
       iLoading: false,
-      formData: this.controls.reduce((total, control) => {
+      data: this.controls.reduce((total, control) => {
         const name = control.name || '';
-        const value = control.value || '';
-        if (name) {
+        const value = control.value;
+        if (name && formItems.includes(control.renderer)) {
           total[name] = value;
         }
         return total;
       }, {}),
     };
   },
-  watch: {
-    formData: {
-      handler(val) {
-        this.$eventHub.$emit('mis-store:update', val, this.name);
-      },
-      immediate: true,
-      deep: true,
-    },
-  },
-  mixins: [switches],
-  mounted() {
-    this.$eventHub.$on('mis-field:delete', this.onFieldDelete);
-    this.$eventHub.$on('mis-field:change', this.onFieldChange);
-    this.$nextTick(() => {
-      this.$eventHub.$emit('mis-store:update', this.formData, this.name);
-    });
-  },
+  mixins: [derivedProp],
   methods: {
     onBeforeSubmit() {
       this.$refs['mis-form'].validate(valid => {
@@ -90,20 +99,12 @@ export default {
         }
       });
     },
-    onFieldChange(name, value) {
-      name && (this.formData[name] = value);
-      this.$eventHub.$emit('mis-store:update', this.formData);
-    },
-    onFieldDelete(name) {
-      delete this.formData[name];
-      this.$eventHub.$emit('mis-store:update', this.formData);
-    },
     sendFormData() {
       if (this.api) {
         const formData = new FormData();
-        for (let name in this.formData) {
-          if (this.formData.hasOwnProperty(name))
-            formData.append(name, this.formData[name]);
+        for (let name in this.data) {
+          if (this.data.hasOwnProperty(name))
+            formData.append(name, this.data[name]);
         }
         this.iLoading = true;
         this.$http(this.api, 'post', formData)
