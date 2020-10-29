@@ -2,7 +2,7 @@
   <mis-page :schema="schema" :store="store" :i-schema-update="false" />
 </template>
 <script>
-import schema from '../../store/frame';
+import schema from './store/frame';
 
 import 'element-theme-chalk/lib/index.css';
 

@@ -1,34 +1,36 @@
 <template>
   <el-form
     v-loading="iLoading"
-    v-if="iVisible"
     class="mis-form"
     ref="mis-form"
-    label-width="80px"
-    :model="formData"
+    :label-width="labelWidth + 'px'"
+    :model="data"
   >
     <mis-field
       v-for="(field, index) in controls"
+      v-model="data[field.name]"
       :key="field.renderer + index"
       :name="field.name"
       :field="field"
-      :visibleOn="field.visibleOn"
-      :disabledOn="field.disabledOn"
+      :data="data"
+      :path="`${path}/${index}/${field.renderer}`"
       :action="onBeforeSubmit"
     />
   </el-form>
 </template>
 <script>
-import ElForm from 'element-ui/lib/form';
-
-import switches from '~components/mixin/switches';
+import { Form } from 'element-ui';
 
 export default {
   name: 'MisForm',
   components: {
-    ElForm,
+    ElForm: Form,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     api: {
       type: String,
       required: false,
@@ -41,36 +43,24 @@ export default {
       type: Array,
       required: false,
     },
+    labelWidth: {
+      type: Number,
+      required: false,
+      default: 130,
+    },
   },
   data() {
     return {
       iLoading: false,
-      formData: this.controls.reduce((total, control) => {
+      data: this.controls.reduce(function(total, control) {
         const name = control.name || '';
-        const value = control.value || '';
+        const value = control.value;
         if (name) {
           total[name] = value;
         }
         return total;
       }, {}),
     };
-  },
-  watch: {
-    formData: {
-      handler(val) {
-        this.$eventHub.$emit('mis-store:update', val, this.name);
-      },
-      immediate: true,
-      deep: true,
-    },
-  },
-  mixins: [switches],
-  mounted() {
-    this.$eventHub.$on('mis-field:delete', this.onFieldDelete);
-    this.$eventHub.$on('mis-field:change', this.onFieldChange);
-    this.$nextTick(() => {
-      this.$eventHub.$emit('mis-store:update', this.formData, this.name);
-    });
   },
   methods: {
     onBeforeSubmit() {
@@ -80,20 +70,12 @@ export default {
         }
       });
     },
-    onFieldChange(name, value) {
-      name && (this.formData[name] = value);
-      this.$eventHub.$emit('mis-store:update', this.formData);
-    },
-    onFieldDelete(name) {
-      delete this.formData[name];
-      this.$eventHub.$emit('mis-store:update', this.formData);
-    },
     sendFormData() {
       if (this.api) {
         const formData = new FormData();
-        for (let name in this.formData) {
-          if (this.formData.hasOwnProperty(name))
-            formData.append(name, this.formData[name]);
+        for (let name in this.data) {
+          if (this.data.hasOwnProperty(name))
+            formData.append(name, this.data[name]);
         }
         this.iLoading = true;
         this.$http(this.api, 'post', formData)

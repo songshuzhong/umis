@@ -11,12 +11,12 @@
   </el-alert>
 </template>
 <script>
-import ElAlert from 'element-ui/lib/alert';
+import { Alert } from 'element-ui';
 
 export default {
   name: 'MisAlert',
   components: {
-    ElAlert,
+    ElAlert: Alert,
   },
   props: {
     title: {

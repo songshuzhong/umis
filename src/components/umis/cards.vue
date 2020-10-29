@@ -1,29 +1,41 @@
 <template>
-  <el-row v-if="iVisible" v-loading="iApiLoading" :gutter="gutter">
-    <el-col v-for="(item, index) in data" :span="span" :key="index">
+  <el-row v-loading="iApiLoading" :gutter="gutter">
+    <el-col
+      v-for="(item, index) in data"
+      :span="span"
+      :key="index"
+      :xs="size[0]"
+      :sm="size[1]"
+      :md="size[2]"
+      :lg="size[3]"
+    >
       <el-card :shadow="shadow" :body-style="{ padding: 0 }" :class="classname">
         <template slot="header">
           <div v-html="renderHeader(item)" />
         </template>
         <div style="padding: 10px">
-          <component
+          <mis-component
             v-if="body"
-            :is="body.renderer"
+            :mis-name="body.renderer"
+            :path="`${path}/${index}/${body.renderer}`"
             :body="getBody(body)"
             :header="getHeader(body)"
             :footer="getFooter(body)"
-            v-bind="getProps(body, item)"
+            :props="getProps(body, item)"
           />
         </div>
         <div class="el-card__footer" v-if="footer">
-          <template v-for="(foot, index) in footer">
-            <component
-              :is="foot.renderer"
-              :key="index"
+          <template
+            v-for="foot in footer"
+            :key="index"
+          >
+            <mis-component
+              :mis-name="foot.renderer"
+              :path="`${path}/${index}/${foot.renderer}`"
               :header="getHeader(foot)"
               :body="getBody(foot)"
               :footer="getFooter(foot)"
-              v-bind="getProps(foot, item)"
+              :props="getProps(foot, item)"
             />
           </template>
         </div>
@@ -32,22 +44,23 @@
   </el-row>
 </template>
 <script>
-import ElRow from 'element-ui/lib/row';
-import ElCol from 'element-ui/lib/col';
-import ElCard from 'element-ui/lib/card';
+import { Row, Col, Card } from 'element-ui';
 
-import initApi from '~components/mixin/initApi';
-import derivedProp from '~components/mixin/derivedProp';
-import switches from '~components/mixin/switches';
+import initApi from '../mixin/initApi';
+import derivedProp from '../mixin/derivedProp';
 
 export default {
   name: 'MisCards',
   components: {
-    ElRow,
-    ElCol,
-    ElCard,
+    ElRow: Row,
+    ElCol: Col,
+    ElCard: Card,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     body: {
       type: [Array, Object],
       required: false,
@@ -88,8 +101,13 @@ export default {
       required: false,
       default: 12,
     },
+    size: {
+      type: Array,
+      required: false,
+      default: [24, 12, 8, 4],
+    },
   },
-  mixins: [initApi, derivedProp, switches],
+  mixins: [initApi, derivedProp],
   watch: {
     body: {
       handler(val) {

@@ -1,11 +1,12 @@
 <template>
   <el-main :class="classname">
     <template v-if="body.length">
-      <component
-        :is="item.renderer"
-        :key="index"
-        v-bind="item"
+      <mis-component
         v-for="(item, index) in body"
+        :mis-name="item.renderer"
+        :key="index"
+        :path="`${path}/${index}/${item.renderer}`"
+        :props="item"
       />
     </template>
     <template v-if="routerView">
@@ -15,14 +16,18 @@
 </template>
 
 <script>
-import ElMain from 'element-ui/lib/main';
+import { Main } from 'element-ui';
 
 export default {
   name: 'MisMain',
   components: {
-    ElMain,
+    ElMain: Main,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     body: {
       type: Array,
       required: false,

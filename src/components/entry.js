@@ -2,35 +2,34 @@ import MetaInfo from 'vue-meta-info';
 import { Fragment } from 'vue-fragment';
 import Loading from 'element-ui/lib/loading';
 
-import MisPage from '~components/umis/page';
-import MisAction from '~components/umis/action';
-import MisField from '~components/umis/field';
-import MisSelect from '~components/umis/select';
-import MisCheckbox from '~components/umis/checkbox';
-import MisRadio from '~components/umis/radio';
-import MisButton from '~components/umis/button';
-import MisForm from '~components/umis/form';
-import MisLayout from '~components/umis/layout';
-import MisMain from '~components/umis/main';
-import MisFooter from '~components/umis/footer';
-import MisAside from '~components/umis/aside';
-import MisTree from '~components/umis/tree';
-import MisMenu from '~components/umis/menu';
-import MisSubmenu from '~components/umis/menu-submenu';
-import MisMenuItem from '~components/umis/menu-item';
-import MisMenuItemGroup from '~components/umis/menu-item-group';
-import MisHeader from '~components/umis/header';
-import MisGrid from '~components/umis/grid';
-import MisCards from '~components/umis/cards';
-import MisAvatar from '~components/umis/avatar';
-import MisHtml from '~components/umis/html';
-import MisAlert from '~components/umis/alert';
-import MisDialog from '~components/umis/dialog';
-import MisDrawer from '~components/umis/drawer';
-import MisEditor from '~components/umis/editor';
+import MisPage from './umis/page.vue';
+import MisAction from './umis/action.vue';
+import MisField from './umis/field.vue';
+import MisSelect from './umis/select.vue';
+import MisCheckbox from './umis/checkbox.vue';
+import MisRadio from './umis/radio.vue';
+import MisButton from './umis/button.vue';
+import MisForm from './umis/form.vue';
+import MisLayout from './umis/layout.vue';
+import MisMain from './umis/main.vue';
+import MisFooter from './umis/footer.vue';
+import MisAside from './umis/aside.vue';
+import MisTree from './umis/tree.vue';
+import MisMenu from './umis/menu.vue';
+import MisSubmenu from './umis/menu-submenu.vue';
+import MisMenuItem from './umis/menu-item.vue';
+import MisMenuItemGroup from './umis/menu-item-group.vue';
+import MisHeader from './umis/header.vue';
+import MisGrid from './umis/grid.vue';
+import MisCards from './umis/cards.vue';
+import MisAvatar from './umis/avatar.vue';
+import MisHtml from './umis/html.vue';
+import MisAlert from './umis/alert.vue';
+import MisDialog from './umis/dialog.vue';
+import MisDrawer from './umis/drawer.vue';
 
 import MisSwitch from 'element-ui/lib/switch';
-import MisLink from '~components/umis/link';
+import MisLink from './umis/link.vue';
 import MisInput from 'element-ui/lib/input';
 import MisContainer from 'element-ui/lib/container';
 import MisDatepicker from 'element-ui/lib/date-picker';
@@ -43,7 +42,6 @@ const components = {
   MisCards,
   MisAvatar,
   MisDialog,
-  MisEditor,
   MisDrawer,
   MisLink,
   MisAlert,

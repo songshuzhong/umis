@@ -17,33 +17,66 @@
       <component :is="body.renderer" v-bind="body" :data="data" />
     </template>
     <template v-else>
-      <template v-for="(item, index) in body">
-        <component
-          :is="item.renderer"
-          :key="index"
+      <template
+        v-for="(item, index) in body"
+        :key="index"
+      >
+        <mis-component
+          :mis-name="item.renderer"
+          :path="`${path}/${index}/${item.renderer}`"
           :header="getHeader(item)"
           :body="getBody(item)"
           :footer="getFooter(item)"
-          v-bind="getProps(item, data)"
+          :props="getProps(item, data)"
         />
       </template>
     </template>
-    <slot name="footer" />
+    <div slot="footer">
+      <template
+        v-if="Object.prototype.toString.call(footer) === '[object Array]'"
+      >
+        <mis-component
+          :mis-name="item.renderer"
+          :key="index"
+          :path="`${path}/${index}/${item.renderer}`"
+          :header="getHeader(item)"
+          :body="getBody(item)"
+          :footer="getFooter(item)"
+          :props="getProps(item, data)"
+          v-for="(item, index) in footer"
+        />
+      </template>
+      <template
+        v-if="Object.prototype.toString.call(footer) === '[object Object]'"
+      >
+        <component
+          :mis-name="footer.renderer"
+          :path="`${path}/${footer.renderer}`"
+          :header="getHeader(footer)"
+          :body="getBody(footer)"
+          :footer="getFooter(footer)"
+          :props="getProps(footer, data)"
+        />
+      </template>
+    </div>
   </el-dialog>
 </template>
 <script>
-import ElButton from 'element-ui/lib/button';
-import ElDialog from 'element-ui/lib/dialog';
+import { Button, Dialog } from 'element-ui';
 
-import derivedProp from '~components/mixin/derivedProp';
+import derivedProp from '../mixin/derivedProp';
 
 export default {
   name: 'MisDialog',
   components: {
-    ElDialog,
-    ElButton,
+    ElDialog: Dialog,
+    ElButton: Button,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     text: {
       type: String,
       required: false,

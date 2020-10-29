@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import ElTree from 'element-ui/lib/tree';
+import { Tree } from 'element-ui';
 
 export default {
   name: 'MisTree',
   components: {
-    ElTree,
+    ElTree: Tree,
   },
   props: {
     value: {

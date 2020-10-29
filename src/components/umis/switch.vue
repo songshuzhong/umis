@@ -14,14 +14,12 @@
   />
 </template>
 <script>
-import ElSwitch from 'element-ui/lib/switch';
-
-import switches from '~components/umis/switches';
+import { Switch } from 'element-ui';
 
 export default {
   name: 'MisSwitch',
   components: {
-    ElSwitch,
+    ElSwitch: Switch,
   },
   props: {
     value: {
@@ -69,6 +67,5 @@ export default {
       required: false,
     },
   },
-  mixins: [switches],
 };
 </script>

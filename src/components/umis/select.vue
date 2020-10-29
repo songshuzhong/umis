@@ -10,22 +10,21 @@
     <el-option
       v-for="option in options"
       :key="option.value"
-      :label="option.label"
-      :value="option.value"
+      :label="option.text"
+      :value="{ value: option.value, text: option.text }"
       :disabled="option.disabled"
     >
     </el-option>
   </el-select>
 </template>
 <script>
-import ElSelect from 'element-ui/lib/select';
-import ElOption from 'element-ui/lib/option';
+import { Select, Option } from 'element-ui';
 
 export default {
   name: 'MisSelect',
   components: {
-    ElSelect,
-    ElOption,
+    ElSelect: Select,
+    ElOption: Option,
   },
   props: {
     options: {
