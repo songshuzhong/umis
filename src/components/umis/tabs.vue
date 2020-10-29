@@ -17,21 +17,28 @@
         <i v-if="item.icon" :class="item.icon" />
         {{ item.label }}
       </span>
-      <mis-component :mis-name="item.renderer" :props="item" />
+      <mis-component
+        :mis-name="item.renderer"
+        :props="item"
+        :path="`${path}/${index}/${item.renderer}`"
+      />
     </e-l-tab-panel>
   </el-tabs>
 </template>
 <script>
-import ElTabs from 'element-ui/lib/tabs';
-import ELTabPanel from 'element-ui/lib/tab-pane';
+import { Tabs, TabPane } from 'element-ui';
 
 export default {
   name: 'MisTabs',
   components: {
-    ElTabs,
-    ELTabPanel,
+    ElTabs: Tabs,
+    ELTabPanel: TabPane,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     type: {
       type: String,
       required: false,

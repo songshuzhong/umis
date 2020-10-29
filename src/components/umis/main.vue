@@ -4,6 +4,7 @@
       <mis-component
         :mis-name="item.renderer"
         :key="index"
+        :path="`${path}/${index}/${item.renderer}`"
         :props="item"
         v-for="(item, index) in body"
       />
@@ -15,14 +16,18 @@
 </template>
 
 <script>
-import ElMain from 'element-ui/lib/main';
+import { Main } from 'element-ui';
 
 export default {
   name: 'MisMain',
   components: {
-    ElMain,
+    ElMain: Main,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     body: {
       type: Array,
       required: false,

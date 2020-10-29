@@ -24,16 +24,14 @@
 </template>
 
 <script>
-import ElRadioGroup from 'element-ui/lib/radio-group';
-import ElRadioButton from 'element-ui/lib/radio-button';
-import ElRadio from 'element-ui/lib/radio';
+import { RadioGroup, RadioButton, Radio } from 'element-ui';
 
 export default {
   name: 'MisRadio',
   components: {
-    ElRadioGroup,
-    ElRadioButton,
-    ElRadio,
+    ElRadioGroup: RadioGroup,
+    ElRadioButton: RadioButton,
+    ElRadio: Radio,
   },
   props: {
     options: {

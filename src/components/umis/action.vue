@@ -4,6 +4,7 @@
       :is="actionType"
       :visible="visible"
       :data="data"
+      :path="`${path}/${actionType}`"
       :on-action-disvisiable="onDisVisiable"
       v-bind="getBody($props)"
     />
@@ -11,16 +12,20 @@
   </fragment>
 </template>
 <script>
-import ElButton from 'element-ui/lib/button';
+import { Button } from 'element-ui';
 
-import derivedProp from '~components/mixin/derivedProp';
+import derivedProp from '../mixin/derivedProp';
 
 export default {
   name: 'MisAction',
   components: {
-    ElButton,
+    ElButton: Button,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     text: {
       type: String,
       required: true,

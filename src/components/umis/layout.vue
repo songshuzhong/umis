@@ -4,7 +4,7 @@
       <mis-component
         :mis-name="item.renderer"
         :key="index"
-        :store="store"
+        :path="`${path}/${index}/${item.renderer}`"
         :header="getHeader(item)"
         :body="getBody(item)"
         :footer="getFooter(item)"
@@ -16,25 +16,25 @@
 </template>
 
 <script>
-import ElContainer from 'element-ui/lib/container';
-import ElHeader from 'element-ui/lib/header';
-import ElAside from 'element-ui/lib/aside';
-import ElMain from 'element-ui/lib/main';
-import ElFooter from 'element-ui/lib/footer';
+import { Container, Header, Aside, Main, Footer } from 'element-ui';
 
-import derivedProp from '~components/mixin/derivedProp';
-import initApi from '~components/mixin/initApi';
+import derivedProp from '../mixin/derivedProp';
+import initApi from '../mixin/initApi';
 
 export default {
   name: 'MisLayout',
   components: {
-    ElContainer,
-    ElHeader,
-    ElMain,
-    ElAside,
-    ElFooter,
+    ElContainer: Container,
+    ElHeader: Header,
+    ElMain: Main,
+    ElAside: Aside,
+    ElFooter: Footer,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     body: {
       type: Array,
       required: true,
@@ -44,10 +44,6 @@ export default {
       required: false,
     },
     data: {
-      type: Object,
-      required: true,
-    },
-    store: {
       type: Object,
       required: true,
     },

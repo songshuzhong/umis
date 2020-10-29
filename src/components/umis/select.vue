@@ -18,14 +18,13 @@
   </el-select>
 </template>
 <script>
-import ElSelect from 'element-ui/lib/select';
-import ElOption from 'element-ui/lib/option';
+import { Select, Option } from 'element-ui';
 
 export default {
   name: 'MisSelect',
   components: {
-    ElSelect,
-    ElOption,
+    ElSelect: Select,
+    ElOption: Option,
   },
   props: {
     options: {

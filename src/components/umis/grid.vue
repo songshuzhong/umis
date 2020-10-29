@@ -1,6 +1,5 @@
 <template>
   <el-row
-    v-if="iVisible"
     :gutter="gutter"
     :type="type"
     :justify="justify"
@@ -17,6 +16,7 @@
         :props="item"
         :mis-name="item.renderer"
         :key="index"
+        :path="`${path}/${index}/${item.renderer}`"
         :label="item.label"
         :name="item.name"
         :body="item.body"
@@ -25,18 +25,19 @@
   </el-row>
 </template>
 <script>
-import ElRow from 'element-ui/lib/row';
-import ElCol from 'element-ui/lib/col';
-
-import switches from '~components/mixin/switches';
+import { Row, Col } from 'element-ui';
 
 export default {
   name: 'MisGrid',
   components: {
-    ElRow,
-    ElCol,
+    ElRow: Row,
+    ElCol: Col,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     body: {
       type: [Array, Object],
       required: false,
@@ -72,6 +73,5 @@ export default {
       default: 'div',
     },
   },
-  mixins: [switches],
 };
 </script>

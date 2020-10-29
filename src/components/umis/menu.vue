@@ -1,7 +1,6 @@
 <template>
   <el-menu
     :mode="mode"
-    @select="onMenuSelect"
     :default-active="defaultActive"
     :collapse="collapse"
     :class="classname"
@@ -11,13 +10,18 @@
     :active-text-color="activeTextColor"
   >
     <template v-if="title">
-      <mis-component :props="title" :mis-name="title.renderer" />
+      <mis-component
+        :props="title"
+        :mis-name="title.renderer"
+        :path="`${path}/${title.renderer}`"
+      />
     </template>
     <template v-for="(item, index) in body">
       <mis-component
         :mis-name="item.renderer"
         :key="index"
         :index="index.toString()"
+        :path="`${path}/${index}/${item.renderer}`"
         :label="item.label"
         :name="item.name"
         :body="item.body"
@@ -28,12 +32,12 @@
 </template>
 
 <script>
-import ElMenu from 'element-ui/lib/menu';
+import { Menu } from 'element-ui';
 
 export default {
   name: 'MisMenu',
   components: {
-    ElMenu,
+    ElMenu: Menu,
   },
   props: {
     name: {
@@ -71,10 +75,6 @@ export default {
       required: false,
       default: false,
     },
-    store: {
-      type: Object,
-      required: false,
-    },
     body: {
       type: Array,
       required: true,
@@ -94,18 +94,6 @@ export default {
     activeTextColor: {
       type: String,
       required: false,
-    },
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.onMenuSelect(this.defaultActive);
-    });
-  },
-  methods: {
-    onMenuSelect(index) {
-      const store = this.store;
-      store[this.name] = index;
-      this.$eventHub.$emit('mis-store:change', store);
     },
   },
 };

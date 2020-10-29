@@ -29,11 +29,12 @@
 </template>
 
 <script>
-import ElImage from 'element-ui/lib/image';
+import { Image } from 'element-ui';
+
 export default {
   name: 'MisImage',
   components: {
-    ElImage,
+    ElImage: Image,
   },
   props: {
     src: {

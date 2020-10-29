@@ -17,6 +17,7 @@
       <template v-if="header" slot="title">
         <mis-component
           :mis-name="header.renderer"
+          :path="`${path}/${header.renderer}`"
           :action="onClose"
           :after-action="onClose"
           :props="header"
@@ -26,6 +27,7 @@
         <mis-component
           :mis-name="item.renderer"
           :key="index"
+          :path="`${path}/${index}/${item.renderer}`"
           :visible="iVisible"
           :footer="item.footer"
           :action="onClose"
@@ -33,10 +35,12 @@
           :props="item"
         />
       </template>
-      <template v-for="(item, index) in footer">
+      <template v-if="footer">
         <mis-component
+          v-for="(item, index) in footer"
           :mis-name="item.renderer"
           :key="index"
+          :path="`${path}/${index}/${item.renderer}`"
           :visible="iVisible"
           :footer="item.footer"
           :action="onClose"
@@ -48,16 +52,19 @@
   </fragment>
 </template>
 <script>
-import ElButton from 'element-ui/lib/button';
-import ElDrawer from 'element-ui/lib/drawer';
+import { Button, Drawer } from 'element-ui';
 
 export default {
   name: 'MisDrawer',
   components: {
-    ElButton,
-    ElDrawer,
+    ElButton: Button,
+    ElDrawer: Drawer,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     appendToBody: {
       type: Boolean,
       required: false,

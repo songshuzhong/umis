@@ -1,5 +1,5 @@
 <template>
-  <el-row v-if="iVisible" v-loading="iApiLoading" :gutter="gutter">
+  <el-row v-loading="iApiLoading" :gutter="gutter">
     <el-col
       v-for="(item, index) in data"
       :span="span"
@@ -17,6 +17,7 @@
           <mis-component
             v-if="body"
             :mis-name="body.renderer"
+            :path="`${path}/${index}/${body.renderer}`"
             :body="getBody(body)"
             :header="getHeader(body)"
             :footer="getFooter(body)"
@@ -24,10 +25,11 @@
           />
         </div>
         <div class="el-card__footer" v-if="footer">
-          <template v-for="(foot, index) in footer">
+          <template v-for="foot in footer">
             <mis-component
               :mis-name="foot.renderer"
               :key="index"
+              :path="`${path}/${index}/${foot.renderer}`"
               :header="getHeader(foot)"
               :body="getBody(foot)"
               :footer="getFooter(foot)"
@@ -40,22 +42,23 @@
   </el-row>
 </template>
 <script>
-import ElRow from 'element-ui/lib/row';
-import ElCol from 'element-ui/lib/col';
-import ElCard from 'element-ui/lib/card';
+import { Row, Col, Card } from 'element-ui';
 
-import initApi from '~components/mixin/initApi';
-import derivedProp from '~components/mixin/derivedProp';
-import switches from '~components/mixin/switches';
+import initApi from '../mixin/initApi';
+import derivedProp from '../mixin/derivedProp';
 
 export default {
   name: 'MisCards',
   components: {
-    ElRow,
-    ElCol,
-    ElCard,
+    ElRow: Row,
+    ElCol: Col,
+    ElCard: Card,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     body: {
       type: [Array, Object],
       required: false,
@@ -102,7 +105,7 @@ export default {
       default: [24, 12, 8, 4],
     },
   },
-  mixins: [initApi, derivedProp, switches],
+  mixins: [initApi, derivedProp],
   watch: {
     body: {
       handler(val) {

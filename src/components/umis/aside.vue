@@ -4,7 +4,7 @@
       <mis-component
         :mis-name="item.renderer"
         :key="index"
-        :store="store"
+        :path="`${path}/${index}/${item.renderer}`"
         :props="item"
       />
     </template>
@@ -12,20 +12,20 @@
 </template>
 
 <script>
-import ElAside from 'element-ui/lib/aside';
+import { Aside } from 'element-ui';
 
 export default {
   name: 'MisAside',
   components: {
-    ElAside,
+    ElAside: Aside,
   },
   props: {
-    body: {
-      type: Array,
+    path: {
+      type: String,
       required: true,
     },
-    store: {
-      type: Object,
+    body: {
+      type: Array,
       required: true,
     },
     classname: {

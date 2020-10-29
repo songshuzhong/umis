@@ -19,14 +19,14 @@
   </div>
 </template>
 <script>
-import ElCard from 'element-ui/lib/card';
+import { Card } from 'element-ui';
 
-import Api from '~components/umis/api';
+import Api from './api';
 
 export default {
   name: 'MisSetting',
   components: {
-    ElCard,
+    ElCard: Card,
     Api,
   },
 };

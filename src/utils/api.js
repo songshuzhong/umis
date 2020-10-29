@@ -1,11 +1,13 @@
 import qs from 'qs';
 import axios from 'axios';
-import notification from 'element-ui/lib/notification';
-
+// import notification from 'element-ui/lib/notification';
+const notification = () => {};
 const GLOBAL_DOMAINS = {
   isApiChanged: false,
   activeDomain: '',
   VUE_APP_API_BASE: process.env.VUE_APP_API_BASE,
+  VUE_APP_API_MOCK:
+    'https://www.fastmock.site/mock/a93e0b29161761b8153cbc02db04c643',
 };
 const isCancel = axios.isCancel;
 let apiFailSilent = false;

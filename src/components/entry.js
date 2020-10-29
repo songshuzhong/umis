@@ -1,6 +1,6 @@
 import MetaInfo from 'vue-meta-info';
 import { Fragment } from 'vue-fragment';
-import Loading from 'element-ui/lib/loading';
+import { Loading } from 'element-ui';
 
 import MisPage from '~components/umis/page';
 import MisAction from '~components/umis/action';
@@ -27,7 +27,6 @@ import MisHtml from '~components/umis/html';
 import MisAlert from '~components/umis/alert';
 import MisDialog from '~components/umis/dialog';
 import MisDrawer from '~components/umis/drawer';
-import MisEditor from '~components/umis/editor';
 import MisMonaco from '~components/umis/monaco';
 import MisImage from '~components/umis/image';
 import MisTabs from '~components/umis/tabs';
@@ -49,7 +48,6 @@ const components = {
   MisCards,
   MisAvatar,
   MisDialog,
-  MisEditor,
   MisMonaco,
   MisDrawer,
   MisLink,

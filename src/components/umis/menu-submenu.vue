@@ -16,6 +16,7 @@
       <mis-component
         :mis-name="item.renderer"
         :key="index"
+        :path="`${path}/${index}/${item.renderer}`"
         :label="item.label"
         :name="item.name"
         :body="item.body"
@@ -24,14 +25,18 @@
   </el-submenu>
 </template>
 <script>
-import ElSubmenu from 'element-ui/lib/submenu';
+import { Submenu } from 'element-ui';
 
 export default {
   name: 'MisSubmenu',
   components: {
-    ElSubmenu,
+    ElSubmenu: Submenu,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: false,
