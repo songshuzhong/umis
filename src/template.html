@@ -8,7 +8,6 @@
       <meta name="<%=meta %>" content="<%=htmlWebpackPlugin.options.metas[meta] %>">
     <% } %>
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <link href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.4.9/theme-chalk/index.css" rel="stylesheet">
     <% for (var style of htmlWebpackPlugin.options.styles) { %>
         <link href="<%=style %>" rel="stylesheet">
     <% } %>
@@ -20,7 +19,11 @@
 <% } %>
 <%= htmlWebpackPlugin.options.debug%>
 <script type="text/javascript">
-    var $config = <%= htmlWebpackPlugin.options.initData %>
+    var umisConfig = {
+        isFormData: true,
+        activeDomain: 'http://localhost:8980/'
+    };
+    var $config = <%= htmlWebpackPlugin.options.umisConfig %>
 </script>
 </body>
 </html>

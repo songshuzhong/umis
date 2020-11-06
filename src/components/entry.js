@@ -1,43 +1,47 @@
 import MetaInfo from 'vue-meta-info';
 import { Fragment } from 'vue-fragment';
-import { Loading } from 'element-ui';
+import ElLoading from 'element-ui/lib/loading';
 
-import MisPage from '~components/umis/page';
+import MisContainer from 'element-ui/lib/container';
+import MisPage from '~components/umis/container/page';
+import MisLayout from '~components/umis/container/layout';
+import MisGrid from '~components/umis/container/grid';
+import MisMain from '~components/umis/container/main';
+import MisAside from '~components/umis/container/aside';
+import MisHeader from '~components/umis/container/header';
+import MisFooter from '~components/umis/container/footer';
+import MisTabs from '~components/umis/container/tabs';
+
+import MisSwitch from 'element-ui/lib/switch';
+import MisInput from 'element-ui/lib/input';
+import MisDatepicker from 'element-ui/lib/date-picker';
 import MisAction from '~components/umis/action';
-import MisField from '~components/umis/field';
-import MisSelect from '~components/umis/select';
-import MisCheckbox from '~components/umis/checkbox';
-import MisRadio from '~components/umis/radio';
-import MisButton from '~components/umis/button';
-import MisForm from '~components/umis/form';
-import MisLayout from '~components/umis/layout';
-import MisMain from '~components/umis/main';
-import MisFooter from '~components/umis/footer';
-import MisAside from '~components/umis/aside';
+import MisField from '~components/umis/form/field';
+import MisSelect from '~components/umis/form/select';
+import MisCheckbox from '~components/umis/form/checkbox';
+import MisRadio from '~components/umis/form/radio';
+import MisButton from '~components/umis/form/button';
+import MisCombo from '~components/umis/form/combo';
+import MisForm from '~components/umis/form/index';
+
 import MisTree from '~components/umis/tree';
 import MisMenu from '~components/umis/menu';
 import MisSubmenu from '~components/umis/menu-submenu';
 import MisMenuItem from '~components/umis/menu-item';
 import MisMenuItemGroup from '~components/umis/menu-item-group';
-import MisHeader from '~components/umis/header';
-import MisGrid from '~components/umis/grid';
+
+import MisAlert from '~components/umis/popup/alert';
+import MisDialog from '~components/umis/popup/dialog';
+import MisDrawer from '~components/umis/popup/drawer';
+
 import MisCards from '~components/umis/cards';
 import MisAvatar from '~components/umis/avatar';
 import MisHtml from '~components/umis/html';
-import MisAlert from '~components/umis/alert';
-import MisDialog from '~components/umis/dialog';
-import MisDrawer from '~components/umis/drawer';
+
 import MisMonaco from '~components/umis/monaco';
 import MisImage from '~components/umis/image';
-import MisTabs from '~components/umis/tabs';
 import MisLink from '~components/umis/link';
-import MisDomain from '~components/umis/api';
 import MisComponent from '~components/umis/component';
-
-import MisSwitch from 'element-ui/lib/switch';
-import MisInput from 'element-ui/lib/input';
-import MisContainer from 'element-ui/lib/container';
-import MisDatepicker from 'element-ui/lib/date-picker';
 
 const components = {
   Fragment,
@@ -60,6 +64,7 @@ const components = {
   MisFooter,
   MisLayout,
   MisField,
+  MisCombo,
   MisSelect,
   MisCheckbox,
   MisRadio,
@@ -75,7 +80,6 @@ const components = {
   MisInput,
   MisImage,
   MisTabs,
-  MisDomain,
 };
 
 const componentsName = Object.keys(components);
@@ -84,7 +88,7 @@ export default {
   install(Vue) {
     componentsName.forEach(i => Vue.component(i, components[i]));
 
-    Vue.use(Loading);
+    Vue.use(ElLoading);
     Vue.use(MetaInfo);
   },
 };

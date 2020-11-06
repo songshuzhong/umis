@@ -26,12 +26,12 @@
 </template>
 <script>
 import * as monaco from 'monaco-editor';
-import { Button } from 'element-ui';
+import ElButton from 'element-ui/lib/button';
 
 export default {
   name: 'MisMonaco',
   components: {
-    ElButton: Button,
+    ElButton,
   },
   props: {
     afterAction: {
@@ -42,25 +42,14 @@ export default {
       type: [Array, Object],
       required: false,
     },
-    visible: {
-      type: Boolean,
-      required: true,
-    },
   },
   data() {
     return {
       schema: {},
     };
   },
-  watch: {
-    visible: {
-      handler(val) {
-        if (val) {
-          this.onFormatSchema();
-        }
-      },
-      immediate: true,
-    },
+  created() {
+    this.onFormatSchema();
   },
   mounted() {
     this.$eventHub.$on('mis-schema:change', this.upSchema);

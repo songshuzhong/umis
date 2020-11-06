@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import { MenuItem } from 'element-ui';
+import ElMenuItem from 'element-ui/lib/menu-item';
 
 export default {
   name: 'MisMenuItem',
   components: {
-    ElMenuItem: MenuItem,
+    ElMenuItem,
   },
   props: {
     label: {

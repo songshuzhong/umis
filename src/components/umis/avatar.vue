@@ -12,12 +12,12 @@
   />
 </template>
 <script>
-import { Avatar } from 'element-ui';
+import ElAvatar from 'element-ui/lib/avatar';
 
 export default {
   name: 'MisAvatar',
   components: {
-    ElAvatar: Avatar,
+    ElAvatar,
   },
   props: {
     classname: {

@@ -12,7 +12,7 @@
   "styles": [],
   "chunks": [],
   "icon": "src/assets/imgs/favicon.png",
-  "initData": {
-    "uid": 5049100507
+  "umisConfig": {
+    "isFormData": true
   }
 }
