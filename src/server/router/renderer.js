@@ -11,7 +11,7 @@ module.exports = {
       data: {
         renderer: 'mis-form',
         name: 'form1',
-        api: 'http://dev.bendi.ad.weibo.com:3000/api/mis',
+        api: 'http://localhost:3000/api/mis',
         controls: [
           {
             renderer: 'mis-input',
@@ -19,15 +19,15 @@ module.exports = {
             label: '地址',
             value: 'mis',
             tip: '请填写地址',
-            visibleOn: 'switchs == true',
+            rules: [{ required: true, message: '地址不能为空' }],
           },
           {
             renderer: 'mis-checkbox',
             name: 'checkbox',
             type: 'button',
             label: '主食',
-            tip: '请填写地址',
-            visibleOn: 'switchs == false',
+            value: ['1'],
+            tip: '请选择主食',
             options: [
               {
                 value: '1',
@@ -43,7 +43,8 @@ module.exports = {
             renderer: 'mis-radio',
             name: 'radio',
             label: '餐具',
-            tip: '请填写地址',
+            value: '1',
+            tip: '需要餐具',
             options: [
               {
                 value: '1',
@@ -60,10 +61,73 @@ module.exports = {
             name: 'switchs',
             label: '配送',
             value: false,
+            tip: '开关',
+          },
+          {
+            renderer: 'mis-combo',
+            label: '联合 map',
+            name: 'combomap',
+            tip: '单个 联合 map',
+            visibleOn: 'data.switchs === false',
+            value: {
+              combomap1: 111,
+              combomap2: 222,
+            },
+            controls: [
+              {
+                renderer: 'mis-input',
+                name: 'combomap1',
+                label: '联合1',
+                rules: [
+                  {
+                    required: true,
+                    trigger: 'blur',
+                    message: '单个 联合 map不能为空',
+                  },
+                ],
+              },
+              {
+                renderer: 'mis-input',
+                name: 'combomap2',
+                label: '联合2',
+                rules: [
+                  {
+                    required: true,
+                    trigger: 'blur',
+                    message: '单个 联合 map不能为空',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            renderer: 'mis-combo',
+            label: '联合list',
+            name: 'combo',
+            multiple: true,
+            tip: '多个 combo 组合',
+            value: [
+              { combo1: 111, combo2: 222 },
+              { combo1: 113, combo2: 223 },
+            ],
+            controls: [
+              {
+                renderer: 'mis-input',
+                name: 'combo1',
+                label: '联合属性1',
+                rules: [{ required: true, message: '联合属性1不能为空' }],
+              },
+              {
+                renderer: 'mis-input',
+                name: 'combo2',
+                label: '联合属性2',
+                rules: [{ required: true, message: '联合属性2不能为空' }],
+              },
+            ],
           },
           {
             renderer: 'mis-button',
-            text: '按钮',
+            text: '提交',
           },
         ],
       },
@@ -87,6 +151,7 @@ module.exports = {
             renderer: 'mis-select',
             name: 'select2',
             label: '选择框',
+            disabledOn: 'switchs2 === false',
             options: [
               {
                 value: '选项1',
@@ -126,11 +191,11 @@ module.exports = {
         shadow: 'hover',
         bodyStyle: { padding: '0' },
         classname: 'mis-card-margin',
-        header: '<h4><%=name%></h4>',
+        header: '<h4><%=data.name%></h4>',
         body: {
           renderer: 'mis-html',
           html:
-            '<h5>id：<%=id%></h5><h5>名称：<%=name%></h5><h5>地址：<%=src%></h5><h5>形状：<%=shape%></h5>',
+            '<h5>id：<%=data.id%></h5><h5>名称：<%=data.name%></h5><h5>地址：<%=data.src%></h5><h5>形状：<%=data.shape%></h5>',
         },
         footer: [
           {
@@ -159,7 +224,7 @@ module.exports = {
                     {
                       renderer: 'mis-html',
                       html:
-                        '<h1>id：<%=id%></h1><h1>名称：<%=name%></h1><h1>地址：<%=src%></h1><h1>形状：<%=shape%></h1>',
+                        '<h1>id：<%=data.id%></h1><h1>名称：<%=data.name%></h1><h1>地址：<%=data.src%></h1><h1>形状：<%=data.shape%></h1>',
                     },
                     {
                       renderer: 'mis-action',
@@ -283,7 +348,7 @@ module.exports = {
           {
             renderer: 'mis-html',
             html:
-              '<h5>联系人：<%=sponser%></h5><h5>邮箱：<%=email3%></h5><h5>活动名称：<%=activename%></h5><h5>活动区域：<%=JSON.stringify(activearea)%></h5><h5>活动时间：<%=activetime%></h5>',
+              '<h5>联系人：<%=data.sponser%></h5><h5>邮箱：<%=data.email3%></h5><h5>活动名称：<%=data.activename%></h5><h5>活动区域：<%=JSON.stringify(data.activearea)%></h5><h5>活动时间：<%=data.activetime%></h5>',
           },
           {
             renderer: 'mis-input',
@@ -404,6 +469,52 @@ module.exports = {
             label: '选项卡html',
             icon: 'el-icon-document',
             html: '<h1>Hello Tabs</h1>',
+          },
+        ],
+      },
+    });
+  },
+  'GET /api/schema/linkage': async ctx => {
+    await sleep(500);
+
+    ctx.restify({
+      msg: 'success',
+      code: 1000,
+      data: {
+        renderer: 'mis-layout',
+        body: [
+          {
+            renderer: 'mis-aside',
+            body: [
+              {
+                renderer: 'mis-form',
+                name: 'linkageForm',
+                target: 'linkageTarget',
+                controls: [
+                  {
+                    renderer: 'mis-input',
+                    name: 'keywords',
+                    label: '关键字',
+                  },
+                  {
+                    renderer: 'mis-button',
+                    name: 'submit',
+                    text: '搜索',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            renderer: 'mis-main',
+            body: [
+              {
+                name: 'linkageTarget',
+                renderer: 'mis-html',
+                html:
+                  '<div>sdfasdfasfja;sdlkfjas;ldf<%=data.keywords ? data.keywords : ""%></div>',
+              },
+            ],
           },
         ],
       },

@@ -16,7 +16,6 @@
     <template v-else>
       <component
         :is="misName"
-        :name="name"
         :index="index"
         :path="path"
         :header="header"
@@ -30,7 +29,7 @@
   </fragment>
 </template>
 <script>
-import { Alert } from 'element-ui';
+import ElAlert from 'element-ui/lib/alert';
 import derivedProp from '../mixin/derivedProp';
 
 const components = [
@@ -72,7 +71,7 @@ const components = [
 export default {
   name: 'mis-Component',
   components: {
-    ElAlert: Alert,
+    ElAlert,
   },
   props: {
     path: {
@@ -105,10 +104,6 @@ export default {
     },
     props: {
       type: Object,
-      required: false,
-    },
-    visible: {
-      type: Boolean,
       required: false,
     },
     data: {

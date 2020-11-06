@@ -67,6 +67,12 @@ const json = [
                     index: 'tabs',
                     label: '选项卡',
                   },
+                  {
+                    renderer: 'mis-menu-item',
+                    name: 'linkage',
+                    index: 'linkage',
+                    label: ' 组件联动',
+                  },
                 ],
               },
             ],

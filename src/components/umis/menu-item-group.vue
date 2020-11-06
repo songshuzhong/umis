@@ -21,14 +21,14 @@
 </template>
 
 <script>
-import { MenuItemGroup } from 'element-ui';
+import ElMenuItemGroup from 'element-ui/lib/menu-item-group';
 
 import derivedProp from '../mixin/derivedProp';
 
 export default {
   name: 'MisMenuItemGroup',
   components: {
-    ElMenuItemGroup: MenuItemGroup,
+    ElMenuItemGroup,
   },
   props: {
     path: {

@@ -1,14 +1,15 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { Loading } from 'element-ui';
+import Loading from 'element-ui/lib/loading';
 
+import Page from '~components/umis/container/page';
 import Umis from '~modules/index/index.vue';
 
 Vue.use(VueRouter);
 
 let routerMask;
 const router = new VueRouter({
-  mode: 'hash',
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -19,7 +20,7 @@ const router = new VueRouter({
       children: [
         {
           path: '/visible',
-          component: () => import('~components/umis/page'),
+          component: Page,
           props: {
             initSchema: {
               url: '/api/schema/visible',
@@ -32,7 +33,7 @@ const router = new VueRouter({
         },
         {
           path: '/reactive',
-          component: () => import('~components/umis/page'),
+          component: Page,
           props: {
             initSchema: {
               url: '/api/schema/reactive',
@@ -45,7 +46,7 @@ const router = new VueRouter({
         },
         {
           path: '/grid',
-          component: () => import('~components/umis/page'),
+          component: Page,
           props: {
             initSchema: {
               url: '/api/schema/grid',
@@ -58,7 +59,7 @@ const router = new VueRouter({
         },
         {
           path: '/validator',
-          component: () => import('~components/umis/page'),
+          component: Page,
           props: {
             initSchema: {
               url: '/api/schema/validator',
@@ -71,7 +72,7 @@ const router = new VueRouter({
         },
         {
           path: '/cards',
-          component: () => import('~components/umis/page'),
+          component: Page,
           props: {
             initSchema: {
               url: '/api/schema/cards',
@@ -84,7 +85,7 @@ const router = new VueRouter({
         },
         {
           path: '/tabs',
-          component: () => import('~components/umis/page'),
+          component: Page,
           props: {
             initSchema: {
               url: '/api/schema/tabs',
@@ -93,6 +94,19 @@ const router = new VueRouter({
           },
           meta: {
             title: '选项卡',
+          },
+        },
+        {
+          path: '/linkage',
+          component: Page,
+          props: {
+            initSchema: {
+              url: '/api/schema/linkage',
+              method: 'get',
+            },
+          },
+          meta: {
+            title: ' 联动',
           },
         },
         {

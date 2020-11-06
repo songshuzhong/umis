@@ -42,7 +42,9 @@
   </el-row>
 </template>
 <script>
-import { Row, Col, Card } from 'element-ui';
+import ElRow from 'element-ui/lib/row';
+import ElCol from 'element-ui/lib/col';
+import ElCard from 'element-ui/lib/card';
 
 import initApi from '../mixin/initApi';
 import derivedProp from '../mixin/derivedProp';
@@ -50,9 +52,9 @@ import derivedProp from '../mixin/derivedProp';
 export default {
   name: 'MisCards',
   components: {
-    ElRow: Row,
-    ElCol: Col,
-    ElCard: Card,
+    ElRow,
+    ElCol,
+    ElCard,
   },
   props: {
     path: {

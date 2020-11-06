@@ -32,12 +32,12 @@
 </template>
 
 <script>
-import { Menu } from 'element-ui';
+import ElMenu from 'element-ui/lib/menu';
 
 export default {
   name: 'MisMenu',
   components: {
-    ElMenu: Menu,
+    ElMenu,
   },
   props: {
     name: {

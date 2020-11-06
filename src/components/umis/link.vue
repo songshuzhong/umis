@@ -16,12 +16,12 @@
   </el-link>
 </template>
 <script>
-import { Link } from 'element-ui';
+import ElLink from 'element-ui/lib/link';
 
 export default {
   name: 'MisLink',
   components: {
-    ElLink: Link,
+    ElLink,
   },
   props: {
     type: {
