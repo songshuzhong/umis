@@ -1,8 +1,8 @@
-import { template } from 'lodash';
+import template from 'lodash.template';
 
-const getRenderedTpl = (tpl, data) => {
+const getRenderedTpl = (tpl, data = {}) => {
   const compiled = template(tpl);
-  const html = compiled(data);
+  const html = compiled({ data });
 
   return html;
 };

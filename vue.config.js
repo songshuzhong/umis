@@ -2,12 +2,27 @@ const path = require('path');
 const glob = require('glob');
 const fs = require('fs');
 const manifestPlugin = require('webpack-manifest-plugin');
-const SupportWebPWebpackPlugin = require('support-webp-webpack-plugin');
-
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const elementExternals = require('./elementUIDependencies');
 const dev = process.env.NODE_ENV !== 'production';
 const publicPath = '';
 const pages = {};
 const rewrites = [];
+const externals = {
+  vue: {
+    root: 'Vue',
+    commonjs: 'vue',
+    commonjs2: 'vue',
+    amd: 'vue',
+  },
+  axios: 'axios',
+  'vue-router': 'VueRouter',
+  'element-ui': 'ELEMENT',
+};
+
+/*elementExternals.components.forEach(function(key) {
+  externals[`element-ui/lib/${key}`] = `element-ui/lib/${key}`;
+});*/
 
 glob.sync('./src/pages/*.js').forEach(entry => {
   const filename = entry.replace(/(.*\/)*([^.]+).*/gi, '$2');
@@ -31,8 +46,8 @@ glob.sync('./src/pages/*.js').forEach(entry => {
     filename: `${filename}.html`,
     title: pageConfig.title || '',
     metas: pageConfig.metas || {},
-    styles: pageConfig.styles || [],
-    scripts: pageConfig.scripts || [],
+    styles: dev ? [] : pageConfig.styles || [],
+    scripts: dev ? [] : pageConfig.scripts || [],
     skeleton: pageConfig.skeleton || '',
     skeletonStyle: pageConfig.skeletonStyle || '',
     initData: JSON.stringify(pageConfig.initData || {}),
@@ -63,32 +78,11 @@ module.exports = {
       filename: 'js/[name].[hash:6].js',
       chunkFilename: 'js/chunks/[name].[hash:6].js',
     },
-    module: {
-      rules: [
-        {
-          test: /\.md$/,
-          use: [
-            {
-              loader: 'vue-loader',
-            },
-            {
-              loader: 'vue-markdown-loader/lib/markdown-compiler',
-              options: {
-                raw: true,
-              },
-            },
-          ],
-        },
-      ],
-    },
     resolve: {
       extensions: ['.ts', '.js', '.vue', '.json'],
     },
-    plugins: [
-      new SupportWebPWebpackPlugin({
-        useCheckScript: false,
-      }),
-    ],
+    // externals: dev ? {} : externals,
+    plugins: [new MonacoWebpackPlugin()],
   },
   transpileDependencies: ['vue-echarts', 'resize-detector'],
   chainWebpack: config => {

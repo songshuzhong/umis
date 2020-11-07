@@ -5,32 +5,31 @@ const json = [
     iSchemaUpdate: false,
     body: [
       {
-        renderer: 'mis-aside',
-        collapse: true,
-        classname: 'umis-layout__container__aside',
+        renderer: 'mis-menu',
+        name: 'menu',
+        router: true,
+        collapse: false,
+        mode: 'vertical',
+        defaultActive: 'option1',
+        backgroundColor: '#545c64',
+        textColor: '#fff',
+        activeTextColor: '#ffd04b',
+        classname: 'umis-layout__container__aside__menu',
+        title: {
+          renderer: 'mis-html',
+          html:
+            '<div style="height: 56px; color: white; text-align: center; line-height: 56px; font-size: 20px"><i class="el-icon-s-promotion" /><span style="margin-left: 3px">UMIS</span></div>',
+        },
         body: [
           {
-            renderer: 'mis-menu',
-            name: 'menu',
-            router: true,
-            title: {
-              renderer: 'mis-html',
-              html:
-                '<div style="height: 56px; color: white; text-align: center; line-height: 56px; font-size: 20px"><i class="el-icon-s-promotion" /><span style="margin-left: 3px">UMIS</span></div>',
-            },
-            mode: 'vertical',
-            defaultActive: 'option1',
-            backgroundColor: '#545c64',
-            textColor: '#fff',
-            activeTextColor: '#ffd04b',
-            classname: 'umis-layout__container__aside__menu',
+            renderer: 'mis-submenu',
+            name: 'submenu',
+            icon: 'el-icon-menu',
+            title: '组件',
+            index: 'submenu',
             body: [
               {
-                renderer: 'mis-submenu',
-                name: 'submenu',
-                icon: 'el-icon-menu',
-                title: '菜单',
-                index: 'submenu',
+                renderer: 'mis-menu-item-group',
                 body: [
                   {
                     renderer: 'mis-menu-item',
@@ -62,15 +61,51 @@ const json = [
                     index: 'cards',
                     label: '卡片列表',
                   },
+                  {
+                    renderer: 'mis-menu-item',
+                    name: 'tabs',
+                    index: 'tabs',
+                    label: '选项卡',
+                  },
+                  {
+                    renderer: 'mis-menu-item',
+                    name: 'linkage',
+                    index: 'linkage',
+                    label: ' 组件联动',
+                  },
                 ],
               },
+            ],
+          },
+          {
+            renderer: 'mis-submenu',
+            name: 'components',
+            index: 'components',
+            icon: 'el-icon-notebook-1',
+            title: '文档',
+            body: [],
+          },
+          {
+            renderer: 'mis-submenu',
+            icon: 'el-icon-setting',
+            title: '系统',
+            body: [
               {
-                renderer: 'mis-submenu',
-                name: 'components',
-                index: 'components',
-                icon: 'el-icon-notebook-1',
-                title: '属性',
-                body: [],
+                renderer: 'mis-menu-item-group',
+                body: [
+                  {
+                    renderer: 'mis-menu-item',
+                    index: 'setting',
+                    name: 'setting',
+                    label: '全局配置',
+                  },
+                  {
+                    renderer: 'mis-menu-item',
+                    index: 'authority',
+                    name: 'authority',
+                    label: '权限配置',
+                  },
+                ],
               },
             ],
           },
@@ -89,16 +124,16 @@ const json = [
                 name: 'isEditor',
                 showClose: true,
                 size: '60%',
+                label: '编辑',
                 classname: 'umis-layout__container__drawer',
-                title: {
+                header: {
                   renderer: 'mis-html',
                   html:
                     '<h1 style="text-align: left; color: white;">编辑Schema</h1>',
                 },
-                label: '编辑',
                 body: [
                   {
-                    renderer: 'mis-editor',
+                    renderer: 'mis-monaco',
                     name: 'editor',
                     footer: [
                       {

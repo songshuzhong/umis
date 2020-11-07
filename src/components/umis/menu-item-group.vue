@@ -1,16 +1,20 @@
 <template>
   <el-menu-item-group>
-    <template slot="title">
-      <i class="el-icon-menu" />
-      {{ label }}
+    <template v-if="title" slot="title">
+      <i v-if="icon" class="el-icon-menu" />
+      <span>{{ label }}</span>
     </template>
     <template v-for="(item, index) in body">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
         :label="item.label"
         :name="item.name"
-        :body="item"
+        :path="`${path}/${index}/${item.renderer}`"
+        :props="item"
+        :header="getHeader(item)"
+        :body="getBody(item)"
+        :footer="getFooter(item)"
       />
     </template>
   </el-menu-item-group>
@@ -19,12 +23,18 @@
 <script>
 import ElMenuItemGroup from 'element-ui/lib/menu-item-group';
 
+import derivedProp from '../mixin/derivedProp';
+
 export default {
   name: 'MisMenuItemGroup',
   components: {
     ElMenuItemGroup,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     label: {
       type: String,
       required: false,
@@ -38,5 +48,6 @@ export default {
       required: true,
     },
   },
+  mixins: [derivedProp],
 };
 </script>

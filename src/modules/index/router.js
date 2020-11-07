@@ -1,13 +1,14 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import VueRouter from 'vue-router';
 import Loading from 'element-ui/lib/loading';
 
+import Page from '~components/umis/container/page';
 import Umis from '~modules/index/index.vue';
 
-Vue.use(Router);
+Vue.use(VueRouter);
 
 let routerMask;
-const router = new Router({
+const router = new VueRouter({
   mode: 'hash',
   routes: [
     {
@@ -18,12 +19,8 @@ const router = new Router({
       },
       children: [
         {
-          path: '/doc',
-          component: () => import('./doc'),
-        },
-        {
           path: '/visible',
-          component: () => import('~components/umis/page'),
+          component: Page,
           props: {
             initSchema: {
               url: '/api/schema/visible',
@@ -36,7 +33,7 @@ const router = new Router({
         },
         {
           path: '/reactive',
-          component: () => import('~components/umis/page'),
+          component: Page,
           props: {
             initSchema: {
               url: '/api/schema/reactive',
@@ -49,7 +46,7 @@ const router = new Router({
         },
         {
           path: '/grid',
-          component: () => import('~components/umis/page'),
+          component: Page,
           props: {
             initSchema: {
               url: '/api/schema/grid',
@@ -62,7 +59,7 @@ const router = new Router({
         },
         {
           path: '/validator',
-          component: () => import('~components/umis/page'),
+          component: Page,
           props: {
             initSchema: {
               url: '/api/schema/validator',
@@ -75,7 +72,7 @@ const router = new Router({
         },
         {
           path: '/cards',
-          component: () => import('~components/umis/page'),
+          component: Page,
           props: {
             initSchema: {
               url: '/api/schema/cards',
@@ -85,6 +82,36 @@ const router = new Router({
           meta: {
             title: '卡片',
           },
+        },
+        {
+          path: '/tabs',
+          component: Page,
+          props: {
+            initSchema: {
+              url: '/api/schema/tabs',
+              method: 'get',
+            },
+          },
+          meta: {
+            title: '选项卡',
+          },
+        },
+        {
+          path: '/linkage',
+          component: Page,
+          props: {
+            initSchema: {
+              url: '/api/schema/linkage',
+              method: 'get',
+            },
+          },
+          meta: {
+            title: ' 联动',
+          },
+        },
+        {
+          path: '/setting',
+          component: () => import('~components/umis/setting'),
         },
       ],
     },

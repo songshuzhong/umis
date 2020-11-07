@@ -1,29 +1,12 @@
 import qs from 'qs';
 import axios from 'axios';
-import notification from 'element-ui/lib/notification';
-
+const notification = () => {};
 const isCancel = axios.isCancel;
+const cancelToken = axios.CancelToken;
+let umisConfig = null;
 let apiFailSilent = false;
 let apiMessageDuration = 5000;
 let apiMessageOffset = 0;
-
-function setApiFailSilent(isSilent) {
-  apiFailSilent = isSilent;
-}
-function setApiMessageDuration(duration) {
-  if (duration) {
-    apiMessageDuration = duration;
-  }
-}
-function setApiMessageOffset(offset) {
-  apiMessageOffset = offset;
-}
-function getApiMessageDuration() {
-  return apiMessageDuration;
-}
-function getApiMessageOffset() {
-  return apiMessageOffset;
-}
 
 function getDefaultConfigs() {
   return {
@@ -57,24 +40,6 @@ function showError(msg, apiName) {
     duration: apiMessageDuration,
     offset: apiMessageOffset,
   });
-}
-
-function getErrorInfo(error) {
-  let url = '';
-  if (error.config) {
-    url = error.config.url;
-    if (error.config.params) {
-      url += '?' + error.config.paramsSerializer(error.config.params);
-    }
-    if (!isExternalUrl(url)) {
-      url = window.location.protocol + constructUrl(window.location.host, url);
-    }
-  }
-
-  return {
-    url: url,
-    config: error.config,
-  };
 }
 
 function successInterceptor(response, silent, apiName) {
@@ -172,20 +137,29 @@ function factory(baseUrl, configs, silent, noInterceptor) {
 }
 
 let umisApi = null;
-export default {
-  factory: factory,
-  cancelToken: axios.CancelToken,
-  isCancel,
-  slientApi() {
-    if (!umisApi) {
-      umisApi = factory(
-        process.env.VUE_APP_API_BASE,
-        {
-          withCredentials: true,
-        },
-        true
-      );
-    }
-    return umisApi;
-  },
-};
+
+function apiFactory(config) {
+  umisConfig = config;
+  Object.assign(umisConfig.domains, {
+    VUE_APP_API_BASE: process.env.VUE_APP_API_BASE,
+  });
+  return {
+    isCancel,
+    cancelToken,
+    factory: factory,
+    slientApi() {
+      if (umisConfig.isApiChanged || !umisApi) {
+        umisApi = factory(
+          umisConfig.VUE_APP_API_ACTIVE,
+          {
+            withCredentials: true,
+          },
+          true
+        );
+      }
+      return umisApi;
+    },
+  };
+}
+
+export default apiFactory;

@@ -10,12 +10,13 @@
   >
     <template v-if="title" slot="title">
       <i :class="icon" />
-      {{ title }}
+      <span slot="title">{{ title }}</span>
     </template>
     <template v-for="(item, index) in body">
-      <component
-        :is="item.renderer"
+      <mis-component
+        :mis-name="item.renderer"
         :key="index"
+        :path="`${path}/${index}/${item.renderer}`"
         :label="item.label"
         :name="item.name"
         :body="item.body"
@@ -32,6 +33,10 @@ export default {
     ElSubmenu,
   },
   props: {
+    path: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: false,
