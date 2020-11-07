@@ -1,36 +1,12 @@
 import qs from 'qs';
 import axios from 'axios';
-// import notification from 'element-ui/lib/notification';
 const notification = () => {};
-const GLOBAL_DOMAINS = {
-  isApiChanged: false,
-  activeDomain: '',
-  VUE_APP_API_BASE: process.env.VUE_APP_API_BASE,
-  VUE_APP_API_MOCK:
-    'https://www.fastmock.site/mock/a93e0b29161761b8153cbc02db04c643',
-};
 const isCancel = axios.isCancel;
+const cancelToken = axios.CancelToken;
+let umisConfig = null;
 let apiFailSilent = false;
 let apiMessageDuration = 5000;
 let apiMessageOffset = 0;
-
-function setApiFailSilent(isSilent) {
-  apiFailSilent = isSilent;
-}
-function setApiMessageDuration(duration) {
-  if (duration) {
-    apiMessageDuration = duration;
-  }
-}
-function setApiMessageOffset(offset) {
-  apiMessageOffset = offset;
-}
-function getApiMessageDuration() {
-  return apiMessageDuration;
-}
-function getApiMessageOffset() {
-  return apiMessageOffset;
-}
 
 function getDefaultConfigs() {
   return {
@@ -64,24 +40,6 @@ function showError(msg, apiName) {
     duration: apiMessageDuration,
     offset: apiMessageOffset,
   });
-}
-
-function getErrorInfo(error) {
-  let url = '';
-  if (error.config) {
-    url = error.config.url;
-    if (error.config.params) {
-      url += '?' + error.config.paramsSerializer(error.config.params);
-    }
-    if (!isExternalUrl(url)) {
-      url = window.location.protocol + constructUrl(window.location.host, url);
-    }
-  }
-
-  return {
-    url: url,
-    config: error.config,
-  };
 }
 
 function successInterceptor(response, silent, apiName) {
@@ -180,21 +138,28 @@ function factory(baseUrl, configs, silent, noInterceptor) {
 
 let umisApi = null;
 
-export default {
-  factory: factory,
-  cancelToken: axios.CancelToken,
-  GLOBAL_DOMAINS,
-  isCancel,
-  slientApi() {
-    if (GLOBAL_DOMAINS.isApiChanged || !umisApi) {
-      umisApi = factory(
-        GLOBAL_DOMAINS.activeDomain,
-        {
-          withCredentials: true,
-        },
-        true
-      );
-    }
-    return umisApi;
-  },
-};
+function apiFactory(config) {
+  umisConfig = config;
+  Object.assign(umisConfig.domains, {
+    VUE_APP_API_BASE: process.env.VUE_APP_API_BASE,
+  });
+  return {
+    isCancel,
+    cancelToken,
+    factory: factory,
+    slientApi() {
+      if (umisConfig.isApiChanged || !umisApi) {
+        umisApi = factory(
+          umisConfig.VUE_APP_API_ACTIVE,
+          {
+            withCredentials: true,
+          },
+          true
+        );
+      }
+      return umisApi;
+    },
+  };
+}
+
+export default apiFactory;

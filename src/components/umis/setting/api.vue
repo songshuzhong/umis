@@ -15,9 +15,9 @@
           placeholder="请输入域名"
           v-model="domains[key]"
         />
-        <el-radio class="umis-form-combo__radio" :label="key" :key="key">{{
-          ''
-        }}</el-radio>
+        <el-radio class="umis-form-combo__radio" :label="key" :key="key">
+          {{ '' }}
+        </el-radio>
       </div>
     </el-radio-group>
     <div class="umis-form-combo__footer">
@@ -27,20 +27,12 @@
   </div>
 </template>
 <script>
+import clonedeep from 'lodash.clonedeep';
 import ElRadioGroup from 'element-ui/lib/radio-group';
 import ElRadio from 'element-ui/lib/radio';
 import ElButton from 'element-ui/lib/button';
 import ElLink from 'element-ui/lib/link';
 import ElInput from 'element-ui/lib/input';
-
-import api from '~utils/api';
-
-const apisMap = Object.keys(api.GLOBAL_DOMAINS).reduce((total, item) => {
-  if (item !== 'activeDomain' && item !== 'isApiChanged') {
-    total[item] = api.GLOBAL_DOMAINS[item];
-  }
-  return total;
-}, {});
 
 export default {
   name: 'MisDomain',
@@ -53,14 +45,14 @@ export default {
   },
   data() {
     return {
-      domains: apisMap,
-      checked: '',
+      domains: this.$umisConfig.domains,
+      checked: 'VUE_APP_API_ACTIVE',
     };
   },
   methods: {
     onAdd() {
       const length = Object.keys(this.domains).length;
-      const domains = JSON.parse(JSON.stringify(this.domains));
+      const domains = clonedeep(this.domains);
       domains[`VUE_APP_API_BASE${length}`] = '';
       this.domains = domains;
     },
@@ -73,7 +65,7 @@ export default {
         });
         return;
       }
-      const domains = JSON.parse(JSON.stringify(this.domains));
+      const domains = clonedeep(this.domains);
       delete domains[key];
       this.domains = domains;
     },
@@ -83,9 +75,8 @@ export default {
         title: '通知',
         message: '保存成功！',
       });
-      this.$umisConfig.activeDomain = this.domains[this.checked];
-      api.GLOBAL_DOMAINS.activeDomain = this.domains[this.checked];
-      api.GLOBAL_DOMAINS.isApiChanged = true;
+      this.$umisConfig.VUE_APP_API_ACTIVE = this.domains[this.checked];
+      this.$umisConfig.isApiChanged = true;
     },
   },
 };
