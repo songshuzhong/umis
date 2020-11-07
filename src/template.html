@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
     <% for (var meta in htmlWebpackPlugin.options.metas) { %>
-      <meta name="<%=meta %>" content="<%=htmlWebpackPlugin.options.metas[meta] %>">
+    <meta
+      name="<%=meta %>"
+      content="<%=htmlWebpackPlugin.options.metas[meta] %>"
+    />
     <% } %>
     <title><%= htmlWebpackPlugin.options.title %></title>
     <% for (var style of htmlWebpackPlugin.options.styles) { %>
-        <link href="<%=style %>" rel="stylesheet">
+    <link href="<%=style %>" rel="stylesheet" />
     <% } %>
-</head>
-<body>
-<div id="app"></div>
-<% for (var script of htmlWebpackPlugin.options.scripts) { %>
+  </head>
+  <body>
+    <div id="app"></div>
+    <% for (var script of htmlWebpackPlugin.options.scripts) { %>
     <script type="text/javascript" src="<%=script %>"></script>
-<% } %>
-<%= htmlWebpackPlugin.options.debug%>
-<script type="text/javascript">
-    var umisConfig = {
+    <% } %> <%= htmlWebpackPlugin.options.debug%>
+    <script type="text/javascript">
+      var umisConfig = {
         isFormData: true,
-        activeDomain: 'http://localhost:8980/'
-    };
-    var $config = <%= htmlWebpackPlugin.options.umisConfig %>
-</script>
-</body>
+        isApiChanged: false,
+        domains: {
+          VUE_APP_API_ACTIVE: '',
+          VUE_APP_API_MOCK:
+            'https://www.fastmock.site/mock/a93e0b29161761b8153cbc02db04c643',
+        },
+      };
+    </script>
+  </body>
 </html>

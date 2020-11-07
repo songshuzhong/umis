@@ -11,13 +11,14 @@
       <mis-field
         v-if="formItems.includes(item.renderer)"
         v-model="data[item.name]"
+        :path="`${path}/${index}/${item.renderer}`"
         :name="item.name"
         :field="item"
         :data="data"
-        :hiddenOn="item.hiddenOn"
-        :visibleOn="item.visibleOn"
-        :disabledOn="item.disabledOn"
-        :path="`${path}/${index}/${item.renderer}`"
+        :hidden-on="item.hiddenOn"
+        :visible-on="item.visibleOn"
+        :disabled-on="item.disabledOn"
+        :handle-invisible="handleInvisible"
         :action="onBeforeSubmit"
       />
       <mis-component
@@ -46,6 +47,7 @@ const formItems = [
   'mis-datepicker',
   'mis-input',
   'mis-combo',
+  'mis-upload',
 ];
 
 export default {
@@ -89,6 +91,7 @@ export default {
     return {
       formItems: formItems,
       iLoading: false,
+      invisibleField: [],
       data: this.controls.reduce((total, control) => {
         const renderer = control.renderer;
         const name = control.name || '';
@@ -102,6 +105,15 @@ export default {
   },
   mixins: [derivedProp, linkage],
   methods: {
+    handleInvisible(visible, field) {
+      if (visible) {
+        this.invisibleField = this.invisibleField.filter(
+          item => item !== field
+        );
+      } else {
+        this.invisibleField.push(field);
+      }
+    },
     onBeforeSubmit() {
       const form = this.$refs['mis-form'];
       form.validate(valid => {
@@ -112,14 +124,25 @@ export default {
     },
     sendFormData() {
       if (this.api) {
-        let formData = new FormData();
+        let formData;
         if (this.$umisConfig.isFormData) {
+          formData = new FormData();
           for (let name in this.data) {
-            if (this.data.hasOwnProperty(name))
+            if (
+              this.data.hasOwnProperty(name) &&
+              !this.invisibleField.includes(name)
+            )
               formData.append(name, this.data[name]);
           }
         } else {
-          formData = this.data;
+          formData = {};
+          for (let name in this.data) {
+            if (
+              this.data.hasOwnProperty(name) &&
+              !this.invisibleField.includes(name)
+            )
+              formData[name] = this.data[name];
+          }
         }
         this.iLoading = true;
         this.$api

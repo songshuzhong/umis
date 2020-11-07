@@ -55,6 +55,7 @@ const components = [
   'mis-radio',
   'mis-switch',
   'mis-form',
+  'mis-upload',
   'mis-button',
   'mis-datepicker',
   'mis-tree',

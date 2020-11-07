@@ -46,7 +46,6 @@ import clonedeep from 'lodash.clonedeep';
 import ElButton from 'element-ui/lib/button';
 import ElLink from 'element-ui/lib/link';
 import ElFormItem from 'element-ui/lib/form-item';
-import linkage from '../../mixin/linkage';
 
 export default {
   name: 'MisCombo',
@@ -103,7 +102,6 @@ export default {
       deep: true,
     },
   },
-  mixins: [linkage],
   methods: {
     getField(item) {
       const field = clonedeep(item);

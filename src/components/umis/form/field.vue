@@ -1,7 +1,7 @@
 <template>
   <el-form-item
-    v-if="iHidden"
-    v-show="iVisible"
+    v-show="iHidden"
+    v-if="iVisible"
     :label="field.label"
     :prop="field.prop || field.name"
     :class="field.className"
@@ -66,6 +66,10 @@ export default {
       type: Object,
       required: true,
     },
+    handleInvisible: {
+      type: Function,
+      required: true,
+    },
     action: {
       type: Function,
       required: true,
@@ -86,6 +90,11 @@ export default {
     },
     iValue(val) {
       this.$emit('input', val);
+    },
+    iVisible: {
+      handler(val) {
+        this.handleInvisible(val, this.name);
+      },
     },
   },
   methods: {

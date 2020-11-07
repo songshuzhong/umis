@@ -13,16 +13,18 @@
     </el-card>
     <el-card class="mis-card-margin">
       <div slot="header">
-        <span>接口拦截器</span>
+        <span>表单类型</span>
       </div>
-      <div>
-        <el-switch
-          v-model="isFormData"
-          active-text="formdata"
-          inactive-text="application/json"
-          @change="handleFormTypeChange"
-        >
-        </el-switch>
+      <el-switch
+        v-model="isFormData"
+        active-text="formdata"
+        inactive-text="application/json"
+        @change="handleFormTypeChange"
+      />
+    </el-card>
+    <el-card class="mis-card-margin">
+      <div slot="header">
+        <span>接口拦截器</span>
       </div>
     </el-card>
   </div>

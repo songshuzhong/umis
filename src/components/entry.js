@@ -23,6 +23,7 @@ import MisRadio from '~components/umis/form/radio';
 import MisButton from '~components/umis/form/button';
 import MisCombo from '~components/umis/form/combo';
 import MisForm from '~components/umis/form/index';
+import MisUpload from '~components/umis/form/upload';
 
 import MisTree from '~components/umis/tree';
 import MisMenu from '~components/umis/menu';
@@ -42,6 +43,8 @@ import MisMonaco from '~components/umis/monaco';
 import MisImage from '~components/umis/image';
 import MisLink from '~components/umis/link';
 import MisComponent from '~components/umis/component';
+
+import MisSetting from '~components/umis/setting';
 
 const components = {
   Fragment,
@@ -63,13 +66,14 @@ const components = {
   MisMain,
   MisFooter,
   MisLayout,
+  MisForm,
+  MisUpload,
   MisField,
   MisCombo,
   MisSelect,
   MisCheckbox,
   MisRadio,
   MisSwitch,
-  MisForm,
   MisButton,
   MisDatepicker,
   MisTree,
@@ -80,6 +84,7 @@ const components = {
   MisInput,
   MisImage,
   MisTabs,
+  MisSetting,
 };
 
 const componentsName = Object.keys(components);

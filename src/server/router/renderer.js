@@ -126,6 +126,13 @@ module.exports = {
             ],
           },
           {
+            renderer: 'mis-upload',
+            name: 'uploadtext',
+            label: '上传文件',
+            action: 'https://jsonplaceholder.typicode.com/posts',
+            tip: '只能上传jpg/png文件，且不超过500kb',
+          },
+          {
             renderer: 'mis-button',
             text: '提交',
           },
