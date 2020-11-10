@@ -190,7 +190,7 @@ module.exports = {
         renderer: 'mis-cards',
         name: 'cards1',
         initApi: {
-          url: '/api/pagelist/1/17',
+          url: '/api/pagelist/${pageIndex}/${pageSize}',
           method: 'get',
         },
         span: 6,
@@ -202,7 +202,7 @@ module.exports = {
         body: {
           renderer: 'mis-html',
           html:
-            '<h5>id：<%=data.id%></h5><h5>名称：<%=data.name%></h5><h5>地址：<%=data.src%></h5><h5>形状：<%=data.shape%></h5>',
+            '<h5>id：<%=data.id%></h5><h5>名称：<%=data.name%></h5><h5>地址：<%=data.address%></h5><h5>形状：<%=data.shape%></h5>',
         },
         footer: [
           {
@@ -231,7 +231,7 @@ module.exports = {
                     {
                       renderer: 'mis-html',
                       html:
-                        '<h1>id：<%=data.id%></h1><h1>名称：<%=data.name%></h1><h1>地址：<%=data.src%></h1><h1>形状：<%=data.shape%></h1>',
+                        '<h1>id：<%=data.id%></h1><h1>名称：<%=data.name%></h1><h1>地址：<%=data.address%></h1><h1>形状：<%=data.shape%></h1>',
                     },
                     {
                       renderer: 'mis-action',
@@ -488,6 +488,11 @@ module.exports = {
                 width: 120,
               },
               {
+                name: 'pageIndex',
+                label: '当前页',
+                width: 120,
+              },
+              {
                 name: 'province',
                 label: ' 省份',
                 width: 120,
@@ -513,12 +518,45 @@ module.exports = {
                 width: 120,
               },
               {
+                label: 'dropdown',
+                body: [
+                  {
+                    renderer: 'mis-dropdown',
+                    text: '更多',
+                    body: [
+                      {
+                        renderer: 'mis-action',
+                        text: '百度一下',
+                        size: 'mini',
+                        actionType: 'mis-url',
+                        type: 'text',
+                        url: 'https://www.baidu.com?name=${name}',
+                        blank: true,
+                      },
+                      {
+                        renderer: 'mis-action',
+                        text: 'ajax',
+                        reload: 'html',
+                        size: 'mini',
+                        actionType: 'mis-ajax',
+                        type: 'text',
+                        actionApi: {
+                          url: '/api/mis',
+                          method: 'post',
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
                 label: 'action操作集合',
                 body: [
                   {
                     renderer: 'mis-action',
                     text: 'ajax',
                     reload: 'html',
+                    size: 'mini',
                     actionType: 'mis-ajax',
                     actionApi: {
                       url: '/api/mis',
@@ -528,6 +566,7 @@ module.exports = {
                   {
                     renderer: 'mis-action',
                     text: '百度一下',
+                    size: 'mini',
                     actionType: 'mis-url',
                     url: 'https://www.baidu.com?name=${name}',
                     blank: true,
@@ -535,18 +574,21 @@ module.exports = {
                   {
                     renderer: 'mis-action',
                     text: '粘贴板',
+                    size: 'mini',
                     actionType: 'mis-copy',
                     content: 'https://www.baidu.com?name=${name}',
                   },
                   {
                     renderer: 'mis-action',
                     text: '路由跳转',
+                    size: 'mini',
                     actionType: 'mis-redirect',
                     url: '/visible',
                   },
                   {
                     renderer: 'mis-action',
                     text: '抽屉',
+                    size: 'mini',
                     actionType: 'mis-drawer',
                     body: {
                       name: 'isEditor',
@@ -586,6 +628,7 @@ module.exports = {
                   {
                     renderer: 'mis-action',
                     text: '对话框',
+                    size: 'mini',
                     actionType: 'mis-dialog',
                     body: {
                       title: '详情信息',

@@ -23,6 +23,7 @@ export default {
         list: [],
         pageIndex: 1,
         pageSize: 15,
+        total: 0,
         hasMore: true,
       },
     };
@@ -40,6 +41,9 @@ export default {
       },
       deep: true,
     },
+    'data.pageIndex'() {
+      this.fetchInitRequest();
+    },
   },
   mounted() {
     this.$eventHub.$on('mis-schema:change', this.upSchema);
@@ -50,17 +54,20 @@ export default {
         this.getSchemaRequest();
       }
     }
-    if (this.initApi) {
-      this.iApiLoading = true;
-
-      if (this.initApi.method === 'post') {
-        this.fetchPostRequest();
-      } else {
-        this.fetchGetRequest();
-      }
-    }
+    this.fetchInitRequest();
   },
   methods: {
+    fetchInitRequest() {
+      if (this.initApi) {
+        this.iApiLoading = true;
+
+        if (this.initApi.method === 'post') {
+          this.fetchPostRequest();
+        } else {
+          this.fetchGetRequest();
+        }
+      }
+    },
     getSchemaRequest() {
       const self = this;
       self.iSchemaLoading = true;
@@ -95,10 +102,10 @@ export default {
           const data = res.data;
 
           if (data.hasOwnProperty('pageSize')) {
-            const { total, list } = data;
-            self.data.pageIndex += 1;
-            self.data.list = self.data.list.concat(list);
-            self.data.hasMore = self.data.list.length < total;
+            const { total, list, hasMore } = data;
+            self.data.total = total;
+            self.data.list = list;
+            self.data.hasMore = hasMore;
           } else {
             self.data = res.data;
           }
@@ -115,10 +122,10 @@ export default {
         .then(res => {
           const data = res.data;
           if (data.hasOwnProperty('pageSize')) {
-            const { total, list } = data;
-            self.data.pageIndex += 1;
-            self.data.list = self.data.list.concat(list);
-            self.data.hasMore = self.data.list.length < total;
+            const { total, list, hasMore } = data;
+            self.data.total = total;
+            self.data.list = list;
+            self.data.hasMore = hasMore;
           } else {
             self.iData = res.data;
           }
@@ -130,6 +137,9 @@ export default {
         this.iSchema = data;
         window.UMIS = { schema: data };
       }
+    },
+    handlePageChanged(pageIndex) {
+      this.data.pageIndex = pageIndex;
     },
   },
 };

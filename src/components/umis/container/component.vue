@@ -37,6 +37,7 @@ import derivedProp from '../../mixin/derivedProp';
 const components = [
   'mis-page',
   'mis-action',
+  'mis-dropdown',
   'mis-grid',
   'mis-cards',
   'mis-avatar',

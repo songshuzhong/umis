@@ -1,52 +1,63 @@
 <template>
-  <el-table
-    v-loading="iApiLoading"
-    :data="data.list"
-    :height="height"
-    :stripe="stripe"
-    :border="border"
-    :size="size"
-    :fit="fit"
-    :max-height="maxHeight"
-    :show-header="showHeader"
-    :highlight-current-row="highlightCurrentRow"
-  >
-    <template v-for="(column, index) in columns" :key="index">
-      <el-table-column
-        v-if="column.body"
-        :path="`/${path}/${index}/${column.name}`"
-        :prop="column.name || ''"
-        :label="column.label"
-        :width="column.width"
-      >
-        <template slot-scope="scope">
-          <mis-component
-            v-for="(item, jndex) in column.body"
-            :key="jndex"
-            :path="`/${path}/${index}/${item.renderer}`"
-            :mis-name="item.renderer"
-            :header="getHeader(item)"
-            :body="getBody(item)"
-            :footer="getFooter(item)"
-            :props="getProps(item, scope.row)"
-          />
-        </template>
-      </el-table-column>
-      <el-table-column
-        v-else
-        :path="`/${path}/${index}/${column.name}`"
-        :prop="column.name || ''"
-        :label="column.label"
-        :fixed="column.fixed"
-        :width="column.width"
-      />
-    </template>
-  </el-table>
+  <div class="umis-crud__container">
+    <el-table
+      v-loading="iApiLoading"
+      :data="data.list"
+      :height="height"
+      :stripe="stripe"
+      :border="border"
+      :size="size"
+      :fit="fit"
+      :max-height="maxHeight"
+      :show-header="showHeader"
+      :highlight-current-row="highlightCurrentRow"
+    >
+      <template v-for="(column, index) in columns" :key="index">
+        <el-table-column
+          v-if="column.body"
+          :path="`/${path}/${index}/${column.name}`"
+          :prop="column.name || ''"
+          :label="column.label"
+          :width="column.width"
+        >
+          <template slot-scope="scope">
+            <mis-component
+              v-for="(item, jndex) in column.body"
+              :key="jndex"
+              :path="`/${path}/${index}/${item.renderer}`"
+              :mis-name="item.renderer"
+              :header="getHeader(item)"
+              :body="getBody(item)"
+              :footer="getFooter(item)"
+              :props="getProps(item, scope.row)"
+            />
+          </template>
+        </el-table-column>
+        <el-table-column
+          v-else
+          :path="`/${path}/${index}/${column.name}`"
+          :prop="column.name || ''"
+          :label="column.label"
+          :fixed="column.fixed"
+          :width="column.width"
+        />
+      </template>
+    </el-table>
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :total="data.total"
+      :page-size="data.pageSize"
+      :current-page="data.pageIndex"
+      @current-change="handlePageChanged"
+    />
+  </div>
 </template>
 
 <script>
 import ElTable from 'element-ui/lib/table';
 import ElTableColumn from 'element-ui/lib/table-column';
+import ElPagination from 'element-ui/lib/pagination';
 
 import initApi from '../mixin/initApi';
 import derivedProp from '../mixin/derivedProp';
@@ -57,6 +68,7 @@ export default {
   components: {
     ElTable,
     ElTableColumn,
+    ElPagination,
   },
   props: {
     name: {

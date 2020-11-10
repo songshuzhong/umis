@@ -18,6 +18,7 @@ import MisSwitch from 'element-ui/lib/switch';
 import MisInput from 'element-ui/lib/input';
 import MisDatepicker from 'element-ui/lib/date-picker';
 import MisAction from '~components/umis/action';
+import MisDropdown from '~components/umis/dropdown';
 import MisField from '~components/umis/form/field';
 import MisSelect from '~components/umis/form/select';
 import MisCheckbox from '~components/umis/form/checkbox';
@@ -66,6 +67,7 @@ const components = {
   MisDatepicker,
   MisForm,
   MisAction,
+  MisDropdown,
   MisField,
   MisSelect,
   MisCheckbox,

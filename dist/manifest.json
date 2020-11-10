@@ -1,14 +1,14 @@
 {
   "chunk-vendors.css": "/css/chunk-vendors.3d05485a.css",
-  "chunk-vendors.js": "/js/chunks/chunk-vendors.36bbb8.js",
+  "chunk-vendors.js": "/js/chunks/chunk-vendors.355e04.js",
   "chunk-vendors.css.map": "/css/chunk-vendors.3d05485a.css.map",
-  "chunk-vendors.js.map": "/js/chunks/chunk-vendors.36bbb8.js.map",
+  "chunk-vendors.js.map": "/js/chunks/chunk-vendors.355e04.js.map",
   "index.css": "/css/index.d4632f17.css",
-  "index.js": "/js/index.36bbb8.js",
+  "index.js": "/js/index.355e04.js",
   "index.css.map": "/css/index.d4632f17.css.map",
-  "index.js.map": "/js/index.36bbb8.js.map",
+  "index.js.map": "/js/index.355e04.js.map",
   "fonts/index.css": "/fonts/element-icons.732389de.ttf",
   "index.html": "/index.html",
-  "precache-manifest.15449847c61ee0984ddf22e04e988330.js": "/precache-manifest.15449847c61ee0984ddf22e04e988330.js",
+  "precache-manifest.8f4b2bbf31dfbdd9e41f84ddaa96eda0.js": "/precache-manifest.8f4b2bbf31dfbdd9e41f84ddaa96eda0.js",
   "service-worker.js": "/service-worker.js"
 }
