@@ -471,11 +471,136 @@ module.exports = {
             icon: 'el-icon-s-order',
           },
           {
-            renderer: 'mis-html',
+            renderer: 'mis-table',
             name: 'html',
-            label: '选项卡html',
+            label: '选项卡表格',
             icon: 'el-icon-document',
-            html: '<h1>Hello Tabs</h1>',
+            maxHeight: 600,
+            initApi: {
+              url: '/api/pagelist/${pageIndex}/${pageSize}',
+              method: 'get',
+            },
+            columns: [
+              {
+                name: 'name',
+                label: '姓名',
+                fixed: 'left',
+                width: 120,
+              },
+              {
+                name: 'province',
+                label: ' 省份',
+                width: 120,
+              },
+              {
+                name: 'city',
+                label: '市区',
+                width: 120,
+              },
+              {
+                name: 'date',
+                label: '日期',
+                width: 120,
+              },
+              {
+                name: 'address',
+                label: '地址',
+                width: 120,
+              },
+              {
+                name: 'zip',
+                label: '邮编',
+                width: 120,
+              },
+              {
+                label: 'action操作集合',
+                body: [
+                  {
+                    renderer: 'mis-action',
+                    text: 'ajax',
+                    reload: 'html',
+                    actionType: 'mis-ajax',
+                    actionApi: {
+                      url: '/api/mis',
+                      method: 'post',
+                    },
+                  },
+                  {
+                    renderer: 'mis-action',
+                    text: '百度一下',
+                    actionType: 'mis-url',
+                    url: 'https://www.baidu.com?name=${name}',
+                    blank: true,
+                  },
+                  {
+                    renderer: 'mis-action',
+                    text: '粘贴板',
+                    actionType: 'mis-copy',
+                    content: 'https://www.baidu.com?name=${name}',
+                  },
+                  {
+                    renderer: 'mis-action',
+                    text: '路由跳转',
+                    actionType: 'mis-redirect',
+                    url: '/visible',
+                  },
+                  {
+                    renderer: 'mis-action',
+                    text: '抽屉',
+                    actionType: 'mis-drawer',
+                    body: {
+                      name: 'isEditor',
+                      showClose: true,
+                      size: '60%',
+                      label: '编辑',
+                      header: {
+                        renderer: 'mis-html',
+                        html:
+                          '<h1 style="text-align: left; color: white;">编辑Schema</h1>',
+                      },
+                      body: [
+                        {
+                          renderer: 'mis-form',
+                          name: 'form3',
+                          controls: [
+                            {
+                              renderer: 'mis-input',
+                              name: 'name',
+                              label: '姓名',
+                            },
+                            {
+                              renderer: 'mis-input',
+                              name: 'address',
+                              label: '地址',
+                            },
+                            {
+                              renderer: 'mis-datepicker',
+                              name: 'date',
+                              label: '日期',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    renderer: 'mis-action',
+                    text: '对话框',
+                    actionType: 'mis-dialog',
+                    body: {
+                      title: '详情信息',
+                      appendBody: true,
+                      modal: false,
+                      body: {
+                        renderer: 'mis-html',
+                        html:
+                          '<h1><%=data.name%><%=data.date%><%=data.address%></h1>',
+                      },
+                    },
+                  },
+                ],
+              },
+            ],
           },
         ],
       },

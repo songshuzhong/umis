@@ -44,13 +44,12 @@
     "@vue/cli-plugin-babel": "^3.9.2",
     "@vue/cli-plugin-pwa": "^3.9.0",
     "@vue/cli-service": "^3.9.2",
+    "copy-to-clipboard": "^3.3.1",
     "debounce": "^1.2.0",
     "element-theme-chalk": "^2.4.11",
     "element-ui": "^2.4.11",
     "lodash": "^4.17.10",
     "lodash.clonedeep": "^4.5.0",
-    "monaco-editor": "^0.20.0",
-    "monaco-editor-webpack-plugin": "^1.9.0",
     "node-sass": "^4.9.2",
     "postcss-aspect-ratio-mini": "0.0.2",
     "postcss-px-to-viewport": "0.0.3",
@@ -71,6 +70,7 @@
     "vue-meta-info": "^0.1.7",
     "vue-router": "^3.0.7",
     "vue-template-compiler": "^2.5.21",
+    "webpack-cli": "^4.2.0",
     "webpack-manifest-plugin": "^2.2.0"
   }
 }

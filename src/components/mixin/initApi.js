@@ -19,10 +19,12 @@ export default {
       iApiLoading: false,
       iSchemaLoading: false,
       iSchema: {},
-      data: [],
-      pageIndex: 1,
-      pageSize: 15,
-      hasMore: true,
+      data: {
+        list: [],
+        pageIndex: 1,
+        pageSize: 15,
+        hasMore: true,
+      },
     };
   },
   watch: {
@@ -84,17 +86,19 @@ export default {
     },
     fetchGetRequest() {
       const self = this;
+      const compiledUrl = this.$getCompiledUrl(this.initApi.url, this.data);
+
       this.$api
         .slientApi()
-        .get(this.initApi.url, { params: this.initApi.params })
+        .get(compiledUrl, { params: this.initApi.params })
         .then(res => {
           const data = res.data;
 
           if (data.hasOwnProperty('pageSize')) {
             const { total, list } = data;
-            this.pageIndex += 1;
-            this.data = this.data.concat(list);
-            this.hasMore = this.data.length < total;
+            self.data.pageIndex += 1;
+            self.data.list = self.data.list.concat(list);
+            self.data.hasMore = self.data.list.length < total;
           } else {
             self.data = res.data;
           }
@@ -112,11 +116,11 @@ export default {
           const data = res.data;
           if (data.hasOwnProperty('pageSize')) {
             const { total, list } = data;
-            self.pageIndex += 1;
-            self.data = this.data.concat(list);
-            self.hasMore = this.data.length < total;
+            self.data.pageIndex += 1;
+            self.data.list = self.data.list.concat(list);
+            self.data.hasMore = self.data.list.length < total;
           } else {
-            self.data = res.data;
+            self.iData = res.data;
           }
           self.iApiLoading = false;
         });

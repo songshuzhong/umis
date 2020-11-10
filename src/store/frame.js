@@ -120,35 +120,34 @@ const json = [
             classname: 'umis-layout__container__header',
             body: [
               {
-                renderer: 'mis-drawer',
-                name: 'isEditor',
-                showClose: true,
-                size: '60%',
-                label: '编辑',
-                classname: 'umis-layout__container__drawer',
-                header: {
-                  renderer: 'mis-html',
-                  html:
-                    '<h1 style="text-align: left; color: white;">编辑Schema</h1>',
-                },
-                body: [
-                  {
-                    renderer: 'mis-monaco',
-                    name: 'editor',
-                    footer: [
-                      {
-                        renderer: 'mis-button',
-                        hasAfter: false,
-                        text: '保存',
-                      },
-                      {
-                        renderer: 'mis-button',
-                        hasAfter: true,
-                        text: '保存并关闭',
-                      },
-                    ],
+                renderer: 'mis-action',
+                text: '编辑器',
+                type: 'text',
+                actionType: 'mis-drawer',
+                body: {
+                  name: 'isEditor',
+                  showClose: true,
+                  size: '60%',
+                  label: '编辑',
+                  classname: 'umis-layout__container__drawer',
+                  header: {
+                    renderer: 'mis-html',
+                    html:
+                      '<h1 style="text-align: left; color: white;">编辑Schema</h1>',
                   },
-                ],
+                  body: [
+                    {
+                      renderer: 'mis-monaco',
+                      name: 'editor',
+                      footer: [
+                        {
+                          renderer: 'mis-button',
+                          text: '保存',
+                        },
+                      ],
+                    },
+                  ],
+                },
               },
             ],
           },

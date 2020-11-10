@@ -1,7 +1,7 @@
 <template>
   <el-row v-loading="iApiLoading" :gutter="gutter">
     <el-col
-      v-for="(item, index) in data"
+      v-for="(item, index) in data.list"
       :span="span"
       :key="index"
       :xs="size[0]"

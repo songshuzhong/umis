@@ -7,6 +7,13 @@ const getRenderedTpl = (tpl, data = {}) => {
   return html;
 };
 
+const getCompiledUrl = (tpl, data = {}) => {
+  const compiled = template(tpl);
+  const str = compiled(data);
+
+  return str;
+};
+
 const onExpressionEval = (expression, data) => {
   const fn = new Function('data', `with(data) { return !!(${expression}) }`);
   try {
@@ -16,4 +23,22 @@ const onExpressionEval = (expression, data) => {
   }
 };
 
-export { getRenderedTpl, onExpressionEval };
+const json2FormData = (isFormData, data, invisibleField = []) => {
+  let formData;
+  if (isFormData) {
+    formData = new FormData();
+    for (let name in data) {
+      if (data.hasOwnProperty(name) && !invisibleField.includes(name))
+        formData.append(name, data[name]);
+    }
+  } else {
+    formData = {};
+    for (let name in data) {
+      if (data.hasOwnProperty(name) && !invisibleField.includes(name))
+        formData[name] = data[name];
+    }
+  }
+  return formData;
+};
+
+export { getRenderedTpl, getCompiledUrl, onExpressionEval, json2FormData };

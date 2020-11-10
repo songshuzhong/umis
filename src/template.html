@@ -7,22 +7,15 @@
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
     />
-    <% for (var meta in htmlWebpackPlugin.options.metas) { %>
-    <meta
-      name="<%=meta %>"
-      content="<%=htmlWebpackPlugin.options.metas[meta] %>"
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/editor/editor.main.min.css"
     />
-    <% } %>
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <% for (var style of htmlWebpackPlugin.options.styles) { %>
-    <link href="<%=style %>" rel="stylesheet" />
-    <% } %>
   </head>
   <body>
     <div id="app"></div>
-    <% for (var script of htmlWebpackPlugin.options.scripts) { %>
-    <script type="text/javascript" src="<%=script %>"></script>
-    <% } %> <%= htmlWebpackPlugin.options.debug%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
+
     <script type="text/javascript">
       var umisConfig = {
         isFormData: true,
@@ -33,6 +26,29 @@
             'https://www.fastmock.site/mock/a93e0b29161761b8153cbc02db04c643',
         },
       };
+      require.config({
+        paths: {
+          vs:
+            'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs',
+        },
+      });
+      window.MonacoEnvironment = { getWorkerUrl: () => proxy };
+      let proxy = URL.createObjectURL(
+        new Blob(
+          [
+            `
+            self.MonacoEnvironment = {
+              baseUrl: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min'
+            };
+            importScripts('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/base/worker/workerMain.min.js');`,
+          ],
+          { type: 'text/javascript' }
+        )
+      );
+
+      require(['vs/editor/editor.main'], function() {
+        window.monaco = monaco;
+      });
     </script>
   </body>
 </html>

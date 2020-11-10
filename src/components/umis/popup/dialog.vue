@@ -61,7 +61,6 @@
 </template>
 <script>
 import ElDialog from 'element-ui/lib/dialog';
-import ElButton from 'element-ui/lib/button';
 
 import derivedProp from '../../mixin/derivedProp';
 
@@ -69,7 +68,6 @@ export default {
   name: 'MisDialog',
   components: {
     ElDialog,
-    ElButton,
   },
   props: {
     path: {
@@ -168,9 +166,6 @@ export default {
     };
   },
   methods: {
-    onOpen() {
-      this.iVisible = true;
-    },
     onClose() {
       this.iVisible = false;
       this.onActionDisvisiable && this.onActionDisvisiable();
