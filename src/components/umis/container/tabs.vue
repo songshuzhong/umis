@@ -8,10 +8,11 @@
     @tab-click="onTabClick"
   >
     <el-tab-pane
+      v-for="(item, index) in body"
       :key="index"
       :label="item.label"
       :name="item.name"
-      v-for="(item, index) in body"
+      :lazy="true"
     >
       <span slot="label">
         <i v-if="item.icon" :class="item.icon" />
@@ -19,8 +20,9 @@
       </span>
       <mis-component
         :mis-name="item.renderer"
-        :props="item"
         :path="`${path}/${index}/${item.renderer}`"
+        :props="getProps(item, data)"
+        v-bind="getProps(item, data)"
       />
     </el-tab-pane>
   </el-tabs>
@@ -28,6 +30,8 @@
 <script>
 import ElTabs from 'element-ui/lib/tabs';
 import ElTabPane from 'element-ui/lib/tab-pane';
+
+import derivedProp from '../../mixin/derivedProp';
 
 export default {
   name: 'MisTabs',
@@ -73,6 +77,7 @@ export default {
       iActiveName: '',
     };
   },
+  mixins: [derivedProp],
   watch: {
     activeName: {
       handler(val) {

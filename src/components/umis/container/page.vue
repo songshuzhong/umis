@@ -9,8 +9,6 @@
         :key="index"
         :is="item.renderer"
         :path="`${path}/${index}/${item.renderer}`"
-        :visibleOn="item.visibleOn"
-        :disabledOn="item.disabledOn"
       />
     </template>
     <template
@@ -21,8 +19,6 @@
         :is="iSchema.renderer"
         :key="iSchema.name"
         :path="`${path}/${iSchema.renderer}`"
-        :visibleOn="iSchema.visibleOn"
-        :disabledOn="iSchema.disabledOn"
       />
     </template>
   </div>

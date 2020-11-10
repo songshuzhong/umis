@@ -11,6 +11,8 @@ import MisAside from '~components/umis/container/aside';
 import MisHeader from '~components/umis/container/header';
 import MisFooter from '~components/umis/container/footer';
 import MisTabs from '~components/umis/container/tabs';
+import MisService from '~components/umis/container/service';
+import MisComponent from '~components/umis/container/component';
 
 import MisSwitch from 'element-ui/lib/switch';
 import MisInput from 'element-ui/lib/input';
@@ -42,48 +44,50 @@ import MisHtml from '~components/umis/html';
 import MisMonaco from '~components/umis/monaco';
 import MisImage from '~components/umis/image';
 import MisLink from '~components/umis/link';
-import MisComponent from '~components/umis/component';
+import MisTable from '~components/umis/table';
 
 import MisSetting from '~components/umis/setting';
 
 const components = {
   Fragment,
-  MisComponent,
-  MisPage,
-  MisAction,
-  MisGrid,
-  MisCards,
-  MisAvatar,
-  MisDialog,
-  MisMonaco,
-  MisDrawer,
-  MisLink,
-  MisAlert,
-  MisHtml,
   MisContainer,
-  MisHeader,
-  MisAside,
-  MisMain,
-  MisFooter,
+  MisPage,
   MisLayout,
+  MisGrid,
+  MisMain,
+  MisAside,
+  MisHeader,
+  MisFooter,
+  MisTabs,
+  MisService,
+  MisComponent,
+  MisSwitch,
+  MisInput,
+  MisDatepicker,
   MisForm,
-  MisUpload,
+  MisAction,
   MisField,
-  MisCombo,
   MisSelect,
   MisCheckbox,
   MisRadio,
-  MisSwitch,
   MisButton,
-  MisDatepicker,
+  MisCombo,
+  MisUpload,
   MisTree,
   MisMenu,
   MisSubmenu,
-  MisMenuItem,
   MisMenuItemGroup,
-  MisInput,
+  MisMenuItem,
+  MisAlert,
+  MisDialog,
+  MisDrawer,
+  MisCards,
+  MisAvatar,
+  MisHtml,
+  MisMonaco,
   MisImage,
-  MisTabs,
+  MisLink,
+  MisTable,
   MisSetting,
 };
 

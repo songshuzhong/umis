@@ -1,14 +1,23 @@
 <template>
   <fragment>
     <component
+      v-bind="getBody($props)"
+      :path="`${path}/${actionType}`"
       :is="actionType"
       :visible="visible"
       :data="data"
-      :path="`${path}/${actionType}`"
       :on-action-disvisiable="onDisVisiable"
-      v-bind="getBody($props)"
     />
-    <el-button @click="onClick">{{ text }}</el-button>
+    <el-button
+      :size="size"
+      :type="type"
+      :plain="plain"
+      :round="round"
+      :circle="circle"
+      @click="onClick"
+    >
+      {{ text }}
+    </el-button>
   </fragment>
 </template>
 <script>
@@ -54,11 +63,32 @@ export default {
       type: Function,
       required: false,
     },
+    size: {
+      type: String,
+      required: false,
+    },
+    type: {
+      type: String,
+      required: false,
+    },
+    plain: {
+      type: Boolean,
+      required: false,
+    },
+    round: {
+      type: Boolean,
+      required: false,
+    },
+    circle: {
+      type: Boolean,
+      required: false,
+    },
   },
   mixins: [derivedProp],
   data() {
     return {
       visible: false,
+      clipboard: '',
     };
   },
   methods: {
@@ -66,11 +96,10 @@ export default {
       this.visible = false;
     },
     onClick() {
-      if (this.actionType === 'mis-dialog') {
+      if (['mis-dialog', 'mis-drawer'].includes(this.actionType)) {
         this.visible = true;
       }
       this.action && this.action();
-      this.afterAction && this.afterAction();
     },
   },
 };

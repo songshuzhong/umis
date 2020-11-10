@@ -1,63 +1,58 @@
 <template>
-  <fragment>
-    <el-button type="text" @click="iVisible = true">{{ label }}</el-button>
-    <el-drawer
-      :appendToBody="appendToBody"
-      :closeOnPressEscape="closeOnPressEscape"
-      :custom-class="classname"
-      :modal="modal"
-      :modalAppendToBody="modalAppendToBody"
-      :direction="direction"
-      :showClose="showClose"
-      :size="size"
-      :visible.sync="iVisible"
-      :wrapperClosable="wrapperClosable"
-      :withHeader="withHeader"
-      destroy-on-close
-    >
-      <template v-if="header" slot="title">
-        <mis-component
-          :mis-name="header.renderer"
-          :path="`${path}/${header.renderer}`"
-          :action="onClose"
-          :after-action="onClose"
-          :props="header"
-        />
-      </template>
-      <template v-for="(item, index) in body">
-        <mis-component
-          :mis-name="item.renderer"
-          :key="index"
-          :path="`${path}/${index}/${item.renderer}`"
-          :footer="item.footer"
-          :action="onClose"
-          :after-action="onClose"
-          :props="item"
-        />
-      </template>
-      <template v-if="footer">
-        <mis-component
-          v-for="(item, index) in footer"
-          :mis-name="item.renderer"
-          :key="index"
-          :path="`${path}/${index}/${item.renderer}`"
-          :footer="item.footer"
-          :action="onClose"
-          :after-action="onClose"
-          :props="item"
-        />
-      </template>
-    </el-drawer>
-  </fragment>
+  <el-drawer
+    :appendToBody="appendToBody"
+    :closeOnPressEscape="closeOnPressEscape"
+    :custom-class="classname"
+    :modal="modal"
+    :modalAppendToBody="modalAppendToBody"
+    :direction="direction"
+    :showClose="showClose"
+    :size="size"
+    :visible.sync="iVisible"
+    :wrapperClosable="wrapperClosable"
+    :withHeader="withHeader"
+    destroy-on-close
+    @close="onClose"
+  >
+    <template v-if="header" slot="title">
+      <mis-component
+        :mis-name="header.renderer"
+        :path="`${path}/${header.renderer}`"
+        :action="onClose"
+        :after-action="onClose"
+        :props="getProps(header, data)"
+      />
+    </template>
+    <template v-for="(item, index) in body">
+      <mis-component
+        :mis-name="item.renderer"
+        :key="index"
+        :path="`${path}/${index}/${item.renderer}`"
+        :footer="item.footer"
+        :action="onClose"
+        :props="getProps(item, data)"
+      />
+    </template>
+    <template v-if="footer">
+      <mis-component
+        v-for="(item, index) in footer"
+        :mis-name="item.renderer"
+        :key="index"
+        :path="`${path}/${index}/${item.renderer}`"
+        :footer="item.footer"
+        :action="onClose"
+        :props="getProps(item, data)"
+      />
+    </template>
+  </el-drawer>
 </template>
 <script>
 import ElDrawer from 'element-ui/lib/drawer';
-import ElButton from 'element-ui/lib/button';
+import derivedProp from '../../mixin/derivedProp';
 
 export default {
   name: 'MisDrawer',
   components: {
-    ElButton,
     ElDrawer,
   },
   props: {
@@ -126,8 +121,12 @@ export default {
       required: false,
       default: true,
     },
-    label: {
+    name: {
       type: String,
+      required: true,
+    },
+    data: {
+      type: [Array, Object],
       required: true,
     },
     body: {
@@ -138,12 +137,17 @@ export default {
       type: [Array, Object],
       required: false,
     },
+    onActionDisvisiable: {
+      type: Function,
+      required: false,
+    },
   },
   data() {
     return {
       iVisible: false,
     };
   },
+  mixins: [derivedProp],
   watch: {
     visible(val) {
       this.iVisible = val;
@@ -152,6 +156,7 @@ export default {
   methods: {
     onClose() {
       this.iVisible = false;
+      this.onActionDisvisiable && this.onActionDisvisiable();
     },
   },
 };
