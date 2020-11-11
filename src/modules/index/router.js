@@ -32,19 +32,6 @@ const router = new VueRouter({
           },
         },
         {
-          path: '/reactive',
-          component: Page,
-          props: {
-            initSchema: {
-              url: '/api/schema/reactive',
-              method: 'get',
-            },
-          },
-          meta: {
-            title: '联动',
-          },
-        },
-        {
           path: '/grid',
           component: Page,
           props: {
@@ -71,16 +58,16 @@ const router = new VueRouter({
           },
         },
         {
-          path: '/cards',
+          path: '/linkage',
           component: Page,
           props: {
             initSchema: {
-              url: '/api/schema/cards',
+              url: '/api/schema/linkage',
               method: 'get',
             },
           },
           meta: {
-            title: '卡片',
+            title: ' 联动',
           },
         },
         {
@@ -94,19 +81,6 @@ const router = new VueRouter({
           },
           meta: {
             title: '选项卡',
-          },
-        },
-        {
-          path: '/linkage',
-          component: Page,
-          props: {
-            initSchema: {
-              url: '/api/schema/linkage',
-              method: 'get',
-            },
-          },
-          meta: {
-            title: ' 联动',
           },
         },
         {

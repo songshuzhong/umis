@@ -1,8 +1,5 @@
 <template>
   <div class="umis-setting__cards">
-    <setting-api />
-    <setting-style />
-    <setting-interceptor />
     <el-card class="umis-setting__card-margin">
       <div slot="header">
         <span>表单类型</span>
@@ -14,6 +11,9 @@
         @change="handleFormTypeChange"
       />
     </el-card>
+    <setting-api />
+    <setting-interceptor />
+    <setting-style />
   </div>
 </template>
 <script>
@@ -55,9 +55,6 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  .umis-setting__header__save {
-    display: block;
   }
 }
 </style>

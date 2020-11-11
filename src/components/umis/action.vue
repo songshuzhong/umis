@@ -8,19 +8,27 @@
       :data="data"
       :on-action-disvisiable="onDisVisiable"
     />
-    <el-button
-      :size="size"
-      :type="type"
-      :plain="plain"
-      :round="round"
-      :circle="circle"
-      @click="onClick"
+    <el-tooltip
+      :disabled="tipDisabled"
+      :effect="tipEffect"
+      :content="tipContent"
+      :placement="tipPlacement"
     >
-      {{ text }}
-    </el-button>
+      <el-button
+        :size="size"
+        :type="type"
+        :plain="plain"
+        :round="round"
+        :circle="circle"
+        @click="onClick"
+      >
+        {{ text }}
+      </el-button>
+    </el-tooltip>
   </fragment>
 </template>
 <script>
+import ElTooltip from 'element-ui/lib/tooltip';
 import ElButton from 'element-ui/lib/button';
 
 import derivedProp from '../mixin/derivedProp';
@@ -28,6 +36,7 @@ import derivedProp from '../mixin/derivedProp';
 export default {
   name: 'MisAction',
   components: {
+    ElTooltip,
     ElButton,
   },
   props: {
@@ -81,6 +90,23 @@ export default {
     },
     circle: {
       type: Boolean,
+      required: false,
+    },
+    tipDisabled: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    tipEffect: {
+      type: String,
+      required: false,
+    },
+    tipContent: {
+      type: String,
+      required: false,
+    },
+    tipPlacement: {
+      type: String,
       required: false,
     },
   },

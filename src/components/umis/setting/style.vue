@@ -2,7 +2,7 @@
   <el-card class="umis-setting__card-margin">
     <div slot="header" class="umis-setting__header">
       <span>全局样式</span>
-      <el-button class="umis-setting__header__save" @click="onSave">
+      <el-button plain size="mini" type="primary" @click="onSave">
         应用
       </el-button>
     </div>

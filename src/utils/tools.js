@@ -23,9 +23,9 @@ const onExpressionEval = (expression, data) => {
   }
 };
 
-const json2FormData = (isFormData, data, invisibleField = []) => {
+const json2FormData = (isFormData, data, invisibleField = [], target) => {
   let formData;
-  if (isFormData) {
+  if (isFormData && !target) {
     formData = new FormData();
     for (let name in data) {
       if (data.hasOwnProperty(name) && !invisibleField.includes(name))

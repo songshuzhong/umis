@@ -1,5 +1,6 @@
 <template>
   <el-tabs
+    :path="`${path}`"
     :type="type"
     :style="tabStyle"
     :stretch="stretch"
@@ -9,21 +10,40 @@
   >
     <el-tab-pane
       v-for="(item, index) in body"
-      :key="index"
+      :key="`${path}/${index}`"
       :label="item.label"
       :name="item.name"
       :lazy="true"
+      v-bind="getProps(item)"
     >
       <span slot="label">
         <i v-if="item.icon" :class="item.icon" />
         {{ item.label }}
       </span>
-      <mis-component
-        :mis-name="item.renderer"
-        :path="`${path}/${index}/${item.renderer}`"
-        :props="getProps(item, data)"
-        v-bind="getProps(item, data)"
-      />
+      <template
+        v-if="Object.prototype.toString.call(item.body) === '[object Object]'"
+      >
+        <mis-component
+          :mis-name="item.body.renderer"
+          :path="`${path}/${index}/${item.body.renderer}`"
+          :props="getProps(item.body, data)"
+          :body="getBody(item.body, data)"
+          v-bind="getProps(item.body, data)"
+        />
+      </template>
+      <template
+        v-else
+        v-for="(child, index) in item.body"
+        :key="`${path}/${index}/${child.renderer}`"
+      >
+        <mis-component
+          :mis-name="child.renderer"
+          :path="`${path}/${index}/${child.renderer}`"
+          :props="getProps(child, data)"
+          :body="getBody(child, data)"
+          v-bind="getProps(child, data)"
+        />
+      </template>
     </el-tab-pane>
   </el-tabs>
 </template>

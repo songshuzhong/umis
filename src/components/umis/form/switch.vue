@@ -3,18 +3,19 @@
     v-model="iValue"
     :disabled="disabled"
     :width="width"
-    :activeIconClass="activeIconClass"
-    :activeText="activeText"
-    :inActiveText="inActiveText"
-    :activeValue="activeValue"
-    :inActiveValue="inActiveValue"
-    :activeColor="activeColor"
-    :inActiveColor="inActiveColor"
-    :store="store"
+    :active-icon-class="activeIconClass"
+    :active-text="activeText"
+    :inactive-text="inActiveText"
+    :active-value="activeValue"
+    :inactive-value="inActiveValue"
+    :active-color="activeColor"
+    :inactive-color="inActiveColor"
+    @change="onChange"
   />
 </template>
 <script>
 import ElSwitch from 'element-ui/lib/switch';
+import linkage from '../../mixin/linkage';
 
 export default {
   name: 'MisSwitch',
@@ -22,6 +23,10 @@ export default {
     ElSwitch,
   },
   props: {
+    name: {
+      type: String,
+      required: true,
+    },
     value: {
       type: [Boolean, String, Number],
       required: false,
@@ -49,10 +54,12 @@ export default {
     activeValue: {
       type: [Boolean, String, Number],
       required: false,
+      default: true,
     },
     inActiveValue: {
       type: [Boolean, String, Number],
       required: false,
+      default: false,
     },
     activeColor: {
       type: String,
@@ -62,9 +69,33 @@ export default {
       type: String,
       required: false,
     },
-    store: {
-      type: Object,
+    target: {
+      type: String,
       required: false,
+    },
+  },
+  data() {
+    return {
+      iValue: '',
+    };
+  },
+  watch: {
+    value: {
+      handler(val) {
+        this.iValue = val;
+      },
+      immediate: true,
+    },
+  },
+  mixins: [linkage],
+  methods: {
+    onChange(val) {
+      const linkage = {};
+      this.iValue = val;
+      linkage[this.name] = this.iValue;
+
+      this.$emit('input', this.iValue);
+      this.onLinkageTrigger(linkage);
     },
   },
 };

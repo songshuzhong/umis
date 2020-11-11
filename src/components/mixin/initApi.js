@@ -13,22 +13,27 @@ export default {
       type: Object,
       required: false,
     },
+    initData: {
+      type: [Object, Array],
+      required: false,
+    },
   },
   data() {
     return {
       iApiLoading: false,
       iSchemaLoading: false,
       iSchema: {},
-      data: {
-        list: [],
-        pageIndex: 1,
-        pageSize: 15,
-        total: 0,
-        hasMore: true,
-      },
+      iList: [],
+      data: {},
     };
   },
   watch: {
+    initData: {
+      handler(val) {
+        if (val) this.iData = val;
+      },
+      immediate: true,
+    },
     'initSchema.url': {
       handler(val) {
         if (val) {
@@ -41,11 +46,12 @@ export default {
       },
       deep: true,
     },
-    'data.pageIndex'() {
-      this.fetchInitRequest();
-    },
   },
   mounted() {
+    this.iTotal = 0;
+    this.iPageIndex = 1;
+    this.iPageSize = 15;
+    this.iHasMore = true;
     this.$eventHub.$on('mis-schema:change', this.upSchema);
     if (this.initSchema) {
       if (this.initSchema.method === 'post') {
@@ -93,19 +99,27 @@ export default {
     },
     fetchGetRequest() {
       const self = this;
-      const compiledUrl = this.$getCompiledUrl(this.initApi.url, this.data);
+      const { url, params } = this.initApi;
+      const compiledUrl = this.$getCompiledUrl(url, this.data);
+      const compiledParams = this.$getCompiledUrl(params, this.data);
 
       this.$api
         .slientApi()
-        .get(compiledUrl, { params: this.initApi.params })
+        .get(compiledUrl, {
+          params: {
+            pageIndex: this.iPageIndex,
+            pageSize: this.iPageSize,
+            ...compiledParams,
+          },
+        })
         .then(res => {
           const data = res.data;
 
           if (data.hasOwnProperty('pageSize')) {
             const { total, list, hasMore } = data;
-            self.data.total = total;
-            self.data.list = list;
-            self.data.hasMore = hasMore;
+            self.iTotal = total;
+            self.iList = list;
+            self.iHasMore = hasMore;
           } else {
             self.data = res.data;
           }
@@ -123,9 +137,9 @@ export default {
           const data = res.data;
           if (data.hasOwnProperty('pageSize')) {
             const { total, list, hasMore } = data;
-            self.data.total = total;
-            self.data.list = list;
-            self.data.hasMore = hasMore;
+            self.iTotal = total;
+            self.iList = list;
+            self.iHasMore = hasMore;
           } else {
             self.iData = res.data;
           }
@@ -139,7 +153,8 @@ export default {
       }
     },
     handlePageChanged(pageIndex) {
-      this.data.pageIndex = pageIndex;
+      this.iPageIndex = pageIndex;
+      this.fetchInitRequest();
     },
   },
 };

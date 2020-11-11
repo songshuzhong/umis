@@ -44,15 +44,16 @@ export default {
     this.$eventHub.$on('mis-component:linkage', this.handleLinkage);
   },
   methods: {
-    onLinkageTrigger() {
+    onLinkageTrigger(data) {
       if (this.target) {
-        this.$eventHub.$emit('mis-component:linkage', this.target, this.data);
+        const trigerData = data || this.iData;
+        this.$eventHub.$emit('mis-component:linkage', this.target, trigerData);
       }
     },
     handleLinkage(target, data) {
       if (this.name && target === this.name) {
-        const newData = Object.assign({}, this.data, data);
-        this.data = clonedeep(newData);
+        const newData = Object.assign({}, this.iData, data);
+        this.iData = clonedeep(newData);
       }
     },
   },

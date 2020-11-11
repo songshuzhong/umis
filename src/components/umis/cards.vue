@@ -2,7 +2,7 @@
   <div class="umis-crud__container">
     <el-row v-loading="iApiLoading" :gutter="gutter">
       <el-col
-        v-for="(item, index) in data.list"
+        v-for="(item, index) in iList"
         :span="span"
         :key="index"
         :xs="size[0]"
@@ -48,9 +48,9 @@
     <el-pagination
       background
       layout="prev, pager, next"
-      :total="data.total"
-      :page-size="data.pageSize"
-      :current-page="data.pageIndex"
+      :total="iTotal"
+      :page-size="iPageSize"
+      :current-page="iPageIndex"
       @current-change="handlePageChanged"
     />
   </div>
@@ -76,6 +76,10 @@ export default {
     path: {
       type: String,
       required: true,
+    },
+    name: {
+      type: String,
+      required: false,
     },
     body: {
       type: [Array, Object],
