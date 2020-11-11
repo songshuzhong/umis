@@ -58,19 +58,6 @@ const router = new VueRouter({
           },
         },
         {
-          path: '/tabs',
-          component: Page,
-          props: {
-            initSchema: {
-              url: '/api/schema/tabs',
-              method: 'get',
-            },
-          },
-          meta: {
-            title: '选项卡',
-          },
-        },
-        {
           path: '/linkage',
           component: Page,
           props: {
@@ -81,6 +68,19 @@ const router = new VueRouter({
           },
           meta: {
             title: ' 联动',
+          },
+        },
+        {
+          path: '/tabs',
+          component: Page,
+          props: {
+            initSchema: {
+              url: '/api/schema/tabs',
+              method: 'get',
+            },
+          },
+          meta: {
+            title: '选项卡',
           },
         },
         {

@@ -47,13 +47,11 @@ export default {
       deep: true,
     },
   },
-  beforeMount() {
+  mounted() {
     this.iTotal = 0;
     this.iPageIndex = 1;
     this.iPageSize = 15;
     this.iHasMore = true;
-  },
-  mounted() {
     this.$eventHub.$on('mis-schema:change', this.upSchema);
     if (this.initSchema) {
       if (this.initSchema.method === 'post') {

@@ -1,5 +1,6 @@
 <template>
   <el-tabs
+    :path="`${path}`"
     :type="type"
     :style="tabStyle"
     :stretch="stretch"
@@ -20,10 +21,22 @@
         {{ item.label }}
       </span>
       <template
-        v-if="Object.prototype.toString.call(item.body) === '[object Array]'"
+        v-if="Object.prototype.toString.call(item.body) === '[object Object]'"
       >
         <mis-component
-          v-for="(child, index) in item.body"
+          :mis-name="item.body.renderer"
+          :path="`${path}/${index}/${item.body.renderer}`"
+          :props="getProps(item.body, data)"
+          :body="getBody(item.body, data)"
+          v-bind="getProps(item.body, data)"
+        />
+      </template>
+      <template
+        v-else
+        v-for="(child, index) in item.body"
+        :key="`${path}/${index}/${child.renderer}`"
+      >
+        <mis-component
           :mis-name="child.renderer"
           :path="`${path}/${index}/${child.renderer}`"
           :props="getProps(child, data)"
@@ -31,14 +44,6 @@
           v-bind="getProps(child, data)"
         />
       </template>
-      <mis-component
-        v-else
-        :mis-name="item.body.renderer"
-        :path="`${path}/${index}/${item.body.renderer}`"
-        :props="getProps(item.body, data)"
-        :body="getBody(item.body, data)"
-        v-bind="getProps(item.body, data)"
-      />
     </el-tab-pane>
   </el-tabs>
 </template>
