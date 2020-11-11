@@ -28,6 +28,8 @@ import ElRadioGroup from 'element-ui/lib/radio-group';
 import ElRadioButton from 'element-ui/lib/radio-button';
 import ElRadio from 'element-ui/lib/radio';
 
+import linkage from '../../mixin/linkage';
+
 export default {
   name: 'MisRadio',
   components: {
@@ -54,6 +56,10 @@ export default {
       type: String,
       required: false,
     },
+    target: {
+      type: String,
+      required: false,
+    },
   },
   data() {
     return {
@@ -68,9 +74,14 @@ export default {
       immediate: true,
     },
   },
+  mixins: [linkage],
   methods: {
     onChange() {
+      const linkage = {};
+      linkage[this.name] = this.iValue;
+
       this.$emit('input', this.iValue);
+      this.onLinkageTrigger(linkage);
     },
   },
 };

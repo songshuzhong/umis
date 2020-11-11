@@ -37,6 +37,10 @@ export default {
     ElImage,
   },
   props: {
+    name: {
+      type: String,
+      required: false,
+    },
     src: {
       type: [Array, String],
       required: true,

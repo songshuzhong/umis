@@ -15,6 +15,10 @@ async function mockList(pageIndex, pageSize, total, drowsiness) {
       address: `上海市普陀区金沙江路 1518${i * pageIndex} 弄`,
       pageIndex,
       zip: 200333,
+      type: 'primary',
+      icon: 'el-icon-more',
+      color: '#0bbd87',
+      timestamp: `2016-0${(i % 9) + 1}-0${(i % 9) + 1}`,
     });
   }
 
@@ -28,9 +32,8 @@ module.exports = {
     await sleep(1000);
     ctx.restify({ code: 1000, msg: 'success' });
   },
-  'GET /api/pagelist/:pageIndex/:pageSize': async ctx => {
-    const pageIndex = ctx.params.pageIndex;
-    const pageSize = ctx.params.pageSize;
+  'GET /api/pagelist': async ctx => {
+    const { pageIndex, pageSize } = ctx.request.query;
     const total = 45;
 
     let hasMore = true;

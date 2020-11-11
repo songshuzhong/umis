@@ -9,20 +9,35 @@
   >
     <el-tab-pane
       v-for="(item, index) in body"
-      :key="index"
+      :key="`${path}/${index}`"
       :label="item.label"
       :name="item.name"
       :lazy="true"
+      v-bind="getProps(item)"
     >
       <span slot="label">
         <i v-if="item.icon" :class="item.icon" />
         {{ item.label }}
       </span>
+      <template
+        v-if="Object.prototype.toString.call(item.body) === '[object Array]'"
+      >
+        <mis-component
+          v-for="(child, index) in item.body"
+          :mis-name="child.renderer"
+          :path="`${path}/${index}/${child.renderer}`"
+          :props="getProps(child, data)"
+          :body="getBody(child, data)"
+          v-bind="getProps(child, data)"
+        />
+      </template>
       <mis-component
-        :mis-name="item.renderer"
-        :path="`${path}/${index}/${item.renderer}`"
-        :props="getProps(item, data)"
-        v-bind="getProps(item, data)"
+        v-else
+        :mis-name="item.body.renderer"
+        :path="`${path}/${index}/${item.body.renderer}`"
+        :props="getProps(item.body, data)"
+        :body="getBody(item.body, data)"
+        v-bind="getProps(item.body, data)"
       />
     </el-tab-pane>
   </el-tabs>

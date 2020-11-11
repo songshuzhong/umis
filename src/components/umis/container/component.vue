@@ -40,6 +40,7 @@ const components = [
   'mis-dropdown',
   'mis-grid',
   'mis-cards',
+  'mis-card',
   'mis-avatar',
   'mis-dialog',
   'mis-drawer',
@@ -72,6 +73,7 @@ const components = [
   'mis-table',
   'mis-domain',
   'mis-monaco',
+  'mis-timeline',
 ];
 
 export default {

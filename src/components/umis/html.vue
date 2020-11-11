@@ -22,9 +22,22 @@ export default {
       default: {},
     },
   },
+  data() {
+    return {
+      iData: {},
+    };
+  },
   computed: {
     getHtml() {
-      return this.$getRenderedTpl(this.html, this.data);
+      return this.$getRenderedTpl(this.html, this.iData);
+    },
+  },
+  watch: {
+    data: {
+      handler(val) {
+        this.iData = val;
+      },
+      immediate: true,
     },
   },
   mixins: [derivedProp, linkage],

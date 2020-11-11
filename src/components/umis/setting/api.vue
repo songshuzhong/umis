@@ -3,10 +3,10 @@
     <div slot="header" class="umis-setting__header">
       <span>接口拦截器</span>
       <el-button-group>
-        <el-button class="umis-setting__header__save" @click="onAdd">
+        <el-button plain size="mini" type="primary" @click="onAdd">
           添加
         </el-button>
-        <el-button class="umis-setting__header__save" @click="onSave">
+        <el-button plain size="mini" type="primary" @click="onSave">
           应用
         </el-button>
       </el-button-group>

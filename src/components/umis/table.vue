@@ -2,7 +2,7 @@
   <div class="umis-crud__container">
     <el-table
       v-loading="iApiLoading"
-      :data="data.list"
+      :data="iList"
       :height="height"
       :stripe="stripe"
       :border="border"
@@ -46,9 +46,9 @@
     <el-pagination
       background
       layout="prev, pager, next"
-      :total="data.total"
-      :page-size="data.pageSize"
-      :current-page="data.pageIndex"
+      :total="iTotal"
+      :page-size="iPageSize"
+      :current-page="iPageIndex"
       @current-change="handlePageChanged"
     />
   </div>
@@ -114,16 +114,6 @@ export default {
       type: Boolean,
       required: false,
       default: true,
-    },
-    pageIndex: {
-      type: [Number, String],
-      required: false,
-      default: 0,
-    },
-    pageSize: {
-      type: [Number, String],
-      required: false,
-      default: 14,
     },
   },
   mixins: [initApi, derivedProp, linkage],

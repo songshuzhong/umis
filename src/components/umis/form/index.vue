@@ -6,6 +6,7 @@
     :label-width="labelWidth"
     :label-position="labelPosition"
     :model="iData"
+    :inline="inline"
   >
     <template v-for="(item, index) in controls" :key="index">
       <mis-field
@@ -87,6 +88,11 @@ export default {
       required: false,
       default: 'right',
     },
+    inline: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     target: {
       type: String,
       required: false,
@@ -143,12 +149,16 @@ export default {
       });
     },
     sendFormData() {
+      const formData = this.$json2FormData(
+        this.$umisConfig.isFormData,
+        this.iData,
+        this.invisibleField,
+        this.target
+      );
+      if (this.target) {
+        return this.onLinkageTrigger();
+      }
       if (this.api) {
-        const formData = this.$json2FormData(
-          this.$umisConfig.isFormData,
-          this.iData,
-          this.invisibleField
-        );
         this.iLoading = true;
         this.$api
           .slientApi()
@@ -159,7 +169,6 @@ export default {
               title: '通知',
               message: res.msg,
             });
-            this.onLinkageTrigger();
           })
           .catch(e => {
             this.$notice({

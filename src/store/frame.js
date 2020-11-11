@@ -39,12 +39,6 @@ const json = [
                   },
                   {
                     renderer: 'mis-menu-item',
-                    index: 'reactive',
-                    name: 'reactive',
-                    label: '可用性联动',
-                  },
-                  {
-                    renderer: 'mis-menu-item',
                     index: 'validator',
                     name: 'validator',
                     label: '表单验证',
@@ -54,12 +48,6 @@ const json = [
                     index: 'grid',
                     name: 'grid',
                     label: '栅栏',
-                  },
-                  {
-                    renderer: 'mis-menu-item',
-                    name: 'cards',
-                    index: 'cards',
-                    label: '卡片列表',
                   },
                   {
                     renderer: 'mis-menu-item',

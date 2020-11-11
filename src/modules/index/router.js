@@ -32,19 +32,6 @@ const router = new VueRouter({
           },
         },
         {
-          path: '/reactive',
-          component: Page,
-          props: {
-            initSchema: {
-              url: '/api/schema/reactive',
-              method: 'get',
-            },
-          },
-          meta: {
-            title: '联动',
-          },
-        },
-        {
           path: '/grid',
           component: Page,
           props: {
@@ -68,19 +55,6 @@ const router = new VueRouter({
           },
           meta: {
             title: '验证',
-          },
-        },
-        {
-          path: '/cards',
-          component: Page,
-          props: {
-            initSchema: {
-              url: '/api/schema/cards',
-              method: 'get',
-            },
-          },
-          meta: {
-            title: '卡片',
           },
         },
         {

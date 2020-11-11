@@ -31,6 +31,10 @@ import linkage from '../../mixin/linkage';
 export default {
   name: 'MisService',
   props: {
+    name: {
+      type: String,
+      required: false,
+    },
     header: {
       type: [Array, Object],
       required: false,

@@ -20,6 +20,10 @@ export default {
     ElAvatar,
   },
   props: {
+    name: {
+      type: String,
+      required: false,
+    },
     classname: {
       type: String,
       required: false,

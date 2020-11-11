@@ -140,122 +140,6 @@ module.exports = {
       },
     });
   },
-  'GET /api/schema/reactive': async ctx => {
-    ctx.restify({
-      msg: 'success',
-      code: 1000,
-      data: {
-        renderer: 'mis-form',
-        name: 'form2',
-        controls: [
-          {
-            renderer: 'mis-datepicker',
-            name: 'date',
-            label: '日期',
-            hiddenOn: 'select2.length > 1',
-          },
-          {
-            renderer: 'mis-select',
-            name: 'select2',
-            label: '选择框',
-            disabledOn: 'switchs2 === false',
-            options: [
-              {
-                value: '选项1',
-                text: '黄金糕',
-              },
-              {
-                value: '选项2',
-                text: '双皮奶',
-              },
-            ],
-          },
-          {
-            renderer: 'mis-switch',
-            name: 'switchs2',
-            label: '配送',
-            value: false,
-          },
-        ],
-      },
-    });
-  },
-  'GET /api/schema/cards': async ctx => {
-    await sleep(500);
-
-    ctx.restify({
-      msg: 'success',
-      code: 1000,
-      data: {
-        renderer: 'mis-cards',
-        name: 'cards1',
-        initApi: {
-          url: '/api/pagelist/${pageIndex}/${pageSize}',
-          method: 'get',
-        },
-        span: 6,
-        gutter: 20,
-        shadow: 'hover',
-        bodyStyle: { padding: '0' },
-        classname: 'mis-card-margin',
-        header: '<h4><%=data.name%></h4>',
-        body: {
-          renderer: 'mis-html',
-          html:
-            '<h5>id：<%=data.id%></h5><h5>名称：<%=data.name%></h5><h5>地址：<%=data.address%></h5><h5>形状：<%=data.shape%></h5>',
-        },
-        footer: [
-          {
-            renderer: 'mis-action',
-            text: '弹一个窗',
-            actionType: 'mis-dialog',
-            body: {
-              title: '我是可以无限弹窗的哦',
-              modal: false,
-              body: [
-                {
-                  renderer: 'mis-image',
-                  src:
-                    'https://songshuzhong.github.io/visualizer/static/img/html5.png',
-                },
-              ],
-              footer: {
-                renderer: 'mis-action',
-                text: '点击查看详情',
-                actionType: 'mis-dialog',
-                body: {
-                  title: '卡片详情',
-                  modal: false,
-                  appendToBody: true,
-                  body: [
-                    {
-                      renderer: 'mis-html',
-                      html:
-                        '<h1>id：<%=data.id%></h1><h1>名称：<%=data.name%></h1><h1>地址：<%=data.address%></h1><h1>形状：<%=data.shape%></h1>',
-                    },
-                    {
-                      renderer: 'mis-action',
-                      text: '点击查看详情',
-                      actionType: 'mis-dialog',
-                      body: {
-                        title: '又一个 dialog',
-                        appendBody: true,
-                        modal: false,
-                        body: {
-                          renderer: 'mis-html',
-                          html: '<h1>又一个 dialog</h1>',
-                        },
-                      },
-                    },
-                  ],
-                },
-              },
-            },
-          },
-        ],
-      },
-    });
-  },
   'GET /api/schema/grid': async ctx => {
     await sleep(500);
 
@@ -465,181 +349,258 @@ module.exports = {
         activeName: 'tabform',
         body: [
           {
-            renderer: 'mis-error',
             name: 'tabform',
-            label: '选项卡表单',
-            icon: 'el-icon-s-order',
-          },
-          {
-            renderer: 'mis-table',
-            name: 'html',
-            label: '选项卡表格',
-            icon: 'el-icon-document',
-            maxHeight: 600,
-            initApi: {
-              url: '/api/pagelist/${pageIndex}/${pageSize}',
-              method: 'get',
-            },
-            columns: [
-              {
-                name: 'name',
-                label: '姓名',
-                fixed: 'left',
-                width: 120,
+            label: '卡片 CRUD',
+            icon: 'el-icon-menu',
+            body: {
+              renderer: 'mis-cards',
+              name: 'cards1',
+              initApi: {
+                url: '/api/pagelist',
+                method: 'get',
               },
-              {
-                name: 'pageIndex',
-                label: '当前页',
-                width: 120,
+              span: 6,
+              gutter: 20,
+              shadow: 'hover',
+              bodyStyle: { padding: '0' },
+              classname: 'mis-card-margin',
+              header: '<h4><%=data.name%></h4>',
+              body: {
+                renderer: 'mis-html',
+                html:
+                  '<h5>id：<%=data.id%></h5><h5>名称：<%=data.name%></h5><h5>地址：<%=data.address%></h5><h5>形状：<%=data.shape%></h5>',
               },
-              {
-                name: 'province',
-                label: ' 省份',
-                width: 120,
-              },
-              {
-                name: 'city',
-                label: '市区',
-                width: 120,
-              },
-              {
-                name: 'date',
-                label: '日期',
-                width: 120,
-              },
-              {
-                name: 'address',
-                label: '地址',
-                width: 120,
-              },
-              {
-                name: 'zip',
-                label: '邮编',
-                width: 120,
-              },
-              {
-                label: 'dropdown',
-                body: [
-                  {
-                    renderer: 'mis-dropdown',
-                    text: '更多',
+              footer: [
+                {
+                  renderer: 'mis-action',
+                  text: '弹一个窗',
+                  actionType: 'mis-dialog',
+                  body: {
+                    title: '我是可以无限弹窗的哦',
+                    modal: false,
                     body: [
                       {
-                        renderer: 'mis-action',
-                        text: '百度一下',
-                        size: 'mini',
-                        actionType: 'mis-url',
-                        type: 'text',
-                        url: 'https://www.baidu.com?name=${name}',
-                        blank: true,
+                        renderer: 'mis-image',
+                        src:
+                          'https://songshuzhong.github.io/visualizer/static/img/html5.png',
                       },
+                    ],
+                    footer: {
+                      renderer: 'mis-action',
+                      text: '点击查看详情',
+                      actionType: 'mis-dialog',
+                      body: {
+                        title: '卡片详情',
+                        modal: false,
+                        appendToBody: true,
+                        body: [
+                          {
+                            renderer: 'mis-html',
+                            html:
+                              '<h1>id：<%=data.id%></h1><h1>名称：<%=data.name%></h1><h1>地址：<%=data.address%></h1><h1>形状：<%=data.shape%></h1>',
+                          },
+                          {
+                            renderer: 'mis-action',
+                            text: '点击查看详情',
+                            actionType: 'mis-dialog',
+                            body: {
+                              title: '又一个 dialog',
+                              appendBody: true,
+                              modal: false,
+                              body: {
+                                renderer: 'mis-html',
+                                html: '<h1>又一个 dialog</h1>',
+                              },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
+          {
+            label: '表格CRUD',
+            icon: 'el-icon-s-grid',
+            body: [
+              {
+                renderer: 'mis-table',
+                name: 'html',
+                maxHeight: 600,
+                initApi: {
+                  url: '/api/pagelist',
+                  method: 'get',
+                },
+                columns: [
+                  {
+                    name: 'name',
+                    label: '姓名',
+                    fixed: 'left',
+                    width: 120,
+                  },
+                  {
+                    name: 'pageIndex',
+                    label: '当前页',
+                    width: 120,
+                  },
+                  {
+                    name: 'province',
+                    label: ' 省份',
+                    width: 120,
+                  },
+                  {
+                    name: 'city',
+                    label: '市区',
+                    width: 120,
+                  },
+                  {
+                    name: 'date',
+                    label: '日期',
+                    width: 120,
+                  },
+                  {
+                    name: 'address',
+                    label: '地址',
+                    width: 120,
+                  },
+                  {
+                    name: 'zip',
+                    label: '邮编',
+                    width: 120,
+                  },
+                  {
+                    label: 'dropdown',
+                    width: 120,
+                    body: [
+                      {
+                        renderer: 'mis-dropdown',
+                        text: '更多',
+                        body: [
+                          {
+                            renderer: 'mis-action',
+                            text: '百度一下',
+                            size: 'mini',
+                            actionType: 'mis-url',
+                            type: 'text',
+                            url: 'https://www.baidu.com?name=${name}',
+                            blank: true,
+                          },
+                          {
+                            renderer: 'mis-action',
+                            text: 'ajax',
+                            reload: 'html',
+                            size: 'mini',
+                            actionType: 'mis-ajax',
+                            type: 'text',
+                            actionApi: {
+                              url: '/api/mis',
+                              method: 'post',
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    label: 'action操作集合',
+                    body: [
                       {
                         renderer: 'mis-action',
                         text: 'ajax',
                         reload: 'html',
                         size: 'mini',
                         actionType: 'mis-ajax',
-                        type: 'text',
                         actionApi: {
                           url: '/api/mis',
                           method: 'post',
                         },
                       },
-                    ],
-                  },
-                ],
-              },
-              {
-                label: 'action操作集合',
-                body: [
-                  {
-                    renderer: 'mis-action',
-                    text: 'ajax',
-                    reload: 'html',
-                    size: 'mini',
-                    actionType: 'mis-ajax',
-                    actionApi: {
-                      url: '/api/mis',
-                      method: 'post',
-                    },
-                  },
-                  {
-                    renderer: 'mis-action',
-                    text: '百度一下',
-                    size: 'mini',
-                    actionType: 'mis-url',
-                    url: 'https://www.baidu.com?name=${name}',
-                    blank: true,
-                  },
-                  {
-                    renderer: 'mis-action',
-                    text: '粘贴板',
-                    size: 'mini',
-                    actionType: 'mis-copy',
-                    content: 'https://www.baidu.com?name=${name}',
-                  },
-                  {
-                    renderer: 'mis-action',
-                    text: '路由跳转',
-                    size: 'mini',
-                    actionType: 'mis-redirect',
-                    url: '/visible',
-                  },
-                  {
-                    renderer: 'mis-action',
-                    text: '抽屉',
-                    size: 'mini',
-                    actionType: 'mis-drawer',
-                    body: {
-                      name: 'isEditor',
-                      showClose: true,
-                      size: '60%',
-                      label: '编辑',
-                      header: {
-                        renderer: 'mis-html',
-                        html:
-                          '<h1 style="text-align: left; color: white;">编辑Schema</h1>',
+                      {
+                        renderer: 'mis-action',
+                        text: '百度一下',
+                        size: 'mini',
+                        actionType: 'mis-url',
+                        url: 'https://www.baidu.com?name=${name}',
+                        blank: true,
                       },
-                      body: [
-                        {
-                          renderer: 'mis-form',
-                          name: 'form3',
-                          controls: [
+                      {
+                        renderer: 'mis-action',
+                        text: '粘贴板',
+                        size: 'mini',
+                        actionType: 'mis-copy',
+                        content: 'https://www.baidu.com?name=${name}',
+                      },
+                      {
+                        renderer: 'mis-action',
+                        text: '路由跳转',
+                        size: 'mini',
+                        actionType: 'mis-redirect',
+                        url: '/visible',
+                      },
+                      {
+                        renderer: 'mis-action',
+                        text: '抽屉',
+                        size: 'mini',
+                        actionType: 'mis-drawer',
+                        body: {
+                          name: 'isEditor',
+                          showClose: true,
+                          size: '60%',
+                          label: '编辑',
+                          header: {
+                            renderer: 'mis-html',
+                            html:
+                              '<h1 style="text-align: left; color: white;">编辑Schema</h1>',
+                          },
+                          body: [
                             {
-                              renderer: 'mis-input',
-                              name: 'name',
-                              label: '姓名',
-                            },
-                            {
-                              renderer: 'mis-input',
-                              name: 'address',
-                              label: '地址',
-                            },
-                            {
-                              renderer: 'mis-datepicker',
-                              name: 'date',
-                              label: '日期',
+                              renderer: 'mis-form',
+                              name: 'form3',
+                              api: 'http://localhost:3000/api/mis',
+                              controls: [
+                                {
+                                  renderer: 'mis-input',
+                                  name: 'name',
+                                  label: '姓名',
+                                },
+                                {
+                                  renderer: 'mis-input',
+                                  name: 'address',
+                                  label: '地址',
+                                },
+                                {
+                                  renderer: 'mis-datepicker',
+                                  name: 'date',
+                                  label: '日期',
+                                },
+                                {
+                                  renderer: 'mis-button',
+                                  text: '更新',
+                                },
+                              ],
                             },
                           ],
                         },
-                      ],
-                    },
-                  },
-                  {
-                    renderer: 'mis-action',
-                    text: '对话框',
-                    size: 'mini',
-                    actionType: 'mis-dialog',
-                    body: {
-                      title: '详情信息',
-                      appendBody: true,
-                      modal: false,
-                      body: {
-                        renderer: 'mis-html',
-                        html:
-                          '<h1><%=data.name%><%=data.date%><%=data.address%></h1>',
                       },
-                    },
+                      {
+                        renderer: 'mis-action',
+                        text: '对话框',
+                        size: 'mini',
+                        actionType: 'mis-dialog',
+                        body: {
+                          title: '详情信息',
+                          appendBody: true,
+                          modal: false,
+                          body: {
+                            renderer: 'mis-html',
+                            html:
+                              '<h1><%=data.name%><%=data.date%><%=data.address%></h1>',
+                          },
+                        },
+                      },
+                    ],
                   },
                 ],
               },
@@ -656,15 +617,55 @@ module.exports = {
       msg: 'success',
       code: 1000,
       data: {
-        renderer: 'mis-layout',
+        renderer: 'mis-tabs',
+        stretch: true,
+        activeName: 'formlink',
         body: [
           {
-            renderer: 'mis-aside',
+            name: 'switchlink',
+            label: '开关-时间线联动',
+            icon: 'el-icon-turn-off',
+            body: [
+              {
+                renderer: 'mis-switch',
+                name: 'reverse',
+                activeText: '时间线倒序',
+                inActiveText: '时间线正序',
+                value: false,
+                target: 'timeline',
+              },
+              {
+                renderer: 'mis-card',
+                body: {
+                  renderer: 'mis-timeline',
+                  name: 'timeline',
+                  size: 'large',
+                  type: 'primary',
+                  initApi: {
+                    url: '/api/pagelist',
+                    method: 'get',
+                  },
+                  body: {
+                    renderer: 'mis-card',
+                    body: {
+                      renderer: 'mis-html',
+                      html: '<h1>支持使用图标</h1>',
+                    },
+                  },
+                },
+              },
+            ],
+          },
+          {
+            name: 'formlink',
+            label: '表单-html联动',
+            icon: 'el-icon-date',
             body: [
               {
                 renderer: 'mis-form',
                 name: 'linkageForm',
                 target: 'linkageTarget',
+                inline: true,
                 controls: [
                   {
                     renderer: 'mis-input',
@@ -678,11 +679,6 @@ module.exports = {
                   },
                 ],
               },
-            ],
-          },
-          {
-            renderer: 'mis-main',
-            body: [
               {
                 name: 'linkageTarget',
                 renderer: 'mis-html',
