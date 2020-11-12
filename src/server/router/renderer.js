@@ -683,7 +683,23 @@ module.exports = {
                 name: 'linkageTarget',
                 renderer: 'mis-html',
                 html:
-                  '<div>sdfasdfasfja;sdlkfjas;ldf<%=data.keywords ? data.keywords : ""%></div>',
+                  '<h1>您输入的搜索关键词是：<span style="color: red;"><%=data.keywords ? data.keywords : ""%></span></h1>',
+              },
+            ],
+          },
+          {
+            name: 'numberlink',
+            label: '计数器联动',
+            icon: 'el-icon-odometer',
+            body: [
+              {
+                renderer: 'mis-number',
+                name: 'percentage',
+                target: 'progresstest',
+              },
+              {
+                renderer: 'mis-progress',
+                name: 'progresstest',
               },
             ],
           },

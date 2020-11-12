@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 
 let routerMask;
 const router = new VueRouter({
-  mode: 'hash',
+  mode: 'history',
   routes: [
     {
       path: '/',

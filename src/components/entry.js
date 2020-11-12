@@ -14,7 +14,6 @@ import MisTabs from '~components/umis/container/tabs';
 import MisService from '~components/umis/container/service';
 import MisComponent from '~components/umis/container/component';
 
-import MisSwitch from '~components/umis/form//switch';
 import MisInput from 'element-ui/lib/input';
 import MisDatepicker from 'element-ui/lib/date-picker';
 import MisAction from '~components/umis/action';
@@ -27,6 +26,8 @@ import MisButton from '~components/umis/form/button';
 import MisCombo from '~components/umis/form/combo';
 import MisForm from '~components/umis/form/index';
 import MisUpload from '~components/umis/form/upload';
+import MisSwitch from '~components/umis/form//switch';
+import MisNumber from '~components/umis/number';
 
 import MisMenu from '~components/umis/menu';
 import MisSubmenu from '~components/umis/menu-submenu';
@@ -46,6 +47,7 @@ import MisMonaco from '~components/umis/monaco';
 import MisImage from '~components/umis/image';
 import MisTable from '~components/umis/table';
 import MisTimeline from '~components/umis/timeline';
+import MisProgress from '~components/umis/progress';
 
 import MisSetting from '~components/umis/setting';
 
@@ -65,6 +67,7 @@ const components = {
   MisSwitch,
   MisInput,
   MisDatepicker,
+  MisNumber,
   MisForm,
   MisAction,
   MisDropdown,
@@ -91,6 +94,7 @@ const components = {
   MisTable,
   MisSetting,
   MisTimeline,
+  MisProgress,
 };
 
 const componentsName = Object.keys(components);
