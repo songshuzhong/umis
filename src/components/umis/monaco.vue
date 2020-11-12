@@ -58,7 +58,6 @@ export default {
       },
     });
 
-    window.editorer = this.editor;
     this.editor.setValue(JSON.stringify(this.schema));
     this.onFormatSchema();
   },
@@ -72,7 +71,7 @@ export default {
     },
     onFormatSchema() {
       const timer = setTimeout(() => {
-        window.editorer.getAction(['editor.action.formatDocument']).run();
+        this.editor.getAction(['editor.action.formatDocument']).run();
         clearTimeout(timer);
       }, 100);
     },
@@ -80,6 +79,7 @@ export default {
       try {
         const json = this.editor.getValue();
         this.$eventHub.$emit('mis-schema:change', JSON.parse(json));
+        this.onFormatSchema();
       } catch (e) {
         console.error(e);
         this.$notice({

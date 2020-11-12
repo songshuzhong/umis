@@ -22,48 +22,57 @@ export default {
   data() {
     return {
       schema:
-        '.umis-setting__style-editor {width: 100%;height: 300px;margin: 0;padding: 0;overflow: hidden;text-align: left;}',
+        'body{background: red} .umis-setting__style-editor {width: 100%;height: 300px;margin: 0;padding: 0;overflow: hidden;text-align: left;}',
     };
   },
   mounted() {
-    this.editor = window.monaco.editor.create(this.$refs.umisStyleEditor, {
-      fontSize: '14px',
-      language: 'css',
-      autoIndent: true,
-      formatOnType: true,
-      formatOnPaste: true,
-      selectOnLineNumbers: true,
-      scrollBeyondLastLine: false,
-      folding: true,
-      automaticLayout: true,
-      minimap: {
-        enabled: false,
-      },
-    });
-
-    this.editor.setValue(this.schema);
-    this.onFormatSchema();
+    window.requestIdleCallback(this.createMonacoEditor);
   },
   methods: {
-    upSchema(data) {
-      this.schema = {
-        schema: 'https://github.com/songshuzhong/umis/v1/schemas/page.json',
-        ...data,
-      };
-      this.editor.setValue(JSON.stringify(this.schema));
+    createMonacoEditor() {
+      this.editor = window.monaco.editor.create(this.$refs.umisStyleEditor, {
+        fontSize: '14px',
+        language: 'css',
+        autoIndent: true,
+        formatOnType: true,
+        formatOnPaste: true,
+        selectOnLineNumbers: true,
+        scrollBeyondLastLine: false,
+        folding: true,
+        theme: 'vs',
+        automaticLayout: true,
+        minimap: {
+          enabled: false,
+        },
+      });
+
+      this.editor.setValue(this.schema);
+      this.onFormatSchema();
     },
     onFormatSchema() {
+      const self = this;
       const timer = setTimeout(() => {
-        this.editor.getAction(['editor.action.formatDocument']).run();
+        self.editor.getAction(['editor.action.formatDocument']).run();
         clearTimeout(timer);
       }, 100);
     },
     onSave() {
       try {
         const json = this.editor.getValue();
-        console.log(json);
+        let ele = document.getElementById('umis-setting-style');
+
+        if (!ele) {
+          ele = document.createElement('style');
+          ele.id = 'umis-setting-style';
+          document.head.appendChild(ele);
+        }
+        ele.innerHTML = json;
+        this.$notice({
+          type: 'success',
+          title: '通知',
+          message: '保存成功！',
+        });
       } catch (e) {
-        console.error(e);
         this.$notice({
           type: 'error',
           title: '警告',
@@ -76,11 +85,13 @@ export default {
 </script>
 <style lang="scss">
 .umis-setting__style-editor {
-  width: 100%;
   height: 300px;
   margin: 0;
   padding: 0;
   overflow: hidden;
   text-align: left;
+  .monaco-editor {
+    width: 100% !important;
+  }
 }
 </style>

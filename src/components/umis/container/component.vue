@@ -74,6 +74,8 @@ const components = [
   'mis-domain',
   'mis-monaco',
   'mis-timeline',
+  'mis-progress',
+  'mis-number',
 ];
 
 export default {
