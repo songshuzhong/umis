@@ -55,6 +55,7 @@
     "postcss-px-to-viewport": "0.0.3",
     "postcss-viewport-units": "^0.1.4",
     "postcss-write-svg": "^3.0.1",
+    "requestidlecallback-polyfill": "^1.0.2",
     "sass-loader": "^7.1.0",
     "sass-resources-loader": "^2.0.3",
     "stylelint": "9.5.x",
