@@ -1,5 +1,5 @@
 <template>
-  <el-timeline :reverse="iData.reverse">
+  <el-timeline :reverse="data.reverse">
     <el-timeline-item
       v-for="(item, index) in iList"
       :key="index"
@@ -66,13 +66,6 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  data() {
-    return {
-      iData: {
-        reverse: false,
-      },
-    };
   },
   mixins: [initApi, linkage, derivedProp],
 };

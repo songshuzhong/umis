@@ -121,7 +121,7 @@ const json = [
                   header: {
                     renderer: 'mis-html',
                     html:
-                      '<h1 style="text-align: left; color: white;">编辑Schema</h1>',
+                      '<div style="text-align: left; color: white;">编辑Schema</div>',
                   },
                   body: [
                     {

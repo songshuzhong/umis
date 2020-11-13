@@ -9,7 +9,7 @@
         :header="getHeader(item)"
         :body="getBody(item)"
         :footer="getFooter(item)"
-        :props="getProps(item, data)"
+        :props="getFattingProps(item, data)"
       />
     </template>
     <mis-component
@@ -19,7 +19,7 @@
       :header="getHeader(body)"
       :body="getBody(body)"
       :footer="getFooter(body)"
-      :props="getProps(body, data)"
+      :props="getFattingProps(body, data)"
     />
   </div>
 </template>

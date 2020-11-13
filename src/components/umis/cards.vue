@@ -26,7 +26,7 @@
               :body="getBody(body)"
               :header="getHeader(body)"
               :footer="getFooter(body)"
-              :props="getProps(body, item)"
+              :props="getFattingProps(body, item)"
             />
           </div>
           <div class="el-card__footer" v-if="footer">
@@ -38,7 +38,7 @@
                 :header="getHeader(foot)"
                 :body="getBody(foot)"
                 :footer="getFooter(foot)"
-                :props="getProps(foot, item)"
+                :props="getFattingProps(foot, item)"
               />
             </template>
           </div>

@@ -29,7 +29,7 @@
               :header="getHeader(item)"
               :body="getBody(item)"
               :footer="getFooter(item)"
-              :props="getProps(item, scope.row)"
+              :props="getFattingProps(item, scope.row)"
             />
           </template>
         </el-table-column>

@@ -20,7 +20,7 @@
         :path="`${path}/${header.renderer}`"
         :action="onClose"
         :after-action="onClose"
-        :props="getProps(header, data)"
+        :props="getFattingProps(header, data)"
       />
     </template>
     <template v-for="(item, index) in body">
@@ -30,7 +30,7 @@
         :path="`${path}/${index}/${item.renderer}`"
         :footer="item.footer"
         :action="onClose"
-        :props="getProps(item, data)"
+        :props="getFattingProps(item, data)"
       />
     </template>
     <template v-if="footer">
@@ -41,7 +41,7 @@
         :path="`${path}/${index}/${item.renderer}`"
         :footer="item.footer"
         :action="onClose"
-        :props="getProps(item, data)"
+        :props="getFattingProps(item, data)"
       />
     </template>
   </el-drawer>

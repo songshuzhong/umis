@@ -25,7 +25,7 @@
       <mis-component
         v-else
         :mis-name="item.renderer"
-        :props="getProps(item, iData)"
+        :props="getFattingProps(item, iData)"
         :path="`${path}/${index}/${item.renderer}`"
       />
     </template>

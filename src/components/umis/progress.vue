@@ -5,7 +5,7 @@
     :color="color"
     :status="status"
     :show-text="showText"
-    :percentage="iData.percentage"
+    :percentage="data.percentage"
     :stroke-width="strokeWidth"
     :textInside="textInside"
     :stroke-linecap="strokeLinecap"
@@ -63,13 +63,6 @@ export default {
       type: String,
       required: false,
     },
-  },
-  data() {
-    return {
-      iData: {
-        percentage: 0,
-      },
-    };
   },
   mixins: [linkage],
 };

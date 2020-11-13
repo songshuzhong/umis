@@ -57,6 +57,29 @@ module.exports = {
             ],
           },
           {
+            renderer: 'mis-datepicker',
+            name: 'date',
+            label: '日期',
+            hiddenOn: 'data.select2.length > 1',
+            transition: 'el-zoom-in-top',
+          },
+          {
+            renderer: 'mis-select',
+            name: 'select2',
+            label: '选择框',
+            disabledOn: 'data.switchs === false',
+            options: [
+              {
+                value: '选项1',
+                text: '黄金糕',
+              },
+              {
+                value: '选项2',
+                text: '双皮奶',
+              },
+            ],
+          },
+          {
             renderer: 'mis-switch',
             name: 'switchs',
             label: '配送',
@@ -364,11 +387,12 @@ module.exports = {
               shadow: 'hover',
               bodyStyle: { padding: '0' },
               classname: 'mis-card-margin',
-              header: '<h4><%=data.name%></h4>',
+              header:
+                '<div style="font-size: 14px"><%=data.name%></div style="font-size: 14px">',
               body: {
                 renderer: 'mis-html',
                 html:
-                  '<h5>id：<%=data.id%></h5><h5>名称：<%=data.name%></h5><h5>地址：<%=data.address%></h5><h5>形状：<%=data.shape%></h5>',
+                  '<div style="font-size: 10px"><p>id：<%=data.id%></p><p>名称：<%=data.name%></p><p>地址：<%=data.address%></p><p>形状：<%=data.shape%></p></div>',
               },
               footer: [
                 {
@@ -486,6 +510,7 @@ module.exports = {
                             type: 'text',
                             url: 'https://www.baidu.com?name=${name}',
                             blank: true,
+                            confirmTitle: '你离开吗？',
                           },
                           {
                             renderer: 'mis-action',
@@ -516,6 +541,7 @@ module.exports = {
                           url: '/api/mis',
                           method: 'post',
                         },
+                        confirmTitle: '你确定发送请求吗？',
                       },
                       {
                         renderer: 'mis-action',
@@ -531,6 +557,7 @@ module.exports = {
                         size: 'mini',
                         actionType: 'mis-copy',
                         content: 'https://www.baidu.com?name=${name}',
+                        confirmTitle: '你确定复制吗？',
                       },
                       {
                         renderer: 'mis-action',
@@ -552,7 +579,7 @@ module.exports = {
                           header: {
                             renderer: 'mis-html',
                             html:
-                              '<h1 style="text-align: left; color: white;">编辑Schema</h1>',
+                              '<div style="text-align: left; color: white;">编辑Schema</div>',
                           },
                           body: [
                             {
@@ -596,7 +623,7 @@ module.exports = {
                           body: {
                             renderer: 'mis-html',
                             html:
-                              '<h1><%=data.name%><%=data.date%><%=data.address%></h1>',
+                              '<div><%=data.name%><%=data.date%><%=data.address%></div>',
                           },
                         },
                       },
@@ -619,7 +646,7 @@ module.exports = {
       data: {
         renderer: 'mis-tabs',
         stretch: true,
-        activeName: 'formlink',
+        activeName: 'animationlink',
         body: [
           {
             name: 'switchlink',
@@ -700,6 +727,32 @@ module.exports = {
               {
                 renderer: 'mis-progress',
                 name: 'progresstest',
+              },
+            ],
+          },
+          {
+            name: 'animationlink',
+            label: '动画联动',
+            icon: 'el-icon-loading',
+            body: [
+              {
+                renderer: 'mis-switch',
+                name: 'animation',
+                activeText: '出现',
+                inActiveText: '消失',
+                value: false,
+                target: 'animationtest',
+              },
+              {
+                renderer: 'mis-card',
+                name: 'animationtest',
+                visibleOn: 'data.animation === true',
+                transition: 'el-zoom-in-top',
+                body: {
+                  renderer: 'mis-image',
+                  src:
+                    'https://songshuzhong.github.io/visualizer/static/img/html5.png',
+                },
               },
             ],
           },

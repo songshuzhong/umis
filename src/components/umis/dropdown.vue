@@ -23,7 +23,7 @@
           v-if="actionItems.includes(item.actionType)"
           :path="`/${path}/${index}/${item.renderer}`"
           :mis-name="item.renderer"
-          :props="getProps(item, data)"
+          :props="getFattingProps(item, data)"
         />
       </el-dropdown-item>
     </el-dropdown-menu>
