@@ -4,6 +4,7 @@ import Loading from 'element-ui/lib/loading';
 
 import Page from '~components/umis/container/page';
 import Umis from '~modules/index/index.vue';
+import Setting from '~components/umis/setting';
 
 Vue.use(VueRouter);
 
@@ -18,6 +19,10 @@ const router = new VueRouter({
         title: 'UMIS',
       },
       children: [
+        {
+          path: '/doc',
+          component: () => import('~modules/index/doc.vue'),
+        },
         {
           path: '/visible',
           component: Page,
@@ -85,7 +90,7 @@ const router = new VueRouter({
         },
         {
           path: '/setting',
-          component: () => import('~components/umis/setting'),
+          component: Setting,
         },
       ],
     },

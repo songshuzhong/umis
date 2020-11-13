@@ -37,6 +37,10 @@ export default {
     ElImage,
   },
   props: {
+    path: {
+      type: String,
+      required: false,
+    },
     name: {
       type: String,
       required: false,
@@ -64,6 +68,10 @@ export default {
       required: false,
       default: '加载中...',
     },
+  },
+
+  mounted() {
+    console.log(this.path);
   },
 };
 </script>

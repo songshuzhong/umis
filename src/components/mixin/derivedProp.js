@@ -1,6 +1,10 @@
 export default {
   methods: {
-    getProps(props, iData = {}, extend = {}) {
+    getSlimmingProps(props = {}) {
+      const { hiddenOn, visibleOn, transition, ...other } = props;
+      return other;
+    },
+    getFattingProps(props, iData = {}, extend = {}) {
       const { data, header, body, footer, ...other } = props;
       return { ...other, data: { ...data, ...iData, ...extend } };
     },

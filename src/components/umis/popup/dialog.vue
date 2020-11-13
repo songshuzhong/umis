@@ -25,7 +25,7 @@
           :header="getHeader(item)"
           :body="getBody(item)"
           :footer="getFooter(item)"
-          :props="getProps(item, data)"
+          :props="getFattingProps(item, data)"
         />
       </template>
     </template>
@@ -40,7 +40,7 @@
           :header="getHeader(item)"
           :body="getBody(item)"
           :footer="getFooter(item)"
-          :props="getProps(item, data)"
+          :props="getFattingProps(item, data)"
           v-for="(item, index) in footer"
         />
       </template>
@@ -53,7 +53,7 @@
           :header="getHeader(footer)"
           :body="getBody(footer)"
           :footer="getFooter(footer)"
-          :props="getProps(footer, data)"
+          :props="getFattingProps(footer, data)"
         />
       </template>
     </div>

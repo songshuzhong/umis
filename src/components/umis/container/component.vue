@@ -1,8 +1,7 @@
 <template>
-  <fragment>
-    <template v-if="showErrorBoundary">
-      <el-alert title="错误: 渲染失败了" type="error">
-        <pre class="umis-component__not-find">
+  <transition :name="transition">
+    <el-alert v-if="showErrorBoundary" title="错误: 渲染失败了" type="error">
+      <pre class="umis-component__not-find">
           <code>
 {{`{
     "name": "${misName}"
@@ -11,28 +10,29 @@
 }`}}
           </code>
         </pre>
-      </el-alert>
-    </template>
-    <template v-else>
-      <component
-        v-if="forceRerender"
-        :is="misName"
-        :index="index"
-        :path="path"
-        :header="header"
-        :body="body"
-        :footer="footer"
-        :action="action"
-        v-bind="props"
-      />
-    </template>
-  </fragment>
+    </el-alert>
+    <component
+      v-if="iVisible && forceRerender"
+      v-show="iHidden && forceRerender"
+      :is="misName"
+      :index="index"
+      :path="path"
+      :header="header"
+      :body="body"
+      :footer="footer"
+      :action="action"
+      v-bind="getSlimmingProps(props)"
+    />
+  </transition>
 </template>
 
 <script>
 import copy from 'copy-to-clipboard';
 import ElAlert from 'element-ui/lib/alert';
+import initApi from '../../mixin/initApi';
 import derivedProp from '../../mixin/derivedProp';
+import linkage from '../../mixin/linkage';
+import visible from '../../mixin/visible';
 
 const components = [
   'mis-page',
@@ -121,7 +121,7 @@ export default {
       required: false,
     },
   },
-  mixins: [derivedProp],
+  mixins: [visible, linkage, initApi, derivedProp],
   data() {
     return {
       error: '',

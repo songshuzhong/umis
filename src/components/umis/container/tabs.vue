@@ -14,7 +14,7 @@
       :label="item.label"
       :name="item.name"
       :lazy="true"
-      v-bind="getProps(item)"
+      v-bind="getFattingProps(item)"
     >
       <span slot="label">
         <i v-if="item.icon" :class="item.icon" />
@@ -26,9 +26,11 @@
         <mis-component
           :mis-name="item.body.renderer"
           :path="`${path}/${index}/${item.body.renderer}`"
-          :props="getProps(item.body, data)"
+          :props="getFattingProps(item.body, data)"
+          :header="getHeader(item.body, data)"
           :body="getBody(item.body, data)"
-          v-bind="getProps(item.body, data)"
+          :footer="getFooter(item.body, data)"
+          v-bind="getFattingProps(item.body, data)"
         />
       </template>
       <template
@@ -39,9 +41,11 @@
         <mis-component
           :mis-name="child.renderer"
           :path="`${path}/${index}/${child.renderer}`"
-          :props="getProps(child, data)"
+          :props="getFattingProps(child, data)"
+          :header="getHeader(child, data)"
           :body="getBody(child, data)"
-          v-bind="getProps(child, data)"
+          :footer="getFooter(child, data)"
+          v-bind="getFattingProps(child, data)"
         />
       </template>
     </el-tab-pane>
