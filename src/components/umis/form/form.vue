@@ -8,11 +8,11 @@
     :model="iData"
     :inline="inline"
   >
-    <template v-for="(item, index) in controls" :key="index">
+    <template v-for="(item, index) in controls" :key="form">
       <mis-field
         v-if="formItems.includes(item.renderer)"
         v-model="iData[item.name]"
-        :path="`${path}/${index}/${item.renderer}`"
+        :path="`${path}/${form}/${item.renderer}`"
         :name="item.name"
         :field="item"
         :data="iData"
@@ -26,7 +26,7 @@
         v-else
         :mis-name="item.renderer"
         :props="getFattingProps(item, iData)"
-        :path="`${path}/${index}/${item.renderer}`"
+        :path="`${path}/${form}/${item.renderer}`"
       />
     </template>
   </el-form>

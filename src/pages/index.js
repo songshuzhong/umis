@@ -1,9 +1,11 @@
 import Vue from 'vue';
+import ElLoading from 'element-ui/lib/loading';
 import Notification from 'element-ui/lib/notification';
 import message from 'element-ui/lib/message';
+import { Fragment } from 'vue-fragment';
 
 import router from '~modules/index/router';
-import components from '~components/entry';
+import '~components/entry';
 
 import api from '~utils/api';
 import {
@@ -31,7 +33,8 @@ Vue.prototype.$message = message;
 Vue.prototype.$api = api(umisConfig);
 Vue.prototype.$umisConfig = umisConfig;
 
-Vue.use(components);
+Vue.component(Fragment);
+Vue.use(ElLoading);
 
 new Vue({
   router,

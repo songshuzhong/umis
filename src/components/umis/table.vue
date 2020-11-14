@@ -45,10 +45,12 @@
     </el-table>
     <el-pagination
       background
-      layout="prev, pager, next"
+      layout="prev, pager, next, total, sizes, jumper"
       :total="iTotal"
       :page-size="iPageSize"
       :current-page="iPageIndex"
+      :page-sizes="[10, 20, 30, 40]"
+      @size-change="handleSizeChanged"
       @current-change="handlePageChanged"
     />
   </div>

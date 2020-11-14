@@ -34,3 +34,16 @@
     background-color: white;
   }
 }
+
+.el-loading-spinner {
+  .circular {
+    background-image: url('~assets/imgs/loading.svg');
+    background-position: center;
+    background-size: cover;
+    animation: loading-rotate 1s linear infinite;
+    animation-direction: reverse;
+  }
+  .path {
+    display: none;
+  }
+}
