@@ -21,6 +21,7 @@
       @onConfirm="onClick"
     >
       <el-button
+        v-loading="iApiLoading"
         slot="reference"
         :size="size"
         :type="type"
@@ -39,6 +40,7 @@
       :placement="tipPlacement"
     >
       <el-button
+        v-loading="iApiLoading"
         :size="size"
         :type="type"
         :plain="plain"
@@ -173,6 +175,7 @@ export default {
     return {
       visible: false,
       clipboard: '',
+      iApiLoading: false,
     };
   },
   methods: {
@@ -183,7 +186,17 @@ export default {
       if (['mis-dialog', 'mis-drawer'].includes(this.actionType)) {
         this.visible = true;
       }
-      this.action && this.action();
+      if (['mis-ajax'].includes(this.actionType)) {
+        this.iApiLoading = true;
+      }
+      if (typeof this.action === 'function') {
+        const promise = this.action();
+        if (promise && typeof promise.then === 'function') {
+          promise.then(() => {
+            this.iApiLoading = false;
+          });
+        }
+      }
     },
   },
 };

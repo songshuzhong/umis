@@ -69,9 +69,5 @@ export default {
       default: '加载中...',
     },
   },
-
-  mounted() {
-    console.log(this.path);
-  },
 };
 </script>

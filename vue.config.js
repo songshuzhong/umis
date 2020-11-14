@@ -65,7 +65,6 @@ module.exports = {
       extensions: ['.ts', '.js', '.vue', '.json'],
     },
   },
-  transpileDependencies: ['vue-echarts', 'resize-detector'],
   chainWebpack: config => {
     const oneOfsMap = config.module.rule('scss').oneOfs.store;
     oneOfsMap.forEach(item => {

@@ -22,7 +22,7 @@ const json = [
         },
         body: [
           {
-            renderer: 'mis-submenu',
+            renderer: 'mis-menu-submenu',
             name: 'submenu',
             icon: 'el-icon-menu',
             title: '组件',
@@ -66,7 +66,7 @@ const json = [
             ],
           },
           {
-            renderer: 'mis-submenu',
+            renderer: 'mis-menu-submenu',
             name: 'components',
             index: 'components',
             icon: 'el-icon-notebook-1',
@@ -74,7 +74,7 @@ const json = [
             body: [],
           },
           {
-            renderer: 'mis-submenu',
+            renderer: 'mis-menu-submenu',
             icon: 'el-icon-setting',
             title: '系统',
             body: [

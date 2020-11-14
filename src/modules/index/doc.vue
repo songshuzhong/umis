@@ -8,7 +8,7 @@
     @onConfirm="onConfirm"
     @onCancel="onConfirm"
   >
-    <el-button slot="reference">删除</el-button>
+    <el-button size="mini" v-loading="true" slot="reference">删除</el-button>
   </el-popconfirm>
 </template>
 <script>

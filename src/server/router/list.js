@@ -29,7 +29,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 module.exports = {
   'POST /api/mis': async ctx => {
-    await sleep(1000);
+    await sleep(3000);
     ctx.restify({ code: 1000, msg: 'success' });
   },
   'GET /api/pagelist': async ctx => {

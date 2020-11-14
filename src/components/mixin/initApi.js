@@ -156,5 +156,6 @@ export default {
       this.iPageIndex = pageIndex;
       this.fetchInitRequest();
     },
+    handleSizeChanged() {},
   },
 };

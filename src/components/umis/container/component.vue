@@ -29,54 +29,9 @@
 <script>
 import copy from 'copy-to-clipboard';
 import ElAlert from 'element-ui/lib/alert';
-import initApi from '../../mixin/initApi';
 import derivedProp from '../../mixin/derivedProp';
 import linkage from '../../mixin/linkage';
 import visible from '../../mixin/visible';
-
-const components = [
-  'mis-page',
-  'mis-action',
-  'mis-dropdown',
-  'mis-grid',
-  'mis-cards',
-  'mis-card',
-  'mis-avatar',
-  'mis-dialog',
-  'mis-drawer',
-  'mis-link',
-  'mis-alert',
-  'mis-html',
-  'mis-container',
-  'mis-header',
-  'mis-aside',
-  'mis-main',
-  'mis-footer',
-  'mis-layout',
-  'mis-field',
-  'mis-select',
-  'mis-checkbox',
-  'mis-radio',
-  'mis-switch',
-  'mis-form',
-  'mis-upload',
-  'mis-button',
-  'mis-datepicker',
-  'mis-tree',
-  'mis-menu',
-  'mis-submenu',
-  'mis-menu-item',
-  'mis-menu-item-group',
-  'mis-input',
-  'mis-image',
-  'mis-tabs',
-  'mis-table',
-  'mis-domain',
-  'mis-monaco',
-  'mis-timeline',
-  'mis-progress',
-  'mis-number',
-];
 
 export default {
   name: 'mis-Component',
@@ -121,11 +76,10 @@ export default {
       required: false,
     },
   },
-  mixins: [visible, linkage, initApi, derivedProp],
+  mixins: [visible, linkage, derivedProp],
   data() {
     return {
       error: '',
-      components,
       forceRerender: true,
       clipboard: '',
     };
@@ -137,7 +91,7 @@ export default {
   },
   computed: {
     showErrorBoundary() {
-      if (!this.components.includes(this.misName)) {
+      if (!this.$misComponents.includes(this.misName)) {
         this.error = '找不到对应的渲染器';
         return true;
       } else if (this.error) {
@@ -190,7 +144,8 @@ export default {
         JSON.parse(params)
       );
 
-      this.$api
+      this.iApiLoading = true;
+      return this.$api
         .slientApi()
         [method](compiledUrl, formData)
         .then(res => {
@@ -209,7 +164,7 @@ export default {
           });
         })
         .finally(() => {
-          this.iLoading = false;
+          this.iApiLoading = false;
         });
     },
     handleUrlAction() {
