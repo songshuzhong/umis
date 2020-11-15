@@ -70,15 +70,10 @@ export default {
       type: String,
       required: false,
     },
-    hasAfter: {
-      type: Boolean,
-      required: false,
-    },
   },
   methods: {
     onClick() {
       this.action();
-      this.hasAfter && this.afterAction && this.afterAction();
     },
   },
 };

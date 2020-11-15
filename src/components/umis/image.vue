@@ -1,5 +1,5 @@
 <template>
-  <fragment>
+  <div class="umis-image__container">
     <template v-if="Object.prototype.toString.call(src) === '[object Array]'">
       <el-image
         v-for="(item, index) in src"
@@ -25,7 +25,7 @@
         </template>
       </el-image>
     </template>
-  </fragment>
+  </div>
 </template>
 
 <script>
@@ -37,6 +37,14 @@ export default {
     ElImage,
   },
   props: {
+    path: {
+      type: String,
+      required: false,
+    },
+    name: {
+      type: String,
+      required: false,
+    },
     src: {
       type: [Array, String],
       required: true,

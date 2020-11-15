@@ -13,19 +13,40 @@ export default {
       type: Object,
       required: false,
     },
+    interval: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    silentLoading: {
+      type: Boolean,
+      required: false,
+    },
   },
   data() {
     return {
-      iApiLoading: false,
+      iLoading: false,
       iSchemaLoading: false,
       iSchema: {},
-      data: [],
-      pageIndex: 1,
-      pageSize: 15,
-      hasMore: true,
+      data: {},
+      rows: [],
     };
   },
   watch: {
+    interval: {
+      handler(val) {
+        clearInterval(this.intervalFetcher);
+        if (val) {
+          this.handleIntervalFetch();
+        }
+      },
+    },
+    initData: {
+      handler(val) {
+        if (val) this.data = val;
+      },
+      immediate: true,
+    },
     'initSchema.url': {
       handler(val) {
         if (val) {
@@ -39,7 +60,17 @@ export default {
       deep: true,
     },
   },
+  computed: {
+    iApiLoading() {
+      return !this.silentLoading && this.iLoading;
+    },
+  },
   mounted() {
+    this.iTotal = 0;
+    this.iPageIndex = 1;
+    this.iPageSize = 15;
+    this.iHasMore = true;
+    this.intervalFetcher = null;
     this.$eventHub.$on('mis-schema:change', this.upSchema);
     if (this.initSchema) {
       if (this.initSchema.method === 'post') {
@@ -49,13 +80,16 @@ export default {
       }
     }
     if (this.initApi) {
-      this.iApiLoading = true;
-
-      if (this.initApi.method === 'post') {
-        this.fetchPostRequest();
+      if (this.interval) {
+        this.handleIntervalFetch();
       } else {
-        this.fetchGetRequest();
+        this.fetchInitApi();
       }
+    }
+  },
+  beforeDestroy() {
+    if (this.interval) {
+      clearInterval(this.intervalFetcher);
     }
   },
   methods: {
@@ -82,43 +116,48 @@ export default {
           }
         });
     },
-    fetchGetRequest() {
-      const self = this;
-      this.$api
-        .slientApi()
-        .get(this.initApi.url, { params: this.initApi.params })
-        .then(res => {
-          const data = res.data;
-
-          if (data.hasOwnProperty('pageSize')) {
-            const { total, list } = data;
-            this.pageIndex += 1;
-            this.data = this.data.concat(list);
-            this.hasMore = this.data.length < total;
-          } else {
-            self.data = res.data;
-          }
-          self.iApiLoading = false;
-        });
+    handleIntervalFetch() {
+      this.intervalFetcher = setInterval(() => {
+        this.fetchInitApi();
+      }, this.interval);
     },
-    fetchPostRequest() {
-      const self = this;
-      self.iApiLoading = true;
-
+    fetchInitApi() {
+      const { method, url, params } = this.initApi;
+      const compiledUrl = this.$getCompiledUrl(url, this.data);
+      const compiledParams = this.$getCompiledParams(params, this.data);
+      let fetchBody;
+      if (method === 'get') {
+        fetchBody = {
+          params: {
+            pageIndex: this.iPageIndex,
+            pageSize: this.iPageSize,
+            ...compiledParams,
+          },
+        };
+      } else {
+        fetchBody = {
+          pageIndex: this.iPageIndex,
+          pageSize: this.iPageSize,
+          ...compiledParams,
+        };
+      }
+      this.iLoading = true;
       this.$api
         .slientApi()
-        .post(this.initApi.url, this.initApi.params)
+        [method](compiledUrl, fetchBody)
         .then(res => {
           const data = res.data;
-          if (data.hasOwnProperty('pageSize')) {
-            const { total, list } = data;
-            self.pageIndex += 1;
-            self.data = this.data.concat(list);
-            self.hasMore = this.data.length < total;
+          if (data.hasOwnProperty('rows')) {
+            const { total, rows, hasMore } = data;
+            this.iTotal = total;
+            this.iHasMore = hasMore;
+            this.rows = rows;
           } else {
-            self.data = res.data;
+            this.data = data;
           }
-          self.iApiLoading = false;
+        })
+        .finally(() => {
+          this.iLoading = false;
         });
     },
     upSchema(data) {
@@ -126,6 +165,10 @@ export default {
         this.iSchema = data;
         window.UMIS = { schema: data };
       }
+    },
+    handlePageChanged(pageIndex) {
+      this.iPageIndex = pageIndex;
+      this.fetchInitApi();
     },
   },
 };

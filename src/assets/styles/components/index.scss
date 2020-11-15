@@ -1,13 +1,6 @@
-.mis-card-margin {
-  margin: 10px 0;
+body {
+  margin: 0;
 }
-
-.el-card__footer {
-  padding: 10px 20px;
-  box-sizing: border-box;
-  border-top: 1px solid #ebeef5;
-}
-
 .mis-avatar-margin {
   margin: 20px;
 }
@@ -41,5 +34,19 @@
     line-height: 60px;
     text-align: right;
     font-size: 12px;
+    background-color: white;
+  }
+}
+
+.el-loading-spinner {
+  .circular {
+    background-image: url('~assets/imgs/loading.svg');
+    background-position: center;
+    background-size: cover;
+    animation: loading-rotate 1s linear infinite;
+    animation-direction: reverse;
+  }
+  .path {
+    display: none;
   }
 }

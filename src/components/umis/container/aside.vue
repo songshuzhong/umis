@@ -13,7 +13,7 @@
       v-else
       :mis-name="body.renderer"
       :path="`${path}/${body.renderer}`"
-      :props="getProps(body)"
+      :props="getFattingProps(body)"
     />
   </el-aside>
 </template>

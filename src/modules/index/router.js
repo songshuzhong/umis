@@ -4,6 +4,7 @@ import Loading from 'element-ui/lib/loading';
 
 import Page from '~components/umis/container/page';
 import Umis from '~modules/index/index.vue';
+import Setting from '~components/umis/setting';
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,10 @@ const router = new VueRouter({
       },
       children: [
         {
+          path: '/doc',
+          component: () => import('~modules/index/doc.vue'),
+        },
+        {
           path: '/visible',
           component: Page,
           props: {
@@ -29,19 +34,6 @@ const router = new VueRouter({
           },
           meta: {
             title: '显隐',
-          },
-        },
-        {
-          path: '/reactive',
-          component: Page,
-          props: {
-            initSchema: {
-              url: '/api/schema/reactive',
-              method: 'get',
-            },
-          },
-          meta: {
-            title: '联动',
           },
         },
         {
@@ -71,16 +63,16 @@ const router = new VueRouter({
           },
         },
         {
-          path: '/cards',
+          path: '/linkage',
           component: Page,
           props: {
             initSchema: {
-              url: '/api/schema/cards',
+              url: '/api/schema/linkage',
               method: 'get',
             },
           },
           meta: {
-            title: '卡片',
+            title: ' 联动',
           },
         },
         {
@@ -97,21 +89,8 @@ const router = new VueRouter({
           },
         },
         {
-          path: '/linkage',
-          component: Page,
-          props: {
-            initSchema: {
-              url: '/api/schema/linkage',
-              method: 'get',
-            },
-          },
-          meta: {
-            title: ' 联动',
-          },
-        },
-        {
           path: '/setting',
-          component: () => import('~components/umis/setting'),
+          component: Setting,
         },
       ],
     },

@@ -1,17 +1,63 @@
 <template>
   <fragment>
     <component
+      v-bind="getBody($props)"
+      :path="`${path}/${actionType}`"
       :is="actionType"
       :visible="visible"
       :data="data"
-      :path="`${path}/${actionType}`"
       :on-action-disvisiable="onDisVisiable"
-      v-bind="getBody($props)"
     />
-    <el-button @click="onClick">{{ text }}</el-button>
+    <el-popconfirm
+      v-if="confirmTitle"
+      :confirm-button-text="confirmBtnText"
+      :cancel-button-text="confirmCancelBtnText"
+      :confirm-button-type="confirmBtnType"
+      :cancel-button-type="confirmCancelBtnType"
+      :icon="confirmIcon"
+      :icon-color="confirmIconColor"
+      :hide-icon="confirmHideIcon"
+      :title="confirmTitle"
+      @onConfirm="onClick"
+    >
+      <el-button
+        v-loading="iApiLoading"
+        slot="reference"
+        :size="size"
+        :type="type"
+        :plain="plain"
+        :round="round"
+        :circle="circle"
+        :disabled="iApiLoading"
+      >
+        {{ text }}
+      </el-button>
+    </el-popconfirm>
+    <el-tooltip
+      v-else
+      :disabled="tipDisabled"
+      :effect="tipEffect"
+      :content="tipContent"
+      :placement="tipPlacement"
+    >
+      <el-button
+        v-loading="iApiLoading"
+        :size="size"
+        :type="type"
+        :plain="plain"
+        :round="round"
+        :circle="circle"
+        :disabled="iApiLoading"
+        @click="onClick"
+      >
+        {{ text }}
+      </el-button>
+    </el-tooltip>
   </fragment>
 </template>
 <script>
+import ElPopconfirm from 'element-ui/lib/popconfirm';
+import ElTooltip from 'element-ui/lib/tooltip';
 import ElButton from 'element-ui/lib/button';
 
 import derivedProp from '../mixin/derivedProp';
@@ -19,6 +65,8 @@ import derivedProp from '../mixin/derivedProp';
 export default {
   name: 'MisAction',
   components: {
+    ElPopconfirm,
+    ElTooltip,
     ElButton,
   },
   props: {
@@ -54,11 +102,82 @@ export default {
       type: Function,
       required: false,
     },
+    size: {
+      type: String,
+      required: false,
+    },
+    type: {
+      type: String,
+      required: false,
+    },
+    plain: {
+      type: Boolean,
+      required: false,
+    },
+    round: {
+      type: Boolean,
+      required: false,
+    },
+    circle: {
+      type: Boolean,
+      required: false,
+    },
+    tipDisabled: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    tipEffect: {
+      type: String,
+      required: false,
+    },
+    tipContent: {
+      type: String,
+      required: false,
+    },
+    tipPlacement: {
+      type: String,
+      required: false,
+    },
+    confirmTitle: {
+      type: String,
+      required: false,
+    },
+    confirmCancelBtnText: {
+      type: String,
+      required: false,
+    },
+    confirmCancelBtnType: {
+      type: String,
+      required: false,
+    },
+    confirmBtnText: {
+      type: String,
+      required: false,
+    },
+    confirmBtnType: {
+      type: String,
+      required: false,
+    },
+    confirmIcon: {
+      type: String,
+      required: false,
+    },
+    confirmIconColor: {
+      type: String,
+      required: false,
+    },
+    confirmHideIcon: {
+      type: Boolean,
+      required: false,
+    },
   },
   mixins: [derivedProp],
   data() {
     return {
+      iApiLoading: false,
       visible: false,
+      clipboard: '',
     };
   },
   methods: {
@@ -66,11 +185,16 @@ export default {
       this.visible = false;
     },
     onClick() {
-      if (this.actionType === 'mis-dialog') {
+      if (['mis-dialog', 'mis-drawer'].includes(this.actionType)) {
         this.visible = true;
       }
-      this.action && this.action();
-      this.afterAction && this.afterAction();
+      if (['mis-ajax'].includes(this.actionType)) {
+        this.iApiLoading = true;
+      }
+      this.action && this.action(this.handleLoading);
+    },
+    handleLoading() {
+      this.iApiLoading = false;
     },
   },
 };

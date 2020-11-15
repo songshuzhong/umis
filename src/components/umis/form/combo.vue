@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="umis-form-combo">
     <template v-if="multiple">
       <div
         v-for="(item, index) in iValue"
@@ -127,3 +127,21 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.umis-form-combo {
+  border: 1px dashed #dee2e6;
+  &:hover {
+    border: 1px dashed #409eff;
+  }
+}
+.umis-form-combo__item {
+  display: flex;
+  padding: 11px 0;
+}
+.umis-form-combo__plus {
+  padding: 11px 0;
+}
+.umis-form-combo__delete {
+  margin: 0 10px;
+}
+</style>

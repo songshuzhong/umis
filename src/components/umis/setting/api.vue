@@ -1,44 +1,66 @@
 <template>
-  <div>
-    <el-radio-group v-model="checked" class="umis-form-combo">
-      <div v-for="(value, key) in domains" class="umis-form-combo__item">
+  <el-card class="umis-setting__card-margin">
+    <div slot="header" class="umis-setting__header">
+      <span>接口拦截器</span>
+      <el-button-group>
+        <el-button plain size="mini" type="primary" @click="onAdd">
+          添加
+        </el-button>
+        <el-button plain size="mini" type="primary" @click="onSave">
+          应用
+        </el-button>
+      </el-button-group>
+    </div>
+    <el-radio-group v-model="checked" class="umis-setting__api-editor">
+      <div
+        v-for="(value, key) in domains"
+        class="umis-setting__api-editor__item"
+      >
         <el-link
           :underline="false"
-          class="umis-form-combo__delete"
+          class="umis-setting__api-editor__delete"
           icon="el-icon-delete"
           @click="onDelete(key)"
         />
-        <el-input class="umis-form-combo__label" :key="key" v-model="key" />
         <el-input
-          class="umis-form-combo__value"
+          class="umis-setting__api-editor__label"
+          :key="key"
+          v-model="key"
+        />
+        <el-input
+          class="umis-setting__api-editor__value"
           :key="key"
           placeholder="请输入域名"
           v-model="domains[key]"
         />
-        <el-radio class="umis-form-combo__radio" :label="key" :key="key">
+        <el-radio
+          class="umis-setting__api-editor__radio"
+          :label="key"
+          :key="key"
+        >
           {{ '' }}
         </el-radio>
       </div>
     </el-radio-group>
-    <div class="umis-form-combo__footer">
-      <el-button class="umis-form-combo__save" @click="onAdd">添加</el-button>
-      <el-button class="umis-form-combo__save" @click="onSave">应用</el-button>
-    </div>
-  </div>
+  </el-card>
 </template>
 <script>
 import clonedeep from 'lodash.clonedeep';
+import ElCard from 'element-ui/lib/card';
 import ElRadioGroup from 'element-ui/lib/radio-group';
 import ElRadio from 'element-ui/lib/radio';
+import ElButtonGroup from 'element-ui/lib/button-group';
 import ElButton from 'element-ui/lib/button';
 import ElLink from 'element-ui/lib/link';
 import ElInput from 'element-ui/lib/input';
 
 export default {
-  name: 'MisDomain',
+  name: 'SettingDomain',
   components: {
+    ElCard,
     ElRadioGroup,
     ElRadio,
+    ElButtonGroup,
     ElButton,
     ElLink,
     ElInput,
@@ -82,35 +104,27 @@ export default {
 };
 </script>
 <style lang="scss">
-.umis-form-combo {
+.umis-setting__api-editor {
   width: 100%;
 }
-.umis-form-combo__item {
+.umis-setting__api-editor__item {
   display: flex;
   padding: 11px 0;
   background: #f5f5f5;
 }
-.umis-form-combo__plus {
+.umis-setting__api-editor__plus {
   padding: 11px 0;
   background: #f5f5f5;
 }
-.umis-form-combo__delete {
+.umis-setting__api-editor__delete {
   margin: 0 10px;
 }
-.umis-form-combo__label,
-.umis-form-combo__value {
+.umis-setting__api-editor__label,
+.umis-setting__api-editor__value {
   padding: 0 12px 0 0;
 }
-.umis-form-combo__radio {
+.umis-setting__api-editor__radio {
   display: flex;
   align-items: center;
-}
-.umis-form-combo__footer {
-  display: flex;
-  margin-top: 20px;
-  padding: 0 35px;
-}
-.umis-form-combo__save {
-  display: block;
 }
 </style>

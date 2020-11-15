@@ -5,39 +5,23 @@
       <template v-if="Array.isArray(footer)">
         <template v-for="(item, index) in footer">
           <component
+            v-bind="item"
             :is="item.renderer"
             :key="index"
-            :after-action="afterAction"
             :action="onSave"
-            v-bind="item"
           />
         </template>
       </template>
       <template v-else>
-        <component
-          :is="footer.renderer"
-          :after-action="afterAction"
-          :action="onSave"
-          v-bind="footer"
-        />
+        <component v-bind="footer" :is="footer.renderer" :action="onSave" />
       </template>
     </div>
   </div>
 </template>
 <script>
-import * as monaco from 'monaco-editor';
-import ElButton from 'element-ui/lib/button';
-
 export default {
   name: 'MisMonaco',
-  components: {
-    ElButton,
-  },
   props: {
-    afterAction: {
-      type: Function,
-      required: false,
-    },
     footer: {
       type: [Array, Object],
       required: false,
@@ -58,7 +42,7 @@ export default {
       schema: 'https://github.com/songshuzhong/umis/v1/schemas/page.json',
       ...window.UMIS.schema,
     };
-    this.editor = monaco.editor.create(this.$refs.editor, {
+    this.editor = window.monaco.editor.create(this.$refs.editor, {
       fontSize: '14px',
       language: 'json',
       autoIndent: true,
@@ -74,7 +58,6 @@ export default {
       },
     });
 
-    window.editorer = this.editor;
     this.editor.setValue(JSON.stringify(this.schema));
     this.onFormatSchema();
   },
@@ -88,7 +71,7 @@ export default {
     },
     onFormatSchema() {
       const timer = setTimeout(() => {
-        window.editorer.getAction(['editor.action.formatDocument']).run();
+        this.editor.getAction(['editor.action.formatDocument']).run();
         clearTimeout(timer);
       }, 100);
     },
@@ -96,6 +79,7 @@ export default {
       try {
         const json = this.editor.getValue();
         this.$eventHub.$emit('mis-schema:change', JSON.parse(json));
+        this.onFormatSchema();
       } catch (e) {
         console.error(e);
         this.$notice({

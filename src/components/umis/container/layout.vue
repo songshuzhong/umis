@@ -8,8 +8,8 @@
         :header="getHeader(item)"
         :body="getBody(item)"
         :footer="getFooter(item)"
-        :props="getProps(item, data)"
-        v-bind="getProps(item, data)"
+        :props="getFattingProps(item, data)"
+        v-bind="getFattingProps(item, data)"
       />
     </template>
   </el-container>

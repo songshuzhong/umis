@@ -22,7 +22,7 @@ const json = [
         },
         body: [
           {
-            renderer: 'mis-submenu',
+            renderer: 'mis-menu-submenu',
             name: 'submenu',
             icon: 'el-icon-menu',
             title: '组件',
@@ -39,12 +39,6 @@ const json = [
                   },
                   {
                     renderer: 'mis-menu-item',
-                    index: 'reactive',
-                    name: 'reactive',
-                    label: '可用性联动',
-                  },
-                  {
-                    renderer: 'mis-menu-item',
                     index: 'validator',
                     name: 'validator',
                     label: '表单验证',
@@ -54,12 +48,6 @@ const json = [
                     index: 'grid',
                     name: 'grid',
                     label: '栅栏',
-                  },
-                  {
-                    renderer: 'mis-menu-item',
-                    name: 'cards',
-                    index: 'cards',
-                    label: '卡片列表',
                   },
                   {
                     renderer: 'mis-menu-item',
@@ -78,7 +66,7 @@ const json = [
             ],
           },
           {
-            renderer: 'mis-submenu',
+            renderer: 'mis-menu-submenu',
             name: 'components',
             index: 'components',
             icon: 'el-icon-notebook-1',
@@ -86,7 +74,7 @@ const json = [
             body: [],
           },
           {
-            renderer: 'mis-submenu',
+            renderer: 'mis-menu-submenu',
             icon: 'el-icon-setting',
             title: '系统',
             body: [
@@ -120,35 +108,34 @@ const json = [
             classname: 'umis-layout__container__header',
             body: [
               {
-                renderer: 'mis-drawer',
-                name: 'isEditor',
-                showClose: true,
-                size: '60%',
-                label: '编辑',
-                classname: 'umis-layout__container__drawer',
-                header: {
-                  renderer: 'mis-html',
-                  html:
-                    '<h1 style="text-align: left; color: white;">编辑Schema</h1>',
-                },
-                body: [
-                  {
-                    renderer: 'mis-monaco',
-                    name: 'editor',
-                    footer: [
-                      {
-                        renderer: 'mis-button',
-                        hasAfter: false,
-                        text: '保存',
-                      },
-                      {
-                        renderer: 'mis-button',
-                        hasAfter: true,
-                        text: '保存并关闭',
-                      },
-                    ],
+                renderer: 'mis-action',
+                text: '编辑器',
+                type: 'text',
+                actionType: 'mis-drawer',
+                body: {
+                  name: 'isEditor',
+                  showClose: true,
+                  size: '60%',
+                  label: '编辑',
+                  classname: 'umis-layout__container__drawer',
+                  header: {
+                    renderer: 'mis-html',
+                    html:
+                      '<div style="text-align: left; color: white;">编辑Schema</div>',
                   },
-                ],
+                  body: [
+                    {
+                      renderer: 'mis-monaco',
+                      name: 'editor',
+                      footer: [
+                        {
+                          renderer: 'mis-button',
+                          text: '保存',
+                        },
+                      ],
+                    },
+                  ],
+                },
               },
             ],
           },

@@ -1,17 +1,6 @@
 <template>
-  <div>
-    <el-card class="mis-card-margin">
-      <div slot="header">
-        <span>接口前缀</span>
-      </div>
-      <api />
-    </el-card>
-    <el-card class="mis-card-margin">
-      <div slot="header">
-        <span>全局样式</span>
-      </div>
-    </el-card>
-    <el-card class="mis-card-margin">
+  <div class="umis-setting__cards">
+    <el-card class="umis-setting__card-margin">
       <div slot="header">
         <span>表单类型</span>
       </div>
@@ -22,25 +11,27 @@
         @change="handleFormTypeChange"
       />
     </el-card>
-    <el-card class="mis-card-margin">
-      <div slot="header">
-        <span>接口拦截器</span>
-      </div>
-    </el-card>
+    <setting-api />
+    <setting-interceptor />
+    <setting-style />
   </div>
 </template>
 <script>
 import ElCard from 'element-ui/lib/card';
 import ElSwitch from 'element-ui/lib/switch';
 
-import Api from './api';
+import SettingApi from './api';
+import SettingStyle from './style';
+import SettingInterceptor from './interceptor';
 
 export default {
-  name: 'MisSetting',
+  name: 'UmisSettings',
   components: {
     ElCard,
     ElSwitch,
-    Api,
+    SettingApi,
+    SettingStyle,
+    SettingInterceptor,
   },
   data() {
     return {
@@ -54,3 +45,16 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.umis-setting__cards {
+  .umis-setting__card-margin {
+    margin: 10px 0;
+  }
+  .umis-setting__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+</style>

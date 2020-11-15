@@ -2,27 +2,10 @@ const path = require('path');
 const glob = require('glob');
 const fs = require('fs');
 const manifestPlugin = require('webpack-manifest-plugin');
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-const elementExternals = require('./elementUIDependencies');
 const dev = process.env.NODE_ENV !== 'production';
 const publicPath = '';
 const pages = {};
 const rewrites = [];
-const externals = {
-  vue: {
-    root: 'Vue',
-    commonjs: 'vue',
-    commonjs2: 'vue',
-    amd: 'vue',
-  },
-  axios: 'axios',
-  'vue-router': 'VueRouter',
-  'element-ui': 'ELEMENT',
-};
-
-/*elementExternals.components.forEach(function(key) {
-  externals[`element-ui/lib/${key}`] = `element-ui/lib/${key}`;
-});*/
 
 glob.sync('./src/pages/*.js').forEach(entry => {
   const filename = entry.replace(/(.*\/)*([^.]+).*/gi, '$2');
@@ -81,10 +64,7 @@ module.exports = {
     resolve: {
       extensions: ['.ts', '.js', '.vue', '.json'],
     },
-    // externals: dev ? {} : externals,
-    plugins: [new MonacoWebpackPlugin()],
   },
-  transpileDependencies: ['vue-echarts', 'resize-detector'],
   chainWebpack: config => {
     const oneOfsMap = config.module.rule('scss').oneOfs.store;
     oneOfsMap.forEach(item => {
