@@ -1,6 +1,6 @@
 <template>
   <el-form
-    v-loading="iLoading"
+    v-loading="iApiLoading"
     class="mis-form"
     ref="mis-form"
     :label-width="labelWidth"
@@ -8,11 +8,11 @@
     :model="iData"
     :inline="inline"
   >
-    <template v-for="(item, index) in controls" :key="form">
+    <template v-for="(item, index) in controls" :key="index">
       <mis-field
         v-if="formItems.includes(item.renderer)"
         v-model="iData[item.name]"
-        :path="`${path}/${form}/${item.renderer}`"
+        :path="`${path}/${index}/${item.renderer}`"
         :name="item.name"
         :field="item"
         :data="iData"
@@ -26,7 +26,7 @@
         v-else
         :mis-name="item.renderer"
         :props="getFattingProps(item, iData)"
-        :path="`${path}/${form}/${item.renderer}`"
+        :path="`${path}/${index}/${item.renderer}`"
       />
     </template>
   </el-form>
@@ -36,6 +36,7 @@ import ElForm from 'element-ui/lib/form';
 
 import derivedProp from '../../mixin/derivedProp';
 import linkage from '../../mixin/linkage';
+import initApi from '../../mixin/initApi';
 
 const formItems = [
   'mis-action',
@@ -97,11 +98,15 @@ export default {
       type: String,
       required: false,
     },
+    data: {
+      type: Object,
+      required: false,
+    },
   },
   data() {
     return {
       formItems: formItems,
-      iLoading: false,
+      iApiLoading: false,
       invisibleField: [],
       iData: this.controls.reduce((total, control) => {
         const renderer = control.renderer;
@@ -114,7 +119,7 @@ export default {
       }, {}),
     };
   },
-  mixins: [derivedProp, linkage],
+  mixins: [initApi, derivedProp, linkage],
   watch: {
     data: {
       handler(val) {
@@ -159,7 +164,7 @@ export default {
         return this.onLinkageTrigger();
       }
       if (this.api) {
-        this.iLoading = true;
+        this.iApiLoading = true;
         this.$api
           .slientApi()
           .post(this.api, formData)
@@ -178,7 +183,7 @@ export default {
             });
           })
           .finally(() => {
-            this.iLoading = false;
+            this.iApiLoading = false;
           });
       }
     },

@@ -5,7 +5,7 @@
     :color="color"
     :status="status"
     :show-text="showText"
-    :percentage="data.percentage"
+    :percentage="iData.percentage"
     :stroke-width="strokeWidth"
     :textInside="textInside"
     :stroke-linecap="strokeLinecap"
@@ -63,7 +63,19 @@ export default {
       type: String,
       required: false,
     },
+    data: {
+      type: Object,
+      required: false,
+    },
   },
   mixins: [linkage],
+  watch: {
+    data: {
+      handler(val) {
+        if (val) this.iData = val;
+      },
+      immediate: true,
+    },
+  },
 };
 </script>

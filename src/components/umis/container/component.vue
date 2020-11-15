@@ -71,10 +71,6 @@ export default {
       type: Object,
       required: false,
     },
-    data: {
-      type: [Array, Object],
-      required: false,
-    },
   },
   mixins: [visible, linkage, derivedProp],
   data() {
@@ -104,10 +100,10 @@ export default {
     this.$eventHub.$on('mis-component:reload', this.handleReload);
   },
   methods: {
-    action() {
+    action(feedback) {
       switch (this.props.actionType) {
         case 'mis-ajax':
-          this.handleAjaxAction();
+          this.handleAjaxAction(feedback);
           break;
         case 'mis-redirect':
           this.handleRedirectAction();
@@ -132,7 +128,7 @@ export default {
         this.$nextTick(() => (this.forceRerender = true));
       }
     },
-    handleAjaxAction() {
+    handleAjaxAction(feedback) {
       const { method, url, data = {} } = this.props.actionApi;
       const compiledUrl = this.$getCompiledUrl(url, this.props.data);
       const params = this.$getCompiledUrl(
@@ -144,8 +140,7 @@ export default {
         JSON.parse(params)
       );
 
-      this.iApiLoading = true;
-      return this.$api
+      this.$api
         .slientApi()
         [method](compiledUrl, formData)
         .then(res => {
@@ -164,7 +159,7 @@ export default {
           });
         })
         .finally(() => {
-          this.iApiLoading = false;
+          feedback();
         });
     },
     handleUrlAction() {

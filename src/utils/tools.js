@@ -14,6 +14,17 @@ const getCompiledUrl = (tpl, data = {}) => {
   return str;
 };
 
+const getCompiledParams = (params, data = {}, method) => {
+  let compiledParams = {};
+
+  if (params) {
+    const compiled = template(JSON.stringify(params));
+    compiledParams = JSON.parse(compiled(data));
+  }
+
+  return compiledParams;
+};
+
 const onExpressionEval = (expression, data) => {
   const fn = new Function('data', `with(data) { return !!(${expression}) }`);
   try {
@@ -41,4 +52,10 @@ const json2FormData = (isFormData, data, invisibleField = [], target) => {
   return formData;
 };
 
-export { getRenderedTpl, getCompiledUrl, onExpressionEval, json2FormData };
+export {
+  getRenderedTpl,
+  getCompiledUrl,
+  getCompiledParams,
+  onExpressionEval,
+  json2FormData,
+};

@@ -11,6 +11,7 @@ import api from '~utils/api';
 import {
   getRenderedTpl,
   getCompiledUrl,
+  getCompiledParams,
   onExpressionEval,
   json2FormData,
 } from '~utils/tools';
@@ -27,6 +28,7 @@ Vue.prototype.$eventHub = new Vue();
 Vue.prototype.$onExpressionEval = onExpressionEval;
 Vue.prototype.$getRenderedTpl = getRenderedTpl;
 Vue.prototype.$getCompiledUrl = getCompiledUrl;
+Vue.prototype.$getCompiledParams = getCompiledParams;
 Vue.prototype.$json2FormData = json2FormData;
 Vue.prototype.$notice = Notification;
 Vue.prototype.$message = message;

@@ -107,13 +107,11 @@ export default {
 .umis-setting__api-editor {
   width: 100%;
 }
-.umis-form-combo__item,
 .umis-setting__api-editor__item {
   display: flex;
   padding: 11px 0;
   background: #f5f5f5;
 }
-.umis-form-combo__plus,
 .umis-setting__api-editor__plus {
   padding: 11px 0;
   background: #f5f5f5;

@@ -51,6 +51,10 @@ export default {
       type: String,
       required: false,
     },
+    data: {
+      type: Object,
+      required: true,
+    },
     body: {
       type: [Array, Object],
       required: false,

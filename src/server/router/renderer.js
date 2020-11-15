@@ -14,8 +14,11 @@ module.exports = {
         api: 'http://localhost:3000/api/mis',
         controls: [
           {
+            renderer: 'mis-static',
+          },
+          {
             renderer: 'mis-input',
-            name: 'input',
+            name: 'adress',
             label: '地址',
             value: 'mis',
             tip: '请填写地址',
@@ -23,7 +26,7 @@ module.exports = {
           },
           {
             renderer: 'mis-checkbox',
-            name: 'checkbox',
+            name: 'food',
             type: 'button',
             label: '主食',
             value: ['1'],
@@ -60,22 +63,24 @@ module.exports = {
             renderer: 'mis-datepicker',
             name: 'date',
             label: '日期',
+            tip: '请选择派送日期',
             hiddenOn: 'data.select2.length > 1',
             transition: 'el-zoom-in-top',
           },
           {
             renderer: 'mis-select',
             name: 'select2',
-            label: '选择框',
+            label: '口味',
             disabledOn: 'data.switchs === false',
+            tip: '请选择口味',
             options: [
               {
-                value: '选项1',
-                text: '黄金糕',
+                value: 'sweet',
+                text: '鲜甜味',
               },
               {
-                value: '选项2',
-                text: '双皮奶',
+                value: 'spicy',
+                text: '麻辣味',
               },
             ],
           },
@@ -92,6 +97,7 @@ module.exports = {
             name: 'combomap',
             tip: '单个 联合 map',
             visibleOn: 'data.switchs === false',
+            transition: 'el-zoom-in-center',
             value: {
               combomap1: 111,
               combomap2: 222,
@@ -257,24 +263,22 @@ module.exports = {
       data: {
         renderer: 'mis-form',
         name: 'form3',
-        api: 'http://dev.bendi.ad.weibo.com:3000/api/mis',
+        api: 'http://dev.bendi.ad.weibo.com:3000/api/save',
         controls: [
           {
-            renderer: 'mis-html',
-            html:
-              '<h5>联系人：<%=data.sponser%></h5><h5>邮箱：<%=data.email3%></h5><h5>活动名称：<%=data.activename%></h5><h5>活动区域：<%=JSON.stringify(data.activearea)%></h5><h5>活动时间：<%=data.activetime%></h5>',
+            renderer: 'mis-static',
           },
           {
             renderer: 'mis-input',
-            name: 'sponser',
-            label: '联系人',
-            tip: '联系姓名',
+            name: 'name',
+            label: '姓名',
+            tip: '姓名',
             value: '',
             rules: [{ required: true, message: '联系人不能为空' }],
           },
           {
             renderer: 'mis-input',
-            name: 'email3',
+            name: 'email',
             label: '邮箱',
             tip: '邮箱地址，字母数字下划线',
             value: '',
@@ -293,8 +297,8 @@ module.exports = {
           },
           {
             renderer: 'mis-input',
-            name: 'activename',
-            label: '活动名称',
+            name: 'address',
+            label: ' 住址',
             tip: '举办一场空前的活动',
             value: '',
             rules: [
@@ -307,53 +311,75 @@ module.exports = {
           },
           {
             renderer: 'mis-select',
-            name: 'activearea',
-            label: '活动区域',
+            name: 'profession',
+            label: '角色',
             tip: '活动范围在全宇宙',
             value: '',
-            visibleOn: 'delivery === true',
             options: [
               {
-                text: '区域一',
-                value: 'one',
+                text: '前端',
+                value: 'fe',
               },
               {
-                text: '区域二',
-                value: 'two',
+                text: '后端',
+                value: 'rd',
+              },
+              {
+                text: '产品',
+                value: 'pm',
+              },
+              {
+                text: '测试',
+                value: 'qa',
               },
             ],
             rules: [
               {
                 required: true,
-                message: '活动名称是必填项',
+                message: '身份是必填项',
                 trigger: 'change',
               },
             ],
           },
           {
             renderer: 'mis-datepicker',
-            label: '活动时间',
-            name: 'activetime',
-            tip: '活动时间在32世纪初',
+            label: '入职日期',
+            name: 'joinedDate',
+            tip: '入职日期',
             value: '',
             rules: [
               {
                 required: true,
-                message: '活动名称是必填项',
+                message: '入职日期是必填项',
                 trigger: 'change',
               },
             ],
           },
           {
             renderer: 'mis-switch',
-            label: '即时配送',
-            tip: '快递邮寄',
+            label: '校招',
+            tip: '是否校招',
             value: false,
-            name: 'delivery',
+            name: 'enrollment',
+          },
+          {
+            renderer: 'mis-input',
+            name: 'school',
+            label: '校招院校',
+            tip: '校招院校',
+            value: '',
+            visibleOn: 'data.enrollment === true',
+            rules: [
+              {
+                required: true,
+                message: '请输入校招院校名称',
+                trigger: 'blur',
+              },
+            ],
           },
           {
             renderer: 'mis-button',
-            text: '按钮',
+            text: '保存数据',
           },
         ],
       },
@@ -534,14 +560,12 @@ module.exports = {
                       {
                         renderer: 'mis-action',
                         text: 'ajax',
-                        reload: 'html',
                         size: 'mini',
                         actionType: 'mis-ajax',
                         actionApi: {
                           url: '/api/mis',
                           method: 'post',
                         },
-                        confirmTitle: '你确定发送请求吗？',
                       },
                       {
                         renderer: 'mis-action',
@@ -621,9 +645,20 @@ module.exports = {
                           appendBody: true,
                           modal: false,
                           body: {
-                            renderer: 'mis-html',
-                            html:
-                              '<div><%=data.name%><%=data.date%><%=data.address%></div>',
+                            renderer: 'mis-service',
+                            initApi: {
+                              url: '/api/pagelist',
+                              method: 'get',
+                              params: {
+                                name: '${name}',
+                                address: '${address}',
+                              },
+                            },
+                            body: {
+                              renderer: 'mis-html',
+                              html:
+                                '<div><%=data.name%><%=data.date%><%=data.address%></div>',
+                            },
                           },
                         },
                       },
@@ -693,6 +728,10 @@ module.exports = {
                 name: 'linkageForm',
                 target: 'linkageTarget',
                 inline: true,
+                initApi: {
+                  method: 'get',
+                  url: '/api/card/123456',
+                },
                 controls: [
                   {
                     renderer: 'mis-input',
@@ -718,17 +757,27 @@ module.exports = {
             name: 'numberlink',
             label: '计数器联动',
             icon: 'el-icon-odometer',
-            body: [
-              {
-                renderer: 'mis-number',
-                name: 'percentage',
-                target: 'progresstest',
+            keepAlive: false,
+            body: {
+              renderer: 'mis-service',
+              interval: 5000,
+              slientLoading: true,
+              initApi: {
+                method: 'get',
+                url: '/api/card/123456',
               },
-              {
-                renderer: 'mis-progress',
-                name: 'progresstest',
-              },
-            ],
+              body: [
+                {
+                  renderer: 'mis-number',
+                  name: 'percentage',
+                  target: 'progresstest',
+                },
+                {
+                  renderer: 'mis-progress',
+                  name: 'progresstest',
+                },
+              ],
+            },
           },
           {
             name: 'animationlink',
@@ -744,14 +793,21 @@ module.exports = {
                 target: 'animationtest',
               },
               {
-                renderer: 'mis-card',
-                name: 'animationtest',
-                visibleOn: 'data.animation === true',
-                transition: 'el-zoom-in-top',
+                renderer: 'mis-service',
+                initApi: {
+                  method: 'get',
+                  url: '/api/card/123456',
+                },
                 body: {
-                  renderer: 'mis-image',
-                  src:
-                    'https://songshuzhong.github.io/visualizer/static/img/html5.png',
+                  renderer: 'mis-card',
+                  name: 'animationtest',
+                  visibleOn: 'data.animation === true',
+                  transition: 'el-zoom-in-top',
+                  body: {
+                    renderer: 'mis-image',
+                    src:
+                      'https://songshuzhong.github.io/visualizer/static/img/html5.png',
+                  },
                 },
               },
             ],

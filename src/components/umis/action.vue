@@ -28,6 +28,7 @@
         :plain="plain"
         :round="round"
         :circle="circle"
+        :disabled="iApiLoading"
       >
         {{ text }}
       </el-button>
@@ -46,6 +47,7 @@
         :plain="plain"
         :round="round"
         :circle="circle"
+        :disabled="iApiLoading"
         @click="onClick"
       >
         {{ text }}
@@ -173,9 +175,9 @@ export default {
   mixins: [derivedProp],
   data() {
     return {
+      iApiLoading: false,
       visible: false,
       clipboard: '',
-      iApiLoading: false,
     };
   },
   methods: {
@@ -189,14 +191,10 @@ export default {
       if (['mis-ajax'].includes(this.actionType)) {
         this.iApiLoading = true;
       }
-      if (typeof this.action === 'function') {
-        const promise = this.action();
-        if (promise && typeof promise.then === 'function') {
-          promise.then(() => {
-            this.iApiLoading = false;
-          });
-        }
-      }
+      this.action && this.action(this.handleLoading);
+    },
+    handleLoading() {
+      this.iApiLoading = false;
     },
   },
 };

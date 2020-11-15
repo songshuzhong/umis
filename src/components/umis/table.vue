@@ -2,7 +2,7 @@
   <div class="umis-crud__container">
     <el-table
       v-loading="iApiLoading"
-      :data="iList"
+      :data="rows"
       :height="height"
       :stripe="stripe"
       :border="border"

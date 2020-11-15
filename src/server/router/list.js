@@ -1,10 +1,11 @@
-async function mockList(pageIndex, pageSize, total, drowsiness) {
+async function mockList(pageIndex = 1, pageSize = 10, total = 45, drowsiness) {
   await sleep(drowsiness);
 
   const children = [];
   for (let i = 1; i < pageSize; i++) {
     children.push({
       id: i * pageIndex * pageSize,
+      keywords: `上海市普陀区金沙江路 1518${i * pageIndex} 弄`,
       name: `江小白${i}代`,
       size: 'large',
       shape: 'square',
@@ -19,6 +20,7 @@ async function mockList(pageIndex, pageSize, total, drowsiness) {
       icon: 'el-icon-more',
       color: '#0bbd87',
       timestamp: `2016-0${(i % 9) + 1}-0${(i % 9) + 1}`,
+      percentage: Math.floor(Math.random() * (1 - 100) + 100),
     });
   }
 
@@ -31,6 +33,18 @@ module.exports = {
   'POST /api/mis': async ctx => {
     await sleep(3000);
     ctx.restify({ code: 1000, msg: 'success' });
+  },
+  'POST /api/save': async ctx => {
+    await sleep(3000);
+    ctx.restify({ code: 1000, msg: 'success' });
+  },
+  'GET /api/card/123456': async ctx => {
+    let list = await mockList(1, 15, 45, 1000);
+    ctx.restify({
+      code: 1000,
+      msg: 'success',
+      data: list[0],
+    });
   },
   'GET /api/pagelist': async ctx => {
     const { pageIndex, pageSize } = ctx.request.query;
@@ -52,7 +66,7 @@ module.exports = {
         pageSize: pageSize,
         hasMore,
         total,
-        list,
+        rows: list,
       },
     });
   },

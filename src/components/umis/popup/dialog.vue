@@ -13,50 +13,59 @@
     :destroy-on-close="destroyOnClose"
     @close="onClose"
   >
-    <template v-if="Object.prototype.toString.call(body) === '[object Object]'">
-      <component :is="body.renderer" v-bind="body" :data="data" />
-    </template>
-    <template v-else>
-      <template v-for="(item, index) in body">
-        <mis-component
-          :mis-name="item.renderer"
-          :key="index"
-          :path="`${path}/${index}/${item.renderer}`"
-          :header="getHeader(item)"
-          :body="getBody(item)"
-          :footer="getFooter(item)"
-          :props="getFattingProps(item, data)"
-        />
-      </template>
-    </template>
-    <div slot="footer">
+    <template v-if="iVisible">
       <template
-        v-if="Object.prototype.toString.call(footer) === '[object Array]'"
+        v-if="Object.prototype.toString.call(body) === '[object Object]'"
       >
-        <mis-component
-          :mis-name="item.renderer"
-          :key="index"
-          :path="`${path}/${index}/${item.renderer}`"
-          :header="getHeader(item)"
-          :body="getBody(item)"
-          :footer="getFooter(item)"
-          :props="getFattingProps(item, data)"
-          v-for="(item, index) in footer"
+        <component
+          :is="body.renderer"
+          :path="`${path}/${body.renderer}`"
+          v-bind="body"
+          :data="data"
         />
       </template>
-      <template
-        v-if="Object.prototype.toString.call(footer) === '[object Object]'"
-      >
-        <mis-component
-          :mis-name="footer.renderer"
-          :path="`${path}/${footer.renderer}`"
-          :header="getHeader(footer)"
-          :body="getBody(footer)"
-          :footer="getFooter(footer)"
-          :props="getFattingProps(footer, data)"
-        />
+      <template v-else>
+        <template v-for="(item, index) in body">
+          <mis-component
+            :mis-name="item.renderer"
+            :key="index"
+            :path="`${path}/${index}/${item.renderer}`"
+            :header="getHeader(item)"
+            :body="getBody(item)"
+            :footer="getFooter(item)"
+            :props="getFattingProps(item, data)"
+          />
+        </template>
       </template>
-    </div>
+      <div slot="footer">
+        <template
+          v-if="Object.prototype.toString.call(footer) === '[object Array]'"
+        >
+          <mis-component
+            v-for="(item, index) in footer"
+            :mis-name="item.renderer"
+            :key="index"
+            :path="`${path}/${index}/${item.renderer}`"
+            :header="getHeader(item)"
+            :body="getBody(item)"
+            :footer="getFooter(item)"
+            :props="getFattingProps(item, data)"
+          />
+        </template>
+        <template
+          v-if="Object.prototype.toString.call(footer) === '[object Object]'"
+        >
+          <mis-component
+            :mis-name="footer.renderer"
+            :path="`${path}/${footer.renderer}`"
+            :header="getHeader(footer)"
+            :body="getBody(footer)"
+            :footer="getFooter(footer)"
+            :props="getFattingProps(footer, data)"
+          />
+        </template>
+      </div>
+    </template>
   </el-dialog>
 </template>
 <script>
