@@ -1,7 +1,7 @@
 <template>
   <el-timeline :reverse="data.reverse">
     <el-timeline-item
-      v-for="(item, index) in iList"
+      v-for="(item, index) in rows"
       :key="index"
       :timestamp="item.timestamp"
       :placement="item.placement || placement"

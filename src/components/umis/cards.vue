@@ -2,7 +2,7 @@
   <div class="umis-crud__container">
     <el-row v-loading="iApiLoading" :gutter="gutter">
       <el-col
-        v-for="(item, index) in iList"
+        v-for="(item, index) in rows"
         :span="span"
         :key="index"
         :xs="size[0]"

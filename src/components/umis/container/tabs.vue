@@ -1,12 +1,11 @@
 <template>
   <el-tabs
+    v-model="data.iActiveTab"
     :path="`${path}`"
     :type="type"
     :style="tabStyle"
     :stretch="stretch"
     :tab-position="tabPosition"
-    v-model="iActiveName"
-    @tab-click="onTabClick"
   >
     <el-tab-pane
       v-for="(item, index) in body"
@@ -20,33 +19,36 @@
         <i v-if="item.icon" :class="item.icon" />
         {{ item.label }}
       </span>
-      <template
-        v-if="Object.prototype.toString.call(item.body) === '[object Object]'"
-      >
-        <mis-component
-          :mis-name="item.body.renderer"
-          :path="`${path}/${index}/${item.body.renderer}`"
-          :props="getFattingProps(item.body, data)"
-          :header="getHeader(item.body, data)"
-          :body="getBody(item.body, data)"
-          :footer="getFooter(item.body, data)"
-          v-bind="getFattingProps(item.body, data)"
-        />
-      </template>
-      <template
-        v-else
-        v-for="(child, index) in item.body"
-        :key="`${path}/${index}/${child.renderer}`"
-      >
-        <mis-component
-          :mis-name="child.renderer"
-          :path="`${path}/${index}/${child.renderer}`"
-          :props="getFattingProps(child, data)"
-          :header="getHeader(child, data)"
-          :body="getBody(child, data)"
-          :footer="getFooter(child, data)"
-          v-bind="getFattingProps(child, data)"
-        />
+      <template v-if="isPanelAlive(item)">
+        <template
+          v-if="Object.prototype.toString.call(item.body) === '[object Object]'"
+        >
+          <mis-component
+            :mis-name="item.body.renderer"
+            :path="`${path}/${index}/${item.body.renderer}`"
+            :props="getFattingProps(item.body, data)"
+            :header="getHeader(item.body, data)"
+            :body="getBody(item.body, data)"
+            :footer="getFooter(item.body, data)"
+            v-bind="getFattingProps(item.body, data)"
+          />
+        </template>
+        <template v-else>
+          <template
+            v-for="(child, index) in item.body"
+            :key="`${path}/${index}/${child.renderer}`"
+          >
+            <mis-component
+              :mis-name="child.renderer"
+              :path="`${path}/${index}/${child.renderer}`"
+              :props="getFattingProps(child, data)"
+              :header="getHeader(child, data)"
+              :body="getBody(child, data)"
+              :footer="getFooter(child, data)"
+              v-bind="getFattingProps(child, data)"
+            />
+          </template>
+        </template>
       </template>
     </el-tab-pane>
   </el-tabs>
@@ -98,21 +100,29 @@ export default {
   },
   data() {
     return {
-      iActiveName: '',
+      data: {
+        iActiveTab: '',
+      },
     };
   },
   mixins: [derivedProp],
   watch: {
     activeName: {
       handler(val) {
-        this.iActiveName = val;
+        this.data.iActiveTab = val;
       },
       immediate: true,
     },
   },
   mounted() {},
   methods: {
-    onTabClick() {},
+    isPanelAlive(item) {
+      if (item.keepAlive === false) {
+        console.log('keepalive');
+        return this.data.iActiveTab === item.name;
+      }
+      return true;
+    },
   },
 };
 </script>

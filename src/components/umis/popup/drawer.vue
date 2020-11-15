@@ -34,15 +34,16 @@
       />
     </template>
     <template v-if="footer">
-      <mis-component
-        v-for="(item, index) in footer"
-        :mis-name="item.renderer"
-        :key="index"
-        :path="`${path}/${index}/${item.renderer}`"
-        :footer="item.footer"
-        :action="onClose"
-        :props="getFattingProps(item, data)"
-      />
+      <template v-for="(item, index) in footer">
+        <mis-component
+          :mis-name="item.renderer"
+          :key="index"
+          :path="`${path}/${index}/${item.renderer}`"
+          :footer="item.footer"
+          :action="onClose"
+          :props="getFattingProps(item, data)"
+        />
+      </template>
     </template>
   </el-drawer>
 </template>

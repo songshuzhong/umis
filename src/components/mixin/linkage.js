@@ -3,7 +3,7 @@ import clonedeep from 'lodash.clonedeep';
 export default {
   data() {
     return {
-      data: {},
+      iData: {},
     };
   },
   mounted() {
@@ -19,7 +19,7 @@ export default {
     handleLinkage(target, data) {
       if (this.name && target === this.name) {
         const newData = Object.assign({}, this.iData, data);
-        this.data = clonedeep(newData);
+        this.iData = clonedeep(newData);
       }
     },
   },

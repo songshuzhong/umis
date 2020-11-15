@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       schema:
-        'body{margin: 0; background: #EAEAEF}.mis-card-margin{margin-bottom: 20px}',
+        'body{margin: 0; background: #FFFFFF}.mis-card-margin{margin-bottom: 20px}',
     };
   },
   mounted() {
