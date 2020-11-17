@@ -10,10 +10,10 @@ export default {
     this.$eventHub.$on('mis-component:linkage', this.handleLinkage);
   },
   methods: {
-    onLinkageTrigger(data) {
-      if (this.target) {
+    onLinkageTrigger(target, data) {
+      if (target) {
         const trigerData = data || this.iData;
-        this.$eventHub.$emit('mis-component:linkage', this.target, trigerData);
+        this.$eventHub.$emit('mis-component:linkage', target, trigerData);
       }
     },
     handleLinkage(target, data) {

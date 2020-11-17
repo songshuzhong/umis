@@ -14,14 +14,16 @@
     <component
       v-if="iVisible && forceRerender"
       v-show="iHidden && forceRerender"
+      v-bind="getSlimmingProps(props)"
       :is="misName"
       :index="index"
       :path="path"
       :header="header"
       :body="body"
+      :data="getDataProps(props, iData)"
       :footer="footer"
       :action="action"
-      v-bind="getSlimmingProps(props)"
+      :linkage-trigger="onLinkageTrigger"
     />
   </transition>
 </template>
@@ -78,6 +80,7 @@ export default {
       error: '',
       forceRerender: true,
       clipboard: '',
+      data: {},
     };
   },
   errorCaptured(err, vm, info) {
@@ -95,6 +98,12 @@ export default {
       }
       return false;
     },
+  },
+  watch: {
+    iData(val) {
+      this.data = val;
+    },
+    deep: true,
   },
   mounted() {
     this.$eventHub.$on('mis-component:reload', this.handleReload);

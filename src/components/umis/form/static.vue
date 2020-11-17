@@ -1,6 +1,6 @@
 <template>
   <pre class="umis-component__static"
-    >{{ data }}
+    >{{ iData }}
   </pre>
 </template>
 
@@ -15,6 +15,19 @@ export default {
     data: {
       type: Object,
       required: true,
+    },
+  },
+  data() {
+    return {
+      iData: {},
+    };
+  },
+  watch: {
+    data: {
+      handler(val) {
+        if (val) this.iData = val;
+      },
+      immediate: true,
     },
   },
 };

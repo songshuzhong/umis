@@ -1,5 +1,5 @@
 <template>
-  <el-timeline :reverse="data.reverse">
+  <el-timeline :reverse="iData.reverse">
     <el-timeline-item
       v-for="(item, index) in rows"
       :key="index"
@@ -25,7 +25,6 @@ import ElTimelineItem from 'element-ui/lib/timeline-item';
 
 import initApi from '../mixin/initApi';
 import derivedProp from '../mixin/derivedProp';
-import linkage from '../mixin/linkage';
 
 export default {
   name: 'MisTimeline',
@@ -66,7 +65,24 @@ export default {
       type: Object,
       required: true,
     },
+    data: {
+      type: Object,
+      required: false,
+    },
   },
-  mixins: [initApi, linkage, derivedProp],
+  data() {
+    return {
+      iData: {},
+    };
+  },
+  watch: {
+    data: {
+      handler(val) {
+        if (val) this.iData = val;
+      },
+      immediate: true,
+    },
+  },
+  mixins: [initApi, derivedProp],
 };
 </script>

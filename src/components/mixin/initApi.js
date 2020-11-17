@@ -18,6 +18,14 @@ export default {
       required: false,
       default: 0,
     },
+    sendOn: {
+      type: String,
+      required: false,
+    },
+    stopAutoRefreshWhen: {
+      type: String,
+      required: false,
+    },
     silentLoading: {
       type: Boolean,
       required: false,
@@ -61,6 +69,19 @@ export default {
     },
   },
   computed: {
+    iStopAutoRefresh() {
+      if (this.stopAutoRefreshWhen) {
+        const status = this.$onExpressionEval(
+          this.stopAutoRefreshWhen,
+          this.data
+        );
+        if (status) {
+          this.clearAutoRefresh();
+        }
+        return status;
+      }
+      return false;
+    },
     iApiLoading() {
       return !this.silentLoading && this.iLoading;
     },
@@ -88,11 +109,14 @@ export default {
     }
   },
   beforeDestroy() {
-    if (this.interval) {
-      clearInterval(this.intervalFetcher);
-    }
+    this.clearAutoRefresh();
   },
   methods: {
+    clearAutoRefresh() {
+      if (this.interval && this.intervalFetcher) {
+        clearInterval(this.intervalFetcher);
+      }
+    },
     getSchemaRequest() {
       const self = this;
       self.iSchemaLoading = true;

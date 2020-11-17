@@ -1,6 +1,6 @@
 <template>
   <el-tabs
-    v-model="data.iActiveTab"
+    v-model="iData.iActiveTab"
     :path="`${path}`"
     :type="type"
     :style="tabStyle"
@@ -26,11 +26,11 @@
           <mis-component
             :mis-name="item.body.renderer"
             :path="`${path}/${index}/${item.body.renderer}`"
-            :props="getFattingProps(item.body, data)"
-            :header="getHeader(item.body, data)"
-            :body="getBody(item.body, data)"
-            :footer="getFooter(item.body, data)"
-            v-bind="getFattingProps(item.body, data)"
+            :props="getFattingProps(item.body, iData)"
+            :header="getHeader(item.body, iData)"
+            :body="getBody(item.body, iData)"
+            :footer="getFooter(item.body, iData)"
+            v-bind="getFattingProps(item.body, iData)"
           />
         </template>
         <template v-else>
@@ -41,11 +41,11 @@
             <mis-component
               :mis-name="child.renderer"
               :path="`${path}/${index}/${child.renderer}`"
-              :props="getFattingProps(child, data)"
-              :header="getHeader(child, data)"
-              :body="getBody(child, data)"
-              :footer="getFooter(child, data)"
-              v-bind="getFattingProps(child, data)"
+              :props="getFattingProps(child, iData)"
+              :header="getHeader(child, iData)"
+              :body="getBody(child, iData)"
+              :footer="getFooter(child, iData)"
+              v-bind="getFattingProps(child, iData)"
             />
           </template>
         </template>
@@ -100,26 +100,31 @@ export default {
   },
   data() {
     return {
-      data: {
+      iData: {
         iActiveTab: '',
       },
     };
   },
   mixins: [derivedProp],
   watch: {
+    data: {
+      handler(val) {
+        Object.assign(this.iData, val);
+      },
+      immediate: true,
+      deep: true,
+    },
     activeName: {
       handler(val) {
-        this.data.iActiveTab = val;
+        this.iData.iActiveTab = val;
       },
       immediate: true,
     },
   },
-  mounted() {},
   methods: {
     isPanelAlive(item) {
       if (item.keepAlive === false) {
-        console.log('keepalive');
-        return this.data.iActiveTab === item.name;
+        return this.iData.iActiveTab === item.name;
       }
       return true;
     },
