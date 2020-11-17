@@ -1,6 +1,6 @@
 <template>
   <el-input-number
-    v-model="iData"
+    v-model="iData.precision"
     :min="min"
     :max="max"
     :size="size"
@@ -16,8 +16,6 @@
 
 <script>
 import ElInputNumber from 'element-ui/lib/input-number';
-
-import linkage from '../mixin/linkage';
 
 export default {
   name: 'MisNumber',
@@ -78,20 +76,39 @@ export default {
       type: String,
       required: false,
     },
+    data: {
+      type: Object,
+      required: true,
+    },
+    linkageTrigger: {
+      type: Function,
+      required: true,
+    },
   },
   data() {
     return {
-      iData: 0,
+      iData: {
+        precision: 0,
+      },
     };
   },
-  mixins: [linkage],
+  watch: {
+    data: {
+      handler(val) {
+        if (val) {
+          this.iData.precision = val[this.name];
+        }
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
   methods: {
     handleChange(value) {
-      this.iData = value;
       if (this.target) {
         const triggerData = {};
-        triggerData[this.name] = this.iData;
-        this.onLinkageTrigger(triggerData);
+        triggerData[this.name] = value;
+        this.linkageTrigger(this.target, triggerData);
       }
     },
   },

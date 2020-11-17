@@ -1,7 +1,7 @@
 export default {
   methods: {
     getSlimmingProps(props = {}, extend = {}) {
-      const { hiddenOn, visibleOn, transition, ...other } = props;
+      const { data, hiddenOn, visibleOn, transition, ...other } = props;
       return { ...other, ...extend };
     },
     getFattingProps(props, iData = {}, extend = {}) {
@@ -16,6 +16,10 @@ export default {
         ...other
       } = props;
       return { ...other, data: { ...data, ...iData, ...extend } };
+    },
+    getDataProps(props = {}, iData = {}) {
+      const data = props.data || {};
+      return Object.assign({}, iData, data);
     },
     getHeader(props) {
       return props.header;

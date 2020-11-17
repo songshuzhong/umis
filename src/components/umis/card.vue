@@ -12,6 +12,7 @@
         :header="getHeader(body)"
         :footer="getFooter(body)"
         :props="getFattingProps(body, data)"
+        v-bind="getFattingProps(body, data)"
       />
     </div>
     <div class="el-card__footer" v-if="footer">
@@ -24,6 +25,7 @@
           :body="getBody(foot)"
           :footer="getFooter(foot)"
           :props="getFattingProps(foot, data)"
+          v-bind="getFattingProps(foot, data)"
         />
       </template>
     </div>
@@ -35,7 +37,6 @@ import ElCard from 'element-ui/lib/card';
 
 import initApi from '../mixin/initApi';
 import derivedProp from '../mixin/derivedProp';
-import linkage from '../mixin/linkage';
 
 export default {
   name: 'MisCard',
@@ -86,7 +87,18 @@ export default {
       default: 'always',
     },
   },
-  mixins: [linkage, initApi, derivedProp],
+  mixins: [initApi, derivedProp],
+  watch: {
+    data: {
+      handler(val) {
+        if (val) {
+          this.iData = val;
+        }
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
   methods: {
     renderHeader(data) {
       return this.$getRenderedTpl(this.header, data);

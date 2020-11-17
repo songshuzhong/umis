@@ -98,6 +98,10 @@ export default {
       type: String,
       required: false,
     },
+    linkageTrigger: {
+      type: Function,
+      required: true,
+    },
     data: {
       type: Object,
       required: false,
@@ -106,7 +110,6 @@ export default {
   data() {
     return {
       formItems: formItems,
-      iApiLoading: false,
       invisibleField: [],
       iData: this.controls.reduce((total, control) => {
         const renderer = control.renderer;
@@ -161,7 +164,7 @@ export default {
         this.target
       );
       if (this.target) {
-        return this.onLinkageTrigger();
+        return this.linkageTrigger(this.target, formData);
       }
       if (this.api) {
         this.iApiLoading = true;

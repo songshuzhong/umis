@@ -15,8 +15,6 @@
 <script>
 import ElProgress from 'element-ui/lib/progress';
 
-import linkage from '../mixin/linkage';
-
 export default {
   name: 'MisProgress',
   components: {
@@ -68,7 +66,11 @@ export default {
       required: false,
     },
   },
-  mixins: [linkage],
+  data() {
+    return {
+      iData: {},
+    };
+  },
   watch: {
     data: {
       handler(val) {

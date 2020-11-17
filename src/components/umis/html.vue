@@ -3,7 +3,6 @@
 </template>
 <script>
 import derivedProp from '../mixin/derivedProp';
-import linkage from '../mixin/linkage';
 
 export default {
   name: 'MisHtml',
@@ -40,6 +39,6 @@ export default {
       immediate: true,
     },
   },
-  mixins: [derivedProp, linkage],
+  mixins: [derivedProp],
 };
 </script>
