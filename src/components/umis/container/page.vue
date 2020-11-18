@@ -25,6 +25,7 @@
 </template>
 <script>
 import initApi from '../../mixin/initApi';
+import initData from '../../mixin/initData';
 
 export default {
   name: 'MisPage',
@@ -39,7 +40,7 @@ export default {
       required: false,
     },
   },
-  mixins: [initApi],
+  mixins: [initApi, initData],
   watch: {
     schema: {
       handler(val) {

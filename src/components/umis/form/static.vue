@@ -1,10 +1,12 @@
 <template>
   <pre class="umis-component__static"
-    >{{ iData }}
+    >{{ data }}
   </pre>
 </template>
 
 <script>
+import initData from '../../mixin/initData';
+
 export default {
   name: 'MisStatic',
   props: {
@@ -17,19 +19,7 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      iData: {},
-    };
-  },
-  watch: {
-    data: {
-      handler(val) {
-        if (val) this.iData = val;
-      },
-      immediate: true,
-    },
-  },
+  mixins: [initData],
 };
 </script>
 <style lang="scss">

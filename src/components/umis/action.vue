@@ -5,7 +5,7 @@
       :path="`${path}/${actionType}`"
       :is="actionType"
       :visible="visible"
-      :data="data"
+      :init-data="data"
       :on-action-disvisiable="onDisVisiable"
     />
     <el-popconfirm
@@ -61,6 +61,7 @@ import ElTooltip from 'element-ui/lib/tooltip';
 import ElButton from 'element-ui/lib/button';
 
 import derivedProp from '../mixin/derivedProp';
+import initData from '../mixin/initData';
 
 export default {
   name: 'MisAction',
@@ -88,10 +89,6 @@ export default {
     },
     classname: {
       type: String,
-      required: false,
-    },
-    data: {
-      type: Object,
       required: false,
     },
     body: {
@@ -172,7 +169,6 @@ export default {
       required: false,
     },
   },
-  mixins: [derivedProp],
   data() {
     return {
       iApiLoading: false,
@@ -180,6 +176,7 @@ export default {
       clipboard: '',
     };
   },
+  mixins: [derivedProp, initData],
   methods: {
     onDisVisiable() {
       this.visible = false;

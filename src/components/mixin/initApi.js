@@ -33,8 +33,13 @@ export default {
   },
   data() {
     return {
+      iTotal: 0,
+      iPageIndex: 1,
+      iPageSize: 10,
+      iHasMore: true,
       iLoading: false,
       iSchemaLoading: false,
+      iStopAutoRefresh: false,
       iSchema: {},
       data: {},
       rows: [],
@@ -42,18 +47,21 @@ export default {
   },
   watch: {
     interval: {
-      handler(val) {
-        clearInterval(this.intervalFetcher);
+      handler(val, old) {
+        if (val !== old && !old) {
+          clearInterval(this.intervalFetcher);
+        }
         if (val) {
           this.handleIntervalFetch();
         }
       },
     },
-    initData: {
+    iStopAutoRefresh: {
       handler(val) {
-        if (val) this.data = val;
+        if (val) {
+          this.clearAutoRefresh();
+        }
       },
-      immediate: true,
     },
     'initSchema.url': {
       handler(val) {
@@ -69,28 +77,11 @@ export default {
     },
   },
   computed: {
-    iStopAutoRefresh() {
-      if (this.stopAutoRefreshWhen) {
-        const status = this.$onExpressionEval(
-          this.stopAutoRefreshWhen,
-          this.data
-        );
-        if (status) {
-          this.clearAutoRefresh();
-        }
-        return status;
-      }
-      return false;
-    },
     iApiLoading() {
       return !this.silentLoading && this.iLoading;
     },
   },
   mounted() {
-    this.iTotal = 0;
-    this.iPageIndex = 1;
-    this.iPageSize = 15;
-    this.iHasMore = true;
     this.intervalFetcher = null;
     this.$eventHub.$on('mis-schema:change', this.upSchema);
     if (this.initSchema) {
@@ -101,10 +92,10 @@ export default {
       }
     }
     if (this.initApi) {
+      this.fetchInitApi();
+
       if (this.interval) {
         this.handleIntervalFetch();
-      } else {
-        this.fetchInitApi();
       }
     }
   },
@@ -143,6 +134,12 @@ export default {
     handleIntervalFetch() {
       this.intervalFetcher = setInterval(() => {
         this.fetchInitApi();
+        if (this.stopAutoRefreshWhen) {
+          this.iStopAutoRefresh = this.$onExpressionEval(
+            this.stopAutoRefreshWhen,
+            this
+          );
+        }
       }, this.interval);
     },
     fetchInitApi() {

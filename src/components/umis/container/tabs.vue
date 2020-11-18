@@ -1,6 +1,6 @@
 <template>
   <el-tabs
-    v-model="iData.iActiveTab"
+    v-model="data.iActiveTab"
     :path="`${path}`"
     :type="type"
     :style="tabStyle"
@@ -26,11 +26,11 @@
           <mis-component
             :mis-name="item.body.renderer"
             :path="`${path}/${index}/${item.body.renderer}`"
-            :props="getFattingProps(item.body, iData)"
-            :header="getHeader(item.body, iData)"
-            :body="getBody(item.body, iData)"
-            :footer="getFooter(item.body, iData)"
-            v-bind="getFattingProps(item.body, iData)"
+            :props="getFattingProps(item.body)"
+            :header="getHeader(item.body)"
+            :body="getBody(item.body)"
+            :footer="getFooter(item.body)"
+            v-bind="getFattingProps(item.body)"
           />
         </template>
         <template v-else>
@@ -41,11 +41,11 @@
             <mis-component
               :mis-name="child.renderer"
               :path="`${path}/${index}/${child.renderer}`"
-              :props="getFattingProps(child, iData)"
-              :header="getHeader(child, iData)"
-              :body="getBody(child, iData)"
-              :footer="getFooter(child, iData)"
-              v-bind="getFattingProps(child, iData)"
+              :props="getFattingProps(child)"
+              :header="getHeader(child)"
+              :body="getBody(child)"
+              :footer="getFooter(child)"
+              v-bind="getFattingProps(child)"
             />
           </template>
         </template>
@@ -58,6 +58,7 @@ import ElTabs from 'element-ui/lib/tabs';
 import ElTabPane from 'element-ui/lib/tab-pane';
 
 import derivedProp from '../../mixin/derivedProp';
+import initData from '../../mixin/initData';
 
 export default {
   name: 'MisTabs',
@@ -100,23 +101,16 @@ export default {
   },
   data() {
     return {
-      iData: {
+      data: {
         iActiveTab: '',
       },
     };
   },
-  mixins: [derivedProp],
+  mixins: [derivedProp, initData],
   watch: {
-    data: {
-      handler(val) {
-        Object.assign(this.iData, val);
-      },
-      immediate: true,
-      deep: true,
-    },
     activeName: {
       handler(val) {
-        this.iData.iActiveTab = val;
+        this.data.iActiveTab = val;
       },
       immediate: true,
     },
@@ -124,7 +118,7 @@ export default {
   methods: {
     isPanelAlive(item) {
       if (item.keepAlive === false) {
-        return this.iData.iActiveTab === item.name;
+        return this.data.iActiveTab === item.name;
       }
       return true;
     },

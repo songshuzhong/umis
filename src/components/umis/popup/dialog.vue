@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     v-bind="$props"
-    :visible.sync="iVisible"
+    :visible.sync="data.iVisible"
     :title="title"
     :width="width"
     :fullscreen="fullscreen"
@@ -13,7 +13,7 @@
     :destroy-on-close="destroyOnClose"
     @close="onClose"
   >
-    <template v-if="iVisible">
+    <template v-if="data.iVisible">
       <template
         v-if="Object.prototype.toString.call(body) === '[object Object]'"
       >
@@ -72,6 +72,7 @@
 import ElDialog from 'element-ui/lib/dialog';
 
 import derivedProp from '../../mixin/derivedProp';
+import initData from '../../mixin/initData';
 
 export default {
   name: 'MisDialog',
@@ -141,10 +142,6 @@ export default {
       type: [Array, Object],
       required: false,
     },
-    data: {
-      type: [Array, Object],
-      required: false,
-    },
     classname: {
       type: String,
       required: false,
@@ -159,11 +156,10 @@ export default {
       default: false,
     },
   },
-  mixins: [derivedProp],
   watch: {
     visible: {
       handler(val) {
-        this.iVisible = val;
+        this.data.iVisible = val;
       },
       immediate: true,
       deep: true,
@@ -171,12 +167,15 @@ export default {
   },
   data() {
     return {
-      iVisible: false,
+      data: {
+        iVisible: false,
+      },
     };
   },
+  mixins: [derivedProp, initData],
   methods: {
     onClose() {
-      this.iVisible = false;
+      this.data.iVisible = false;
       this.onActionDisvisiable && this.onActionDisvisiable();
     },
   },

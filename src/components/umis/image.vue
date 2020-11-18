@@ -6,6 +6,7 @@
         :key="index"
         :src="item"
         :lazy="lazy"
+        :fit="fit"
       >
         <template v-if="error" slot="error">
           {{ $getRenderedTpl(error) }}
@@ -16,7 +17,7 @@
       </el-image>
     </template>
     <template v-else>
-      <el-image :src="src" :lazy="lazy" :preview-src-list="previews">
+      <el-image :src="src" :lazy="lazy" :fit="fit" :preview-src-list="previews">
         <template v-if="error" slot="error">
           {{ $getRenderedTpl(error) }}
         </template>
@@ -49,6 +50,10 @@ export default {
       type: [Array, String],
       required: true,
     },
+    fit: {
+      type: String,
+      required: false,
+    },
     previews: {
       type: Array,
       required: false,
@@ -71,3 +76,9 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.umis-image__container {
+  width: 100%;
+  height: 100%;
+}
+</style>
