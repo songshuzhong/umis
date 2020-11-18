@@ -5,27 +5,28 @@
     ref="mis-form"
     :label-width="labelWidth"
     :label-position="labelPosition"
-    :model="iData"
+    :model="data"
     :inline="inline"
   >
     <template v-for="(item, index) in controls" :key="index">
       <mis-field
         v-if="formItems.includes(item.renderer)"
-        v-model="iData[item.name]"
+        v-model="data[item.name]"
         :path="`${path}/${index}/${item.renderer}`"
         :name="item.name"
         :field="item"
-        :data="iData"
+        :data="data"
         :hidden-on="item.hiddenOn"
         :visible-on="item.visibleOn"
         :disabled-on="item.disabledOn"
         :handle-invisible="handleInvisible"
+        :linkage-trigger="onLinkageTrigger"
         :action="onBeforeSubmit"
       />
       <mis-component
         v-else
         :mis-name="item.renderer"
-        :props="getFattingProps(item, iData)"
+        :props="getFattingProps(item, data)"
         :path="`${path}/${index}/${item.renderer}`"
       />
     </template>
@@ -37,6 +38,7 @@ import ElForm from 'element-ui/lib/form';
 import derivedProp from '../../mixin/derivedProp';
 import linkage from '../../mixin/linkage';
 import initApi from '../../mixin/initApi';
+import initData from '../../mixin/initData';
 
 const formItems = [
   'mis-action',
@@ -70,11 +72,6 @@ export default {
       type: String,
       required: false,
     },
-    data: {
-      type: Object,
-      required: false,
-      default: {},
-    },
     controls: {
       type: Array,
       required: false,
@@ -102,16 +99,12 @@ export default {
       type: Function,
       required: true,
     },
-    data: {
-      type: Object,
-      required: false,
-    },
   },
   data() {
     return {
       formItems: formItems,
       invisibleField: [],
-      iData: this.controls.reduce((total, control) => {
+      data: this.controls.reduce((total, control) => {
         const renderer = control.renderer;
         const name = control.name || '';
         const value = control.value;
@@ -122,22 +115,7 @@ export default {
       }, {}),
     };
   },
-  mixins: [initApi, derivedProp, linkage],
-  watch: {
-    data: {
-      handler(val) {
-        if (val) {
-          for (const name in this.iData) {
-            if (this.iData.hasOwnProperty(name) && val.hasOwnProperty(name)) {
-              this.iData[name] = val[name];
-            }
-          }
-        }
-      },
-      immediate: true,
-      deep: true,
-    },
-  },
+  mixins: [initApi, initData, derivedProp, linkage],
   methods: {
     handleInvisible(visible, field) {
       if (visible) {
@@ -159,7 +137,7 @@ export default {
     sendFormData() {
       const formData = this.$json2FormData(
         this.$umisConfig.isFormData,
-        this.iData,
+        this.data,
         this.invisibleField,
         this.target
       );

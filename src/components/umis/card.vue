@@ -37,6 +37,7 @@ import ElCard from 'element-ui/lib/card';
 
 import initApi from '../mixin/initApi';
 import derivedProp from '../mixin/derivedProp';
+import initData from '../mixin/initData';
 
 export default {
   name: 'MisCard',
@@ -51,10 +52,6 @@ export default {
     name: {
       type: String,
       required: false,
-    },
-    data: {
-      type: Object,
-      required: true,
     },
     body: {
       type: [Array, Object],
@@ -87,18 +84,7 @@ export default {
       default: 'always',
     },
   },
-  mixins: [initApi, derivedProp],
-  watch: {
-    data: {
-      handler(val) {
-        if (val) {
-          this.iData = val;
-        }
-      },
-      deep: true,
-      immediate: true,
-    },
-  },
+  mixins: [initApi, initData, derivedProp],
   methods: {
     renderHeader(data) {
       return this.$getRenderedTpl(this.header, data);

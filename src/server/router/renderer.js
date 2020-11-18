@@ -681,7 +681,7 @@ module.exports = {
       data: {
         renderer: 'mis-tabs',
         stretch: true,
-        activeName: 'animationlink',
+        activeName: 'formlink',
         body: [
           {
             name: 'switchlink',
@@ -715,6 +715,41 @@ module.exports = {
                     },
                   },
                 },
+              },
+            ],
+          },
+          {
+            name: 'carousellink',
+            label: '轮播图联动',
+            icon: 'el-icon-data-board',
+            body: [
+              {
+                renderer: 'mis-carousel',
+                type: 'card',
+                body: [
+                  {
+                    renderer: 'mis-image',
+                    fit: 'contain',
+                    src:
+                      'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
+                  },
+                  {
+                    renderer: 'mis-html',
+                    html:
+                      '<div style="width: 100%; height: 300px; background: #e3e3e3; text-align: center; line-height: 300px;">carousel data1</div>',
+                  },
+                  {
+                    renderer: 'mis-image',
+                    fit: 'contain',
+                    src:
+                      'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
+                  },
+                  {
+                    renderer: 'mis-html',
+                    html:
+                      '<div style="width: 100%; height: 300px; background: #99a9bf; text-align: center; line-height: 300px;">carousel data3</div>',
+                  },
+                ],
               },
             ],
           },

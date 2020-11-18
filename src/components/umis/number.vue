@@ -1,6 +1,6 @@
 <template>
   <el-input-number
-    v-model="iData.precision"
+    v-model="data.percentage"
     :min="min"
     :max="max"
     :size="size"
@@ -16,6 +16,7 @@
 
 <script>
 import ElInputNumber from 'element-ui/lib/input-number';
+import initData from '../mixin/initData';
 
 export default {
   name: 'MisNumber',
@@ -76,10 +77,6 @@ export default {
       type: String,
       required: false,
     },
-    data: {
-      type: Object,
-      required: true,
-    },
     linkageTrigger: {
       type: Function,
       required: true,
@@ -87,22 +84,12 @@ export default {
   },
   data() {
     return {
-      iData: {
-        precision: 0,
+      data: {
+        percentage: 0,
       },
     };
   },
-  watch: {
-    data: {
-      handler(val) {
-        if (val) {
-          this.iData.precision = val[this.name];
-        }
-      },
-      deep: true,
-      immediate: true,
-    },
-  },
+  mixins: [initData],
   methods: {
     handleChange(value) {
       if (this.target) {

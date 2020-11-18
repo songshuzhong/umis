@@ -3,6 +3,7 @@
 </template>
 <script>
 import derivedProp from '../mixin/derivedProp';
+import initData from '../mixin/initData';
 
 export default {
   name: 'MisHtml',
@@ -15,30 +16,12 @@ export default {
       type: String,
       required: false,
     },
-    data: {
-      type: Object,
-      required: false,
-      default: {},
-    },
-  },
-  data() {
-    return {
-      iData: {},
-    };
   },
   computed: {
     getHtml() {
-      return this.$getRenderedTpl(this.html, this.iData);
+      return this.$getRenderedTpl(this.html, this.data);
     },
   },
-  watch: {
-    data: {
-      handler(val) {
-        this.iData = val;
-      },
-      immediate: true,
-    },
-  },
-  mixins: [derivedProp],
+  mixins: [initData, derivedProp],
 };
 </script>

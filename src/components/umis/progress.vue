@@ -5,7 +5,7 @@
     :color="color"
     :status="status"
     :show-text="showText"
-    :percentage="iData.percentage"
+    :percentage="data.percentage"
     :stroke-width="strokeWidth"
     :textInside="textInside"
     :stroke-linecap="strokeLinecap"
@@ -14,6 +14,7 @@
 
 <script>
 import ElProgress from 'element-ui/lib/progress';
+import initData from '../mixin/initData';
 
 export default {
   name: 'MisProgress',
@@ -61,23 +62,7 @@ export default {
       type: String,
       required: false,
     },
-    data: {
-      type: Object,
-      required: false,
-    },
   },
-  data() {
-    return {
-      iData: {},
-    };
-  },
-  watch: {
-    data: {
-      handler(val) {
-        if (val) this.iData = val;
-      },
-      immediate: true,
-    },
-  },
+  mixins: [initData],
 };
 </script>

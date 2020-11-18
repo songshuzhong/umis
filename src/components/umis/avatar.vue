@@ -13,6 +13,7 @@
 </template>
 <script>
 import ElAvatar from 'element-ui/lib/avatar';
+import initData from '../mixin/initData';
 
 export default {
   name: 'MisAvatar',
@@ -62,10 +63,7 @@ export default {
       default: 'cover',
       options: ['fill', 'contain', 'cover', 'none', 'scale-down'],
     },
-    data: {
-      type: Object,
-      required: false,
-    },
   },
+  mixins: [initData],
 };
 </script>

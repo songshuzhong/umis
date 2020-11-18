@@ -23,7 +23,6 @@ import ElMain from 'element-ui/lib/main';
 import ElFooter from 'element-ui/lib/footer';
 
 import derivedProp from '../../mixin/derivedProp';
-import initApi from '../../mixin/initApi';
 
 export default {
   name: 'MisLayout',
@@ -56,6 +55,6 @@ export default {
       required: false,
     },
   },
-  mixins: [initApi, derivedProp],
+  mixins: [derivedProp],
 };
 </script>

@@ -2,7 +2,7 @@ async function mockList(pageIndex = 1, pageSize = 10, total = 45, drowsiness) {
   await sleep(drowsiness);
 
   const children = [];
-  for (let i = 1; i < pageSize; i++) {
+  for (let i = 1; i <= pageSize; i++) {
     children.push({
       id: i * pageIndex * pageSize,
       keywords: `上海市普陀区金沙江路 1518${i * pageIndex} 弄`,
@@ -54,7 +54,7 @@ module.exports = {
     let list = await mockList(pageIndex, pageSize, total, 1000);
 
     if (pageIndex * pageSize > total) {
-      list = [];
+      list = list.slice(0, pageIndex * pageSize - total);
       hasMore = true;
     }
 
