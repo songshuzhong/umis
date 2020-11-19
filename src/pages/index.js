@@ -14,6 +14,8 @@ import {
   getCompiledParams,
   onExpressionEval,
   json2FormData,
+  saveInitStyle,
+  saveInitFormType,
 } from '~utils/tools';
 
 import 'element-theme-chalk/lib/index.css';
@@ -30,6 +32,8 @@ Vue.prototype.$getRenderedTpl = getRenderedTpl;
 Vue.prototype.$getCompiledUrl = getCompiledUrl;
 Vue.prototype.$getCompiledParams = getCompiledParams;
 Vue.prototype.$json2FormData = json2FormData;
+Vue.prototype.$saveInitStyle = saveInitStyle;
+Vue.prototype.$saveInitFormType = saveInitFormType;
 Vue.prototype.$notice = Notification;
 Vue.prototype.$message = message;
 Vue.prototype.$api = api(umisConfig);
@@ -40,5 +44,10 @@ Vue.use(ElLoading);
 
 new Vue({
   router,
+  mounted() {
+    const ctx = this;
+    this.$saveInitStyle(ctx, umisConfig.style);
+    this.$saveInitFormType(ctx, umisConfig.isFormData);
+  },
   render: h => h('router-view'),
 }).$mount('#app');

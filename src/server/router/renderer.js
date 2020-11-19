@@ -273,7 +273,6 @@ module.exports = {
             name: 'name',
             label: '姓名',
             tip: '姓名',
-            value: '',
             rules: [{ required: true, message: '联系人不能为空' }],
           },
           {
@@ -281,7 +280,6 @@ module.exports = {
             name: 'email',
             label: '邮箱',
             tip: '邮箱地址，字母数字下划线',
-            value: '',
             rules: [
               {
                 required: true,
@@ -300,7 +298,6 @@ module.exports = {
             name: 'address',
             label: ' 住址',
             tip: '举办一场空前的活动',
-            value: '',
             rules: [
               {
                 required: true,
@@ -314,7 +311,6 @@ module.exports = {
             name: 'profession',
             label: '角色',
             tip: '活动范围在全宇宙',
-            value: '',
             options: [
               {
                 text: '前端',
@@ -346,7 +342,6 @@ module.exports = {
             label: '入职日期',
             name: 'joinedDate',
             tip: '入职日期',
-            value: '',
             rules: [
               {
                 required: true,
@@ -359,7 +354,6 @@ module.exports = {
             renderer: 'mis-switch',
             label: '校招',
             tip: '是否校招',
-            value: false,
             name: 'enrollment',
           },
           {
@@ -367,7 +361,6 @@ module.exports = {
             name: 'school',
             label: '校招院校',
             tip: '校招院校',
-            value: '',
             visibleOn: 'data.enrollment === true',
             rules: [
               {
@@ -408,7 +401,6 @@ module.exports = {
                 url: '/api/pagelist',
                 method: 'get',
               },
-              span: 6,
               gutter: 20,
               shadow: 'hover',
               bodyStyle: { padding: '0' },
@@ -423,7 +415,8 @@ module.exports = {
               footer: [
                 {
                   renderer: 'mis-action',
-                  text: '弹一个窗',
+                  text: '编辑',
+                  type: 'text',
                   actionType: 'mis-dialog',
                   body: {
                     title: '我是可以无限弹窗的哦',
@@ -466,6 +459,16 @@ module.exports = {
                         ],
                       },
                     },
+                  },
+                },
+                {
+                  renderer: 'mis-action',
+                  text: '删除',
+                  type: 'text',
+                  actionType: 'mis-ajax',
+                  actionApi: {
+                    url: '/api/mis',
+                    method: 'post',
                   },
                 },
               ],
@@ -681,7 +684,7 @@ module.exports = {
       data: {
         renderer: 'mis-tabs',
         stretch: true,
-        activeName: 'animationlink',
+        activeName: 'formlink',
         body: [
           {
             name: 'switchlink',
@@ -715,6 +718,63 @@ module.exports = {
                     },
                   },
                 },
+              },
+            ],
+          },
+          {
+            name: 'carousellink',
+            label: '轮播图联动',
+            icon: 'el-icon-data-board',
+            body: [
+              {
+                renderer: 'mis-carousel',
+                type: 'card',
+                body: [
+                  {
+                    renderer: 'mis-image',
+                    fit: 'contain',
+                    src:
+                      'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
+                  },
+                  {
+                    renderer: 'mis-html',
+                    html:
+                      '<div style="width: 100%; height: 300px; background: #e3e3e3; text-align: center; line-height: 300px;">carousel data1</div>',
+                  },
+                  {
+                    renderer: 'mis-service',
+                    interval: 5000,
+                    slientLoading: true,
+                    initApi: {
+                      method: 'get',
+                      url: '/api/card/123456',
+                    },
+                    body: [
+                      {
+                        renderer: 'mis-number',
+                        name: 'percentage',
+                        target: 'progresstest',
+                      },
+                      {
+                        renderer: 'mis-progress',
+                        name: 'progresstest',
+                        status: 'exception',
+                        textInside: true,
+                      },
+                    ],
+                  },
+                  {
+                    renderer: 'mis-image',
+                    fit: 'contain',
+                    src:
+                      'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
+                  },
+                  {
+                    renderer: 'mis-html',
+                    html:
+                      '<div style="width: 100%; height: 300px; background: #99a9bf; text-align: center; line-height: 300px;">carousel data3</div>',
+                  },
+                ],
               },
             ],
           },
@@ -775,6 +835,8 @@ module.exports = {
                 {
                   renderer: 'mis-progress',
                   name: 'progresstest',
+                  status: 'exception',
+                  textInside: true,
                 },
               ],
             },

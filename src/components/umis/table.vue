@@ -63,7 +63,6 @@ import ElPagination from 'element-ui/lib/pagination';
 
 import initApi from '../mixin/initApi';
 import derivedProp from '../mixin/derivedProp';
-import linkage from '../mixin/linkage';
 
 export default {
   name: 'MisTable',
@@ -118,6 +117,6 @@ export default {
       default: true,
     },
   },
-  mixins: [initApi, derivedProp, linkage],
+  mixins: [initApi, derivedProp],
 };
 </script>

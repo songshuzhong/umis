@@ -26,11 +26,11 @@
           <mis-component
             :mis-name="item.body.renderer"
             :path="`${path}/${index}/${item.body.renderer}`"
-            :props="getFattingProps(item.body, data)"
-            :header="getHeader(item.body, data)"
-            :body="getBody(item.body, data)"
-            :footer="getFooter(item.body, data)"
-            v-bind="getFattingProps(item.body, data)"
+            :props="getFattingProps(item.body)"
+            :header="getHeader(item.body)"
+            :body="getBody(item.body)"
+            :footer="getFooter(item.body)"
+            v-bind="getFattingProps(item.body)"
           />
         </template>
         <template v-else>
@@ -41,11 +41,11 @@
             <mis-component
               :mis-name="child.renderer"
               :path="`${path}/${index}/${child.renderer}`"
-              :props="getFattingProps(child, data)"
-              :header="getHeader(child, data)"
-              :body="getBody(child, data)"
-              :footer="getFooter(child, data)"
-              v-bind="getFattingProps(child, data)"
+              :props="getFattingProps(child)"
+              :header="getHeader(child)"
+              :body="getBody(child)"
+              :footer="getFooter(child)"
+              v-bind="getFattingProps(child)"
             />
           </template>
         </template>
@@ -58,6 +58,7 @@ import ElTabs from 'element-ui/lib/tabs';
 import ElTabPane from 'element-ui/lib/tab-pane';
 
 import derivedProp from '../../mixin/derivedProp';
+import initData from '../../mixin/initData';
 
 export default {
   name: 'MisTabs',
@@ -105,7 +106,7 @@ export default {
       },
     };
   },
-  mixins: [derivedProp],
+  mixins: [derivedProp, initData],
   watch: {
     activeName: {
       handler(val) {
@@ -114,11 +115,9 @@ export default {
       immediate: true,
     },
   },
-  mounted() {},
   methods: {
     isPanelAlive(item) {
       if (item.keepAlive === false) {
-        console.log('keepalive');
         return this.data.iActiveTab === item.name;
       }
       return true;

@@ -5,7 +5,7 @@
       :path="`${path}/${actionType}`"
       :is="actionType"
       :visible="visible"
-      :data="data"
+      :init-data="data"
       :on-action-disvisiable="onDisVisiable"
     />
     <el-popconfirm
@@ -40,33 +40,38 @@
       :content="tipContent"
       :placement="tipPlacement"
     >
-      <el-button
-        v-loading="iApiLoading"
-        :size="size"
-        :type="type"
-        :plain="plain"
-        :round="round"
-        :circle="circle"
-        :disabled="iApiLoading"
-        @click="onClick"
-      >
-        {{ text }}
-      </el-button>
+      <el-badge :value="badgeText" :class="badgeClass">
+        <el-button
+          v-loading="iApiLoading"
+          :size="size"
+          :type="type"
+          :plain="plain"
+          :round="round"
+          :circle="circle"
+          :disabled="iApiLoading"
+          @click="onClick"
+        >
+          {{ text }}
+        </el-button>
+      </el-badge>
     </el-tooltip>
   </fragment>
 </template>
 <script>
 import ElPopconfirm from 'element-ui/lib/popconfirm';
 import ElTooltip from 'element-ui/lib/tooltip';
+import ElBadge from 'element-ui/lib/badge';
 import ElButton from 'element-ui/lib/button';
 
 import derivedProp from '../mixin/derivedProp';
+import initData from '../mixin/initData';
 
 export default {
   name: 'MisAction',
   components: {
     ElPopconfirm,
     ElTooltip,
+    ElBadge,
     ElButton,
   },
   props: {
@@ -88,10 +93,6 @@ export default {
     },
     classname: {
       type: String,
-      required: false,
-    },
-    data: {
-      type: Object,
       required: false,
     },
     body: {
@@ -171,8 +172,15 @@ export default {
       type: Boolean,
       required: false,
     },
+    badgeText: {
+      type: String,
+      required: false,
+    },
+    badgeClass: {
+      type: String,
+      required: false,
+    },
   },
-  mixins: [derivedProp],
   data() {
     return {
       iApiLoading: false,
@@ -180,6 +188,7 @@ export default {
       clipboard: '',
     };
   },
+  mixins: [derivedProp, initData],
   methods: {
     onDisVisiable() {
       this.visible = false;

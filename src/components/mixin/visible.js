@@ -15,7 +15,7 @@ export default {
     transition: {
       type: String,
       required: false,
-      default: '',
+      default: 'el-fade-in-linear',
     },
   },
   data() {

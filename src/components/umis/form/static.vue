@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import initData from '../../mixin/initData';
+
 export default {
   name: 'MisStatic',
   props: {
@@ -17,6 +19,7 @@ export default {
       required: true,
     },
   },
+  mixins: [initData],
 };
 </script>
 <style lang="scss">

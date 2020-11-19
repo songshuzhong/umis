@@ -20,9 +20,9 @@ export default {
     ElButton,
   },
   data() {
+    const initStyle = this.$umisConfig.style;
     return {
-      schema:
-        'body{margin: 0; background: #FFFFFF}.mis-card-margin{margin-bottom: 20px}',
+      schema: initStyle,
     };
   },
   mounted() {
@@ -48,7 +48,6 @@ export default {
 
       this.editor.setValue(this.schema);
       this.onFormatSchema();
-      this.onSave();
     },
     onFormatSchema() {
       const self = this;
@@ -58,28 +57,8 @@ export default {
       }, 100);
     },
     onSave() {
-      try {
-        const json = this.editor.getValue();
-        let ele = document.getElementById('umis-setting-style');
-
-        if (!ele) {
-          ele = document.createElement('style');
-          ele.id = 'umis-setting-style';
-          document.head.appendChild(ele);
-        }
-        ele.innerHTML = json;
-        this.$notice({
-          type: 'success',
-          title: '通知',
-          message: '保存成功！',
-        });
-      } catch (e) {
-        this.$notice({
-          type: 'error',
-          title: '警告',
-          message: e.toString(),
-        });
-      }
+      const json = this.editor.getValue();
+      this.$saveInitStyle(this, json);
     },
   },
 };

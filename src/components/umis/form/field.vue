@@ -27,6 +27,7 @@
         :disabled="iDisabled"
         :action="action"
         @input="onInput($event)"
+        :linkage-trigger="linkageTrigger"
       />
     </el-form-item>
   </transition>
@@ -73,6 +74,10 @@ export default {
       required: true,
     },
     action: {
+      type: Function,
+      required: true,
+    },
+    linkageTrigger: {
       type: Function,
       required: true,
     },

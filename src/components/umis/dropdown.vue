@@ -36,6 +36,7 @@ import ElDropdownMenu from 'element-ui/lib/dropdown-menu';
 import ElDropdownItem from 'element-ui/lib/dropdown-item';
 
 import derivedProp from '../mixin/derivedProp';
+import initData from '../mixin/initData';
 
 const actionItems = ['mis-ajax', 'mis-copy', 'mis-redirect', 'mis-url'];
 
@@ -54,10 +55,6 @@ export default {
     text: {
       type: String,
       required: true,
-    },
-    data: {
-      type: Object,
-      required: false,
     },
     body: {
       type: [Array, Object],
@@ -89,6 +86,6 @@ export default {
       actionItems,
     };
   },
-  mixins: [derivedProp],
+  mixins: [initData, derivedProp],
 };
 </script>

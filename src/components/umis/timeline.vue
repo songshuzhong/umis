@@ -25,7 +25,7 @@ import ElTimelineItem from 'element-ui/lib/timeline-item';
 
 import initApi from '../mixin/initApi';
 import derivedProp from '../mixin/derivedProp';
-import linkage from '../mixin/linkage';
+import initData from '../mixin/initData';
 
 export default {
   name: 'MisTimeline',
@@ -67,6 +67,6 @@ export default {
       required: true,
     },
   },
-  mixins: [initApi, linkage, derivedProp],
+  mixins: [initApi, initData, derivedProp],
 };
 </script>

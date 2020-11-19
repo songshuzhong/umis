@@ -1,30 +1,46 @@
 <template>
-  <el-popconfirm
-    confirm-button-text="好的"
-    cancel-button-text="不用了"
-    icon="el-icon-info"
-    icon-color="red"
-    title="这是一段内容确定删除吗？"
-    @onConfirm="onConfirm"
-    @onCancel="onConfirm"
-  >
-    <el-button size="mini" v-loading="true" slot="reference">删除</el-button>
-  </el-popconfirm>
+  <el-row :gutter="20">
+    <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
+    <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
+    <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
+    <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
+  </el-row>
 </template>
 <script>
-import ElPopconfirm from 'element-ui/lib/popconfirm';
-import ElButton from 'element-ui/lib/button';
-
+import ElRow from 'element-ui/lib/row';
+import ElCol from 'element-ui/lib/col';
 export default {
-  name: 'MisDoc',
   components: {
-    ElPopconfirm,
-    ElButton,
-  },
-  methods: {
-    onConfirm() {
-      console.log(2345345235234);
-    },
+    ElCol,
+    ElRow,
   },
 };
 </script>
+<style lang="scss">
+.el-row {
+  margin-bottom: 20px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+.el-col {
+  border-radius: 4px;
+}
+.bg-purple-dark {
+  background: #99a9bf;
+}
+.bg-purple {
+  background: #d3dce6;
+}
+.bg-purple-light {
+  background: #e5e9f2;
+}
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+}
+.row-bg {
+  padding: 10px 0;
+  background-color: #f9fafc;
+}
+</style>

@@ -50,6 +50,7 @@
 <script>
 import ElDrawer from 'element-ui/lib/drawer';
 import derivedProp from '../../mixin/derivedProp';
+import initData from '../../mixin/initData';
 
 export default {
   name: 'MisDrawer',
@@ -126,10 +127,6 @@ export default {
       type: String,
       required: true,
     },
-    data: {
-      type: [Array, Object],
-      required: true,
-    },
     body: {
       type: [Array, Object],
       required: true,
@@ -148,7 +145,7 @@ export default {
       iVisible: false,
     };
   },
-  mixins: [derivedProp],
+  mixins: [derivedProp, initData],
   watch: {
     visible(val) {
       this.iVisible = val;

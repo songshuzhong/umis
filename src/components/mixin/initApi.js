@@ -18,6 +18,14 @@ export default {
       required: false,
       default: 0,
     },
+    sendOn: {
+      type: String,
+      required: false,
+    },
+    stopAutoRefreshWhen: {
+      type: String,
+      required: false,
+    },
     silentLoading: {
       type: Boolean,
       required: false,
@@ -25,8 +33,13 @@ export default {
   },
   data() {
     return {
+      iTotal: 0,
+      iPageIndex: 1,
+      iPageSize: 10,
+      iHasMore: true,
       iLoading: false,
       iSchemaLoading: false,
+      iStopAutoRefresh: false,
       iSchema: {},
       data: {},
       rows: [],
@@ -34,28 +47,25 @@ export default {
   },
   watch: {
     interval: {
-      handler(val) {
-        clearInterval(this.intervalFetcher);
+      handler(val, old) {
+        if (val !== old && !old) {
+          clearInterval(this.intervalFetcher);
+        }
         if (val) {
           this.handleIntervalFetch();
         }
       },
     },
-    initData: {
-      handler(val) {
-        if (val) this.data = val;
-      },
-      immediate: true,
-    },
-    'initSchema.url': {
+    iStopAutoRefresh: {
       handler(val) {
         if (val) {
-          if (this.initSchema.method === 'post') {
-            this.getSchemaRequest();
-          } else {
-            this.getSchemaRequest();
-          }
+          this.clearAutoRefresh();
         }
+      },
+    },
+    'initSchema.url': {
+      handler() {
+        this.getPageSchema();
       },
       deep: true,
     },
@@ -66,59 +76,58 @@ export default {
     },
   },
   mounted() {
-    this.iTotal = 0;
-    this.iPageIndex = 1;
-    this.iPageSize = 15;
-    this.iHasMore = true;
     this.intervalFetcher = null;
-    this.$eventHub.$on('mis-schema:change', this.upSchema);
+    this.$eventHub.$on('mis-schema:change', this.updatePageSchema);
     if (this.initSchema) {
-      if (this.initSchema.method === 'post') {
-        this.getSchemaRequest();
-      } else {
-        this.getSchemaRequest();
-      }
+      this.getPageSchema();
     }
     if (this.initApi) {
+      this.fetchInitApi();
+
       if (this.interval) {
         this.handleIntervalFetch();
-      } else {
-        this.fetchInitApi();
       }
     }
   },
   beforeDestroy() {
-    if (this.interval) {
-      clearInterval(this.intervalFetcher);
-    }
+    this.clearAutoRefresh();
   },
   methods: {
-    getSchemaRequest() {
-      const self = this;
-      self.iSchemaLoading = true;
-      typeof this.schemaSource === 'function' &&
-        this.schemaSource('CANCELED_DUE_TO_NEW_REQUEST');
+    clearAutoRefresh() {
+      if (this.interval && this.intervalFetcher) {
+        clearInterval(this.intervalFetcher);
+      }
+    },
+    getPageSchema() {
+      const { method, url, params = {} } = this.initSchema;
+      let fetchBody = params;
+
+      if (method === 'get') {
+        fetchBody = {
+          params,
+        };
+      }
+
+      this.iSchemaLoading = true;
       this.$api
         .slientApi()
-        .get(this.initSchema.url, {
-          params: this.initSchema.params,
-          cancelToken: new this.$api.cancelToken(c => (this.schemaSource = c)),
-        })
+        [method](url, fetchBody)
         .then(res => {
-          self.iSchema = res.data;
-          self.iSchemaLoading = false;
+          this.iSchema = res.data;
+          this.iSchemaLoading = false;
           window.UMIS = { schema: res.data };
           this.$eventHub.$emit('mis-schema:init', res.data);
-        })
-        .catch(thrown => {
-          if (this.$api.isCancel(thrown)) {
-            // console.log('Request canceled');
-          }
         });
     },
     handleIntervalFetch() {
       this.intervalFetcher = setInterval(() => {
         this.fetchInitApi();
+        if (this.stopAutoRefreshWhen) {
+          this.iStopAutoRefresh = this.$onExpressionEval(
+            this.stopAutoRefreshWhen,
+            this
+          );
+        }
       }, this.interval);
     },
     fetchInitApi() {
@@ -160,7 +169,7 @@ export default {
           this.iLoading = false;
         });
     },
-    upSchema(data) {
+    updatePageSchema(data) {
       if (this.iSchemaUpdate) {
         this.iSchema = data;
         window.UMIS = { schema: data };

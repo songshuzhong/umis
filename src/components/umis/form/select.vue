@@ -1,10 +1,11 @@
 <template>
   <el-select
     v-model="iValue"
-    multiple
     :name="name"
     :disabled="disabled"
-    placeholder="请选择"
+    :multiple="multiple"
+    :filterable="filterable"
+    :placeholder="placeholder"
     @change="onChange"
   >
     <el-option
@@ -43,6 +44,18 @@ export default {
     multiple: {
       type: Boolean,
       required: false,
+    },
+    joinValue: {
+      type: Boolean,
+      required: false,
+    },
+    filterable: {
+      type: Boolean,
+      required: false,
+    },
+    placeholder: {
+      type: String,
+      required: true,
     },
   },
   data: () => ({

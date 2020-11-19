@@ -52,10 +52,40 @@ const json2FormData = (isFormData, data, invisibleField = [], target) => {
   return formData;
 };
 
+const saveInitFormType = (ctx, isFormData) => {
+  ctx.$umisConfig.isFormData = isFormData;
+};
+
+const saveInitStyle = (ctx, style) => {
+  try {
+    let ele = document.getElementById('umis-setting-style');
+
+    if (!ele) {
+      ele = document.createElement('style');
+      ele.id = 'umis-setting-style';
+      document.head.appendChild(ele);
+    }
+    ele.innerHTML = style;
+    ctx.$notice({
+      type: 'success',
+      title: '通知',
+      message: '保存成功！',
+    });
+  } catch (e) {
+    ctx.$notice({
+      type: 'error',
+      title: '警告',
+      message: e.toString(),
+    });
+  }
+};
+
 export {
   getRenderedTpl,
   getCompiledUrl,
   getCompiledParams,
   onExpressionEval,
   json2FormData,
+  saveInitStyle,
+  saveInitFormType,
 };

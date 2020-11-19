@@ -1,6 +1,6 @@
 <template>
   <el-input-number
-    v-model="iData"
+    v-model="data.percentage"
     :min="min"
     :max="max"
     :size="size"
@@ -16,8 +16,7 @@
 
 <script>
 import ElInputNumber from 'element-ui/lib/input-number';
-
-import linkage from '../mixin/linkage';
+import initData from '../mixin/initData';
 
 export default {
   name: 'MisNumber',
@@ -78,20 +77,25 @@ export default {
       type: String,
       required: false,
     },
+    linkageTrigger: {
+      type: Function,
+      required: true,
+    },
   },
   data() {
     return {
-      iData: 0,
+      data: {
+        percentage: 0,
+      },
     };
   },
-  mixins: [linkage],
+  mixins: [initData],
   methods: {
     handleChange(value) {
-      this.iData = value;
       if (this.target) {
         const triggerData = {};
-        triggerData[this.name] = this.iData;
-        this.onLinkageTrigger(triggerData);
+        triggerData[this.name] = value;
+        this.linkageTrigger(this.target, triggerData);
       }
     },
   },

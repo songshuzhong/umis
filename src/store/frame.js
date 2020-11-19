@@ -127,12 +127,6 @@ const json = [
                     {
                       renderer: 'mis-monaco',
                       name: 'editor',
-                      footer: [
-                        {
-                          renderer: 'mis-button',
-                          text: '保存',
-                        },
-                      ],
                     },
                   ],
                 },

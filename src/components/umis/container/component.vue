@@ -14,14 +14,15 @@
     <component
       v-if="iVisible && forceRerender"
       v-show="iHidden && forceRerender"
+      v-bind="getSlimmingProps(props)"
       :is="misName"
-      :index="index"
       :path="path"
       :header="header"
       :body="body"
       :footer="footer"
       :action="action"
-      v-bind="getSlimmingProps(props)"
+      :linkage-trigger="onLinkageTrigger"
+      :init-data="getDataProps(props, data)"
     />
   </transition>
 </template>
@@ -48,10 +49,6 @@ export default {
       required: true,
     },
     name: {
-      type: String,
-      required: false,
-    },
-    index: {
       type: String,
       required: false,
     },
