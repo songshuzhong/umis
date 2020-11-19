@@ -40,24 +40,27 @@
       :content="tipContent"
       :placement="tipPlacement"
     >
-      <el-button
-        v-loading="iApiLoading"
-        :size="size"
-        :type="type"
-        :plain="plain"
-        :round="round"
-        :circle="circle"
-        :disabled="iApiLoading"
-        @click="onClick"
-      >
-        {{ text }}
-      </el-button>
+      <el-badge :value="badgeText" :class="badgeClass">
+        <el-button
+          v-loading="iApiLoading"
+          :size="size"
+          :type="type"
+          :plain="plain"
+          :round="round"
+          :circle="circle"
+          :disabled="iApiLoading"
+          @click="onClick"
+        >
+          {{ text }}
+        </el-button>
+      </el-badge>
     </el-tooltip>
   </fragment>
 </template>
 <script>
 import ElPopconfirm from 'element-ui/lib/popconfirm';
 import ElTooltip from 'element-ui/lib/tooltip';
+import ElBadge from 'element-ui/lib/badge';
 import ElButton from 'element-ui/lib/button';
 
 import derivedProp from '../mixin/derivedProp';
@@ -68,6 +71,7 @@ export default {
   components: {
     ElPopconfirm,
     ElTooltip,
+    ElBadge,
     ElButton,
   },
   props: {
@@ -166,6 +170,14 @@ export default {
     },
     confirmHideIcon: {
       type: Boolean,
+      required: false,
+    },
+    badgeText: {
+      type: String,
+      required: false,
+    },
+    badgeClass: {
+      type: String,
       required: false,
     },
   },

@@ -19,13 +19,15 @@
 
     <script type="text/javascript">
       var umisConfig = {
-        isFormData: true,
+        isFormData: false,
         isApiChanged: false,
         domains: {
           VUE_APP_API_ACTIVE: '',
           VUE_APP_API_MOCK:
             'https://www.fastmock.site/mock/a93e0b29161761b8153cbc02db04c643',
         },
+        style:
+          'body{margin: 0; background: #FFFFFF}.mis-card-margin{margin-bottom: 20px}.mis-card-margin .el-card__footer{display: flex;align-items: center;justify-content:space-around;border-top:1px solid #ebeef5;}',
       };
       require.config({
         paths: {

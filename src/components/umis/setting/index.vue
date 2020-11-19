@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     handleFormTypeChange(val) {
-      this.$umisConfig.isFormData = val;
+      this.$saveInitFormType(this, val);
     },
   },
 };
