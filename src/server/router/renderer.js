@@ -712,10 +712,33 @@ module.exports = {
                   },
                   body: {
                     renderer: 'mis-card',
-                    body: {
-                      renderer: 'mis-html',
-                      html: '<h1>支持使用图标</h1>',
-                    },
+                    body: [
+                      {
+                        renderer: 'mis-map',
+                        value: 1,
+                        map: {
+                          '0': "<span class='el-icon-wind-power'> 大风</span>",
+                          '1': "<span class='el-icon-light-rain'> 雨天</span>",
+                          '2': "<span class='el-icon-sunny'> 晴天</span>",
+                          '3':
+                            "<span class='el-icon-cloudy-and-sunny'> 多云</span>",
+                          '4': "<span class='el-icon-lightning'>雷雨</span>",
+                          '5': '其他：${type}',
+                        },
+                      },
+                      {
+                        renderer: 'mis-map',
+                        value: 1,
+                        map: {
+                          '0': '开心',
+                          '1': '沮丧',
+                          '2': '兴奋',
+                          '3': '难过',
+                          '4': '发呆',
+                          '5': '莫名其妙',
+                        },
+                      },
+                    ],
                   },
                 },
               },

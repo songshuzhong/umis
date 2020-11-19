@@ -14,6 +14,7 @@
         :mis-name="body.renderer"
         :path="`${path}/${index}/${body.renderer}`"
         :body="getBody(body, item)"
+        :props="getFattingProps(body, item)"
       />
     </el-timeline-item>
   </el-timeline>
