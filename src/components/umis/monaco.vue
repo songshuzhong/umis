@@ -1,35 +1,37 @@
 <template>
   <div class="umis-editor-container">
+    <transition name="el-zoom-in-center">
+      <el-alert
+        v-if="showErrorBoundary"
+        class="monaco-editor__error-info"
+        title="错误"
+        type="error"
+        show-icon
+        :description="errorInfo"
+        @close="closeErrorInfo"
+      />
+    </transition>
     <div ref="editor" class="monaco-editor" />
     <div class="umis-editor-tools">
-      <template v-if="Array.isArray(footer)">
-        <template v-for="(item, index) in footer">
-          <component
-            v-bind="item"
-            :is="item.renderer"
-            :key="index"
-            :action="onSave"
-          />
-        </template>
-      </template>
-      <template v-else>
-        <component v-bind="footer" :is="footer.renderer" :action="onSave" />
-      </template>
+      <el-button type="primary" plain @click="onSave">保存</el-button>
     </div>
   </div>
 </template>
 <script>
+import ElButton from 'element-ui/lib/button';
+import ElAlert from 'element-ui/lib/alert';
+
 export default {
   name: 'MisMonaco',
-  props: {
-    footer: {
-      type: [Array, Object],
-      required: false,
-    },
+  components: {
+    ElButton,
+    ElAlert,
   },
   data() {
     return {
+      errorInfo: '',
       schema: {},
+      showErrorBoundary: false,
     };
   },
   created() {
@@ -81,13 +83,16 @@ export default {
         this.$eventHub.$emit('mis-schema:change', JSON.parse(json));
         this.onFormatSchema();
       } catch (e) {
-        console.error(e);
-        this.$notice({
-          type: 'error',
-          title: '警告',
-          message: e.toString(),
-        });
+        this.errorInfo = e;
+        this.showErrorBoundary = true;
+        this.errorInfoTimer = setTimeout(() => {
+          this.closeErrorInfo();
+          clearTimeout(this.errorInfoTimer);
+        }, 3500);
       }
+    },
+    closeErrorInfo() {
+      this.showErrorBoundary = false;
     },
   },
 };
@@ -109,8 +114,13 @@ export default {
 }
 .umis-editor-tools {
   height: 50px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+.monaco-editor__error-info {
+  line-height: 12px;
+  text-align: left;
 }
 </style>

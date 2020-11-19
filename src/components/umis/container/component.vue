@@ -19,10 +19,10 @@
       :path="path"
       :header="header"
       :body="body"
-      :init-data="getDataProps(props, data)"
       :footer="footer"
       :action="action"
       :linkage-trigger="onLinkageTrigger"
+      :init-data="getDataProps(props, data)"
     />
   </transition>
 </template>

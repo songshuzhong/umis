@@ -64,14 +64,8 @@ export default {
       },
     },
     'initSchema.url': {
-      handler(val) {
-        if (val) {
-          if (this.initSchema.method === 'post') {
-            this.getSchemaRequest();
-          } else {
-            this.getSchemaRequest();
-          }
-        }
+      handler() {
+        this.getPageSchema();
       },
       deep: true,
     },
@@ -83,13 +77,9 @@ export default {
   },
   mounted() {
     this.intervalFetcher = null;
-    this.$eventHub.$on('mis-schema:change', this.upSchema);
+    this.$eventHub.$on('mis-schema:change', this.updatePageSchema);
     if (this.initSchema) {
-      if (this.initSchema.method === 'post') {
-        this.getSchemaRequest();
-      } else {
-        this.getSchemaRequest();
-      }
+      this.getPageSchema();
     }
     if (this.initApi) {
       this.fetchInitApi();
@@ -108,27 +98,25 @@ export default {
         clearInterval(this.intervalFetcher);
       }
     },
-    getSchemaRequest() {
-      const self = this;
-      self.iSchemaLoading = true;
-      typeof this.schemaSource === 'function' &&
-        this.schemaSource('CANCELED_DUE_TO_NEW_REQUEST');
+    getPageSchema() {
+      const { method, url, params = {} } = this.initSchema;
+      let fetchBody = params;
+
+      if (method === 'get') {
+        fetchBody = {
+          params,
+        };
+      }
+
+      this.iSchemaLoading = true;
       this.$api
         .slientApi()
-        .get(this.initSchema.url, {
-          params: this.initSchema.params,
-          cancelToken: new this.$api.cancelToken(c => (this.schemaSource = c)),
-        })
+        [method](url, fetchBody)
         .then(res => {
-          self.iSchema = res.data;
-          self.iSchemaLoading = false;
+          this.iSchema = res.data;
+          this.iSchemaLoading = false;
           window.UMIS = { schema: res.data };
           this.$eventHub.$emit('mis-schema:init', res.data);
-        })
-        .catch(thrown => {
-          if (this.$api.isCancel(thrown)) {
-            // console.log('Request canceled');
-          }
         });
     },
     handleIntervalFetch() {
@@ -181,7 +169,7 @@ export default {
           this.iLoading = false;
         });
     },
-    upSchema(data) {
+    updatePageSchema(data) {
       if (this.iSchemaUpdate) {
         this.iSchema = data;
         window.UMIS = { schema: data };
