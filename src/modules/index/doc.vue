@@ -10,6 +10,8 @@
 import ElCard from 'element-ui/lib/card';
 import ElSlider from 'element-ui/lib/slider';
 
+import Queue from './queue';
+
 export default {
   components: {
     ElCard,
@@ -29,6 +31,9 @@ export default {
       },
     },
   },
+  mounted() {
+    this.queue = new Queue();
+  },
   methods: {
     handleValueChange(val) {
       const task = () => {
@@ -36,10 +41,10 @@ export default {
           .slientApi()
           .get('/api/card/123456')
           .then(res => {
-            console.log(res);
+            console.log(val, res);
           });
       };
-      this.taskList.push(task);
+      this.queue.add(task);
     },
   },
 };

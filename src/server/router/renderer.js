@@ -684,7 +684,7 @@ module.exports = {
       data: {
         renderer: 'mis-tabs',
         stretch: true,
-        activeName: 'formlink',
+        activeName: 'switchlink',
         body: [
           {
             name: 'switchlink',
@@ -700,46 +700,48 @@ module.exports = {
                 target: 'timeline',
               },
               {
-                renderer: 'mis-card',
+                renderer: 'mis-divider',
+                text: '分割割割割割割割割割割线',
+              },
+              {
+                renderer: 'mis-timeline',
+                name: 'timeline',
+                size: 'large',
+                type: 'primary',
+                initApi: {
+                  url: '/api/pagelist',
+                  method: 'get',
+                },
                 body: {
-                  renderer: 'mis-timeline',
-                  name: 'timeline',
-                  size: 'large',
-                  type: 'primary',
-                  initApi: {
-                    url: '/api/pagelist',
-                    method: 'get',
-                  },
-                  body: {
-                    renderer: 'mis-card',
-                    body: [
-                      {
-                        renderer: 'mis-map',
-                        value: 1,
-                        map: {
-                          '0': "<span class='el-icon-wind-power'> 大风</span>",
-                          '1': "<span class='el-icon-light-rain'> 雨天</span>",
-                          '2': "<span class='el-icon-sunny'> 晴天</span>",
-                          '3':
-                            "<span class='el-icon-cloudy-and-sunny'> 多云</span>",
-                          '4': "<span class='el-icon-lightning'>雷雨</span>",
-                          '5': '其他：${type}',
-                        },
+                  renderer: 'mis-card',
+                  shadow: 'hover',
+                  body: [
+                    {
+                      renderer: 'mis-mapping',
+                      value: 1,
+                      map: {
+                        '0': "<span class='el-icon-wind-power'> 大风</span>",
+                        '1': "<span class='el-icon-light-rain'> 雨天</span>",
+                        '2': "<span class='el-icon-sunny'> 晴天</span>",
+                        '3':
+                          "<span class='el-icon-cloudy-and-sunny'> 多云</span>",
+                        '4': "<span class='el-icon-lightning'>雷雨</span>",
+                        '5': '其他：${type}',
                       },
-                      {
-                        renderer: 'mis-map',
-                        value: 1,
-                        map: {
-                          '0': '开心',
-                          '1': '沮丧',
-                          '2': '兴奋',
-                          '3': '难过',
-                          '4': '发呆',
-                          '5': '莫名其妙',
-                        },
+                    },
+                    {
+                      renderer: 'mis-mapping',
+                      value: 1,
+                      map: {
+                        '0': '开心',
+                        '1': '沮丧',
+                        '2': '兴奋',
+                        '3': '难过',
+                        '4': '发呆',
+                        '5': '莫名其妙',
                       },
-                    ],
-                  },
+                    },
+                  ],
                 },
               },
             ],
@@ -856,6 +858,10 @@ module.exports = {
                   target: 'progresstest',
                 },
                 {
+                  renderer: 'mis-divider',
+                  text: '分割割割割割割割割割割线',
+                },
+                {
                   renderer: 'mis-progress',
                   name: 'progresstest',
                   status: 'exception',
@@ -878,6 +884,10 @@ module.exports = {
                 target: 'animationtest',
               },
               {
+                renderer: 'mis-divider',
+                text: '分割割割割割割割割割割线',
+              },
+              {
                 renderer: 'mis-service',
                 initApi: {
                   method: 'get',
@@ -896,6 +906,37 @@ module.exports = {
                 },
               },
             ],
+          },
+          {
+            name: 'collapselink',
+            label: '手风琴联动',
+            icon: 'el-icon-bank-card',
+            body: {
+              renderer: 'mis-collapse',
+              value: 'item1',
+              body: [
+                {
+                  renderer: 'mis-html',
+                  title: '一致性 Consistency',
+                  name: 'item1',
+                  html:
+                    '在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。',
+                },
+                {
+                  renderer: 'mis-html',
+                  title: '反馈 Feedback',
+                  name: 'item2',
+                  html:
+                    '页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。',
+                },
+                {
+                  renderer: 'mis-html',
+                  title: '效率 Efficiency',
+                  name: 'item3',
+                  html: '简化流程：设计简洁直观的操作流程；',
+                },
+              ],
+            },
           },
         ],
       },

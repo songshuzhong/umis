@@ -6,7 +6,7 @@
 import initData from '../mixin/initData';
 
 export default {
-  name: 'MisMap',
+  name: 'MisMapping',
   props: {
     path: {
       type: String,
