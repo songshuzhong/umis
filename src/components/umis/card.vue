@@ -4,16 +4,35 @@
       <div v-html="renderHeader(data)" />
     </template>
     <div style="padding: 10px">
-      <mis-component
-        v-if="body"
-        :mis-name="body.renderer"
-        :path="`${path}/${body.renderer}`"
-        :body="getBody(body)"
-        :header="getHeader(body)"
-        :footer="getFooter(body)"
-        :props="getFattingProps(body, data)"
-        v-bind="getFattingProps(body, data)"
-      />
+      <template
+        v-if="Object.prototype.toString.call(body) === '[object Object]'"
+      >
+        <mis-component
+          :mis-name="body.renderer"
+          :path="`${path}/${body.renderer}`"
+          :body="getBody(body)"
+          :header="getHeader(body)"
+          :footer="getFooter(body)"
+          :props="getFattingProps(body, data)"
+          v-bind="getFattingProps(body, data)"
+        />
+      </template>
+      <template v-else>
+        <template
+          v-for="(child, index) in body"
+          :key="`${path}/${index}/${child.renderer}`"
+        >
+          <mis-component
+            :mis-name="child.renderer"
+            :path="`${path}/${index}/${child.renderer}`"
+            :props="getFattingProps(child, data)"
+            :header="getHeader(child)"
+            :body="getBody(child)"
+            :footer="getFooter(child)"
+            v-bind="getFattingProps(child)"
+          />
+        </template>
+      </template>
     </div>
     <div class="el-card__footer" v-if="footer">
       <template v-for="foot in footer">

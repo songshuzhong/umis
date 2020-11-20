@@ -1,46 +1,51 @@
 <template>
-  <el-row :gutter="20">
-    <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
-    <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
-    <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
-    <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
-  </el-row>
+  <el-card>
+    <div v-html="`<i class='el-icon-s-promotion'></i>`" />
+    <el-slider v-model="value" />
+    {{ res }}
+  </el-card>
 </template>
+
 <script>
-import ElRow from 'element-ui/lib/row';
-import ElCol from 'element-ui/lib/col';
+import ElCard from 'element-ui/lib/card';
+import ElSlider from 'element-ui/lib/slider';
+
+import Queue from './queue';
+
 export default {
   components: {
-    ElCol,
-    ElRow,
+    ElCard,
+    ElSlider,
+  },
+  data() {
+    return {
+      res: '',
+      value: 0,
+      taskList: [],
+    };
+  },
+  watch: {
+    value: {
+      handler(val) {
+        this.handleValueChange(val);
+      },
+    },
+  },
+  mounted() {
+    this.queue = new Queue();
+  },
+  methods: {
+    handleValueChange(val) {
+      const task = () => {
+        this.$api
+          .slientApi()
+          .get('/api/card/123456')
+          .then(res => {
+            console.log(val, res);
+          });
+      };
+      this.queue.add(task);
+    },
   },
 };
 </script>
-<style lang="scss">
-.el-row {
-  margin-bottom: 20px;
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-.el-col {
-  border-radius: 4px;
-}
-.bg-purple-dark {
-  background: #99a9bf;
-}
-.bg-purple {
-  background: #d3dce6;
-}
-.bg-purple-light {
-  background: #e5e9f2;
-}
-.grid-content {
-  border-radius: 4px;
-  min-height: 36px;
-}
-.row-bg {
-  padding: 10px 0;
-  background-color: #f9fafc;
-}
-</style>
