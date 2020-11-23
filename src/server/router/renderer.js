@@ -388,7 +388,7 @@ module.exports = {
         renderer: 'mis-tabs',
         type: 'border-card',
         stretch: true,
-        activeName: 'tabform',
+        activeName: 'querycrud',
         body: [
           {
             name: 'tabform',
@@ -671,6 +671,95 @@ module.exports = {
               },
             ],
           },
+          {
+            label: '查询 CRUD',
+            name: 'querycrud',
+            icon: 'el-icon-search',
+            body: [
+              {
+                renderer: 'mis-form',
+                name: 'linkageForm',
+                target: 'querytable',
+                inline: true,
+                silentLoading: true,
+                initApi: {
+                  method: 'get',
+                  url: '/api/card/123456',
+                },
+                controls: [
+                  {
+                    renderer: 'mis-input',
+                    name: 'name',
+                    placeholder: ' 按姓名过滤',
+                  },
+                  {
+                    renderer: 'mis-select',
+                    name: 'sex',
+                    placeholder: '按性别过滤',
+                    options: [
+                      {
+                        value: '0',
+                        text: '女',
+                      },
+                      {
+                        value: '1',
+                        text: '男',
+                      },
+                    ],
+                  },
+                  {
+                    renderer: 'mis-button',
+                    name: 'submit',
+                    text: '搜索',
+                  },
+                ],
+              },
+              {
+                renderer: 'mis-table',
+                name: 'querytable',
+                maxHeight: 600,
+                initApi: {
+                  url: '/api/pagelist?name=${name}&&sex=${sex}',
+                  method: 'get',
+                },
+                initData: {
+                  name: '',
+                  sex: '',
+                },
+                columns: [
+                  {
+                    name: 'name',
+                    label: '姓名',
+                    fixed: 'left',
+                  },
+                  {
+                    name: 'pageIndex',
+                    label: '当前页',
+                  },
+                  {
+                    name: 'province',
+                    label: ' 省份',
+                  },
+                  {
+                    name: 'city',
+                    label: '市区',
+                  },
+                  {
+                    name: 'date',
+                    label: '日期',
+                  },
+                  {
+                    name: 'address',
+                    label: '地址',
+                  },
+                  {
+                    name: 'zip',
+                    label: '邮编',
+                  },
+                ],
+              },
+            ],
+          },
         ],
       },
     });
@@ -937,6 +1026,40 @@ module.exports = {
                 },
               ],
             },
+          },
+          {
+            name: 'stepslink',
+            label: '步骤条联动',
+            icon: 'el-icon-date',
+            body: [
+              {
+                renderer: 'mis-number',
+                name: 'active',
+                target: 'stepstest',
+              },
+              {
+                renderer: 'mis-divider',
+              },
+              {
+                renderer: 'mis-steps',
+                name: 'stepstest',
+                active: 1,
+                body: [
+                  {
+                    title: '步骤1',
+                    icon: 'el-icon-edit',
+                  },
+                  {
+                    title: '步骤2',
+                    icon: 'el-icon-upload',
+                  },
+                  {
+                    title: '步骤3',
+                    icon: 'el-icon-picture',
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
