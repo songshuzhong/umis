@@ -1,12 +1,12 @@
 {
-  "chunk-vendors.js": "/js/chunks/chunk-vendors.e48926.js",
-  "chunk-vendors.js.map": "/js/chunks/chunk-vendors.e48926.js.map",
+  "chunk-vendors.js": "/js/chunks/chunk-vendors.4a2c46.js",
+  "chunk-vendors.js.map": "/js/chunks/chunk-vendors.4a2c46.js.map",
   "index.css": "/css/index.98ad8f39.css",
-  "index.js": "/js/index.e48926.js",
+  "index.js": "/js/index.4a2c46.js",
   "index.css.map": "/css/index.98ad8f39.css.map",
-  "index.js.map": "/js/index.e48926.js.map",
+  "index.js.map": "/js/index.4a2c46.js.map",
   "img/index.scss": "/img/loading.8f9fd0c2.svg",
   "index.html": "/index.html",
-  "precache-manifest.8da6c28eff229b2ceaaeb4802a7bba9b.js": "/precache-manifest.8da6c28eff229b2ceaaeb4802a7bba9b.js",
+  "precache-manifest.1452f618318f084c4a1f717f19f24bb0.js": "/precache-manifest.1452f618318f084c4a1f717f19f24bb0.js",
   "service-worker.js": "/service-worker.js"
 }
