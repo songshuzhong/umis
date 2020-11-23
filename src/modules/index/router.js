@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Loading from 'element-ui/lib/loading';
+import {Loading} from 'element-ui';
+import { MisPage, MisSetting } from 'umis-factory';
 
-import Page from '~components/umis/container/page';
 import Umis from '~modules/index/index.vue';
-import Setting from '~components/umis/setting';
 
 Vue.use(VueRouter);
 
 let routerMask;
+
 const router = new VueRouter({
   mode: 'hash',
   routes: [
@@ -20,12 +20,8 @@ const router = new VueRouter({
       },
       children: [
         {
-          path: '/doc',
-          component: () => import('~modules/index/doc.vue'),
-        },
-        {
           path: '/visible',
-          component: Page,
+          component: MisPage,
           props: {
             initSchema: {
               url: '/api/schema/visible',
@@ -38,7 +34,7 @@ const router = new VueRouter({
         },
         {
           path: '/grid',
-          component: Page,
+          component: MisPage,
           props: {
             initSchema: {
               url: '/api/schema/grid',
@@ -51,7 +47,7 @@ const router = new VueRouter({
         },
         {
           path: '/validator',
-          component: Page,
+          component: MisPage,
           props: {
             initSchema: {
               url: '/api/schema/validator',
@@ -64,7 +60,7 @@ const router = new VueRouter({
         },
         {
           path: '/linkage',
-          component: Page,
+          component: MisPage,
           props: {
             initSchema: {
               url: '/api/schema/linkage',
@@ -77,7 +73,7 @@ const router = new VueRouter({
         },
         {
           path: '/tabs',
-          component: Page,
+          component: MisPage,
           props: {
             initSchema: {
               url: '/api/schema/tabs',
@@ -90,7 +86,7 @@ const router = new VueRouter({
         },
         {
           path: '/setting',
-          component: Setting,
+          component: MisSetting,
         },
       ],
     },
@@ -115,4 +111,5 @@ router.afterEach((router, from) => {
     routerMask.close();
   }
 });
+
 export default router;

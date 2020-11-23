@@ -388,7 +388,7 @@ module.exports = {
         renderer: 'mis-tabs',
         type: 'border-card',
         stretch: true,
-        activeName: 'tabform',
+        activeName: 'querycrud',
         body: [
           {
             name: 'tabform',
@@ -671,6 +671,95 @@ module.exports = {
               },
             ],
           },
+          {
+            label: '查询 CRUD',
+            name: 'querycrud',
+            icon: 'el-icon-search',
+            body: [
+              {
+                renderer: 'mis-form',
+                name: 'linkageForm',
+                target: 'querytable',
+                inline: true,
+                silentLoading: true,
+                initApi: {
+                  method: 'get',
+                  url: '/api/card/123456',
+                },
+                controls: [
+                  {
+                    renderer: 'mis-input',
+                    name: 'name',
+                    placeholder: ' 按姓名过滤',
+                  },
+                  {
+                    renderer: 'mis-select',
+                    name: 'sex',
+                    placeholder: '按性别过滤',
+                    options: [
+                      {
+                        value: '0',
+                        text: '女',
+                      },
+                      {
+                        value: '1',
+                        text: '男',
+                      },
+                    ],
+                  },
+                  {
+                    renderer: 'mis-button',
+                    name: 'submit',
+                    text: '搜索',
+                  },
+                ],
+              },
+              {
+                renderer: 'mis-table',
+                name: 'querytable',
+                maxHeight: 600,
+                initApi: {
+                  url: '/api/pagelist?name=${name}&&sex=${sex}',
+                  method: 'get',
+                },
+                initData: {
+                  name: '',
+                  sex: '',
+                },
+                columns: [
+                  {
+                    name: 'name',
+                    label: '姓名',
+                    fixed: 'left',
+                  },
+                  {
+                    name: 'pageIndex',
+                    label: '当前页',
+                  },
+                  {
+                    name: 'province',
+                    label: ' 省份',
+                  },
+                  {
+                    name: 'city',
+                    label: '市区',
+                  },
+                  {
+                    name: 'date',
+                    label: '日期',
+                  },
+                  {
+                    name: 'address',
+                    label: '地址',
+                  },
+                  {
+                    name: 'zip',
+                    label: '邮编',
+                  },
+                ],
+              },
+            ],
+          },
         ],
       },
     });
@@ -684,7 +773,7 @@ module.exports = {
       data: {
         renderer: 'mis-tabs',
         stretch: true,
-        activeName: 'formlink',
+        activeName: 'switchlink',
         body: [
           {
             name: 'switchlink',
@@ -700,23 +789,48 @@ module.exports = {
                 target: 'timeline',
               },
               {
-                renderer: 'mis-card',
+                renderer: 'mis-divider',
+                text: '分割割割割割割割割割割线',
+              },
+              {
+                renderer: 'mis-timeline',
+                name: 'timeline',
+                size: 'large',
+                type: 'primary',
+                initApi: {
+                  url: '/api/pagelist',
+                  method: 'get',
+                },
                 body: {
-                  renderer: 'mis-timeline',
-                  name: 'timeline',
-                  size: 'large',
-                  type: 'primary',
-                  initApi: {
-                    url: '/api/pagelist',
-                    method: 'get',
-                  },
-                  body: {
-                    renderer: 'mis-card',
-                    body: {
-                      renderer: 'mis-html',
-                      html: '<h1>支持使用图标</h1>',
+                  renderer: 'mis-card',
+                  shadow: 'hover',
+                  body: [
+                    {
+                      renderer: 'mis-mapping',
+                      value: 1,
+                      map: {
+                        '0': "<span class='el-icon-wind-power'> 大风</span>",
+                        '1': "<span class='el-icon-light-rain'> 雨天</span>",
+                        '2': "<span class='el-icon-sunny'> 晴天</span>",
+                        '3':
+                          "<span class='el-icon-cloudy-and-sunny'> 多云</span>",
+                        '4': "<span class='el-icon-lightning'>雷雨</span>",
+                        '5': '其他：${type}',
+                      },
                     },
-                  },
+                    {
+                      renderer: 'mis-mapping',
+                      value: 1,
+                      map: {
+                        '0': '开心',
+                        '1': '沮丧',
+                        '2': '兴奋',
+                        '3': '难过',
+                        '4': '发呆',
+                        '5': '莫名其妙',
+                      },
+                    },
+                  ],
                 },
               },
             ],
@@ -833,6 +947,10 @@ module.exports = {
                   target: 'progresstest',
                 },
                 {
+                  renderer: 'mis-divider',
+                  text: '分割割割割割割割割割割线',
+                },
+                {
                   renderer: 'mis-progress',
                   name: 'progresstest',
                   status: 'exception',
@@ -855,6 +973,10 @@ module.exports = {
                 target: 'animationtest',
               },
               {
+                renderer: 'mis-divider',
+                text: '分割割割割割割割割割割线',
+              },
+              {
                 renderer: 'mis-service',
                 initApi: {
                   method: 'get',
@@ -871,6 +993,71 @@ module.exports = {
                       'https://songshuzhong.github.io/visualizer/static/img/html5.png',
                   },
                 },
+              },
+            ],
+          },
+          {
+            name: 'collapselink',
+            label: '手风琴联动',
+            icon: 'el-icon-bank-card',
+            body: {
+              renderer: 'mis-collapse',
+              value: 'item1',
+              body: [
+                {
+                  renderer: 'mis-html',
+                  title: '一致性 Consistency',
+                  name: 'item1',
+                  html:
+                    '在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。',
+                },
+                {
+                  renderer: 'mis-html',
+                  title: '反馈 Feedback',
+                  name: 'item2',
+                  html:
+                    '页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。',
+                },
+                {
+                  renderer: 'mis-html',
+                  title: '效率 Efficiency',
+                  name: 'item3',
+                  html: '简化流程：设计简洁直观的操作流程；',
+                },
+              ],
+            },
+          },
+          {
+            name: 'stepslink',
+            label: '步骤条联动',
+            icon: 'el-icon-date',
+            body: [
+              {
+                renderer: 'mis-number',
+                name: 'active',
+                target: 'stepstest',
+              },
+              {
+                renderer: 'mis-divider',
+              },
+              {
+                renderer: 'mis-steps',
+                name: 'stepstest',
+                active: 1,
+                body: [
+                  {
+                    title: '步骤1',
+                    icon: 'el-icon-edit',
+                  },
+                  {
+                    title: '步骤2',
+                    icon: 'el-icon-upload',
+                  },
+                  {
+                    title: '步骤3',
+                    icon: 'el-icon-picture',
+                  },
+                ],
               },
             ],
           },

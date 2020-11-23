@@ -40,15 +40,14 @@ glob.sync('./src/pages/*.js').forEach(entry => {
        <script src="//cdn.bootcss.com/eruda/1.1.3/eruda.min.js"></script>
        <script>eruda.init();window.isDebug=true;</script>                `
       : '',
-    minify: dev
-      ? {}
-      : {
-          minifyJS: true,
-          minifyCSS: true,
-          removeComments: true,
-          collapseWhitespace: true,
-          removeAttributeQuotes: true,
-        },
+    minify: {
+      minimize: true,
+      minifyJS: true,
+      minifyCSS: true,
+      removeComments: true,
+      collapseWhitespace: true,
+      removeAttributeQuotes: true,
+    },
   };
 });
 
@@ -63,6 +62,12 @@ module.exports = {
     },
     resolve: {
       extensions: ['.ts', '.js', '.vue', '.json'],
+      alias: {
+        'element-ui': path.resolve(process.cwd(), 'node_modules', 'element-ui'),
+        'core-js': path.resolve(process.cwd(), 'node_modules', 'core-js'),
+        'vue-router': path.resolve(process.cwd(), 'node_modules', 'vue-router'),
+        'vue': path.resolve(process.cwd(), 'node_modules', 'vue')
+      },
     },
   },
   chainWebpack: config => {

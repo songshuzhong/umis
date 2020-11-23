@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.0edcbfefaef11d07dcc658500be57d01.js"
+  "precache-manifest.8da6c28eff229b2ceaaeb4802a7bba9b.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "umis"});
+workbox.core.setCacheNameDetails({prefix: "umis-website"});
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
