@@ -9,15 +9,6 @@ body {
   height: 100vh;
   border: 1px solid #eee;
 
-  .umis-layout__container__aside {
-    width: 100%;
-    background-color: #545c64;
-
-    .umis-layout__container__aside__menu {
-      border-right: 1px;
-    }
-  }
-
   .umis-layout__container__drawer {
     background-color: #3a3f51; // #282a36 !important;
 
@@ -30,23 +21,13 @@ body {
     }
   }
   .umis-layout__container__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid #dcdfe6;
     line-height: 60px;
     text-align: right;
     font-size: 12px;
     background-color: white;
-  }
-}
-
-.el-loading-spinner {
-  .circular {
-    background-image: url('~assets/imgs/loading.svg');
-    background-position: center;
-    background-size: cover;
-    animation: loading-rotate 1s linear infinite;
-    animation-direction: reverse;
-  }
-  .path {
-    display: none;
   }
 }
