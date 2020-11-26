@@ -1,13 +1,64 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import {Loading} from 'element-ui';
-import { MisPage, MisSetting } from 'umis-factory';
-
+import { Loading } from 'element-ui';
+// import { MisPage, MisSetting } from 'umis-factory';
+import MisPage from '../../../../umis-factory/src/components/container/page';
+import MisSetting from '../../../../umis-factory/src/components/setting/index';
 import Umis from '~modules/index/index.vue';
+import routerSchema from '../../schema/router';
+import frameSchema from '../../schema/frame';
 
 Vue.use(VueRouter);
 
 let routerMask;
+const routerMenu = [
+  {
+    path: '/doc',
+    component: () => import('./doc.vue'),
+  },
+  {
+    path: '/setting',
+    component: MisSetting,
+  },
+];
+const createRoute = item => ({
+  path: item.name,
+  component: MisPage,
+  props: {
+    initSchema: {
+      url: item.schemaUrl,
+      method: 'get',
+    },
+  },
+  meta: {
+    title: item.label,
+  },
+});
+
+frameSchema[0].body[0].body = routerSchema.concat(frameSchema[0].body[0].body);
+routerSchema.forEach(menu => {
+  if (menu.renderer === 'mis-menu-submenu') {
+    menu.body.forEach(submenu => {
+      if (submenu.renderer === 'mis-menu-item-group') {
+        submenu.body.forEach(group => {
+          if (group.renderer === 'mis-menu-item' && group.schemaUrl) {
+            const route = createRoute(group);
+            routerMenu.unshift(route);
+          } else if (
+            submenu.renderer === 'mis-menu-item' &&
+            submenu.schemaUrl
+          ) {
+            const route = createRoute(submenu);
+            routerMenu.unshift(route);
+          }
+        });
+      }
+    });
+  } else if (menu.renderer === 'mis-menu-item' && menu.schemaUrl) {
+    const route = createRoute(menu);
+    routerMenu.unshift(route);
+  }
+});
 
 const router = new VueRouter({
   mode: 'hash',
@@ -15,80 +66,14 @@ const router = new VueRouter({
     {
       path: '/',
       component: Umis,
+      props: {
+        schema: frameSchema,
+        canSchemaUpdate: false,
+      },
       meta: {
         title: 'UMIS',
       },
-      children: [
-        {
-          path: '/visible',
-          component: MisPage,
-          props: {
-            initSchema: {
-              url: '/api/schema/visible',
-              method: 'get',
-            },
-          },
-          meta: {
-            title: '显隐',
-          },
-        },
-        {
-          path: '/grid',
-          component: MisPage,
-          props: {
-            initSchema: {
-              url: '/api/schema/grid',
-              method: 'get',
-            },
-          },
-          meta: {
-            title: '栅栏',
-          },
-        },
-        {
-          path: '/validator',
-          component: MisPage,
-          props: {
-            initSchema: {
-              url: '/api/schema/validator',
-              method: 'get',
-            },
-          },
-          meta: {
-            title: '验证',
-          },
-        },
-        {
-          path: '/linkage',
-          component: MisPage,
-          props: {
-            initSchema: {
-              url: '/api/schema/linkage',
-              method: 'get',
-            },
-          },
-          meta: {
-            title: ' 联动',
-          },
-        },
-        {
-          path: '/tabs',
-          component: MisPage,
-          props: {
-            initSchema: {
-              url: '/api/schema/tabs',
-              method: 'get',
-            },
-          },
-          meta: {
-            title: '选项卡',
-          },
-        },
-        {
-          path: '/setting',
-          component: MisSetting,
-        },
-      ],
+      children: routerMenu,
     },
   ],
 });
