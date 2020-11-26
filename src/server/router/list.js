@@ -22,6 +22,7 @@ async function mockList(pageIndex = 1, pageSize = 10, total = 45, drowsiness) {
       timestamp: `2016-0${(i % 9) + 1}-0${(i % 9) + 1}`,
       percentage: Math.floor(Math.random() * (1 - 100) + 100),
       value: Math.floor(Math.random() * (1 - 100) + 100) % 6,
+      sex: '' + (Math.floor(Math.random() * (1 - 100) + 100) % 2),
     });
   }
 

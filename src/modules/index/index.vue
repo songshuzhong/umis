@@ -1,15 +1,18 @@
 <template>
-  <mis-page :schema="schema" :i-schema-update="false" />
+  <mis-page :schema="schema" :can-schema-update="false" />
 </template>
 <script>
-import schema from '../../store/frame';
-
 export default {
   name: 'UmisFactory',
-  data() {
-    return {
-      schema,
-    };
+  props: {
+    schema: {
+      type: [Array, Object],
+      required: true,
+    },
+    canSchemaUpdate: {
+      type: Boolean,
+      required: false,
+    },
   },
 };
 </script>
