@@ -12,7 +12,7 @@
     "build:ci": "vue-cli-service build --report",
     "lint": "tslint --ext .js,.vue --fix . && stylelint --fix \"src/**/*.vue\" \"src/**/*.scss\" && markdownlint docs/*.md *.md && prettier --list-different --write \"**/*.{js,json,css,scss,vue,md}\"",
     "deploy-dev": "npm run build && rsync -vzrtopg --progress ./dist/*  rsync://10.41.41.197:11873/umis",
-    "build:nestjs": "vue-cli-service build && cp -r ./dist/ ../nest-sequelize/public/"
+    "build:nestjs": "vue-cli-service build && cp -r ./dist/ ../umis-server/public/"
   },
   "gitHooks": {
     "pre-commit": "cross-env PRE_COMMIT=true lint-staged"
@@ -53,6 +53,7 @@
     "deep-equal": "^1.0.1",
     "element-theme-chalk": "^2.4.11",
     "element-ui": "^2.14.1",
+    "html-remove-whitespace-plugin": "0.0.3",
     "less": "^3.12.2",
     "less-loader": "^7.1.0",
     "lodash": "^4.17.10",

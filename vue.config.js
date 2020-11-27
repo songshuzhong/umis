@@ -2,6 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const fs = require('fs');
 const manifestPlugin = require('webpack-manifest-plugin');
+const HtmlRemoveWhitespacePlugin = require('html-remove-whitespace-plugin');
 const dev = process.env.NODE_ENV !== 'production';
 const publicPath = '';
 const pages = {};
@@ -13,33 +14,10 @@ glob.sync('./src/pages/*.js').forEach(entry => {
     from: new RegExp('^/' + filename),
     to: `/pages/${filename}.html`,
   });
-  let pageConfig;
-  try {
-    let fileContent = fs.readFileSync(
-      `./src/modules/${filename}/index.json`,
-      'utf-8'
-    );
-    pageConfig = JSON.parse(fileContent);
-  } catch (e) {
-    pageConfig = {};
-  }
   pages[filename] = {
     entry,
     template: path.join(__dirname, '/src/template.html'),
     filename: `${filename}.html`,
-    title: pageConfig.title || '',
-    metas: pageConfig.metas || {},
-    styles: dev ? [] : pageConfig.styles || [],
-    scripts: dev ? [] : pageConfig.scripts || [],
-    skeleton: pageConfig.skeleton || '',
-    skeletonStyle: pageConfig.skeletonStyle || '',
-    initData: JSON.stringify(pageConfig.initData || {}),
-    favicon: pageConfig.icon || '',
-    debug: dev
-      ? `
-       <script src="//cdn.bootcss.com/eruda/1.1.3/eruda.min.js"></script>
-       <script>eruda.init();window.isDebug=true;</script>                `
-      : '',
     minify: {
       minimize: true,
       minifyJS: true,
@@ -69,6 +47,7 @@ module.exports = {
         vue: path.resolve(process.cwd(), 'node_modules', 'vue'),
       },
     },
+    plugins: [new HtmlRemoveWhitespacePlugin()],
   },
   chainWebpack: config => {
     const oneOfsMap = config.module.rule('scss').oneOfs.store;
