@@ -8,7 +8,10 @@
       content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
     />
     <title>UMIS</title>
-    <link href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.14.0/theme-chalk/index.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.14.0/theme-chalk/index.min.css"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/editor/editor.main.min.css"
@@ -19,6 +22,7 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/loader.min.js"></script>
 
     <script type="text/javascript">
+      var initData = JSON.parse('{{data.initData}}');
       var umisConfig = {
         isFormData: false,
         isApiChanged: false,

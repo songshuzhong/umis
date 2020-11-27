@@ -66,7 +66,7 @@ module.exports = {
         'element-ui': path.resolve(process.cwd(), 'node_modules', 'element-ui'),
         'core-js': path.resolve(process.cwd(), 'node_modules', 'core-js'),
         'vue-router': path.resolve(process.cwd(), 'node_modules', 'vue-router'),
-        'vue': path.resolve(process.cwd(), 'node_modules', 'vue')
+        vue: path.resolve(process.cwd(), 'node_modules', 'vue'),
       },
     },
   },
@@ -100,12 +100,6 @@ module.exports = {
     disableHostCheck: true,
     historyApiFallback: {
       rewrites: rewrites,
-    },
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-      },
     },
   },
 };

@@ -21,44 +21,59 @@ const routerMenu = [
     component: MisSetting,
   },
 ];
-const createRoute = item => ({
-  path: item.name,
-  component: MisPage,
-  props: {
-    initSchema: {
-      url: item.schemaUrl,
-      method: 'get',
+const createRoute = item => {
+  return {
+    path: item.name,
+    component: MisPage,
+    props: {
+      initSchema: {
+        url: item.schemaUrl,
+        method: 'get',
+        params: {
+          id: item.pageId,
+        },
+      },
     },
-  },
-  meta: {
-    title: item.label,
-  },
-});
+    meta: {
+      title: item.label,
+    },
+  };
+};
+const createRoutes = routes => {
+  routes.forEach(menu => {
+    if (menu.renderer === 'mis-menu-submenu') {
+      menu.body.forEach(submenu => {
+        if (submenu.renderer === 'mis-menu-item-group') {
+          submenu.body.forEach(group => {
+            if (group.renderer === 'mis-menu-item' && group.schemaUrl) {
+              const route = createRoute(group);
+              routerMenu.unshift(route);
+            } else if (
+              submenu.renderer === 'mis-menu-item' &&
+              submenu.schemaUrl
+            ) {
+              const route = createRoute(submenu);
+              routerMenu.unshift(route);
+            }
+          });
+        } else if (submenu.renderer === 'mis-menu-item' && submenu.schemaUrl) {
+          const route = createRoute(submenu);
+          routerMenu.unshift(route);
+        }
+      });
+    } else if (menu.renderer === 'mis-menu-item' && menu.schemaUrl) {
+      const route = createRoute(menu);
+      routerMenu.unshift(route);
+    }
+  });
+};
 
+frameSchema[0].body[0].body = window.initData.concat(
+  frameSchema[0].body[0].body
+);
 frameSchema[0].body[0].body = routerSchema.concat(frameSchema[0].body[0].body);
-routerSchema.forEach(menu => {
-  if (menu.renderer === 'mis-menu-submenu') {
-    menu.body.forEach(submenu => {
-      if (submenu.renderer === 'mis-menu-item-group') {
-        submenu.body.forEach(group => {
-          if (group.renderer === 'mis-menu-item' && group.schemaUrl) {
-            const route = createRoute(group);
-            routerMenu.unshift(route);
-          } else if (
-            submenu.renderer === 'mis-menu-item' &&
-            submenu.schemaUrl
-          ) {
-            const route = createRoute(submenu);
-            routerMenu.unshift(route);
-          }
-        });
-      }
-    });
-  } else if (menu.renderer === 'mis-menu-item' && menu.schemaUrl) {
-    const route = createRoute(menu);
-    routerMenu.unshift(route);
-  }
-});
+createRoutes(window.initData);
+createRoutes(routerSchema);
 
 const router = new VueRouter({
   mode: 'hash',
