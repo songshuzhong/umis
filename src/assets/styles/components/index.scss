@@ -7,7 +7,6 @@ body {
 
 .umis-layout__container {
   height: 100vh;
-  border: 1px solid #eee;
 
   .umis-layout__container__drawer {
     background-color: #3a3f51; // #282a36 !important;
@@ -29,5 +28,10 @@ body {
     text-align: right;
     font-size: 12px;
     background-color: white;
+    box-shadow: 0 2px 2px rgba(0,0,0,.05), 0 1px 0 rgba(0,0,0,.05);
   }
+}
+
+.el-form-item .el-form-item {
+  margin-bottom: 20px !important;
 }

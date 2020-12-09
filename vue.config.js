@@ -17,6 +17,7 @@ glob.sync('./src/pages/*.js').forEach(entry => {
   pages[filename] = {
     entry,
     template: path.join(__dirname, '/src/template.html'),
+    favicon: path.join(__dirname, '/src/assets/imgs/favicon.png'),
     filename: `${filename}.html`,
     minify: {
       minimize: true,
@@ -79,6 +80,12 @@ module.exports = {
     disableHostCheck: true,
     historyApiFallback: {
       rewrites: rewrites,
+    },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:1026',
+        changeOrigin: true,
+      },
     },
   },
 };

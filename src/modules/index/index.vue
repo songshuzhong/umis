@@ -1,5 +1,5 @@
 <template>
-  <mis-page :schema="schema" :can-schema-update="false" />
+  <mis-schema :init-schema="initSchema" :schema="schema" :can-schema-update="false" />
 </template>
 <script>
 export default {
@@ -13,6 +13,10 @@ export default {
       type: Boolean,
       required: false,
     },
+    initSchema: {
+      type: Object,
+      required: false,
+    }
   },
 };
 </script>
