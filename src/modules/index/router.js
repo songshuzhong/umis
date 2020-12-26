@@ -3,8 +3,8 @@ import VueRouter from 'vue-router';
 import { Loading } from 'element-ui';
 import MisSchema from '../../../../umis-factory/src/components/container/schema';
 import MisSetting from '../../../../umis-factory/src/components/setting/index';
-import Umis from '~modules/index/index.vue';
 import frameSchema from '../../schema/frame';
+import customSchema from '../../schema/custom';
 
 Vue.use(VueRouter);
 
@@ -17,7 +17,7 @@ const suffixRoute = [
   {
     path: '/setting',
     component: MisSetting,
-  }
+  },
 ];
 const createRoutes = (routes, basename = '') => {
   const result = [];
@@ -69,9 +69,7 @@ const createRoutes = (routes, basename = '') => {
   return result;
 };
 const createFrame = routes => {
-  frameSchema[0].body[0].body = routes.concat(
-      frameSchema[0].body[0].body
-  );
+  frameSchema[0].body[0].body = routes.concat(frameSchema[0].body[0].body);
 };
 
 const dynamicRouter = routes => {
@@ -80,11 +78,11 @@ const dynamicRouter = routes => {
   createFrame(routes);
   routeMenu = routeMenu.concat(suffixRoute);
   const router = new VueRouter({
-    mode: 'hash',
+    mode: 'history',
     routes: [
       {
         path: '/',
-        component: Umis,
+        component: MisSchema,
         props: {
           schema: frameSchema,
           canSchemaUpdate: false,
@@ -94,7 +92,7 @@ const dynamicRouter = routes => {
         },
         children: routeMenu,
       },
-      ...pages
+      ...pages,
     ],
   });
 

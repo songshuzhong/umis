@@ -1,6 +1,3 @@
-body {
-  margin: 0;
-}
 .mis-avatar-margin {
   margin: 20px;
 }
@@ -15,8 +12,14 @@ body {
       display: flex;
       align-items: center;
       margin-bottom: 0;
-      padding: 0 20px 0 20px;
+      padding: 5px 20px;
+      border-bottom: 0;
+      background: #282a36;
       color: #72767b;
+    }
+    .umis-popup__container__body {
+      padding: 0;
+      overflow: hidden;
     }
   }
   .umis-layout__container__header {
@@ -28,10 +31,19 @@ body {
     text-align: right;
     font-size: 12px;
     background-color: white;
-    box-shadow: 0 2px 2px rgba(0,0,0,.05), 0 1px 0 rgba(0,0,0,.05);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
   }
 }
 
-.el-form-item .el-form-item {
-  margin-bottom: 20px !important;
+.el-loading-spinner {
+  .circular {
+    background-image: url('~assets/imgs/loading.svg');
+    background-position: center;
+    background-size: cover;
+    animation: loading-rotate 1s linear infinite;
+    animation-direction: reverse;
+  }
+  .path {
+    display: none;
+  }
 }
