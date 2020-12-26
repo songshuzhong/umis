@@ -9,14 +9,15 @@ const json = [
         router: true,
         collapse: false,
         mode: 'vertical',
-        backgroundColor: '#545c64',
+        backgroundColor: '#3a3f51',
         textColor: '#fff',
         activeTextColor: '#ffd04b',
         defaultActive: 'doc',
+        uniqueOpened: true,
         title: {
           renderer: 'mis-html',
           html:
-            '<div style="height: 56px; color: white; text-align: center; line-height: 56px; font-size: 20px">UMIS</div>',
+            '<div style="height: 59px; border-bottom: 1px solid #dcdfe6; color: white; text-align: center; line-height: 59px; font-size: 20px">UMIS</div>',
         },
         body: [
           {
@@ -28,7 +29,7 @@ const json = [
               {
                 renderer: 'mis-menu-item',
                 name: 'doc',
-                label: '表单',
+                title: '表单',
               },
             ],
           },
@@ -44,12 +45,12 @@ const json = [
                   {
                     renderer: 'mis-menu-item',
                     name: 'setting',
-                    label: '全局配置',
+                    title: '全局配置',
                   },
                   {
                     renderer: 'mis-menu-item',
                     name: 'authority',
-                    label: '权限配置',
+                    title: '权限配置',
                   },
                 ],
               },
@@ -79,7 +80,7 @@ const json = [
                 body: {
                   name: 'isEditor',
                   showClose: true,
-                  size: '60%',
+                  size: '80%',
                   label: '编辑',
                   classname: 'umis-layout__container__drawer',
                   header: {
@@ -89,7 +90,7 @@ const json = [
                   },
                   body: [
                     {
-                      renderer: 'mis-monaco',
+                      renderer: 'mis-editor',
                       name: 'editor',
                     },
                   ],

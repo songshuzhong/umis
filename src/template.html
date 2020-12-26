@@ -8,17 +8,35 @@
       content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
     />
     <title>UMIS</title>
-    <link href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.14.0/theme-chalk/index.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.14.0/theme-chalk/index.min.css"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/editor/editor.main.min.css"
     />
+    <script type="text/javascript">
+      (function(f) {
+        var e = f.sessionStorage;
+        if (e) {
+          e.CUSTOMER_WEB_MONITOR_ID = 'webfunny1006';
+          var d = document.createElement('script');
+          d.async = 1;
+          d.src = '//localhost:8010/webfunny/w.js';
+          var g = document.getElementsByTagName('script')[0];
+          g.parentNode.insertBefore(d, g);
+        }
+      })(window);
+    </script>
   </head>
   <body>
     <div id="app"></div>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.1.0/dist/echarts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-echarts@4.0.2"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/loader.min.js"></script>
-
     <script type="text/javascript">
+      var initData = []; // JSON.parse('{{data.initData}}');
       var umisConfig = {
         isFormData: false,
         isApiChanged: false,
@@ -28,7 +46,7 @@
             'https://www.fastmock.site/mock/a93e0b29161761b8153cbc02db04c643',
         },
         style:
-          'body{margin: 0; background: #FFFFFF}.mis-card-margin{margin-bottom: 20px}.mis-card-margin .el-card__footer{display: flex;align-items: center;justify-content:space-around;border-top:1px solid #ebeef5;}',
+          'body{margin: 0; background: #FFFFFF}.mis-card-margin{margin-bottom: 20px}.mis-card-margin .el-card__footer{display: flex;align-items: center;justify-content:space-around;border-top:1px solid #ebeef5;} .demo-header, .demo-footer {background-color: #B3C0D1;color: #333;text-align: center;line-height: 60px;}.demo-aside {background-color: #D3DCE6;color: #333;text-align: center;line-height: 200px;}.demo-main {background-color: #E9EEF3;color: #333;text-align: center;}',
       };
       require.config({
         paths: {

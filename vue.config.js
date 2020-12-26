@@ -2,6 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const fs = require('fs');
 const manifestPlugin = require('webpack-manifest-plugin');
+const HtmlRemoveWhitespacePlugin = require('html-remove-whitespace-plugin');
 const dev = process.env.NODE_ENV !== 'production';
 const publicPath = '';
 const pages = {};
@@ -13,33 +14,11 @@ glob.sync('./src/pages/*.js').forEach(entry => {
     from: new RegExp('^/' + filename),
     to: `/pages/${filename}.html`,
   });
-  let pageConfig;
-  try {
-    let fileContent = fs.readFileSync(
-      `./src/modules/${filename}/index.json`,
-      'utf-8'
-    );
-    pageConfig = JSON.parse(fileContent);
-  } catch (e) {
-    pageConfig = {};
-  }
   pages[filename] = {
     entry,
     template: path.join(__dirname, '/src/template.html'),
+    favicon: path.join(__dirname, '/src/assets/imgs/favicon.png'),
     filename: `${filename}.html`,
-    title: pageConfig.title || '',
-    metas: pageConfig.metas || {},
-    styles: dev ? [] : pageConfig.styles || [],
-    scripts: dev ? [] : pageConfig.scripts || [],
-    skeleton: pageConfig.skeleton || '',
-    skeletonStyle: pageConfig.skeletonStyle || '',
-    initData: JSON.stringify(pageConfig.initData || {}),
-    favicon: pageConfig.icon || '',
-    debug: dev
-      ? `
-       <script src="//cdn.bootcss.com/eruda/1.1.3/eruda.min.js"></script>
-       <script>eruda.init();window.isDebug=true;</script>                `
-      : '',
     minify: {
       minimize: true,
       minifyJS: true,
@@ -66,9 +45,10 @@ module.exports = {
         'element-ui': path.resolve(process.cwd(), 'node_modules', 'element-ui'),
         'core-js': path.resolve(process.cwd(), 'node_modules', 'core-js'),
         'vue-router': path.resolve(process.cwd(), 'node_modules', 'vue-router'),
-        'vue': path.resolve(process.cwd(), 'node_modules', 'vue')
+        vue: path.resolve(process.cwd(), 'node_modules', 'vue'),
       },
     },
+    plugins: [new HtmlRemoveWhitespacePlugin()],
   },
   chainWebpack: config => {
     const oneOfsMap = config.module.rule('scss').oneOfs.store;
@@ -103,7 +83,7 @@ module.exports = {
     },
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost:1026',
         changeOrigin: true,
       },
     },

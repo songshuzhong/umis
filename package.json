@@ -11,7 +11,8 @@
     "build:mock": "vue-cli-service build --mode=mock",
     "build:ci": "vue-cli-service build --report",
     "lint": "tslint --ext .js,.vue --fix . && stylelint --fix \"src/**/*.vue\" \"src/**/*.scss\" && markdownlint docs/*.md *.md && prettier --list-different --write \"**/*.{js,json,css,scss,vue,md}\"",
-    "deploy-dev": "npm run build && rsync -vzrtopg --progress ./dist/*  rsync://10.41.41.197:11873/umis"
+    "deploy-dev": "npm run build && rsync -vzrtopg --progress ./dist/*  rsync://10.41.41.197:11873/umis",
+    "build:nestjs": "vue-cli-service build && cp -r ./dist/ ../umis-server/public/"
   },
   "gitHooks": {
     "pre-commit": "cross-env PRE_COMMIT=true lint-staged"
@@ -47,16 +48,20 @@
     "babel-plugin-component": "^1.1.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-preset-env": "^1.7.0",
+    "beautify": "0.0.8",
     "copy-to-clipboard": "^3.3.1",
     "css-loader": "^5.0.1",
     "deep-equal": "^1.0.1",
     "element-theme-chalk": "^2.4.11",
     "element-ui": "^2.14.1",
+    "file-saver": "^2.0.5",
+    "html-remove-whitespace-plugin": "0.0.3",
     "less": "^3.12.2",
     "less-loader": "^7.1.0",
     "lodash": "^4.17.10",
     "lodash.clonedeep": "^4.5.0",
     "node-sass": "^4.9.2",
+    "portal-vue": "^2.1.7",
     "postcss-aspect-ratio-mini": "0.0.2",
     "postcss-px-to-viewport": "0.0.3",
     "postcss-viewport-units": "^0.1.4",
@@ -80,6 +85,7 @@
     "vue-router": "^3.0.7",
     "vue-template-compiler": "^2.5.21",
     "webpack-cli": "^4.2.0",
-    "webpack-manifest-plugin": "^2.2.0"
+    "webpack-manifest-plugin": "^2.2.0",
+    "xlsx": "^0.16.9"
   }
 }
