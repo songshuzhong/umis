@@ -77,7 +77,7 @@ const dynamicRouter = routes => {
   createFrame(routes);
   routeMenu = routeMenu.concat(suffixRoute);
   const router = new VueRouter({
-    mode: 'history',
+    mode: 'hash',
     // base: '/umis',
     routes: [
       {
