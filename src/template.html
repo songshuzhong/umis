@@ -41,11 +41,8 @@
       var umisConfig = {
         isFormData: false,
         isApiChanged: false,
-        domains: {
-          VUE_APP_API_ACTIVE: '',
-          VUE_APP_API_MOCK:
-            'https://www.fastmock.site/mock/a93e0b29161761b8153cbc02db04c643',
-        },
+        domains:
+          'https://www.fastmock.site/mock/a93e0b29161761b8153cbc02db04c643',
         adaptor:
           'if(api.includes("/api/users")&&method==="get"){res.data.rows.forEach(function(item){item.timestamp=item.updatedAt;})}',
         style:
