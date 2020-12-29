@@ -4,7 +4,6 @@ import { Loading } from 'element-ui';
 import MisSchema from '../../../../umis-factory/src/components/container/schema';
 import MisSetting from '../../../../umis-factory/src/components/setting/index';
 import frameSchema from '../../schema/frame';
-import customSchema from '../../schema/custom';
 
 Vue.use(VueRouter);
 
@@ -79,6 +78,7 @@ const dynamicRouter = routes => {
   routeMenu = routeMenu.concat(suffixRoute);
   const router = new VueRouter({
     mode: 'history',
+    // base: '/umis',
     routes: [
       {
         path: '/',
@@ -86,9 +86,6 @@ const dynamicRouter = routes => {
         props: {
           schema: frameSchema,
           canSchemaUpdate: false,
-        },
-        meta: {
-          title: 'UMIS',
         },
         children: routeMenu,
       },

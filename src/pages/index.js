@@ -14,13 +14,14 @@ Vue.use(UmisFactory, window.umisConfig);
 
 Vue.prototype.$api
   .slientApi()
-  .get('/api/menu')
-  .then(({data}) => {
-    const router = dynamicRouter(data);
+  .get('/api/menu/0767bea4-c7e7-4aa7-a1b5-2fd5e1ec4a7f')
+  .then(({ data: { menu } }) => {
+    const router = dynamicRouter(menu);
     new Vue({
       router,
       render: h => h('router-view'),
     }).$mount('#app');
-  }).catch(err => {
-    console.error(err)
-});
+  })
+  .catch(err => {
+    console.error(err);
+  });
