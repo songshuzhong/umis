@@ -1,14 +1,14 @@
 <template>
-  <div class="umis-avatar__wrapper">
-    <el-avatar shape="square" :size="100" :src="url" />
-    <div class="umis-avatar__content">
-      <div class="umis-avatar__title">这是一个标准的标题</div>
-      <div class="umis-avatar__subtitle">这是一个特别的副标题说明</div>
-      <div class="umis-avatar__description">
-        这是一个很长很长很长很长很长的煎熬说明
-      </div>
-    </div>
-  </div>
+  <el-timeline>
+    <el-timeline-item
+      v-for="(activity, index) in activities"
+      :key="index"
+      color="#0bbd87"
+      :timestamp="activity.timestamp"
+    >
+      {{ activity.content }}
+    </el-timeline-item>
+  </el-timeline>
 </template>
 <script>
 import {
@@ -26,6 +26,7 @@ import {
   Dialog as ElDialog,
   Card as ElCard,
   Avatar as ElAvatar,
+  Timeline as ElTimeline,
 } from 'element-ui';
 export default {
   components: {
@@ -43,55 +44,37 @@ export default {
     ElOption,
     ElDialog,
     ElAvatar,
+    ElTimeline,
   },
   data() {
     return {
-      url:
-        'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-      data: {},
-      dialog: false,
-      input3: '',
-      select: '',
+      activities: [
+        {
+          content: '前端兼容因时序问题引发的错误',
+          timestamp: '2020-12-25 15:43:24',
+        },
+        {
+          content:
+            'junmei3计划ID关联的定向模版名称=安踏兴趣人群， 定向设置：年龄-18-35，兴趣关键词-安踏 辛苦排查，计划关联定向模版定向设置失败原因',
+          timestamp: '2020-12-23 10:32:43',
+        },
+        {
+          content:
+            'xinyu36定向模板信息复用未成功，下发年龄及兴趣关键词都为通投',
+          timestamp: '2020-12-22 20:23:44',
+        },
+        {
+          content:
+            '召回侧收到的计划详情中兴趣和人群包的字段为空，请BP侧排查一下',
+          timestamp: '2020-12-22 20:22:46',
+        },
+        {
+          content:
+            'guoshuang3定向预估人群7000人，单天投放曝光量130万，辛苦排查是否异常',
+          timestamp: '2020-12-22 19:02:28',
+        },
+      ],
     };
-  },
-  methods: {
-    handleClick() {
-      Object.assign(this.$refs.test.initData, { ssss: 22222 });
-    },
   },
 };
 </script>
-<style lang="scss">
-.umis-avatar__wrapper {
-  display: flex;
-  .umis-avatar__content {
-    margin-left: 15px;
-  }
-  .umis-avatar__title {
-    margin-right: 30px;
-    margin-bottom: 3px;
-    font-weight: 500;
-    font-size: 16px;
-    white-space: nowrap;
-    color: #606266;
-  }
-  .umis-avatar__subtitle {
-    text-align: left;
-    white-space: nowrap;
-    color: #909399;
-    font-weight: 400;
-    font-size: 14px;
-  }
-  .umis-avatar__description {
-    font-size: 13px;
-    color: #303133;
-    line-height: 1.5;
-  }
-}
-.el-select .el-input {
-  width: 130px;
-}
-.input-with-select .el-input-group__prepend {
-  background-color: #fff;
-}
-</style>

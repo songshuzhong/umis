@@ -36,7 +36,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vue-echarts@4.0.2"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/loader.min.js"></script>
     <script type="text/javascript">
-      var initData = []; // JSON.parse('{{data.initData}}');
+      //var umisMenu = {{data.menu}};
+      // var umisConfig = {{data.umisConfig}};
       var umisConfig = {
         isFormData: false,
         isApiChanged: false,
@@ -45,8 +46,10 @@
           VUE_APP_API_MOCK:
             'https://www.fastmock.site/mock/a93e0b29161761b8153cbc02db04c643',
         },
+        adaptor:
+          'if(api.includes("/api/users")&&method==="get"){res.data.rows.forEach(function(item){item.timestamp=item.updatedAt;})}',
         style:
-          'body{margin: 0; background: #FFFFFF}.mis-card-margin{margin-bottom: 20px}.mis-card-margin .el-card__footer{display: flex;align-items: center;justify-content:space-around;border-top:1px solid #ebeef5;} .demo-header, .demo-footer {background-color: #B3C0D1;color: #333;text-align: center;line-height: 60px;}.demo-aside {background-color: #D3DCE6;color: #333;text-align: center;line-height: 200px;}.demo-main {background-color: #E9EEF3;color: #333;text-align: center;}',
+          'body{margin: 0; background: #FFFFFF}.mis-card-margin{margin-bottom: 20px}.mis-card-margin .el-card__footer{display: flex;align-items: center;justify-content:space-around;border-top:1px solid #ebeef5;}',
       };
       require.config({
         paths: {
