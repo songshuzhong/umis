@@ -28,9 +28,6 @@ const createRoutes = (routes, basename = '') => {
         initSchema: {
           url: item.schemaUrl,
           method: 'get',
-          params: {
-            id: item.pageId,
-          },
         },
       },
       meta: {
