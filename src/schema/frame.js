@@ -101,6 +101,7 @@ const json = [
           {
             renderer: 'mis-main',
             routerView: true,
+            classname: 'umis-layout__container__main',
             body: [],
           },
         ],
