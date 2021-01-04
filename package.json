@@ -77,7 +77,6 @@
     "stylelint-config-standard": "18.2.x",
     "stylelint-scss": "3.3.x",
     "svg-sprite-loader": "^0.3.0",
-    "umis-factory": "git+ssh://git@github.com:songshuzhong/umis-factory.git",
     "vue": "^2.6.10",
     "vue-cli-plugin-element": "^1.0.1",
     "vue-element-resize-detector": "^1.0.6",

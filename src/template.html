@@ -36,13 +36,15 @@
     <script src="https://cdn.jsdelivr.net/npm/vue-echarts@4.0.2"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/loader.min.js"></script>
     <script type="text/javascript">
+      window.onerror = function(a, b, c) {
+        console.log(a, b, c);
+      };
       //var umisMenu = {{data.menu}};
-      // var umisConfig = {{data.umisConfig}};
+      //var umisConfig = {{data.umisConfig}};
       var umisConfig = {
         isFormData: false,
         isApiChanged: false,
-        domains:
-          'https://www.fastmock.site/mock/a93e0b29161761b8153cbc02db04c643',
+        domains: '',
         adaptor:
           'if(api.includes("/api/users")&&method==="get"){res.data.rows.forEach(function(item){item.timestamp=item.updatedAt;})}',
         style:
