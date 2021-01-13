@@ -19,44 +19,7 @@ const json = [
           html:
             '<div style="height: 59px; border-bottom: 1px solid #dcdfe6; color: white; text-align: center; line-height: 59px; font-size: 20px">UMIS</div>',
         },
-        body: [
-          {
-            renderer: 'mis-menu-submenu',
-            name: 'handbook',
-            icon: 'el-icon-notebook-1',
-            title: '渲染手册',
-            body: [
-              {
-                renderer: 'mis-menu-item',
-                name: 'doc',
-                title: '表单',
-              },
-            ],
-          },
-          {
-            renderer: 'mis-menu-submenu',
-            icon: 'el-icon-setting',
-            title: '系统',
-            body: [
-              {
-                renderer: 'mis-menu-item-group',
-                title: '系统分组一',
-                body: [
-                  {
-                    renderer: 'mis-menu-item',
-                    name: 'setting',
-                    title: '全局配置',
-                  },
-                  {
-                    renderer: 'mis-menu-item',
-                    name: 'authority',
-                    title: '权限配置',
-                  },
-                ],
-              },
-            ],
-          },
-        ],
+        body: [],
       },
       {
         renderer: 'mis-layout',
