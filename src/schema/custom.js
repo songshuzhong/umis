@@ -142,6 +142,32 @@ const json = {
           },
         ],
       },
+      {
+        renderer: 'mis-menu-submenu',
+        name: 'testgroup',
+        title: '系统管理',
+        icon: 'el-icon-folder-opened',
+        body: [
+          {
+            renderer: 'mis-menu-item',
+            name: 'new-task',
+            title: '新建任务',
+            icon: 'el-icon-male',
+            pageId: '29cff4a2-3464-47bd-9f76-b674a9673358',
+            pageDesc: null,
+            schemaUrl: '/api/page',
+          },
+          {
+            renderer: 'mis-menu-item',
+            name: 'crud-task',
+            title: '任务管理',
+            icon: 'el-icon-receiving',
+            pageId: '98b5d32f-2606-4bcd-8531-5818c662f5cb',
+            pageDesc: null,
+            schemaUrl: '/api/page',
+          },
+        ],
+      },
     ],
     umisConfig: {
       groupId: '0767bea4-c7e7-4aa7-a1b5-2fd5e1ec4a7f',

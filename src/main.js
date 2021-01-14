@@ -3,6 +3,7 @@ import ElementPlus from 'element-plus';
 import router from './router';
 import App from './app.vue';
 import UmisFactory from '../../umis-factory/src/entry';
+
 import './assets/styles/index.scss';
 import '../../umis-factory/src/assets/styles/index.scss';
 import 'element-plus/lib/theme-chalk/index.css';
