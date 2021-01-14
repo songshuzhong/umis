@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MisSchema from '../../umis-factory/src/components/container/schema';
-import MisSetting from '../../umis-factory/src/components/setting';
 import frameSchema from './schema/frame';
 import routerSchema from './schema/custom';
 
@@ -56,10 +55,6 @@ frameSchema[0].body[0].body = routerSchema.data.menu;
 export default createRouter({
   history: createWebHistory(),
   routes: [
-    {
-      path: '/setting',
-      component: MisSetting,
-    },
     {
       path: '/doc',
       component: () => import('./doc'),

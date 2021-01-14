@@ -1,5 +1,5 @@
 {
-  "name": "umis-website-plus",
+  "name": "umis-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,8 +11,7 @@
     "axios": "^0.18.1",
     "core-js": "^3.6.5",
     "lint-staged": "^8.1.7",
-    "prettier": "^1.17.1",
-    "vue": "^3.0.0"
+    "prettier": "^1.17.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -46,22 +45,10 @@
     "stylelint-config-recess-order": "2.0.x",
     "stylelint-config-standard": "18.2.x",
     "stylelint-scss": "3.3.x",
+    "vue-element-resize-detector": "^1.0.6",
     "vue-router": "^4.0.2",
-    "vue3-echarts": "^1.0.0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
+    "vue3-echarts": "^1.0.0",
+    "vue": "^3.0.0"
   },
   "browserslist": [
     "> 1%",
