@@ -1,108 +1,133 @@
-const json = [{
-    "renderer": "mis-menu-submenu",
-    "name": "superfans",
-    "title": "组件演示",
-    "icon": "el-icon-s-ticket",
-    "body": [{
-        "renderer": "mis-menu-item",
-        "name": "mis-map",
-        "title": "时间线组件",
-        "icon": "el-icon-baseball",
-        "pageId": "80eb24bc-f275-4332-aa65-745050460d89",
-        "pageDesc": null,
-        "schemaUrl": "/api/page"
-    }, {
-        "renderer": "mis-menu-item",
-        "name": "mis-carousel",
-        "title": "轮播组件",
-        "icon": "el-icon-video-camera-solid",
-        "pageId": "0d8ecc3c-db1f-4f27-834e-6f4254dc84fd",
-        "pageDesc": null,
-        "schemaUrl": "/api/page"
-    }, {
-        "renderer": "mis-menu-item",
-        "name": "searchbar",
-        "title": "搜索框",
-        "icon": "el-icon-search",
-        "pageId": "1f1e5400-c374-4af3-a156-49af6e70ab8d",
-        "pageDesc": null,
-        "schemaUrl": "/api/page"
-    }, {
-        "renderer": "mis-menu-item",
-        "name": "show-img",
-        "title": "图片显隐",
-        "icon": "el-icon-picture-outline",
-        "pageId": "ee904851-0fae-4125-ae56-f16abd17161f",
-        "pageDesc": null,
-        "schemaUrl": "/api/page"
-    }, {
-        "renderer": "mis-menu-item",
-        "name": "reg-rules",
-        "title": " 正则校验",
-        "icon": "el-icon-view",
-        "pageId": "90960881-8310-408f-9425-15a545a76187",
-        "pageDesc": null,
-        "schemaUrl": "/api/page"
-    }, {
-        "renderer": "mis-menu-item",
-        "name": "construction",
-        "title": "数据结构",
-        "icon": "el-icon-coin",
-        "pageId": "1106fde9-0e53-467d-a3dc-c777b085abb5",
-        "pageDesc": null,
-        "schemaUrl": "/api/page"
-    }, {
-        "renderer": "mis-menu-item",
-        "name": "users-crud",
-        "title": "增删改查",
-        "icon": "el-icon-s-shop",
-        "pageId": "b87c0dc7-eed5-4026-bc28-6daab3529bf9",
-        "pageDesc": null,
-        "schemaUrl": "/api/page"
-    }]
-}, {
-    "renderer": "mis-menu-submenu",
-    "name": "fentiao",
-    "title": " 用户管理",
-    "icon": "el-icon-takeaway-box",
-    "body": [{
-        "renderer": "mis-menu-item",
-        "name": "crud",
-        "title": "增删改查",
-        "icon": "el-icon-toilet-paper",
-        "pageId": "263ad10b-60a0-48a9-bdad-db9440fa34dc",
-        "pageDesc": null,
-        "schemaUrl": "/api/page"
-    }, {
-        "renderer": "mis-menu-item",
-        "name": "user",
-        "title": "登记表",
-        "icon": "el-icon-notebook-2",
-        "pageId": "e2b9a3a0-575a-4686-a015-cb511786a6e0",
-        "pageDesc": null,
-        "schemaUrl": "/api/page"
-    }]
-}, {
-    "renderer": "mis-menu-submenu",
-    "name": "testgroup",
-    "title": "系统管理",
-    "icon": "el-icon-folder-opened",
-    "body": [{
-        "renderer": "mis-menu-item",
-        "name": "new-task",
-        "title": "新建任务",
-        "icon": "el-icon-male",
-        "pageId": "29cff4a2-3464-47bd-9f76-b674a9673358",
-        "pageDesc": null,
-        "schemaUrl": "/api/page"
-    }, {
-        "renderer": "mis-menu-item",
-        "name": "crud-task",
-        "title": "任务管理",
-        "icon": "el-icon-receiving",
-        "pageId": "98b5d32f-2606-4bcd-8531-5818c662f5cb",
-        "pageDesc": null,
-        "schemaUrl": "/api/page"
-    }]
-}, {"renderer": "mis-menu-submenu", "name": "notebook", "title": " 文档手册", "icon": "el-icon-document", "body": []}];
+const json = [
+  {
+    renderer: 'mis-menu-submenu',
+    name: 'superfans',
+    title: '组件演示',
+    icon: 'el-icon-s-ticket',
+    body: [
+      {
+        renderer: 'mis-menu-item',
+        name: 'mis-map',
+        title: '时间线组件',
+        icon: 'el-icon-baseball',
+        pageId: '80eb24bc-f275-4332-aa65-745050460d89',
+        pageDesc: null,
+        schemaUrl: '/api/page',
+      },
+      {
+        renderer: 'mis-menu-item',
+        name: 'mis-carousel',
+        title: '轮播组件',
+        icon: 'el-icon-video-camera-solid',
+        pageId: '0d8ecc3c-db1f-4f27-834e-6f4254dc84fd',
+        pageDesc: null,
+        schemaUrl: '/api/page',
+      },
+      {
+        renderer: 'mis-menu-item',
+        name: 'searchbar',
+        title: '搜索框',
+        icon: 'el-icon-search',
+        pageId: '1f1e5400-c374-4af3-a156-49af6e70ab8d',
+        pageDesc: null,
+        schemaUrl: '/api/page',
+      },
+      {
+        renderer: 'mis-menu-item',
+        name: 'show-img',
+        title: '图片显隐',
+        icon: 'el-icon-picture-outline',
+        pageId: 'ee904851-0fae-4125-ae56-f16abd17161f',
+        pageDesc: null,
+        schemaUrl: '/api/page',
+      },
+      {
+        renderer: 'mis-menu-item',
+        name: 'reg-rules',
+        title: ' 正则校验',
+        icon: 'el-icon-view',
+        pageId: '90960881-8310-408f-9425-15a545a76187',
+        pageDesc: null,
+        schemaUrl: '/api/page',
+      },
+      {
+        renderer: 'mis-menu-item',
+        name: 'construction',
+        title: '数据结构',
+        icon: 'el-icon-coin',
+        pageId: '1106fde9-0e53-467d-a3dc-c777b085abb5',
+        pageDesc: null,
+        schemaUrl: '/api/page',
+      },
+      {
+        renderer: 'mis-menu-item',
+        name: 'users-crud',
+        title: '增删改查',
+        icon: 'el-icon-s-shop',
+        pageId: 'b87c0dc7-eed5-4026-bc28-6daab3529bf9',
+        pageDesc: null,
+        schemaUrl: '/api/page',
+      },
+    ],
+  },
+  {
+    renderer: 'mis-menu-submenu',
+    name: 'fentiao',
+    title: ' 用户管理',
+    icon: 'el-icon-takeaway-box',
+    body: [
+      {
+        renderer: 'mis-menu-item',
+        name: 'crud',
+        title: '增删改查',
+        icon: 'el-icon-toilet-paper',
+        pageId: '263ad10b-60a0-48a9-bdad-db9440fa34dc',
+        pageDesc: null,
+        schemaUrl: '/api/page',
+      },
+      {
+        renderer: 'mis-menu-item',
+        name: 'user',
+        title: '登记表',
+        icon: 'el-icon-notebook-2',
+        pageId: 'e2b9a3a0-575a-4686-a015-cb511786a6e0',
+        pageDesc: null,
+        schemaUrl: '/api/page',
+      },
+    ],
+  },
+  {
+    renderer: 'mis-menu-submenu',
+    name: 'testgroup',
+    title: '系统管理',
+    icon: 'el-icon-folder-opened',
+    body: [
+      {
+        renderer: 'mis-menu-item',
+        name: 'new-task',
+        title: '新建任务',
+        icon: 'el-icon-male',
+        pageId: '29cff4a2-3464-47bd-9f76-b674a9673358',
+        pageDesc: null,
+        schemaUrl: '/api/page',
+      },
+      {
+        renderer: 'mis-menu-item',
+        name: 'crud-task',
+        title: '任务管理',
+        icon: 'el-icon-receiving',
+        pageId: '98b5d32f-2606-4bcd-8531-5818c662f5cb',
+        pageDesc: null,
+        schemaUrl: '/api/page',
+      },
+    ],
+  },
+  {
+    renderer: 'mis-menu-submenu',
+    name: 'notebook',
+    title: ' 文档手册',
+    icon: 'el-icon-document',
+    body: [],
+  },
+];
 export default json;
