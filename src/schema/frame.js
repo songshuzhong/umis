@@ -12,7 +12,7 @@ const json = [
         backgroundColor: '#3a3f51',
         textColor: '#fff',
         activeTextColor: '#ffd04b',
-        defaultActive: 'doc',
+        defaultActive: 'users-crud',
         uniqueOpened: true,
         title: {
           renderer: 'mis-html',

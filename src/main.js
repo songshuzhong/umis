@@ -18,6 +18,7 @@ router.addRoute('UmisRouter', {
   path: '/setting',
   component: MisSetting,
 });
+
 app
   .use(ElementPlus)
   .use(UmisFactory, window.umisConfig)

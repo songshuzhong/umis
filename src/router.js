@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MisSchema from '../../umis-factory/src/components/container/schema';
 import frameSchema from './schema/frame';
-import routerSchema from './schema/custom';
+import routerSchema from './schema/menu';
 
 function createRoutes(routes, basename = '') {
   const result = [];

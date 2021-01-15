@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dll": "webpack --config ./webpack.dll.config.js"
   },
   "dependencies": {
     "axios": "^0.18.1",
@@ -18,8 +19,12 @@
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
+    "add-asset-html-webpack-plugin": "^3.1.3",
+    "autodll-webpack-plugin": "^0.4.2",
     "babel-eslint": "^10.1.0",
     "beautify": "0.0.8",
+    "clean-webpack-plugin": "^3.0.0",
+    "compression-webpack-plugin": "^7.1.2",
     "copy-to-clipboard": "^3.3.1",
     "deep-equal": "^1.0.1",
     "element-plus": "^1.0.1-beta.24",
@@ -48,7 +53,9 @@
     "vue": "^3.0.0-0",
     "vue-element-resize-detector": "^1.0.6",
     "vue-router": "^4.0.0-beta.9",
-    "vue3-echarts": "^1.0.0"
+    "vue3-echarts": "^1.0.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.3.1"
   },
   "eslintConfig": {
     "root": true,
