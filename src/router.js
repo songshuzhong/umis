@@ -56,10 +56,6 @@ export default createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/doc',
-      component: () => import('./doc'),
-    },
-    {
       path: '/',
       name: 'UmisRouter',
       component: MisSchema,
@@ -68,6 +64,10 @@ export default createRouter({
         canSchemaUpdate: true,
       },
       children: createRoutes(routerSchema.data.menu),
+    },
+    {
+      path: '/doc',
+      component: () => import('./doc'),
     },
   ],
 });
