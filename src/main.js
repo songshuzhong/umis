@@ -19,10 +19,8 @@ router.addRoute('UmisRouter', {
   component: MisSetting,
 });
 
-const vm = app
+app
   .use(ElementPlus)
   .use(UmisFactory, window.umisConfig)
   .use(router)
   .mount('#app');
-
-vm.$router.push('/');
