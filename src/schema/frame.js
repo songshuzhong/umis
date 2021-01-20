@@ -9,53 +9,17 @@ const json = [
         router: true,
         collapse: false,
         mode: 'vertical',
-        backgroundColor: '#545c64',
+        backgroundColor: '#3a3f51',
         textColor: '#fff',
         activeTextColor: '#ffd04b',
-        defaultActive: 'doc',
+        defaultActive: 'users-crud',
+        uniqueOpened: true,
         title: {
           renderer: 'mis-html',
           html:
-            '<div style="height: 56px; color: white; text-align: center; line-height: 56px; font-size: 20px">UMIS</div>',
+            '<div style="height: 59px; border-bottom: 1px solid #dcdfe6; color: white; text-align: center; line-height: 59px; font-size: 20px">UMIS</div>',
         },
-        body: [
-          {
-            renderer: 'mis-menu-submenu',
-            name: 'handbook',
-            icon: 'el-icon-notebook-1',
-            title: '渲染手册',
-            body: [
-              {
-                renderer: 'mis-menu-item',
-                name: 'doc',
-                label: '表单',
-              },
-            ],
-          },
-          {
-            renderer: 'mis-menu-submenu',
-            icon: 'el-icon-setting',
-            title: '系统',
-            body: [
-              {
-                renderer: 'mis-menu-item-group',
-                title: '系统分组一',
-                body: [
-                  {
-                    renderer: 'mis-menu-item',
-                    name: 'setting',
-                    label: '全局配置',
-                  },
-                  {
-                    renderer: 'mis-menu-item',
-                    name: 'authority',
-                    label: '权限配置',
-                  },
-                ],
-              },
-            ],
-          },
-        ],
+        body: [],
       },
       {
         renderer: 'mis-layout',
@@ -79,7 +43,7 @@ const json = [
                 body: {
                   name: 'isEditor',
                   showClose: true,
-                  size: '60%',
+                  size: '80%',
                   label: '编辑',
                   classname: 'umis-layout__container__drawer',
                   header: {
@@ -89,7 +53,7 @@ const json = [
                   },
                   body: [
                     {
-                      renderer: 'mis-monaco',
+                      renderer: 'mis-editor',
                       name: 'editor',
                     },
                   ],
@@ -100,6 +64,7 @@ const json = [
           {
             renderer: 'mis-main',
             routerView: true,
+            classname: 'umis-layout__container__main',
             body: [],
           },
         ],

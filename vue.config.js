@@ -1,58 +1,10 @@
 const path = require('path');
-const glob = require('glob');
-const fs = require('fs');
-const manifestPlugin = require('webpack-manifest-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const AutoDllPlugin = require('autodll-webpack-plugin');
 const dev = process.env.NODE_ENV !== 'production';
 const publicPath = '';
-const pages = {};
-const rewrites = [];
-
-glob.sync('./src/pages/*.js').forEach(entry => {
-  const filename = entry.replace(/(.*\/)*([^.]+).*/gi, '$2');
-  rewrites.push({
-    from: new RegExp('^/' + filename),
-    to: `/pages/${filename}.html`,
-  });
-  let pageConfig;
-  try {
-    let fileContent = fs.readFileSync(
-      `./src/modules/${filename}/index.json`,
-      'utf-8'
-    );
-    pageConfig = JSON.parse(fileContent);
-  } catch (e) {
-    pageConfig = {};
-  }
-  pages[filename] = {
-    entry,
-    template: path.join(__dirname, '/src/template.html'),
-    filename: `${filename}.html`,
-    title: pageConfig.title || '',
-    metas: pageConfig.metas || {},
-    styles: dev ? [] : pageConfig.styles || [],
-    scripts: dev ? [] : pageConfig.scripts || [],
-    skeleton: pageConfig.skeleton || '',
-    skeletonStyle: pageConfig.skeletonStyle || '',
-    initData: JSON.stringify(pageConfig.initData || {}),
-    favicon: pageConfig.icon || '',
-    debug: dev
-      ? `
-       <script src="//cdn.bootcss.com/eruda/1.1.3/eruda.min.js"></script>
-       <script>eruda.init();window.isDebug=true;</script>                `
-      : '',
-    minify: {
-      minimize: true,
-      minifyJS: true,
-      minifyCSS: true,
-      removeComments: true,
-      collapseWhitespace: true,
-      removeAttributeQuotes: true,
-    },
-  };
-});
 
 module.exports = {
-  pages,
   publicPath: dev ? '' : publicPath,
   productionSourceMap: true,
   configureWebpack: {
@@ -63,12 +15,44 @@ module.exports = {
     resolve: {
       extensions: ['.ts', '.js', '.vue', '.json'],
       alias: {
-        'element-ui': path.resolve(process.cwd(), 'node_modules', 'element-ui'),
+        'element-plus': path.resolve(
+          process.cwd(),
+          'node_modules',
+          'element-plus'
+        ),
         'core-js': path.resolve(process.cwd(), 'node_modules', 'core-js'),
         'vue-router': path.resolve(process.cwd(), 'node_modules', 'vue-router'),
-        'vue': path.resolve(process.cwd(), 'node_modules', 'vue')
+        'js-beautify': path.resolve(
+          process.cwd(),
+          'node_modules',
+          'js-beautify'
+        ),
+        'vue3-echarts': path.resolve(
+          process.cwd(),
+          'node_modules',
+          'vue3-echarts'
+        ),
+        vue: path.resolve(process.cwd(), 'node_modules', 'vue'),
       },
     },
+    plugins: [
+      new AutoDllPlugin({
+        inject: true,
+        debug: true,
+        filename: '[name]_[hash].js',
+        path: './dll',
+        entry: {
+          vendor: [
+            'vue',
+            'vue-router',
+            'element-plus',
+            'core-js',
+            'vue3-echarts',
+            'js-beautify',
+          ],
+        },
+      }),
+    ],
   },
   chainWebpack: config => {
     const oneOfsMap = config.module.rule('scss').oneOfs.store;
@@ -81,13 +65,9 @@ module.exports = {
         })
         .end();
     });
-
-    config.plugin('manifest').use(manifestPlugin, [
-      {
-        fileName: 'manifest.json',
-        publicPath: '/',
-      },
-    ]);
+    if (process.env.use_analyzer) {
+      config.plugin('webpack-bundle-analyzer').use(BundleAnalyzerPlugin);
+    }
     config.resolve.alias
       .set('~utils', path.join(__dirname, 'src/utils'))
       .set('~assets', path.join(__dirname, 'src/assets'))
@@ -98,12 +78,9 @@ module.exports = {
     hot: true,
     port: 8980,
     disableHostCheck: true,
-    historyApiFallback: {
-      rewrites: rewrites,
-    },
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost:1026',
         changeOrigin: true,
       },
     },
