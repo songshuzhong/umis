@@ -89,6 +89,15 @@ const json = {
           },
           {
             renderer: 'mis-menu-item',
+            name: 'test',
+            title: '测试',
+            icon: 'el-icon-s-claim',
+            pageId: '3c346a1c-47d1-40a0-9444-7f7b1acd3647',
+            pageDesc: null,
+            schemaUrl: '/api/page/3c346a1c-47d1-40a0-9444-7f7b1acd3647',
+          },
+          {
+            renderer: 'mis-menu-item',
             name: 'demo-page',
             title: '页面',
             icon: 'el-icon-view',
@@ -134,7 +143,7 @@ const json = {
           {
             renderer: 'mis-menu-item',
             name: 'crud-task',
-            title: '任务列表',
+            title: '新建',
             icon: 'el-icon-receiving',
             pageId: '98b5d32f-2606-4bcd-8531-5818c662f5cb',
             pageDesc: null,
@@ -144,20 +153,11 @@ const json = {
       },
     ],
     umisConfig: {
-      groupId: '0767bea4-c7e7-4aa7-a1b5-2fd5e1ec4a7f',
-      groupName: 'umis',
-      groupTitle: '内测组',
-      groupIcon: null,
-      groupDesc: ' 内测组',
-      groupAvatar:
-        'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-      isFormData: false,
-      groupStyle:
+      style:
         'body{margin: 0; background: #FFFFFF}.mis-card-margin{margin-bottom: 20px}.mis-card-margin .el-card__footer{display: flex;align-items: center;justify-content:space-around;border-top:1px solid #ebeef5;}',
-      groupAdaptor: '',
-      groupDomain: null,
-      createdAt: '2020-12-27T04:24:54.000Z',
-      updatedAt: '2020-12-29T05:09:28.000Z',
+      adaptor:
+        'if(api.includes("/api/users")&&method==="get"){res.data.rows.forEach(function(item){item.timestamp=item.updatedAt;})}',
+      isFormData: false,
     },
   },
   status: 0,

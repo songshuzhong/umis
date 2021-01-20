@@ -57,11 +57,11 @@ export default createRouter({
   routes: [
     {
       path: '/',
-      name: 'UmisRouter',
+      name: 'UmisWebsite',
       component: MisSchema,
       props: {
         schema: frameSchema,
-        canSchemaUpdate: true,
+        canSchemaUpdate: false,
       },
       children: createRoutes(routerSchema.data.menu),
     },
