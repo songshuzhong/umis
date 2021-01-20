@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -9,36 +9,33 @@
     />
     <title>UMIS</title>
     <link
-      href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.14.0/theme-chalk/index.min.css"
-      rel="stylesheet"
-    />
-    <link
       rel="stylesheet"
       href="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/editor/editor.main.min.css"
     />
+    <!--<link
+      rel="stylesheet"
+      href="https://unpkg.com/element-plus/lib/theme-chalk/index.css"
+    />-->
     <script type="text/javascript">
-      (function(f) {
-        var e = f.sessionStorage;
-        if (e) {
-          e.CUSTOMER_WEB_MONITOR_ID = 'webfunny1006';
-          var d = document.createElement('script');
-          d.async = 1;
-          d.src = '//localhost:8010/webfunny/w.js';
-          var g = document.getElementsByTagName('script')[0];
-          g.parentNode.insertBefore(d, g);
-        }
-      })(window);
+      /*(function (f) {
+            var e = f.sessionStorage;
+            if (e) {
+                e.CUSTOMER_WEB_MONITOR_ID = 'webfunny1006';
+                var d = document.createElement('script');
+                d.async = 1;
+                d.src = '//localhost:8010/webfunny/w.js';
+                var g = document.getElementsByTagName('script')[0];
+                g.parentNode.insertBefore(d, g);
+            }
+        })(window);*/
     </script>
   </head>
   <body>
     <div id="app"></div>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@4.1.0/dist/echarts.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-echarts@4.0.2"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/echarts@4.1.0/dist/echarts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-echarts@4.0.2"></script>-->
     <script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/loader.min.js"></script>
     <script type="text/javascript">
-      window.onerror = function(a, b, c) {
-        console.log(a, b, c);
-      };
       //var umisMenu = {{data.menu}};
       //var umisConfig = {{data.umisConfig}};
       var umisConfig = {
