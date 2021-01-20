@@ -1,4 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {
+  createRouter,
+  createWebHistory,
+  createWebHashHistory,
+} from 'vue-router';
 import MisSchema from '../../umis-factory/src/components/container/schema';
 import frameSchema from './schema/frame';
 import routerSchema from './schema/menu';
@@ -53,7 +57,10 @@ function createRoutes(routes, basename = '') {
 frameSchema[0].body[0].body = routerSchema.data.menu;
 
 export default createRouter({
-  history: createWebHistory(),
+  history:
+    process.env.NODE_ENV === 'development'
+      ? createWebHistory()
+      : createWebHashHistory(),
   routes: [
     {
       path: '/',
