@@ -8,10 +8,6 @@
       content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
     />
     <title>UMIS</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/editor/editor.main.min.css"
-    />
     <!--<link
       rel="stylesheet"
       href="https://unpkg.com/element-plus/lib/theme-chalk/index.css"
@@ -43,7 +39,7 @@
         isApiChanged: false,
         domains: '',
         adaptor:
-          'if(api.includes("/api/users")&&method==="get"){res.data.rows.forEach(function(item){item.timestamp=item.updatedAt;})}',
+          'if(api.includes("/api/users")&&method==="get"){res.data.rows.forEach(function(item){item.adaptor=item.updatedAt;})}',
         style:
           'body{margin: 0; background: #FFFFFF}.mis-card-margin{margin-bottom: 20px}.mis-card-margin .el-card__footer{display: flex;align-items: center;justify-content:space-around;border-top:1px solid #ebeef5;}',
       };
