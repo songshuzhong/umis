@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve",
-    "build": "use_analyzer=true vue-cli-service build",
+    "dev": "vue-cli-service serve  --mode development",
     "mock": "vue-cli-service build --mode mock",
-    "lint": "vue-cli-service lint",
-    "dll": "webpack --config ./webpack.dll.config.js"
+    "build": "use_analyzer=true vue-cli-service build  --mode production",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.18.1",
@@ -55,7 +54,8 @@
     "vue3-echarts": "^1.0.0",
     "webpack": "^4.3.1",
     "webpack-bundle-analyzer": "^3.9.0",
-    "webpack-cli": "^4.3.1"
+    "webpack-cli": "^4.3.1",
+    "xlsx": "^0.16.9"
   },
   "eslintConfig": {
     "root": true,

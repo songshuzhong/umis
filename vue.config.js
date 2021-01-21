@@ -35,10 +35,9 @@ module.exports = {
         vue: path.resolve(process.cwd(), 'node_modules', 'vue'),
       },
     },
-    plugins: [
+    /*plugins: [
       new AutoDllPlugin({
         inject: true,
-        debug: true,
         filename: '[name]_[hash].js',
         path: './dll',
         entry: {
@@ -52,7 +51,7 @@ module.exports = {
           ],
         },
       }),
-    ],
+    ],*/
   },
   chainWebpack: config => {
     const oneOfsMap = config.module.rule('scss').oneOfs.store;
@@ -75,8 +74,8 @@ module.exports = {
       .set('~components', path.join(__dirname, 'src/components'));
   },
   devServer: {
-    hot: true,
     port: 8980,
+    host: 'dev.superfans.test.weibo.com',
     disableHostCheck: true,
     proxy: {
       '/api': {
