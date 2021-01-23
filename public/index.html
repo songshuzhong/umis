@@ -40,8 +40,46 @@
         domains: '',
         adaptor:
           'if(api.includes("/api/users")&&method==="get"){res.data.rows.forEach(function(item){item.adaptor=item.updatedAt;})}',
-        style:
-          'body{margin: 0; background: #FFFFFF}.mis-card-margin{margin-bottom: 20px}.mis-card-margin .el-card__footer{display: flex;align-items: center;justify-content:space-around;border-top:1px solid #ebeef5;}',
+        style: `
+.mis-card-margin {
+    margin-bottom: 20px;
+}
+
+.mis-card-margin .el-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 1px solid #ebeef5;
+}
+.umis-page__container {
+    padding: 20px;
+}
+.umis-demo__fieldset {
+    background: #f1f1f1;
+}
+.umis-form__container__fieldset {
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #e6e7e8;
+    border-radius: 4px;
+    background-color: #fff;
+}
+.el-collapse-item__content {
+  display: flex;
+}
+.umis-form__container__legend {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #081422;
+    letter-spacing: .4px;
+}
+.umis-demo__card__fieldset {
+    width: 250px;
+    max-height: 400px;
+    margin-left: 200px;
+    overflow-x: auto;
+}
+        `,
       };
       require.config({
         paths: {

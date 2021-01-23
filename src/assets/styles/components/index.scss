@@ -1,9 +1,12 @@
 .mis-avatar-margin {
   margin: 20px;
 }
-
+.umis-layout__container__main {
+  padding: 0 !important;
+  overflow: hidden !important;
+}
 .umis-layout__container {
-  height: 100vh;
+  // height: 100vh;
 }
 
 .umis-layout__container__drawer {
@@ -20,7 +23,7 @@
   }
   .umis-popup__container__body {
     padding: 0;
-    overflow: hidden;
+    // overflow: hidden;
   }
 }
 .umis-layout__container__header {
@@ -37,7 +40,7 @@
 
 .el-loading-spinner {
   .circular {
-    background-image: url('../imgs/loading.svg');
+    // background-image: url('../imgs/loading.svg');
     background-position: center;
     background-size: cover;
     animation: loading-rotate 1s linear infinite;

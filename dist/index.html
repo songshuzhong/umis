@@ -8,7 +8,7 @@
                 var g = document.getElementsByTagName('script')[0];
                 g.parentNode.insertBefore(d, g);
             }
-        })(window);*/</script><link href="js/chunks/chunk-3e965dac.e218d9.js" rel="prefetch"><link href="css/app.9f2fbbe9.css" rel="preload" as="style"><link href="css/chunk-vendors.f66c8afb.css" rel="preload" as="style"><link href="js/app.e218d9.js" rel="preload" as="script"><link href="js/chunks/chunk-vendors.e218d9.js" rel="preload" as="script"><link href="css/chunk-vendors.f66c8afb.css" rel="stylesheet"><link href="css/app.9f2fbbe9.css" rel="stylesheet"></head><body><div id="app"></div><script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/loader.min.js"></script><script>//var umisMenu = {{data.menu}};
+        })(window);*/</script><link href="css/chunk-3d455646.d1f835ff.css" rel="prefetch"><link href="js/chunks/chunk-3d455646.3c08b8.js" rel="prefetch"><link href="css/app.05896bbd.css" rel="preload" as="style"><link href="css/chunk-vendors.f66c8afb.css" rel="preload" as="style"><link href="js/app.3c08b8.js" rel="preload" as="script"><link href="js/chunks/chunk-vendors.3c08b8.js" rel="preload" as="script"><link href="css/chunk-vendors.f66c8afb.css" rel="stylesheet"><link href="css/app.05896bbd.css" rel="stylesheet"></head><body><div id="app"></div><script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/loader.min.js"></script><script>//var umisMenu = {{data.menu}};
       //var umisConfig = {{data.umisConfig}};
       var umisConfig = {
         isFormData: false,
@@ -16,8 +16,46 @@
         domains: '',
         adaptor:
           'if(api.includes("/api/users")&&method==="get"){res.data.rows.forEach(function(item){item.adaptor=item.updatedAt;})}',
-        style:
-          'body{margin: 0; background: #FFFFFF}.mis-card-margin{margin-bottom: 20px}.mis-card-margin .el-card__footer{display: flex;align-items: center;justify-content:space-around;border-top:1px solid #ebeef5;}',
+        style: `
+.mis-card-margin {
+    margin-bottom: 20px;
+}
+
+.mis-card-margin .el-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 1px solid #ebeef5;
+}
+.umis-page__container {
+    padding: 20px;
+}
+.umis-demo__fieldset {
+    background: #f1f1f1;
+}
+.umis-form__container__fieldset {
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #e6e7e8;
+    border-radius: 4px;
+    background-color: #fff;
+}
+.el-collapse-item__content {
+  display: flex;
+}
+.umis-form__container__legend {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #081422;
+    letter-spacing: .4px;
+}
+.umis-demo__card__fieldset {
+    width: 250px;
+    max-height: 400px;
+    margin-left: 200px;
+    overflow-x: auto;
+}
+        `,
       };
       require.config({
         paths: {
@@ -41,4 +79,4 @@
 
       require(['vs/editor/editor.main'], function() {
         window.monaco = monaco;
-      });</script><script src="js/chunks/chunk-vendors.e218d9.js"></script><script src="js/app.e218d9.js"></script></body></html>
+      });</script><script src="js/chunks/chunk-vendors.3c08b8.js"></script><script src="js/app.3c08b8.js"></script></body></html>
