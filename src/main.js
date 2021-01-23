@@ -8,7 +8,7 @@ import App from './app.vue';
 import MisFactory from '../../umis-factory/src/entry';
 import MisSetting from '../../umis-factory/src/components/setting';
 import '../../umis-factory/src/assets/styles/index.scss';
-
+import '../src/assets/styles/index.scss';
 import 'element-plus/lib/theme-chalk/index.css';
 
 const app = createApp(App);
