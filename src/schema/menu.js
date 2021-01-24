@@ -134,8 +134,8 @@ const json = {
           },
           {
             renderer: 'mis-menu-item',
-            name: 'fieldset',
-            title: '表单折叠',
+            name: 'test',
+            title: ' 测试',
             icon: 'el-icon-cpu',
             pageId: 'f0743234-6ac9-4c99-98d4-c5d8b89db263',
             pageDesc: null,
@@ -169,12 +169,29 @@ const json = {
           },
         ],
       },
+      {
+        renderer: 'mis-menu-submenu',
+        name: 'superfans',
+        title: '超级粉丝通',
+        icon: 'el-icon-thumb',
+        body: [
+          {
+            renderer: 'mis-menu-item',
+            name: 'campaigns',
+            title: '新建系列',
+            icon: 'el-icon-burger',
+            pageId: '993ce7db-2def-4d2a-a8e2-003e75ae8f16',
+            pageDesc: null,
+            schemaUrl: '/api/page/993ce7db-2def-4d2a-a8e2-003e75ae8f16',
+          },
+        ],
+      },
     ],
     umisConfig: {
       style:
         'body{margin: 0; background: #FFFFFF}.mis-card-margin{margin-bottom: 20px}.mis-card-margin .el-card__footer{display: flex;align-items: center;justify-content:space-around;border-top:1px solid #ebeef5;}',
       adaptor:
-        'if(api.includes("/api/users")&&method==="get"){res.data.rows.forEach(function(item){item.timestamp=item.updatedAt;})}',
+        'if(api.includes("/api/users")&&method==="get"){res.data.rows.forEach(function(item){item.adaptor=item.updatedAt;})}',
       isFormData: false,
     },
   },

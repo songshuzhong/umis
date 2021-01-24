@@ -8,7 +8,7 @@
                 var g = document.getElementsByTagName('script')[0];
                 g.parentNode.insertBefore(d, g);
             }
-        })(window);*/</script><link href="css/chunk-3d455646.d1f835ff.css" rel="prefetch"><link href="js/chunks/chunk-3d455646.3c08b8.js" rel="prefetch"><link href="css/app.05896bbd.css" rel="preload" as="style"><link href="css/chunk-vendors.f66c8afb.css" rel="preload" as="style"><link href="js/app.3c08b8.js" rel="preload" as="script"><link href="js/chunks/chunk-vendors.3c08b8.js" rel="preload" as="script"><link href="css/chunk-vendors.f66c8afb.css" rel="stylesheet"><link href="css/app.05896bbd.css" rel="stylesheet"></head><body><div id="app"></div><script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/loader.min.js"></script><script>//var umisMenu = {{data.menu}};
+        })(window);*/</script><link href="js/chunks/chunk-2d230868.5d792f.js" rel="prefetch"><link href="css/app.14488708.css" rel="preload" as="style"><link href="css/chunk-vendors.f66c8afb.css" rel="preload" as="style"><link href="js/app.5d792f.js" rel="preload" as="script"><link href="js/chunks/chunk-vendors.5d792f.js" rel="preload" as="script"><link href="css/chunk-vendors.f66c8afb.css" rel="stylesheet"><link href="css/app.14488708.css" rel="stylesheet"></head><body><div id="app"></div><script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/loader.min.js"></script><script>//var umisMenu = {{data.menu}};
       //var umisConfig = {{data.umisConfig}};
       var umisConfig = {
         isFormData: false,
@@ -43,17 +43,43 @@
 .el-collapse-item__content {
   display: flex;
 }
+.umis-form__container__fieldset__items {
+  width: 100%;
+}
 .umis-form__container__legend {
     margin-bottom: 20px;
     font-size: 16px;
     color: #081422;
     letter-spacing: .4px;
 }
-.umis-demo__card__fieldset {
-    width: 250px;
-    max-height: 400px;
+.umis-campaigns__wrapper {
     margin-left: 200px;
-    overflow-x: auto;
+    border-radius: 4px;
+    border: 1px solid #ebeef5;
+    overflow: hidden;
+}
+.umis-campaigns__viewer {
+  margin: 10px;
+}
+.umis-campaigns__viewer__header {
+    width: 270px;
+    height: 74px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-image: linear-gradient(135deg,#409EFF,#409EFF);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: white;
+}
+.umis-campaigns__viewer__list {
+    width: 270px;
+    height: 380px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.el-input {
+    width: 420px;
 }
         `,
       };
@@ -79,4 +105,4 @@
 
       require(['vs/editor/editor.main'], function() {
         window.monaco = monaco;
-      });</script><script src="js/chunks/chunk-vendors.3c08b8.js"></script><script src="js/app.3c08b8.js"></script></body></html>
+      });</script><script src="js/chunks/chunk-vendors.5d792f.js"></script><script src="js/app.5d792f.js"></script></body></html>

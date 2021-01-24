@@ -40,7 +40,7 @@
 
 .el-loading-spinner {
   .circular {
-    // background-image: url('../imgs/loading.svg');
+    background-image: url('../imgs/loading.svg');
     background-position: center;
     background-size: cover;
     animation: loading-rotate 1s linear infinite;
