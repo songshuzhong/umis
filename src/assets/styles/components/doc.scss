@@ -1,0 +1,22 @@
+.umis-list__container {
+  .el-checkbox {
+    // visibility: hidden;
+    display: none;
+  }
+  .umis-list__item {
+    position: relative;
+    min-width: 82px;
+    min-height: 35px;
+    margin: 10px;
+    display: inline-block;
+    border: 1px solid #dcdfe6;
+    cursor: pointer;
+  }
+  .umis-list__item__text {
+    width: 82px;
+    height: 35px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 35px;
+  }
+}
