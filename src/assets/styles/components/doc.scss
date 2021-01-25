@@ -1,6 +1,10 @@
 .umis-list__container {
   .el-checkbox {
-    // visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 3px;
+  }
+  .el-checkbox__label {
     display: none;
   }
   .umis-list__item {
@@ -9,7 +13,7 @@
     min-height: 35px;
     margin: 10px;
     display: inline-block;
-    border: 1px solid #dcdfe6;
+    border: 0;
     cursor: pointer;
   }
   .umis-list__item__text {

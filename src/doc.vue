@@ -3,8 +3,8 @@
     <el-checkbox-group v-model="checkList">
       <template v-for="(item, index) in options" :key="index">
         <div class="umis-list__item">
-          <el-checkbox :label="item.text" />
-          <el-card>
+          <el-card shadow="hover">
+            <el-checkbox :label="item.text" />
             sadfasdf
           </el-card>
         </div>
