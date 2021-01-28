@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d230868"],{ed3f:function(n,t,e){"use strict";e.r(t);var a=e("7a23"),c={class:"umis-list__container"};function r(n,t,e,r,s,d){return Object(a["E"])(),Object(a["j"])("div",c," asdfa ")}var s={data:function(){return{}},methods:{}};s.render=r;t["default"]=s}}]);
+//# sourceMappingURL=chunk-2d230868.456a9d.js.map
