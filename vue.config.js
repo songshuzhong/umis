@@ -60,7 +60,7 @@ module.exports = {
         .use('sass-resources-loader')
         .loader('sass-resources-loader')
         .options({
-          resources: './src/assets/styles/index.scss',
+          resources: './src/assets/styles/base/index.scss',
         })
         .end();
     });
