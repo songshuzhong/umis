@@ -5,38 +5,31 @@ const json = [
     body: [
       {
         renderer: 'mis-wrapper',
+        classname: 'umis-website__nav-fixed',
+        body: {
+          renderer: 'mis-menu',
+          name: 'umis-website-nav',
+          router: true,
+          mode: 'vertical',
+          backgroundColor: '#3a3f51',
+          textColor: '#fff',
+          activeTextColor: '#ffd04b',
+          defaultActive: 'users-crud',
+          target: 'umis-website__nav-poppet',
+          title: {
+            renderer: 'mis-html',
+            html: '<div class="umis-website__header__logo">UMIS</div>',
+          },
+          body: [],
+        },
+      },
+      {
+        renderer: 'mis-aside',
+        name: 'umis-website__nav-poppet',
         classname: 'umis-website__nav-poppet',
-        body: [
-          {
-            renderer: 'mis-wrapper',
-            classname: 'umis-website__nav-wrapper',
-            body: {
-              renderer: 'mis-affix',
-              body: {
-                renderer: 'mis-menu',
-                name: 'menu',
-                router: true,
-                collapse: false,
-                mode: 'vertical',
-                backgroundColor: '#3a3f51',
-                textColor: '#fff',
-                activeTextColor: '#ffd04b',
-                defaultActive: 'users-crud',
-                uniqueOpened: true,
-                title: {
-                  renderer: 'mis-html',
-                  html:
-                    '<div style="height: 59px; border-bottom: 1px solid #dcdfe6; color: white; text-align: center; line-height: 59px; font-size: 20px">UMIS</div>',
-                },
-                body: [],
-              },
-            },
-          },
-          {
-            renderer: 'mis-wrapper',
-            classname: 'umis-website__nav-poppet',
-          },
-        ],
+        initData: {
+          width: 205,
+        },
       },
       {
         renderer: 'mis-layout',
@@ -46,11 +39,8 @@ const json = [
             renderer: 'mis-wrapper',
             body: [
               {
-                renderer: 'mis-wrapper',
-                classname: 'umis-website__header',
-              },
-              {
                 renderer: 'mis-affix',
+                zIndex: 1000,
                 body: {
                   renderer: 'mis-header',
                   classname: 'umis-website__header',
@@ -58,7 +48,7 @@ const json = [
                     {
                       renderer: 'mis-switch',
                       name: 'collapse',
-                      target: 'menu',
+                      target: 'umis-website-nav',
                       value: false,
                     },
                     {

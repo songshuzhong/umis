@@ -1,13 +1,12 @@
 <template>
-  <div class="umis-list__container">
-    asdfa
-  </div>
+  1
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      isCollapse: true,
+    };
   },
-  methods: {},
 };
 </script>
