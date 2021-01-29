@@ -53,7 +53,8 @@ function createRoutes(routes, basename = '') {
 
   return result;
 }
-frameSchema[0].body[0].body[0].body.body.body = routerSchema.data.menu;
+
+frameSchema[0].body[0].body.body = routerSchema.data.menu;
 
 export default createRouter({
   history:
