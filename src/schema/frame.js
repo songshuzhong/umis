@@ -28,7 +28,7 @@ const json = [
         name: 'umis-website__nav-poppet',
         classname: 'umis-website__nav-poppet',
         initData: {
-          width: 205,
+          width: 200,
         },
       },
       {

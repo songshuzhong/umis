@@ -3,6 +3,11 @@
   height: 100vh;
   background: #3a3f51;
   z-index: 2021;
+  overflow-y: auto;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
   .el-menu {
     border-right: 0;
   }
@@ -10,6 +15,7 @@
 .umis-website__nav-poppet {
   height: 100%;
   background: #3a3f51;
+  transition: 0.3s width ease-in-out;
 }
 .umis-website__header {
   display: flex;
