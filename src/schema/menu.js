@@ -159,6 +159,15 @@ const json = {
         body: [
           {
             renderer: 'mis-menu-item',
+            name: 'sf-header',
+            title: '超粉通用头',
+            icon: 'el-icon-crop',
+            pageId: '8e1c45de-06c1-4e65-be58-8c1bc3e10616',
+            pageDesc: null,
+            schemaUrl: '/api/page/8e1c45de-06c1-4e65-be58-8c1bc3e10616',
+          },
+          {
+            renderer: 'mis-menu-item',
             name: 'campaigns',
             title: '新建系列',
             icon: 'el-icon-burger',

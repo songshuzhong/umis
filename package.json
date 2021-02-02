@@ -9,8 +9,6 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.18.1",
-    "core-js": "^3.6.5",
     "lint-staged": "^8.1.7",
     "prettier": "^1.17.1"
   },
@@ -19,9 +17,11 @@
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
+    "axios": "^0.18.1",
     "autodll-webpack-plugin": "^0.4.2",
     "babel-eslint": "^10.1.0",
     "beautify": "0.0.8",
+    "core-js": "^3.6.5",
     "copy-to-clipboard": "^3.3.1",
     "deep-equal": "^1.0.1",
     "element-plus": "^1.0.1-beta.27",
@@ -39,6 +39,7 @@
     "postcss-px-to-viewport": "0.0.3",
     "postcss-viewport-units": "^0.1.4",
     "postcss-write-svg": "^3.0.1",
+    "qrcodejs2": "0.0.2",
     "requestidlecallback-polyfill": "^1.0.2",
     "sass-loader": "^10.1.1",
     "sass-resources-loader": "^2.0.3",
@@ -68,6 +69,7 @@
       "eslint:recommended"
     ],
     "parserOptions": {
+      "sourceType": "module",
       "parser": "babel-eslint"
     },
     "rules": {}

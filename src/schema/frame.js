@@ -49,7 +49,6 @@ const json = [
                       renderer: 'mis-switch',
                       name: 'collapse',
                       target: 'umis-website-nav',
-                      value: false,
                     },
                     {
                       renderer: 'mis-action',
@@ -58,7 +57,6 @@ const json = [
                       actionType: 'mis-drawer',
                       body: {
                         name: 'isEditor',
-                        showClose: true,
                         size: '80%',
                         label: '编辑',
                         classname: 'umis-website__drawer',
