@@ -125,6 +125,15 @@ const json = {
           },
           {
             renderer: 'mis-menu-item',
+            name: 'no-permission',
+            title: '无权访问',
+            icon: 'el-icon-lock',
+            pageId: 'e0663736-66a3-4355-b38c-9ee2e176ff49',
+            pageDesc: null,
+            schemaUrl: '/api/page/e0663736-66a3-4355-b38c-9ee2e176ff49',
+          },
+          {
+            renderer: 'mis-menu-item',
             name: 'show-img',
             title: '图片显隐',
             icon: 'el-icon-picture-outline',

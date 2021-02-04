@@ -1,14 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover"><title>UMIS</title><script>/*(function (f) {
-            var e = f.sessionStorage;
-            if (e) {
-                e.CUSTOMER_WEB_MONITOR_ID = 'webfunny1006';
-                var d = document.createElement('script');
-                d.async = 1;
-                d.src = '//localhost:8010/webfunny/w.js';
-                var g = document.getElementsByTagName('script')[0];
-                g.parentNode.insertBefore(d, g);
-            }
-        })(window);*/</script><link href="js/chunks/chunk-2d230868.9f0c0c.js" rel="prefetch"><link href="css/app.b67d5564.css" rel="preload" as="style"><link href="css/chunk-vendors.f66c8afb.css" rel="preload" as="style"><link href="js/app.9f0c0c.js" rel="preload" as="script"><link href="js/chunks/chunk-vendors.9f0c0c.js" rel="preload" as="script"><link href="css/chunk-vendors.f66c8afb.css" rel="stylesheet"><link href="css/app.b67d5564.css" rel="stylesheet"></head><body><div id="app"></div><script src="https://cdn.jsdelivr.net/npm/echarts@4.1.0/dist/echarts.js"></script><script src="https://cdn.jsdelivr.net/npm/vue-echarts@4.0.2"></script><script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/loader.min.js"></script><script>//var umisMenu = {{data.menu}};
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover"><title>UMIS</title><link href="css/app.846aa3d0.css" rel="preload" as="style"><link href="css/chunk-vendors.f66c8afb.css" rel="preload" as="style"><link href="js/app.f3989c.js" rel="preload" as="script"><link href="js/chunks/chunk-vendors.f3989c.js" rel="preload" as="script"><link href="css/chunk-vendors.f66c8afb.css" rel="stylesheet"><link href="css/app.846aa3d0.css" rel="stylesheet"></head><body><div id="app"></div><script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.21.2/min/vs/loader.min.js"></script><script>//var umisMenu = {{data.menu}};
       //var umisConfig = {{data.umisConfig}};
       var umisConfig = {
         isFormData: false,
@@ -17,6 +7,9 @@
         adaptor:
           'if(api.includes("/api/users")&&method==="get"){res.data.rows.forEach(function(item){item.adaptor=item.updatedAt;})}',
         style: `
+.umis-page__chart {
+    height: 100vh;
+}
 .mis-card-margin {
     margin-bottom: 20px;
 }
@@ -163,7 +156,7 @@
       require.config({
         paths: {
           vs:
-            'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs',
+            'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.21.2/min/vs',
         },
       });
       window.MonacoEnvironment = { getWorkerUrl: () => proxy };
@@ -172,9 +165,9 @@
           [
             `
             self.MonacoEnvironment = {
-              baseUrl: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min'
+              baseUrl: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.21.2/min'
             };
-            importScripts('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/base/worker/workerMain.min.js');`,
+            importScripts('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.21.2/min/vs/base/worker/workerMain.min.js');`,
           ],
           { type: 'text/javascript' }
         )
@@ -182,4 +175,4 @@
 
       require(['vs/editor/editor.main'], function() {
         window.monaco = monaco;
-      });</script><script src="js/chunks/chunk-vendors.9f0c0c.js"></script><script src="js/app.9f0c0c.js"></script></body></html>
+      });</script><script src="js/chunks/chunk-vendors.f3989c.js"></script><script src="js/app.f3989c.js"></script></body></html>
