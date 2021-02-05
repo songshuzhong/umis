@@ -1,4 +1,4 @@
-const json = {
+export default {
   data: {
     menu: [
       {
@@ -207,5 +207,3 @@ const json = {
   status: 0,
   msg: '请求成功',
 };
-
-export default json;

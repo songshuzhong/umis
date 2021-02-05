@@ -1,4 +1,4 @@
-const json = {
+export default {
   renderer: 'mis-layout',
   classname: 'umis-website__container',
   name: 'umis-website__container',
@@ -32,9 +32,6 @@ const json = {
       name: 'umis-website__nav-poppet',
       classname: 'umis-website__nav-poppet',
       visibleOn: 'data.preview === false',
-      initData: {
-        width: 200,
-      },
     },
     {
       renderer: 'mis-layout',
@@ -63,7 +60,6 @@ const json = {
                 },
                 {
                   renderer: 'mis-action',
-                  name: 'umis-website__preview',
                   actionType: 'actions',
                   actions: [
                     {
@@ -78,7 +74,6 @@ const json = {
                       icon: 'el-icon-edit',
                       actionType: 'mis-drawer',
                       body: {
-                        name: 'isEditor',
                         size: '80%',
                         label: '编辑',
                         classname: 'umis-website__drawer',
@@ -90,7 +85,6 @@ const json = {
                         body: [
                           {
                             renderer: 'mis-editor',
-                            name: 'editor',
                           },
                         ],
                       },
@@ -116,11 +110,8 @@ const json = {
           renderer: 'mis-main',
           routerView: true,
           classname: 'umis-website__main',
-          body: [],
         },
       ],
     },
   ],
 };
-
-export default json;
