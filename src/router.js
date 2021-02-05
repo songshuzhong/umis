@@ -22,7 +22,6 @@ function createRoutes(routes, basename = '') {
       component: MisSchema,
       props: {
         url: item.schemaUrl,
-        target: 'umis-website__preview',
       },
       meta: {
         title: item.title,
