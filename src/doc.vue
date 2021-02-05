@@ -1,30 +1,55 @@
 <template>
-  <el-radio-group v-model="radio" name="doc" @change="onChange">
-    <template v-if="isbutton">
-      <el-radio-button v-for="index in options" :key="index" :label="index">
-        备选项{{ index }}
-      </el-radio-button>
-    </template>
-    <template v-else>
-      <el-radio v-for="index in options" :key="index" :label="index">
-        备选项{{ index }}
-      </el-radio>
-    </template>
-  </el-radio-group>
+  <el-form :model="formInline" class="demo-form-inline">
+    <el-form-item label="审批人">
+      <el-input v-model="formInline.user" placeholder="审批人" />
+    </el-form-item>
+    <el-form-item label="活动区域">
+      <el-transfer v-model="formInline.transfer" :data="transferData" />
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="onSubmit">查询</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>
+import {
+  ElForm,
+  ElFormItem,
+  ElInput,
+  ElButton,
+  ElTransfer,
+} from 'element-plus';
+
 export default {
+  components: {
+    ElForm,
+    ElFormItem,
+    ElInput,
+    ElButton,
+    ElTransfer,
+  },
   data() {
+    const transferData = [];
+    for (let i = 1; i <= 15; i++) {
+      transferData.push({
+        key: i,
+        label: `备选项 ${i}`,
+        disabled: i % 4 === 0,
+      });
+    }
     return {
-      isbutton: false,
-      options: [1, 2, 3, 4],
-      radio: 3,
+      transferData,
+      formInline: {
+        transfer: [],
+        user: '',
+        region: '',
+      },
     };
   },
   methods: {
-    onChange(val) {
-      console.log(val);
+    onSubmit() {
+      console.log('submit!');
     },
   },
 };

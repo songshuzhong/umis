@@ -1,14 +1,55 @@
-.mis-avatar-margin {
-  margin: 20px;
-}
-
-.umis-layout__container {
+.umis-website__nav-fixed {
+  position: fixed;
   height: 100vh;
+  background: #3a3f51;
+  z-index: 2021;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+  .el-menu {
+    border-right: 0;
+  }
 }
-
-.umis-layout__container__drawer {
-  background-color: #3a3f51; // #282a36  !important
-
+.umis-website__goto-edit {
+  position: fixed;
+  bottom: 100px;
+  right: 100px;
+  z-index: 9999;
+}
+.umis-website__nav-poppet {
+  height: 100%;
+  background: #3a3f51;
+  transition: 0.3s width ease-in-out;
+}
+.umis-website__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dcdfe6;
+  line-height: 60px;
+  text-align: left;
+  font-size: 12px;
+  background-color: white;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
+  .el-button {
+    border: 0 !important;
+  }
+}
+.umis-website__header__logo {
+  height: 59px;
+  border-bottom: 1px solid #dcdfe6;
+  color: white;
+  text-align: center;
+  line-height: 59px;
+  font-size: 20px;
+}
+.umis-website__main {
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+.umis-website__drawer {
+  background-color: #3a3f51;
   .el-drawer__header {
     display: flex;
     align-items: center;
@@ -20,21 +61,8 @@
   }
   .umis-popup__container__body {
     padding: 0;
-    overflow: hidden;
   }
 }
-.umis-layout__container__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #dcdfe6;
-  line-height: 60px;
-  text-align: right;
-  font-size: 12px;
-  background-color: white;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
-}
-
 .el-loading-spinner {
   .circular {
     background-image: url('../imgs/loading.svg');

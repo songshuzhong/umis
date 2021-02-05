@@ -1,4 +1,4 @@
-const json = {
+export default {
   data: {
     menu: [
       {
@@ -89,15 +89,6 @@ const json = {
           },
           {
             renderer: 'mis-menu-item',
-            name: 'test',
-            title: '测试',
-            icon: 'el-icon-s-claim',
-            pageId: '3c346a1c-47d1-40a0-9444-7f7b1acd3647',
-            pageDesc: null,
-            schemaUrl: '/api/page/3c346a1c-47d1-40a0-9444-7f7b1acd3647',
-          },
-          {
-            renderer: 'mis-menu-item',
             name: 'demo-page',
             title: '页面',
             icon: 'el-icon-view',
@@ -116,12 +107,30 @@ const json = {
           },
           {
             renderer: 'mis-menu-item',
+            name: 'steps',
+            title: '向导',
+            icon: 'el-icon-pie-chart',
+            pageId: '90da56b4-55e4-4789-b2ca-d98bfbda3f40',
+            pageDesc: null,
+            schemaUrl: '/api/page/90da56b4-55e4-4789-b2ca-d98bfbda3f40',
+          },
+          {
+            renderer: 'mis-menu-item',
             name: 'users-crud',
             title: '增删改查',
             icon: 'el-icon-s-shop',
             pageId: 'b87c0dc7-eed5-4026-bc28-6daab3529bf9',
             pageDesc: null,
             schemaUrl: '/api/page/b87c0dc7-eed5-4026-bc28-6daab3529bf9',
+          },
+          {
+            renderer: 'mis-menu-item',
+            name: 'no-permission',
+            title: '无权访问',
+            icon: 'el-icon-lock',
+            pageId: 'e0663736-66a3-4355-b38c-9ee2e176ff49',
+            pageDesc: null,
+            schemaUrl: '/api/page/e0663736-66a3-4355-b38c-9ee2e176ff49',
           },
           {
             renderer: 'mis-menu-item',
@@ -151,17 +160,50 @@ const json = {
           },
         ],
       },
+      {
+        renderer: 'mis-menu-submenu',
+        name: 'superfans',
+        title: '超级粉丝通',
+        icon: 'el-icon-thumb',
+        body: [
+          {
+            renderer: 'mis-menu-item',
+            name: 'sf-header',
+            title: '超粉通用头',
+            icon: 'el-icon-crop',
+            pageId: '8e1c45de-06c1-4e65-be58-8c1bc3e10616',
+            pageDesc: null,
+            schemaUrl: '/api/page/8e1c45de-06c1-4e65-be58-8c1bc3e10616',
+          },
+          {
+            renderer: 'mis-menu-item',
+            name: 'campaigns',
+            title: '新建系列',
+            icon: 'el-icon-burger',
+            pageId: '993ce7db-2def-4d2a-a8e2-003e75ae8f16',
+            pageDesc: null,
+            schemaUrl: '/api/page/993ce7db-2def-4d2a-a8e2-003e75ae8f16',
+          },
+          {
+            renderer: 'mis-menu-item',
+            name: 'creative',
+            title: '创建计划',
+            icon: 'el-icon-s-finance',
+            pageId: 'e7eb1754-c4be-4da3-97c4-d48290abd465',
+            pageDesc: null,
+            schemaUrl: '/api/page/e7eb1754-c4be-4da3-97c4-d48290abd465',
+          },
+        ],
+      },
     ],
     umisConfig: {
       style:
         'body{margin: 0; background: #FFFFFF}.mis-card-margin{margin-bottom: 20px}.mis-card-margin .el-card__footer{display: flex;align-items: center;justify-content:space-around;border-top:1px solid #ebeef5;}',
       adaptor:
-        'if(api.includes("/api/users")&&method==="get"){res.data.rows.forEach(function(item){item.timestamp=item.updatedAt;})}',
+        'if(api.includes("/api/users")&&method==="get"){res.data.rows.forEach(function(item){item.adaptor=item.updatedAt;})}',
       isFormData: false,
     },
   },
   status: 0,
   msg: '请求成功',
 };
-
-export default json;
