@@ -21,10 +21,8 @@ function createRoutes(routes, basename = '') {
       path: `${basename}/${item.name}`,
       component: MisSchema,
       props: {
-        initSchema: {
-          url: item.schemaUrl,
-          method: 'get',
-        },
+        url: item.schemaUrl,
+        target: 'umis-website__preview',
       },
       meta: {
         title: item.title,
@@ -61,7 +59,7 @@ function createRoutes(routes, basename = '') {
   return result;
 }
 
-frameSchema[0].body[0].body.body = routerSchema.data.menu;
+frameSchema.body[0].body.body = routerSchema.data.menu;
 
 const routers = createRouter({
   history,
@@ -75,6 +73,16 @@ const routers = createRouter({
         canSchemaUpdate: false,
       },
       children: createRoutes(routerSchema.data.menu),
+    },
+    {
+      path: '/doc',
+      component: () => import('./doc'),
+    },
+    {
+      path: '/preview',
+      name: 'UmisPreview',
+      component: MisSchema,
+      props: true,
     },
     {
       path: '/error',
