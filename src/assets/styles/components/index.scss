@@ -11,6 +11,11 @@
     border-right: 0;
   }
 }
+.umis-website__goto-edit {
+  position: fixed;
+  bottom: 100px;
+  right: 100px;
+}
 .umis-website__nav-poppet {
   height: 100%;
   background: #3a3f51;
@@ -26,6 +31,9 @@
   font-size: 12px;
   background-color: white;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
+  .el-button {
+    border: 0 !important;
+  }
 }
 .umis-website__header__logo {
   height: 59px;
