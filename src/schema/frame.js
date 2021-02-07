@@ -9,6 +9,7 @@ export default {
     {
       renderer: 'mis-wrapper',
       visibleOn: 'data.preview === false',
+      transition: 'el-zoom-in-left',
       classname: 'umis-website__nav-fixed',
       body: {
         renderer: 'mis-menu',
@@ -32,6 +33,7 @@ export default {
       name: 'umis-website__nav-poppet',
       classname: 'umis-website__nav-poppet',
       visibleOn: 'data.preview === false',
+      transition: 'el-zoom-in-left',
     },
     {
       renderer: 'mis-layout',
@@ -40,6 +42,7 @@ export default {
         {
           renderer: 'mis-wrapper',
           visibleOn: 'data.preview === false',
+          transition: 'el-zoom-in-top',
           body: {
             renderer: 'mis-affix',
             zIndex: 1000,

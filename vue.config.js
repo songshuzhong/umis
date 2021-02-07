@@ -75,7 +75,6 @@ module.exports = {
   },
   devServer: {
     port: 8980,
-    host: 'dev.superfans.test.weibo.com',
     disableHostCheck: true,
     proxy: {
       '/api': {
