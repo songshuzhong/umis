@@ -1,10 +1,9 @@
 import { createApp } from 'vue';
 import ElementPlus from 'element-plus';
 import 'requestidlecallback-polyfill';
-import router from './router';
+import router from './router/index';
 import App from './app.vue';
 
-// import MisFactory, { MisSetting } from 'umis-factory';
 import MisFactory from '../../umis-factory/src/entry';
 import MisSetting from '../../umis-factory/src/components/setting';
 import '../../umis-factory/src/assets/styles/index.scss';
