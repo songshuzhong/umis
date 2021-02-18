@@ -63,6 +63,17 @@
     padding: 0;
   }
 }
+.umis-website__simple-demo {
+  padding: 20px;
+  margin: 10px auto;
+}
+.umis-website__code-viwer {
+  height: 200px;
+  margin: 0 20px;
+  .monaco-editor {
+    height: 100%;
+  }
+}
 .el-loading-spinner {
   .circular {
     background-image: url('../imgs/loading.svg');

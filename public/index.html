@@ -36,8 +36,11 @@
     border-top: 1px solid #ebeef5;
 }
 .umis-demo__fieldset {
-    background: #f1f1f1;
+    // background: #f1f1f1;
     padding: 20px;
+}
+.umis-demo__fieldset.fixed {
+    padding-top: 80px;
 }
 .umis-form__container__fieldset {
     padding: 20px;
@@ -140,6 +143,11 @@
     background: #2b313d;
     justify-content: space-between;
 }
+.umis-sf__header.fixed {
+  width: 100%;
+  position: fixed;
+  z-index: 2021;
+}
 .umis-sf__header__nav,
 .umis-sf__header__tools,
 .umis-sf__header__user {
@@ -149,6 +157,9 @@
 .umis-sf__header__user {
     background: #081422;
     border-radius: 30px;
+}
+.umis-sf__header__user .el-button {
+    padding: 0 10px;
 }
 .umis-sf__header__logo {
     width: 230px;

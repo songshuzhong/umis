@@ -74,8 +74,11 @@ module.exports = {
       .set('~components', path.join(__dirname, 'src/components'));
   },
   devServer: {
+    hot: true,
+    open: true,
     port: 8980,
     disableHostCheck: true,
+    host: 'dev.promote.biz.weibo.cn',
     proxy: {
       '/api': {
         target: 'http://localhost:1026',

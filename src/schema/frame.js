@@ -88,6 +88,7 @@ export default {
                         body: [
                           {
                             renderer: 'mis-editor',
+                            editable: true,
                           },
                         ],
                       },

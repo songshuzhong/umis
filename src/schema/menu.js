@@ -168,6 +168,24 @@ export default {
         body: [
           {
             renderer: 'mis-menu-item',
+            name: 'sf-home',
+            title: '超粉首页',
+            icon: 'el-icon-s-home',
+            pageId: '0428f842-358b-4797-9386-40264bb20b2d',
+            pageDesc: null,
+            schemaUrl: '/api/page/0428f842-358b-4797-9386-40264bb20b2d',
+          },
+          {
+            renderer: 'mis-menu-item',
+            name: 'fs-mixed',
+            title: '超粉混合页',
+            icon: 'el-icon-guide',
+            pageId: '0c3312df-b80a-4f2a-8a85-ee0073fb5e74',
+            pageDesc: null,
+            schemaUrl: '/api/page/0c3312df-b80a-4f2a-8a85-ee0073fb5e74',
+          },
+          {
+            renderer: 'mis-menu-item',
             name: 'sf-header',
             title: '超粉通用头',
             icon: 'el-icon-crop',
@@ -183,6 +201,15 @@ export default {
             pageId: '993ce7db-2def-4d2a-a8e2-003e75ae8f16',
             pageDesc: null,
             schemaUrl: '/api/page/993ce7db-2def-4d2a-a8e2-003e75ae8f16',
+          },
+          {
+            renderer: 'mis-menu-item',
+            name: 'sf-assets',
+            title: ' 超粉资产',
+            icon: 'el-icon-lollipop',
+            pageId: 'bb68c270-d512-4ee9-8dc0-2b2acb2e2d03',
+            pageDesc: null,
+            schemaUrl: '/api/page/bb68c270-d512-4ee9-8dc0-2b2acb2e2d03',
           },
           {
             renderer: 'mis-menu-item',
