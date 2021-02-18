@@ -8,11 +8,13 @@ export default {
   menus: [],
   docMenuCreator(basename = '') {
     const dirnames = {};
+    let dirname;
     docSchemas.keys().forEach(filePath => {
-      const dirname = path.dirname(filePath).replace('./', '');
+      dirname = path.dirname(filePath).replace('./', '');
       if (!dirnames[dirname]) {
         dirnames[dirname] = [];
-      } else {
+      }
+      if (!filePath.includes('props.js')) {
         const schemaFile = docSchemas(filePath);
         const jsonSchema = schemaFile.default || {};
         dirnames[dirname].push({
@@ -21,14 +23,18 @@ export default {
           body: jsonSchema,
           footer: {
             renderer: 'mis-editor',
-            schema: jsonSchema,
             classname: 'umis-website__code-viwer',
+            schema: jsonSchema,
           },
         });
       }
     });
     for (const docItemName in dirnames) {
       if (dirnames.hasOwnProperty(docItemName)) {
+        dirname = `./${docItemName}/props.js`;
+        if (docSchemas(dirname).default) {
+          dirnames[docItemName].push(docSchemas(dirname).default);
+        }
         routesList[routesList.length - 1].body.push({
           renderer: 'mis-menu-item',
           name: docItemName,
