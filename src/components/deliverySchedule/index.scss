@@ -1,0 +1,206 @@
+.sc-delivery-schedule {
+  position: relative;
+  width: 536px;
+}
+
+.sc-delivery-schedule__content {
+  border-radius: 4px;
+  overflow: hidden;
+  border: solid 1px #e6e7e8;
+  border-bottom: 0;
+}
+
+.sc-delivery-schedule__tools {
+  position: relative;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.sc-delivery-schedule--unactive {
+  position: absolute;
+  left: 22px;
+  font-size: 12px;
+  color: #39434e;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: -22px;
+    width: 12px;
+    height: 12px;
+    border: solid 1px #e6e7e8;
+    border-radius: 50%;
+    background-color: #e6e7e8;
+    content: '';
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+.sc-delivery-schedule--active {
+  position: absolute;
+  left: 66px + 22px;
+  font-size: 12px;
+  color: #39434e;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: -22px;
+    width: 12px;
+    height: 12px;
+    border: solid 1px #409eff;
+    border-radius: 50%;
+    background-color: #409eff;
+    content: '';
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+.sc-delivery-schedule--tip {
+  position: absolute;
+  left: 50%;
+  font-size: 12px;
+  color: #9ca1a7;
+  transform: translate3d(-50%, 0, 0);
+}
+
+.sc-delivery-schedule--clear {
+  position: absolute;
+  right: 0;
+  height: 26px;
+  font-size: 12px;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.sc-delivery-schedule__body {
+  width: 456px;
+  margin-left: 80px;
+}
+
+.sc-delivery-schedule__time {
+  width: 456px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  background: #f2f3f4;
+  border: 1px solid #e6e7e8;
+  border-bottom: 0;
+  border-top: 0;
+}
+
+.sc-delivery-schedule__time__noon {
+  width: 50%;
+  height: 34px;
+  font-size: 12px;
+  color: #39434e;
+  line-height: 34px;
+  text-align: center;
+
+  &:first-child {
+    border-right: 1px solid #e6e7e8;
+  }
+}
+
+.sc-delivery-schedule__frame {
+  position: absolute;
+  width: 80px;
+}
+
+.sc-delivery-schedule__category {
+  position: relative;
+  width: 80px;
+  height: 64px;
+  border: 1px solid #e6e7e8;
+  border-left: 0;
+  border-top: 0;
+  background: #f2f3f4;
+  border-right: 0;
+  text-align: center;
+  line-height: 64px;
+  font-size: 12px;
+  color: #39434e;
+}
+
+.sc-delivery-schedule__category__time {
+  text-align: right;
+}
+
+.sc-delivery-schedule__category__week {
+  line-height: 34px;
+}
+
+.sc-delivery-schedule__week {
+  width: 80px;
+  height: 34px;
+  border-bottom: 1px solid #e6e7e8;
+  line-height: 34px;
+  text-align: center;
+  font-size: 12px;
+  color: #39434e;
+  background-color: #f2f3f4;
+  cursor: pointer;
+}
+
+.sc-delivery-schedule__body__table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 0;
+  cursor: crosshair;
+  th {
+    background-color: #f9f9f9;
+    cursor: pointer;
+    &.sc-delivery-schedule__cell {
+      height: 26px;
+      line-height: 26px;
+    }
+  }
+  td {
+    background-color: white;
+  }
+}
+
+.sc-delivery-schedule__cell {
+  width: 19px;
+  height: 34px;
+  border: 1px solid #e6e7e8;
+  font-size: 12px;
+  color: #39434e;
+  line-height: 34px;
+  transition: background 500ms ease;
+
+  &:hover {
+    background-color: #e6e7e8;
+
+    &::after {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 150px;
+      height: 27px;
+      margin-left: 14px;
+      margin-top: 14px;
+      padding: 5px;
+      background-color: white;
+      border-radius: 5px;
+      border: 1px solid #e6e7e8;
+      text-align: center;
+      font-size: 12px;
+      color: #39434e;
+      content: attr(label);
+      z-index: 2;
+    }
+  }
+
+  &.active {
+    background-color: #409eff;
+  }
+
+  &.on-hover {
+    background-color: #e6e7e8;
+  }
+}

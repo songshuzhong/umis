@@ -10,9 +10,9 @@ export default {
   },
   body: {
     renderer: 'mis-action',
-    text: '设置',
+    text: '跳转到百度',
     size: 'mini',
     actionType: 'mis-redirect',
-    redirect: 'www.baidu.com',
+    redirect: 'http://www.baidu.com',
   },
 };

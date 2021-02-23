@@ -9,8 +9,13 @@ import MisSetting from '../../umis-factory/src/components/setting';
 import '../../umis-factory/src/assets/styles/index.scss';
 import '../src/assets/styles/index.scss';
 import 'element-plus/lib/theme-chalk/index.css';
+import * as exComponents from './components/index';
 
 const app = createApp(App);
+const umisOption = {
+  ...window.umisConfig,
+  components: exComponents,
+};
 
 app.config.productionTip = true;
 app.config.devtools = true;
@@ -22,6 +27,6 @@ router.addRoute('UmisWebsite', {
 
 app
   .use(ElementPlus)
-  .use(MisFactory, window.umisConfig)
+  .use(MisFactory, umisOption)
   .use(router)
   .mount('#app');

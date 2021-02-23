@@ -14,8 +14,10 @@ export default {
     size: 'mini',
     actionType: 'mis-dialog',
     body: {
-      renderer: 'mis-html',
-      html: 'drawer',
+      body: {
+        renderer: 'mis-html',
+        html: 'drawer',
+      },
     },
   },
 };

@@ -79,6 +79,7 @@ export default {
                       body: {
                         size: '80%',
                         label: '编辑',
+                        appendToBody: true,
                         classname: 'umis-website__drawer',
                         header: {
                           renderer: 'mis-html',
@@ -114,6 +115,7 @@ export default {
           renderer: 'mis-main',
           routerView: true,
           classname: 'umis-website__main',
+          computedClass: `data.preview ? 'preview' : ''`,
         },
       ],
     },
