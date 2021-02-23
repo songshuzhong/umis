@@ -12,7 +12,10 @@ export default {
     renderer: 'mis-action',
     text: 'Ajax按钮',
     size: 'mini',
-    actionType: 'mis-copy',
-    content: 'https://www.baidu.com?name=${name}',
+    actionType: 'mis-ajax',
+    actionApi: {
+      url: '/api/user?uid=${uid}',
+      method: 'delete',
+    },
   },
 };
