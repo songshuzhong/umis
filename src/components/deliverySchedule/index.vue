@@ -81,7 +81,7 @@ export default {
   name: 'DeliverySchedule',
   props: {
     value: {
-      type: Array,
+      type: [Array, String],
       required: true,
     },
   },
