@@ -19,6 +19,7 @@ const umisOption = {
 
 app.config.productionTip = true;
 app.config.devtools = true;
+app.config.silent = true;
 
 router.addRoute('UmisWebsite', {
   path: '/setting',

@@ -33,7 +33,6 @@ const routers = createRouter({
       props: {
         schema: frameSchema,
         canSchemaUpdate: false,
-        iProtal: true,
       },
       children: menus,
     },

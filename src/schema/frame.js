@@ -67,13 +67,16 @@ export default {
                   actions: [
                     {
                       renderer: 'mis-action',
-                      type: 'icon',
                       icon: 'el-icon-view',
                       remoteComponent: 'preview',
                     },
                     {
                       renderer: 'mis-action',
-                      type: 'icon',
+                      icon: 'el-icon-s-platform',
+                      actionType: 'mis-fullscreen',
+                    },
+                    {
+                      renderer: 'mis-action',
                       icon: 'el-icon-edit',
                       actionType: 'mis-drawer',
                       body: {
@@ -104,16 +107,23 @@ export default {
           renderer: 'mis-wrapper',
           visibleOn: 'data.preview === true',
           classname: 'umis-website__goto-edit',
-          body: {
-            renderer: 'mis-action',
-            remoteComponent: 'preview',
-            type: 'icon',
-            icon: 'el-icon-s-home',
-          },
+          body: [
+            {
+              renderer: 'mis-action',
+              remoteComponent: 'preview',
+              icon: 'el-icon-s-home',
+            },
+            {
+              renderer: 'mis-action',
+              icon: 'el-icon-s-platform',
+              actionType: 'mis-halfscreen',
+            },
+          ],
         },
         {
           renderer: 'mis-main',
           routerView: true,
+          iProtal: true,
           classname: 'umis-website__main',
           computedClass: `data.preview ? 'preview' : ''`,
         },

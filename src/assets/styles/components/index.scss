@@ -76,6 +76,14 @@
     height: 180px;
   }
 }
+*:fullscreen,
+*:-webkit-full-screen,
+*:-moz-full-screen {
+  background-color: #fff;
+  &::backdrop {
+    background-color: #fff;
+  }
+}
 .el-loading-spinner {
   .circular {
     background-image: url('../imgs/loading.svg');
